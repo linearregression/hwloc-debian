@@ -1,0 +1,5 @@
+hwloc (0.9.2-1) unstable; urgency=low
+
+  * Initial release (Closes: Bug#535615)
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 18 Aug 2009 01:35:03 +0200

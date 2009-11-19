@@ -1,3 +1,22 @@
+hwloc (0.9.2-2) unstable; urgency=low
+
+  * control:
+    - Enable libnuma-dev build-dep only on archs which have it.
+    - Add libncurses5-dev build-dep.
+    - Add expanded "Hardware Locality" in the description.
+  * rules: Run the testsuite but don't fail for now.
+  * source/format: Switch to 3.0 format (quilt).
+  * patches/binutils-gold.patch: Backported upstream patch to fix link
+    with binutils-gold.
+  * patches/hwloc-hello.patch: Backported upstream patch to always try
+    to run hwloc-hello.
+  * docs: Remove.
+  * libhwloc-doc.install: Move documentation to /usr/share/doc/libhwloc-doc.
+  * libhwloc-doc.docs: Add NEWS, README and html documentation.
+  * hwloc.docs, hwloc-nox.docs: Add NEWS and README files.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 19 Nov 2009 03:35:18 +0100
+
 hwloc (0.9.2-1) unstable; urgency=low
 
   * Initial release (Closes: Bug#535615)

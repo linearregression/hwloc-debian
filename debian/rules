@@ -35,6 +35,7 @@ build-stamp: obj-x/config.status obj-nox/config.status
 
 	cd obj-x && $(MAKE)
 	cd obj-nox && $(MAKE)
+	-cd obj-nox && $(MAKE) check
 
 	touch $@
 

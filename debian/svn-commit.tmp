@@ -1,0 +1,9 @@
+
+--Cette ligne, et les suivantes ci-dessous, seront ignorées--
+
+M    changelog
+M    docs
+A    hwloc.docs
+A    hwloc-nox.docs
+A    libhwloc-doc.docs
+M    libhwloc-doc.install

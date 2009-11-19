@@ -2,8 +2,8 @@ Source: hwloc
 Priority: extra
 Maintainer: Samuel Thibault <sthibault@debian.org>
 Build-Depends: debhelper (>= 7), autotools-dev, help2man,
-  libcairo2-dev, libx11-dev, libxml2-dev, libxml2-utils,
-  libnuma-dev
+  libcairo2-dev, libx11-dev, libxml2-dev, libxml2-utils, libncurses5-dev,
+  libnuma-dev [amd64 i386 ia64 mips mipsel powerpc]
 Standards-Version: 3.8.3
 Section: libs
 Homepage: http://www.open-mpi.org/projects/hwloc/
@@ -16,7 +16,7 @@ Architecture: any
 Multi-Arch: foreign
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Hierarchical view of the machine - utilities
- hwloc provides a portable abstraction (across OS, versions,
+ Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It
  primarily aims at helping high-performance computing applications with
  gathering information about the hardware so as to exploit it accordingly and
@@ -39,7 +39,7 @@ Multi-Arch: foreign
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: hwloc
 Description: Hierarchical view of the machine - non-X version of utilities
- hwloc provides a portable abstraction (across OS, versions,
+ Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It
  primarily aims at helping high-performance computing applications with
  gathering information about the hardware so as to exploit it accordingly and
@@ -60,7 +60,7 @@ Section: libdevel
 Architecture: any
 Depends: libhwloc0 (= ${binary:Version}), libxml2-dev
 Description: Hierarchical view of the machine - static libs and headers
- libhwloc provides a portable abstraction (across OS, versions,
+ Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It
  primarily aims at helping high-performance computing applications with
  gathering information about the hardware so as to exploit it accordingly and
@@ -100,7 +100,7 @@ Package: libhwloc-common
 Section: libs
 Architecture: all
 Description: Hierarchical view of the machine - shared libs
- libhwloc provides a portable abstraction (across OS, versions,
+ Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It
  primarily aims at helping high-performance computing applications with
  gathering information about the hardware so as to exploit it accordingly and
@@ -119,7 +119,7 @@ Package: libhwloc-doc
 Section: doc
 Architecture: all
 Description: Hierarchical view of the machine - documentation
- libhwloc provides a portable abstraction (across OS, versions,
+ Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It
  primarily aims at helping high-performance computing applications with
  gathering information about the hardware so as to exploit it accordingly and

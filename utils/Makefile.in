@@ -60,14 +60,13 @@ bin_PROGRAMS = lstopo$(EXEEXT) hwloc-mask$(EXEEXT) hwloc-bind$(EXEEXT) \
 @HAVE_WINDOWS_TRUE@am__append_3 = lstopo-windows.c
 subdir = utils
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/config/hwloc.m4 \
-	$(top_srcdir)/config/libtool.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/decl.m4 \
+	$(top_srcdir)/config/hwloc.m4 $(top_srcdir)/config/libtool.m4 \
 	$(top_srcdir)/config/ltoptions.m4 \
 	$(top_srcdir)/config/ltsugar.m4 \
 	$(top_srcdir)/config/ltversion.m4 \
 	$(top_srcdir)/config/lt~obsolete.m4 \
-	$(top_srcdir)/config/pkg.m4 $(top_srcdir)/m4/decl.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/config/pkg.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -98,7 +97,8 @@ am_lstopo_OBJECTS = lstopo-lstopo.$(OBJEXT) \
 	$(am__objects_1) $(am__objects_2) $(am__objects_3)
 lstopo_OBJECTS = $(am_lstopo_OBJECTS)
 am__DEPENDENCIES_1 =
-lstopo_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+lstopo_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 lstopo_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(lstopo_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
@@ -187,7 +187,9 @@ HWLOC_MS_LIB = @HWLOC_MS_LIB@
 HWLOC_RELEASE_DATE = @HWLOC_RELEASE_DATE@
 HWLOC_REQUIRES = @HWLOC_REQUIRES@
 HWLOC_SVN_R = @HWLOC_SVN_R@
+HWLOC_TERMCAP_LIBS = @HWLOC_TERMCAP_LIBS@
 HWLOC_VERSION = @HWLOC_VERSION@
+HWLOC_X11_LIBS = @HWLOC_X11_LIBS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -198,7 +200,7 @@ KERRIGHED_LIBS = @KERRIGHED_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
-LIBS = $(top_builddir)/src/libhwloc.la
+LIBS = @LIBS@ $(top_builddir)/src/libhwloc.la
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
@@ -231,6 +233,7 @@ STRIP = @STRIP@
 VERSION = @VERSION@
 W3M = @W3M@
 W3_GENERATOR = @W3_GENERATOR@
+XMKMF = @XMKMF@
 XMLLINT = @XMLLINT@
 XML_CFLAGS = @XML_CFLAGS@
 XML_LIBS = @XML_LIBS@
@@ -299,7 +302,7 @@ lstopo_SOURCES = lstopo.h lstopo.c lstopo-color.c lstopo-text.c \
 	lstopo-draw.c lstopo-fig.c $(am__append_1) $(am__append_2) \
 	$(am__append_3)
 lstopo_CFLAGS = $(CAIRO_CFLAGS) $(XML_CFLAGS)
-lstopo_LDADD = $(CAIRO_LIBS) $(XML_LIBS) -lm
+lstopo_LDADD = $(CAIRO_LIBS) $(XML_LIBS) -lm $(HWLOC_TERMCAP_LIBS) $(HWLOC_X11_LIBS)
 hwloc_mask_SOURCES = hwloc-mask.c hwloc-mask.h
 @HAVE_MINGW32_FALSE@TESTS = test-hwloc-distrib.sh
 man_pages = lstopo.1 hwloc-bind.1 hwloc-distrib.1 hwloc-mask.1

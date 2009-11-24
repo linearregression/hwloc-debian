@@ -201,118 +201,162 @@ default man page tree (under $prefix, of course).
 
 The following section presents an example of API usage.
 
-Interface example
+API example
 
-This section shows how to use hwloc with an small example hwloc-hello.c that
-just prints the topology and binds itself to the first processor of the second
-core of the machine.
+The following small C example (named ``hwloc-hello.c'') prints the topology of
+the machine and bring the process to the first processor of the second core of
+the machine.
 
-Hardware Location provides a pkg-config object, so compiling the example boils
-down to
+/* Example hwloc API program.
+ *
+ * Copyright ? 2009 INRIA, Universit? Bordeaux 1
+ * Copyright ? 2009 Cisco Systems, Inc.  All rights reserved.
+ *
+ * hwloc-hello.c
+ */
+
+#include <hwloc.h>
+
+static void print_children(hwloc_topology_t topology, hwloc_obj_t obj,
+                        int depth)
+{
+ char string[128];
+ int i;
+
+ hwloc_obj_snprintf(string, sizeof(string), topology, obj, "#", 0);
+ printf("%*s%s\n", 2*depth, "", string);
+ for (i = 0; i < obj->arity; i++) {
+     print_children(topology, obj->children[i], depth + 1);
+ }
+}
+
+int main(int argc, char **argv)
+{
+ int depth, i;
+ char string[128];
+ unsigned int topodepth;
+ hwloc_topology_t topology;
+ hwloc_cpuset_t cpuset;
+ hwloc_obj_t obj;
+
+ /* Allocate and initialize topology object. */
+ hwloc_topology_init(&topology);
+
+ /* ... Optionally, put detection configuration here to e.g. ignore
+    some objects types, define a synthetic topology, etc....
+
+    The default is to detect all the objects of the machine that
+    the caller is allowed to access.  See Configure Topology
+    Detection. */
+
+ /* Perform the topology detection. */
+ hwloc_topology_load(topology);
+
+ /* Optionally, get some additional topology information
+    in case we need the topology depth later. */
+ topodepth = hwloc_topology_get_depth(topology);
+
+ /* Walk the topology with an array style, from level 0 (always the
+    system level) to the lowest level (always the proc level). */
+ for (depth = 0; depth < topodepth; depth++) {
+     printf("*** Objects at level %d\n", depth);
+     for (i = 0; i < hwloc_get_nbobjs_by_depth(topology, depth);
+          i++) {
+         hwloc_obj_snprintf(string, sizeof(string), topology,
+                    hwloc_get_obj_by_depth(topology, depth, i),
+                    "#", 0);
+         printf("Index %d: %s\n", i, string);
+     }
+ }
+
+ /* Walk the topology with a tree style. */
+ printf("*** Printing overall tree\n");
+ print_children(topology, hwloc_get_system_obj(topology), 0);
+
+ /* Print the number of sockets. */
+ depth = hwloc_get_type_depth(topology, HWLOC_OBJ_SOCKET);
+ if (depth == HWLOC_TYPE_DEPTH_UNKNOWN) {
+     printf("*** The number of sockets is unknown\n");
+ } else {
+     printf("*** %u socket(s)\n",
+            hwloc_get_nbobjs_by_depth(topology, depth));
+ }
+
+ /* Find out where cores are, or else smaller sets of CPUs if
+    the OS doesn&apos;t have the notion of a "core". */
+ depth = hwloc_get_type_or_below_depth(topology, HWLOC_OBJ_CORE);
+
+ /* Get last level. */
+ obj = hwloc_get_obj_by_depth(topology, depth,
+                hwloc_get_nbobjs_by_depth(topology, depth) - 1);
+ if (obj) {
+     /* Get a copy of its cpuset that we may modify. */
+     cpuset = hwloc_cpuset_dup(obj->cpuset);
+
+     /* Get only one logical processor (in case the core is
+        SMT/hyperthreaded). */
+     hwloc_cpuset_singlify(cpuset);
+
+     /* And try to bind ourself there. */
+     if (hwloc_set_cpubind(topology, cpuset, 0)) {
+         char *str;
+         hwloc_cpuset_asprintf(&str, obj->cpuset);
+         printf("Couldn&apos;t bind to cpuset %s\n", str);
+         free(str);
+     }
+
+     /* Free our cpuset copy */
+     hwloc_cpuset_free(cpuset);
+ }
+
+ /* Destroy topology object. */
+ hwloc_topology_destroy(topology);
+
+ return 0;
+}
+
+hwloc provides a pkg-config executable to obtain relevant compiler and linker
+flags. For example, it can be used thusly to compile applications that utilize
+the hwloc library (assuming GNU Make):
 
 CFLAGS += $(pkg-config --cflags hwloc)
 LDLIBS += $(pkg-config --libs hwloc)
 cc hwloc-hello.c $(CFLAGS) -o hwloc-hello $(LDLIBS)
 
-/* Example hwloc API program.
- *
- * Copyright ? 2009 INRIA, Universit? Bordeaux 1
- *
- * topo-hello.c
- */
+On a machine with 4GB of RAM and 2 processor sockets -- each socket of which
+has two processor cores -- the output from running hwloc-hello could be
+something like the following:
 
-#include <hwloc.h>
-
-static void print_children(hwloc_topology_t topology, hwloc_obj_t obj, int depth)
-{
-     char string[128];
-     int i;
-
-     hwloc_obj_snprintf(string, sizeof(string), topology, obj, "#", 0);
-     printf("%*s%s\n", 2*depth, "", string);
-     for (i = 0; i < obj->arity; i++)
-             print_children(topology, obj->children[i], depth + 1);
-}
-
-int main(void)
-{
-     /* Topology object */
-     hwloc_topology_t topology;
-
-     /* Allocate and initialize topology object.  */
-     hwloc_topology_init(&topology);
-
-     /* ... Optionally, put detection configuration here to e.g. ignore some
-        objects types, define a synthetic topology, etc....  The default is
-        to detect all the objects of the machine that the caller is allowed
-        to access.
-        See Configure Topology Detection.  */
-
-     /* Perform the topology detection.  */
-     hwloc_topology_load(topology);
-
-
-     /* Optionally, get some additional topology information
-      * in case we need the topology depth later.
-      */
-     unsigned topodepth = hwloc_topology_get_depth(topology);
-
-
-     /* Walk the topology with an array style, from level 0 (always the
-      * system level) to the lowest level (always the proc level). */
-     int depth, i;
-     char string[128];
-     for (depth = 0; depth < topodepth; depth++) {
-             for (i = 0; i < hwloc_get_nbobjs_by_depth(topology, depth); i++) {
-                     hwloc_obj_snprintf(string, sizeof(string), topology,
-                                     hwloc_get_obj_by_depth(topology, depth, i), "#", 0);
-                     printf("%s\n", string);
-             }
-     }
-
-     /* Walk the topology with a tree style.  */
-     print_children(topology, hwloc_get_system_obj(topology), 0);
-
-
-     /* Print the number of sockets.  */
-     depth = hwloc_get_type_depth(topology, HWLOC_OBJ_SOCKET);
-     if (depth == HWLOC_TYPE_DEPTH_UNKNOWN)
-             printf("The number of sockets is unknown\n");
-     else
-             printf("%u socket(s)\n", hwloc_get_nbobjs_by_depth(topology, depth));
-
-
-     /* Find out where cores are, or else smaller sets of CPUs if the OS
-      * doesn&apos;t have the notion of core. */
-     depth = hwloc_get_type_or_below_depth(topology, HWLOC_OBJ_CORE);
-
-     /* Get last one.  */
-     hwloc_obj_t obj = hwloc_get_obj_by_depth(topology, depth, hwloc_get_nbobjs_by_depth(topology, depth) - 1);
-     if (!obj)
-             return 0;
-
-     /* Get a copy of its cpuset that we may modify.  */
-     hwloc_cpuset_t cpuset = hwloc_cpuset_dup(obj->cpuset);
-
-     /* Get only one logical processor (in case the core is SMT/hyperthreaded).  */
-     hwloc_cpuset_singlify(cpuset);
-
-     /* And try to bind ourself there.  */
-     if (hwloc_set_cpubind(topology, cpuset, 0)) {
-             char *str = NULL;
-             hwloc_cpuset_asprintf(&str, obj->cpuset);
-             printf("Couldn&apos;t bind to cpuset %s\n", str);
-             free(str);
-     }
-
-     /* Free our cpuset copy */
-     hwloc_cpuset_free(cpuset);
-
-     /* Destroy topology object.  */
-     hwloc_topology_destroy(topology);
-
-     return 0;
-}
+shell$ ./hwloc-hello
+*** Objects at level 0
+Index 0: System(3938MB)
+*** Objects at level 1
+Index 0: Socket#0
+Index 1: Socket#1
+*** Objects at level 2
+Index 0: Core#0
+Index 1: Core#1
+Index 2: Core#3
+Index 3: Core#2
+*** Objects at level 3
+Index 0: P#0
+Index 1: P#1
+Index 2: P#2
+Index 3: P#3
+*** Printing overall tree
+System(3938MB)
+  Socket#0
+ Core#0
+   P#0
+ Core#1
+   P#1
+  Socket#1
+ Core#3
+   P#2
+ Core#2
+   P#3
+*** 2 socket(s)
+shell$
 
 Questions and bugs
 
@@ -334,7 +378,79 @@ dept-info.labri.fr/~namyst/). PLPA was initially developed by the Open MPI
 development team as a sub-project. Both are now deprecated in favor of hwloc,
 which is distributed as an Open MPI sub-project.
 
+Glossary
+
+Object
+
+ Interesting kind of part of the system, such as a Core, a Cache, a Memory
+ node, etc. The different types detected by hwloc are detailed in the
+ hwloc_obj_type_t enumeration.
+
+ They are topologically sorted by CPU set into a tree whose root is the
+ System object (which always exists).
+
+CPU set
+
+ The set of logical processors logically included in an object (if any).
+ This term does not have any relation to an operating system ``CPU set.''
+
+Father object
+
+ The object logically containing the current object, for example because its
+ CPU set includes the CPU set of the current object.
+
+Children object(s)
+
+ The object (or objects) contained in the current object because their CPU
+ set is included in the CPU set of the current object.
+
+Arity
+
+ The number of children of an object.
+
+Sibling objects
+
+ Objects of the same type which have the same father.
+
+Sibling rank
+
+ Index to uniquely identify objects of the same type which have the same
+ father, and is always in the range [0, fathers_arity).
+
+Cousin objects
+
+ Objects of the same type as the current object.
+
+Level
+
+ Set of objects of the same type.
+
+OS index
+
+ The index that the operating system (OS) uses to identify the object. This
+ may be completely arbitrary, or it may depend on the BIOS configuration.
+
+Depth
+
+ Nesting level in the object tree, starting from the 0th object (i.e., the
+ System object).
+
+Logical index
+
+ Index to uniquely identify objects of the same type. It is generally used
+ to express proximity. This index is always linear and in the range [0,
+ num_objs_same_type_same_level). Think of it as ``cousin rank.''
+
+The following diagram can help to understand the vocabulary of the
+relationships by showing the example of a machine with two dual core sockets
+(with no hardware threads); thus, a topology with 4 levels.
+
+                               diagram.png
+
+It should be noted that for Processor objects, the logical index -- as computed
+linearly by hwloc -- is not the same as the OS index.
+
 -------------------------------------------------------------------------------
 
-Generated on Thu Nov 5 09:58:42 2009 for Hardware Locality (hwloc) by  doxygen
+Generated on Tue Nov 24 11:55:11 2009 for Hardware Locality (hwloc) by  doxygen
 1.6.1

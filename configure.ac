@@ -278,7 +278,11 @@ AC_CHECK_HEADERS([langinfo.h], [
 ])
 AC_CHECK_HEADERS([curses.h], [
   AC_CHECK_HEADERS([term.h], [
-    AC_CHECK_LIB([termcap], [tparm])
+    AC_CHECK_LIB([termcap], [tparm], [
+        AC_SUBST([HWLOC_TERMCAP_LIBS], ["-ltermcap"])
+        AC_DEFINE([HWLOC_HAVE_LIBTERMCAP], [1],
+                  [Define to 1 if you have `termcap' library (-ltermcap)])
+      ])
   ], [], [[#include <curses.h>]])
 ])
 
@@ -339,18 +343,20 @@ if test "x$hwloc_thread_t" != "x" ; then
   AC_DEFINE_UNQUOTED(hwloc_thread_t, $hwloc_thread_t, [Define this to the thread ID type])
 fi
 
-AC_MSG_CHECKING([for old prototype of sched_setaffinity])
-AC_COMPILE_IFELSE(
-  AC_LANG_PROGRAM([[
-    #define _GNU_SOURCE
-    #include <sched.h>
-    static unsigned long mask;
-    ]], [[ sched_setaffinity(0, (void*) &mask);
-    ]]),
-  AC_DEFINE([HAVE_OLD_SCHED_SETAFFINITY], [1], [Define to 1 if glibc provides the old prototype of sched_setaffinity()])
-  AC_MSG_RESULT([yes]),
-  AC_MSG_RESULT([no])
-)
+HWLOC_CHECK_DECL([sched_setaffinity], [
+  AC_MSG_CHECKING([for old prototype of sched_setaffinity])
+  AC_COMPILE_IFELSE(
+    AC_LANG_PROGRAM([[
+      #define _GNU_SOURCE
+      #include <sched.h>
+      static unsigned long mask;
+      ]], [[ sched_setaffinity(0, (void*) &mask);
+      ]]),
+    AC_DEFINE([HAVE_OLD_SCHED_SETAFFINITY], [1], [Define to 1 if glibc provides the old prototype of sched_setaffinity()])
+    AC_MSG_RESULT([yes]),
+    AC_MSG_RESULT([no])
+  )
+])
 
 AC_MSG_CHECKING([for working CPU_SET])
 AC_LINK_IFELSE(
@@ -372,12 +378,17 @@ AC_ARG_ENABLE([cairo],
 if test "x$enable_cairo" = "xyes"; then
   PKG_CHECK_MODULES([CAIRO], [cairo], [:], [enable_cairo="no"])
   if test "x$enable_cairo" = "xyes"; then
-    AC_CHECK_HEADERS([X11/Xlib.h],
-      [AC_CHECK_HEADERS([X11/Xutil.h X11/keysym.h],
-        [enable_X11=yes
-         AC_DEFINE([HAVE_X11], [1], [Define to 1 if X11 libraries are available.])],,
-        [[#include <X11/Xlib.h>]])
-      ])
+    AC_PATH_X
+    AC_CHECK_HEADERS([X11/Xlib.h], [
+      AC_CHECK_HEADERS([X11/Xutil.h X11/keysym.h], [
+        AC_CHECK_LIB([X11], [XOpenDisplay], [
+          enable_X11=yes
+          AC_SUBST([HWLOC_X11_LIBS], ["-lX11"])
+          AC_DEFINE([HAVE_X11], [1], [Define to 1 if X11 libraries are available.])
+        ])]
+      )],,
+      [[#include <X11/Xlib.h>]]
+    )
     if test "x$enable_X11" != "xyes"; then
       AC_MSG_WARN([X11 headers not found, Cairo/X11 back-end disabled])
     fi

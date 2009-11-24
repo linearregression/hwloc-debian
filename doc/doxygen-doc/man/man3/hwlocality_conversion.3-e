@@ -1,4 +1,4 @@
-.TH "Object/String Conversion" 3 "5 Nov 2009" "Version 0.9.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Object/String Conversion" 3 "24 Nov 2009" "Version 0.9.3rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME

@@ -9,13 +9,9 @@
     <docanchor file="index">examples</docanchor>
     <docanchor file="index">interface_example</docanchor>
     <docanchor file="index">interface</docanchor>
+    <docanchor file="index">glossary</docanchor>
     <docanchor file="index">history</docanchor>
     <docanchor file="index">bugs</docanchor>
-  </compound>
-  <compound kind="page">
-    <name>glossary</name>
-    <title>Glossary</title>
-    <filename>glossary</filename>
   </compound>
   <compound kind="group">
     <name>hwlocality_topology</name>

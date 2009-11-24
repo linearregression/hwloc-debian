@@ -43,18 +43,17 @@ target_triplet = @target@
 DIST_COMMON = $(am__dist_pdf_DATA_DIST) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/doxygen-config.cfg.in \
 	$(top_srcdir)/hwloc.am
-@BUILD_DOXYGEN_TRUE@TESTS = hwloc-hello$(EXEEXT)
-@BUILD_DOXYGEN_TRUE@check_PROGRAMS = $(am__EXEEXT_1)
+TESTS = hwloc-hello$(EXEEXT)
+check_PROGRAMS = $(am__EXEEXT_1)
 subdir = doc
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/config/hwloc.m4 \
-	$(top_srcdir)/config/libtool.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/decl.m4 \
+	$(top_srcdir)/config/hwloc.m4 $(top_srcdir)/config/libtool.m4 \
 	$(top_srcdir)/config/ltoptions.m4 \
 	$(top_srcdir)/config/ltsugar.m4 \
 	$(top_srcdir)/config/ltversion.m4 \
 	$(top_srcdir)/config/lt~obsolete.m4 \
-	$(top_srcdir)/config/pkg.m4 $(top_srcdir)/m4/decl.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/config/pkg.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -62,7 +61,7 @@ CONFIG_HEADER = $(top_builddir)/include/private/config.h \
 	$(top_builddir)/include/hwloc/config.h
 CONFIG_CLEAN_FILES = doxygen-config.cfg
 CONFIG_CLEAN_VPATH_FILES =
-@BUILD_DOXYGEN_TRUE@am__EXEEXT_1 = hwloc-hello$(EXEEXT)
+am__EXEEXT_1 = hwloc-hello$(EXEEXT)
 hwloc_hello_SOURCES = hwloc-hello.c
 hwloc_hello_OBJECTS = hwloc-hello.$(OBJEXT)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/include/private -I$(top_builddir)/include/hwloc
@@ -152,7 +151,9 @@ HWLOC_MS_LIB = @HWLOC_MS_LIB@
 HWLOC_RELEASE_DATE = @HWLOC_RELEASE_DATE@
 HWLOC_REQUIRES = @HWLOC_REQUIRES@
 HWLOC_SVN_R = @HWLOC_SVN_R@
+HWLOC_TERMCAP_LIBS = @HWLOC_TERMCAP_LIBS@
 HWLOC_VERSION = @HWLOC_VERSION@
+HWLOC_X11_LIBS = @HWLOC_X11_LIBS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -196,6 +197,7 @@ STRIP = @STRIP@
 VERSION = @VERSION@
 W3M = @W3M@
 W3_GENERATOR = @W3_GENERATOR@
+XMKMF = @XMKMF@
 XMLLINT = @XMLLINT@
 XML_CFLAGS = @XML_CFLAGS@
 XML_LIBS = @XML_LIBS@
@@ -475,8 +477,8 @@ dox_inputs = $(DOX_CONFIG) \
 @INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwlocality_traversal.3 \
 @INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwlocality_types.3
 
-@BUILD_DOXYGEN_TRUE@hwloc_hello_LDADD = $(top_builddir)/src/libhwloc.la
-@BUILD_DOXYGEN_TRUE@hwloc_hello_DEPENDENCIES = $(hwloc_hello_LDADD)
+hwloc_hello_LDADD = $(top_builddir)/src/libhwloc.la
+hwloc_hello_DEPENDENCIES = $(hwloc_hello_LDADD)
 
 #
 # Only remove the actual generated documentation files for maintainers

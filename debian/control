@@ -4,6 +4,7 @@ Maintainer: Samuel Thibault <sthibault@debian.org>
 Build-Depends: debhelper (>= 7), autotools-dev, help2man,
   libcairo2-dev, libx11-dev, libxml2-dev, libxml2-utils, libncurses5-dev,
   libnuma-dev [amd64 i386 ia64 mips mipsel powerpc]
+Build-Depends-Indep: doxygen, texlive-latex-base, transfig
 Standards-Version: 3.8.3
 Section: libs
 Homepage: http://www.open-mpi.org/projects/hwloc/

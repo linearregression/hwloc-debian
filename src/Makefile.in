@@ -65,14 +65,13 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 @HAVE_DARWIN_FALSE@am__append_21 = topology-darwin.c
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/config/hwloc.m4 \
-	$(top_srcdir)/config/libtool.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/decl.m4 \
+	$(top_srcdir)/config/hwloc.m4 $(top_srcdir)/config/libtool.m4 \
 	$(top_srcdir)/config/ltoptions.m4 \
 	$(top_srcdir)/config/ltsugar.m4 \
 	$(top_srcdir)/config/ltversion.m4 \
 	$(top_srcdir)/config/lt~obsolete.m4 \
-	$(top_srcdir)/config/pkg.m4 $(top_srcdir)/m4/decl.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/config/pkg.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -184,7 +183,9 @@ HWLOC_MS_LIB = @HWLOC_MS_LIB@
 HWLOC_RELEASE_DATE = @HWLOC_RELEASE_DATE@
 HWLOC_REQUIRES = @HWLOC_REQUIRES@
 HWLOC_SVN_R = @HWLOC_SVN_R@
+HWLOC_TERMCAP_LIBS = @HWLOC_TERMCAP_LIBS@
 HWLOC_VERSION = @HWLOC_VERSION@
+HWLOC_X11_LIBS = @HWLOC_X11_LIBS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -228,6 +229,7 @@ STRIP = @STRIP@
 VERSION = @VERSION@
 W3M = @W3M@
 W3_GENERATOR = @W3_GENERATOR@
+XMKMF = @XMKMF@
 XMLLINT = @XMLLINT@
 XML_CFLAGS = @XML_CFLAGS@
 XML_LIBS = @XML_LIBS@

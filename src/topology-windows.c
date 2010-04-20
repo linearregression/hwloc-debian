@@ -140,10 +140,13 @@ typedef struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX {
 } SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, *PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;
 #endif
 
+/* TODO: SetThreadIdealProcessor */
+
 static int
-hwloc_win_set_thread_cpubind(hwloc_topology_t topology, hwloc_thread_t thread, hwloc_cpuset_t hwloc_set, int strict)
+hwloc_win_set_thread_cpubind(hwloc_topology_t topology __hwloc_attribute_unused, hwloc_thread_t thread, hwloc_const_cpuset_t hwloc_set, int policy __hwloc_attribute_unused)
 {
-  /* TODO: groups */
+  /* TODO: groups SetThreadGroupAffinity */
+  /* The resulting binding is always strict */
   DWORD mask = hwloc_cpuset_to_ulong(hwloc_set);
   if (!SetThreadAffinityMask(thread, mask))
     return -1;
@@ -151,15 +154,16 @@ hwloc_win_set_thread_cpubind(hwloc_topology_t topology, hwloc_thread_t thread, h
 }
 
 static int
-hwloc_win_set_thisthread_cpubind(hwloc_topology_t topology, hwloc_cpuset_t hwloc_set, int strict)
+hwloc_win_set_thisthread_cpubind(hwloc_topology_t topology, hwloc_const_cpuset_t hwloc_set, int policy)
 {
-  return hwloc_win_set_thread_cpubind(topology, GetCurrentThread(), hwloc_set, strict);
+  return hwloc_win_set_thread_cpubind(topology, GetCurrentThread(), hwloc_set, policy);
 }
 
 static int
-hwloc_win_set_proc_cpubind(hwloc_topology_t topology, hwloc_pid_t proc, hwloc_cpuset_t hwloc_set, int strict)
+hwloc_win_set_proc_cpubind(hwloc_topology_t topology __hwloc_attribute_unused, hwloc_pid_t proc, hwloc_const_cpuset_t hwloc_set, int policy __hwloc_attribute_unused)
 {
   /* TODO: groups */
+  /* The resulting binding is always strict */
   DWORD mask = hwloc_cpuset_to_ulong(hwloc_set);
   if (!SetProcessAffinityMask(proc, mask))
     return -1;
@@ -167,15 +171,26 @@ hwloc_win_set_proc_cpubind(hwloc_topology_t topology, hwloc_pid_t proc, hwloc_cp
 }
 
 static int
-hwloc_win_set_thisproc_cpubind(hwloc_topology_t topology, hwloc_cpuset_t hwloc_set, int strict)
+hwloc_win_get_proc_cpubind(hwloc_topology_t topology __hwloc_attribute_unused, hwloc_pid_t proc, hwloc_cpuset_t hwloc_set, int policy __hwloc_attribute_unused)
 {
-  return hwloc_win_set_proc_cpubind(topology, GetCurrentProcess(), hwloc_set, strict);
+  DWORD proc_mask, sys_mask;
+  /* TODO: groups */
+  if (!GetProcessAffinityMask(proc, &proc_mask, &sys_mask))
+    return -1;
+  hwloc_cpuset_from_ulong(hwloc_set, proc_mask);
+  return 0;
 }
 
 static int
-hwloc_win_set_cpubind(hwloc_topology_t topology, hwloc_cpuset_t hwloc_set, int strict)
+hwloc_win_set_thisproc_cpubind(hwloc_topology_t topology, hwloc_const_cpuset_t hwloc_set, int policy)
 {
-  return hwloc_win_set_thisproc_cpubind(topology, hwloc_set, strict);
+  return hwloc_win_set_proc_cpubind(topology, GetCurrentProcess(), hwloc_set, policy);
+}
+
+static int
+hwloc_win_get_thisproc_cpubind(hwloc_topology_t topology, hwloc_cpuset_t hwloc_cpuset, int policy)
+{
+  return hwloc_win_get_proc_cpubind(topology, GetCurrentProcess(), hwloc_cpuset, policy);
 }
 
 void
@@ -195,6 +210,11 @@ hwloc_look_windows(struct hwloc_topology *topology)
 
     if (GetLogicalProcessorInformationProc) {
       PSYSTEM_LOGICAL_PROCESSOR_INFORMATION procInfo;
+      unsigned id;
+      unsigned i;
+      struct hwloc_obj *obj;
+      hwloc_obj_type_t type;
+
       length = 0;
       procInfo = NULL;
 
@@ -206,11 +226,6 @@ hwloc_look_windows(struct hwloc_topology *topology)
 	free(procInfo);
 	procInfo = malloc(length);
       }
-
-      unsigned id;
-      int i;
-      struct hwloc_obj *obj;
-      hwloc_obj_type_t type;
 
       for (i = 0; i < length / sizeof(*procInfo); i++) {
 
@@ -237,37 +252,42 @@ hwloc_look_windows(struct hwloc_topology *topology)
 	    break;
 	  case RelationGroup:
 	  default:
-	    type = HWLOC_OBJ_MISC;
+	    type = HWLOC_OBJ_GROUP;
 	    break;
 	}
 
 	obj = hwloc_alloc_setup_object(type, id);
         obj->cpuset = hwloc_cpuset_alloc();
-	hwloc_debug("%s#%d mask %lx\n", hwloc_obj_type_string(type), id, procInfo[i].ProcessorMask);
+	hwloc_debug("%s#%u mask %lx\n", hwloc_obj_type_string(type), id, procInfo[i].ProcessorMask);
 	hwloc_cpuset_from_ulong(obj->cpuset, procInfo[i].ProcessorMask);
 
 	switch (type) {
 	  case HWLOC_OBJ_NODE:
 	    {
 	      ULONGLONG avail;
+	      obj->nodeset = hwloc_cpuset_alloc();
+	      hwloc_cpuset_set(obj->nodeset, id);
 	      if (GetNumaAvailableMemoryNodeProc && GetNumaAvailableMemoryNodeProc(id, &avail))
-		obj->attr->node.memory_kB = avail >> 10;
-	      else
-		obj->attr->node.memory_kB = 0;
-	      obj->attr->node.huge_page_free = 0; /* TODO */
+		obj->memory.local_memory = avail;
+	      obj->memory.page_types_len = 1;
+	      obj->memory.page_types = malloc(sizeof(*obj->memory.page_types));
+	      memset(obj->memory.page_types, 0, sizeof(*obj->memory.page_types));
+#ifdef HAVE__SC_LARGE_PAGESIZE
+	      obj->memory.page_types[0].size = sysconf(_SC_LARGE_PAGESIZE);
+#endif
 	      break;
 	    }
 	  case HWLOC_OBJ_CACHE:
-	    obj->attr->cache.memory_kB = procInfo[i].Cache.Size >> 10;
+	    obj->attr->cache.size = procInfo[i].Cache.Size;
 	    obj->attr->cache.depth = procInfo[i].Cache.Level;
 	    break;
-	  case HWLOC_OBJ_MISC:
-	    obj->attr->misc.depth = procInfo[i].Relationship == RelationGroup;
+	  case HWLOC_OBJ_GROUP:
+	    obj->attr->group.depth = procInfo[i].Relationship == RelationGroup;
 	    break;
 	  default:
 	    break;
 	}
-	hwloc_add_object(topology, obj);
+	hwloc_insert_object_by_cpuset(topology, obj);
       }
 
       free(procInfo);
@@ -278,6 +298,12 @@ hwloc_look_windows(struct hwloc_topology *topology)
     /* Disabled for now as it wasn't tested at all.  */
     if (0 && GetLogicalProcessorInformationExProc) {
       PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX procInfoTotal, procInfo;
+
+      signed id;
+      struct hwloc_obj *obj;
+      hwloc_obj_type_t type;
+      KAFFINITY mask;
+      WORD group;
 
       fprintf(stderr,"Note: GetLogicalProcessorInformationEx was never tested yet!\n");
 
@@ -292,12 +318,6 @@ hwloc_look_windows(struct hwloc_topology *topology)
 	free(procInfoTotal);
 	procInfo = malloc(length);
       }
-
-      signed id;
-      struct hwloc_obj *obj;
-      hwloc_obj_type_t type;
-      KAFFINITY mask;
-      WORD group;
 
       for (procInfo = procInfoTotal;
 	   (void*) procInfo < (void*) ((unsigned long) procInfoTotal + length);
@@ -335,12 +355,12 @@ hwloc_look_windows(struct hwloc_topology *topology)
 	  case RelationGroup:
 	    /* So strange an interface... */
 	    for (id = 0; id < procInfo->Group.ActiveGroupCount; id++) {
-	      obj = hwloc_alloc_setup_object(HWLOC_OBJ_MISC, id);
+	      obj = hwloc_alloc_setup_object(HWLOC_OBJ_GROUP, id);
 	      obj->cpuset = hwloc_cpuset_alloc();
 	      mask = procInfo->Group.GroupInfo[id].ActiveProcessorMask;
 	      hwloc_debug("group %d mask %lx\n", id, mask);
 	      hwloc_cpuset_from_ith_ulong(obj->cpuset, id, mask);
-	      hwloc_add_object(topology, obj);
+	      hwloc_insert_object_by_cpuset(topology, obj);
 	    }
 	    continue;
 	  default:
@@ -355,33 +375,41 @@ hwloc_look_windows(struct hwloc_topology *topology)
 
 	switch (type) {
 	  case HWLOC_OBJ_NODE:
-	    obj->attr->node.memory_kB = 0; /* TODO GetNumaAvailableMemoryNodeEx  */
-	    obj->attr->node.huge_page_free = 0; /* TODO */
+	    obj->nodeset = hwloc_cpuset_alloc();
+	    hwloc_cpuset_set(obj->nodeset, id);
+	    obj->memory.local_memory = 0; /* TODO GetNumaAvailableMemoryNodeEx  */
+	    obj->memory.page_types_len = 1;
+	    obj->memory.page_types = malloc(sizeof(*obj->memory.page_types));
+	    memset(obj->memory.page_types, 0, sizeof(*obj->memory.page_types));
+#ifdef HAVE__SC_LARGE_PAGESIZE
+	    obj->memory.page_types[0].size = sysconf(_SC_LARGE_PAGESIZE);
+#endif
 	    break;
 	  case HWLOC_OBJ_CACHE:
-	    obj->attr->cache.memory_kB = procInfo->Cache.CacheSize >> 10;
+	    obj->attr->cache.size = procInfo->Cache.CacheSize;
 	    obj->attr->cache.depth = procInfo->Cache.Level;
 	    break;
 	  default:
 	    break;
 	}
-	hwloc_add_object(topology, obj);
+	hwloc_insert_object_by_cpuset(topology, obj);
       }
       free(procInfoTotal);
     }
   }
 
-  /* add PROC objects */
-  hwloc_setup_proc_level(topology, hwloc_fallback_nbprocessors(), NULL);
+  /* add PU objects */
+  hwloc_setup_pu_level(topology, hwloc_fallback_nbprocessors(topology));
 }
 
 void
 hwloc_set_windows_hooks(struct hwloc_topology *topology)
 {
-  topology->set_cpubind = hwloc_win_set_cpubind;
   topology->set_proc_cpubind = hwloc_win_set_proc_cpubind;
+  topology->get_proc_cpubind = hwloc_win_get_proc_cpubind;
   topology->set_thread_cpubind = hwloc_win_set_thread_cpubind;
   topology->set_thisproc_cpubind = hwloc_win_set_thisproc_cpubind;
+  topology->get_thisproc_cpubind = hwloc_win_get_thisproc_cpubind;
   topology->set_thisthread_cpubind = hwloc_win_set_thisthread_cpubind;
 }
 

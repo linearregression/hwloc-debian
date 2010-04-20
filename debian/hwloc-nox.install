@@ -1,4 +1,2 @@
 obj-nox/utils/.libs/lstopo /usr/bin
-obj-nox/utils/.libs/hwloc-bind /usr/bin
-obj-nox/utils/.libs/hwloc-mask /usr/bin
-obj-nox/utils/.libs/hwloc-distrib /usr/bin
+obj-nox/utils/.libs/hwloc-* /usr/bin

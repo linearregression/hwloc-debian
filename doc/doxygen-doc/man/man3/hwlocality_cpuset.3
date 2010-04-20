@@ -1,4 +1,4 @@
-.TH "The Cpuset API" 3 "24 Nov 2009" "Version 0.9.3rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "The Cpuset API" 3 "17 Apr 2010" "Version 1.0rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -11,9 +11,9 @@ The Cpuset API \-
 .br
 .RI "\fILoop macro iterating on CPU set \fCset\fP. \fP"
 .ti -1c
-.RI "#define \fBhwloc_cpuset_foreach_end\fP()   }"
+.RI "#define \fBhwloc_cpuset_foreach_end\fP()"
 .br
-.RI "\fIEnd of loop. \fP"
+.RI "\fIEnd of loop. Needs a terminating ';'. \fP"
 .in -1c
 .SS "Typedefs"
 
@@ -30,141 +30,153 @@ The Cpuset API \-
 
 .in +1c
 .ti -1c
-.RI "\fBhwloc_cpuset_t\fP \fBhwloc_cpuset_alloc\fP (void)"
+.RI "HWLOC_DECLSPEC \fBhwloc_cpuset_t\fP \fBhwloc_cpuset_alloc\fP (void) __hwloc_attribute_malloc"
 .br
 .RI "\fIAllocate a new empty CPU set. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_free\fP (\fBhwloc_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_free\fP (\fBhwloc_cpuset_t\fP set)"
 .br
 .RI "\fIFree CPU set \fCset\fP. \fP"
 .ti -1c
-.RI "\fBhwloc_cpuset_t\fP \fBhwloc_cpuset_dup\fP (\fBhwloc_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC \fBhwloc_cpuset_t\fP \fBhwloc_cpuset_dup\fP (\fBhwloc_const_cpuset_t\fP set) __hwloc_attribute_malloc"
 .br
-.RI "\fIDuplicate CPU set \fCset\fP by allocating a new CPU set and copying its contents. \fP"
+.RI "\fIDuplicate CPU set \fCset\fP by allocating a new CPU set and copying \fCset's\fP contents. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_copy\fP (\fBhwloc_cpuset_t\fP dst, \fBhwloc_cpuset_t\fP src)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_copy\fP (\fBhwloc_cpuset_t\fP dst, \fBhwloc_const_cpuset_t\fP src)"
 .br
 .RI "\fICopy the contents of CPU set \fCsrc\fP into the already allocated CPU set \fCdst\fP. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_snprintf\fP (char *restrict buf, size_t buflen, \fBhwloc_const_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_snprintf\fP (char *__hwloc_restrict buf, size_t buflen, \fBhwloc_const_cpuset_t\fP set)"
 .br
 .RI "\fIStringify a cpuset. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_asprintf\fP (char **strp, \fBhwloc_const_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_asprintf\fP (char **strp, \fBhwloc_const_cpuset_t\fP set)"
 .br
 .RI "\fIStringify a cpuset into a newly allocated string. \fP"
 .ti -1c
-.RI "\fBhwloc_cpuset_t\fP \fBhwloc_cpuset_from_string\fP (const char *restrict string)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_from_string\fP (\fBhwloc_cpuset_t\fP set, const char *__hwloc_restrict string)"
 .br
-.RI "\fIParse a cpuset string. \fP"
+.RI "\fIParse a cpuset string and stores it in CPU set \fCset\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_zero\fP (\fBhwloc_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_zero\fP (\fBhwloc_cpuset_t\fP set)"
 .br
-.RI "\fIPrimitives & macros for building, modifying and consulting 'sets' of cpus. \fP"
+.RI "\fIEmpty the CPU set \fCset\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_fill\fP (\fBhwloc_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_fill\fP (\fBhwloc_cpuset_t\fP set)"
 .br
-.RI "\fIFill CPU set \fCset\fP. \fP"
+.RI "\fIFill CPU set \fCset\fP with all possible CPUs (even if those CPUs don't exist or are otherwise unavailable). \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_from_ulong\fP (\fBhwloc_cpuset_t\fP set, unsigned long mask)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_from_ulong\fP (\fBhwloc_cpuset_t\fP set, unsigned long mask)"
 .br
 .RI "\fISetup CPU set \fCset\fP from unsigned long \fCmask\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_from_ith_ulong\fP (\fBhwloc_cpuset_t\fP set, int i, unsigned long mask)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_from_ith_ulong\fP (\fBhwloc_cpuset_t\fP set, unsigned i, unsigned long mask)"
 .br
 .RI "\fISetup CPU set \fCset\fP from unsigned long \fCmask\fP used as \fCi\fP -th subset. \fP"
 .ti -1c
-.RI "unsigned long \fBhwloc_cpuset_to_ulong\fP (\fBhwloc_const_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC unsigned long \fBhwloc_cpuset_to_ulong\fP (\fBhwloc_const_cpuset_t\fP set) __hwloc_attribute_pure"
 .br
 .RI "\fIConvert the beginning part of CPU set \fCset\fP into unsigned long \fCmask\fP. \fP"
 .ti -1c
-.RI "unsigned long \fBhwloc_cpuset_to_ith_ulong\fP (\fBhwloc_const_cpuset_t\fP set, int i)"
+.RI "HWLOC_DECLSPEC unsigned long \fBhwloc_cpuset_to_ith_ulong\fP (\fBhwloc_const_cpuset_t\fP set, unsigned i) __hwloc_attribute_pure"
 .br
 .RI "\fIConvert the \fCi\fP -th subset of CPU set \fCset\fP into unsigned long mask. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_cpu\fP (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_cpu\fP (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
 .br
-.RI "\fIClear CPU set \fCset\fP and set CPU \fCcpu\fP. \fP"
+.RI "\fIEmpty the CPU set \fCset\fP and add CPU \fCcpu\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_all_but_cpu\fP (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_all_but_cpu\fP (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
 .br
-.RI "\fIClear CPU set \fCset\fP and set all but the CPU \fCcpu\fP. \fP"
+.RI "\fIEmpty the CPU set \fCset\fP and add all but the CPU \fCcpu\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_set\fP (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_set\fP (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
 .br
 .RI "\fIAdd CPU \fCcpu\fP in CPU set \fCset\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_set_range\fP (\fBhwloc_cpuset_t\fP set, unsigned begincpu, unsigned endcpu)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_set_range\fP (\fBhwloc_cpuset_t\fP set, unsigned begincpu, unsigned endcpu)"
 .br
 .RI "\fIAdd CPUs from \fCbegincpu\fP to \fCendcpu\fP in CPU set \fCset\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_clr\fP (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_clr\fP (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
 .br
 .RI "\fIRemove CPU \fCcpu\fP from CPU set \fCset\fP. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_isset\fP (\fBhwloc_const_cpuset_t\fP set, unsigned cpu)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_clr_range\fP (\fBhwloc_cpuset_t\fP set, unsigned begincpu, unsigned endcpu)"
+.br
+.RI "\fIRemove CPUs from \fCbegincpu\fP to \fCendcpu\fP in CPU set \fCset\fP. \fP"
+.ti -1c
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_isset\fP (\fBhwloc_const_cpuset_t\fP set, unsigned cpu) __hwloc_attribute_pure"
 .br
 .RI "\fITest whether CPU \fCcpu\fP is part of set \fCset\fP. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_iszero\fP (\fBhwloc_const_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_iszero\fP (\fBhwloc_const_cpuset_t\fP set) __hwloc_attribute_pure"
 .br
-.RI "\fITest whether set \fCset\fP is zero. \fP"
+.RI "\fITest whether set \fCset\fP is empty. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_isfull\fP (\fBhwloc_const_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_isfull\fP (\fBhwloc_const_cpuset_t\fP set) __hwloc_attribute_pure"
 .br
-.RI "\fITest whether set \fCset\fP is full. \fP"
+.RI "\fITest whether set \fCset\fP is completely full. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_isequal\fP (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_isequal\fP (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2) __hwloc_attribute_pure"
 .br
 .RI "\fITest whether set \fCset1\fP is equal to set \fCset2\fP. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_intersects\fP (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_intersects\fP (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2) __hwloc_attribute_pure"
 .br
 .RI "\fITest whether sets \fCset1\fP and \fCset2\fP intersects. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_isincluded\fP (\fBhwloc_const_cpuset_t\fP sub_set, \fBhwloc_const_cpuset_t\fP super_set)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_isincluded\fP (\fBhwloc_const_cpuset_t\fP sub_set, \fBhwloc_const_cpuset_t\fP super_set) __hwloc_attribute_pure"
 .br
 .RI "\fITest whether set \fCsub_set\fP is part of set \fCsuper_set\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_orset\fP (\fBhwloc_cpuset_t\fP set, \fBhwloc_const_cpuset_t\fP modifier_set)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_or\fP (\fBhwloc_cpuset_t\fP res, \fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
 .br
-.RI "\fIOr set \fCmodifier_set\fP into set \fCset\fP. \fP"
+.RI "\fIOr sets \fCset1\fP and \fCset2\fP and store the result in set \fCres\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_andset\fP (\fBhwloc_cpuset_t\fP set, \fBhwloc_const_cpuset_t\fP modifier_set)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_and\fP (\fBhwloc_cpuset_t\fP res, \fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
 .br
-.RI "\fIAnd set \fCmodifier_set\fP into set \fCset\fP. \fP"
+.RI "\fIAnd sets \fCset1\fP and \fCset2\fP and store the result in set \fCres\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_clearset\fP (\fBhwloc_cpuset_t\fP set, \fBhwloc_const_cpuset_t\fP modifier_set)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_andnot\fP (\fBhwloc_cpuset_t\fP res, \fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
 .br
-.RI "\fIClear set \fCmodifier_set\fP out of set \fCset\fP. \fP"
+.RI "\fIAnd set \fCset1\fP and the negation of \fCset2\fP and store the result in set \fCres\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_xorset\fP (\fBhwloc_cpuset_t\fP set, \fBhwloc_const_cpuset_t\fP modifier_set)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_xor\fP (\fBhwloc_cpuset_t\fP res, \fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
 .br
-.RI "\fIXor set \fCset\fP with set \fCmodifier_set\fP. \fP"
+.RI "\fIXor sets \fCset1\fP and \fCset2\fP and store the result in set \fCres\fP. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_first\fP (\fBhwloc_const_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_not\fP (\fBhwloc_cpuset_t\fP res, \fBhwloc_const_cpuset_t\fP set)"
+.br
+.RI "\fINegate set \fCset\fP and store the result in set \fCres\fP. \fP"
+.ti -1c
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_first\fP (\fBhwloc_const_cpuset_t\fP set) __hwloc_attribute_pure"
 .br
 .RI "\fICompute the first CPU (least significant bit) in CPU set \fCset\fP. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_last\fP (\fBhwloc_const_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_last\fP (\fBhwloc_const_cpuset_t\fP set) __hwloc_attribute_pure"
 .br
 .RI "\fICompute the last CPU (most significant bit) in CPU set \fCset\fP. \fP"
 .ti -1c
-.RI "void \fBhwloc_cpuset_singlify\fP (\fBhwloc_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_next\fP (\fBhwloc_const_cpuset_t\fP set, unsigned prev_cpu) __hwloc_attribute_pure"
+.br
+.RI "\fICompute the next CPU in CPU set \fCset\fP which is after CPU \fCprev_cpu\fP. \fP"
+.ti -1c
+.RI "HWLOC_DECLSPEC void \fBhwloc_cpuset_singlify\fP (\fBhwloc_cpuset_t\fP set)"
 .br
 .RI "\fIKeep a single CPU among those set in CPU set \fCset\fP. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_compar_first\fP (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_compare_first\fP (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2) __hwloc_attribute_pure"
 .br
-.RI "\fICompar CPU sets \fCset1\fP and \fCset2\fP using their first set bit. \fP"
+.RI "\fICompare CPU sets \fCset1\fP and \fCset2\fP using their lowest index CPU. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_compar\fP (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_compare\fP (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2) __hwloc_attribute_pure"
 .br
-.RI "\fICompar CPU sets \fCset1\fP and \fCset2\fP using their last bits. \fP"
+.RI "\fICompare CPU sets \fCset1\fP and \fCset2\fP using their highest index CPU. \fP"
 .ti -1c
-.RI "int \fBhwloc_cpuset_weight\fP (\fBhwloc_const_cpuset_t\fP set)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_cpuset_weight\fP (\fBhwloc_const_cpuset_t\fP set) __hwloc_attribute_pure"
 .br
-.RI "\fICompute the weight of CPU set \fCset\fP. \fP"
+.RI "\fICompute the 'weight' of CPU set \fCset\fP (i.e., number of CPUs that are in the set). \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -178,17 +190,12 @@ cpusets are indexed by OS logical processor number.
 
 .SH "Define Documentation"
 .PP 
-.SS "#define hwloc_cpuset_foreach_begin(cpu, set)"\fBValue:\fP
+.SS "#define hwloc_cpuset_foreach_begin(cpu, set)"
 .PP
-.nf
-for (cpu = 0; cpu < HWLOC_NBMAXCPUS; cpu++) \
-                if (hwloc_cpuset_isset(set, cpu)) {
-.fi
+Loop macro iterating on CPU set \fCset\fP. \fCcpu\fP is the loop variable; it should be an unsigned int. The first iteration will set \fCcpu\fP to the lowest index CPU in the set. Successive iterations will iterate through, in order, all remaining CPUs that in the set. To be specific: each iteration will return a value for \fCcpu\fP such that hwloc_cpuset_isset(set, cpu) is true. 
+.SS "#define hwloc_cpuset_foreach_end()"
 .PP
-Loop macro iterating on CPU set \fCset\fP. It yields on each cpu that is member of the set. It uses variables \fCset\fP (the cpu set) and \fCcpu\fP (the loop variable) 
-.SS "#define hwloc_cpuset_foreach_end()   }"
-.PP
-End of loop. \fBSee also:\fP
+End of loop. Needs a terminating ';'. \fBSee also:\fP
 .RS 4
 \fBhwloc_cpuset_foreach_begin\fP 
 .RE
@@ -202,16 +209,24 @@ End of loop. \fBSee also:\fP
 Set of CPUs represented as an opaque pointer to an internal bitmask. 
 .SH "Function Documentation"
 .PP 
-.SS "void hwloc_cpuset_all_but_cpu (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_all_but_cpu (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
 .PP
-Clear CPU set \fCset\fP and set all but the CPU \fCcpu\fP. 
-.SS "\fBhwloc_cpuset_t\fP hwloc_cpuset_alloc (void)"
+Empty the CPU set \fCset\fP and add all but the CPU \fCcpu\fP. 
+.SS "HWLOC_DECLSPEC \fBhwloc_cpuset_t\fP hwloc_cpuset_alloc (void)"
 .PP
-Allocate a new empty CPU set. 
-.SS "void hwloc_cpuset_andset (\fBhwloc_cpuset_t\fP set, \fBhwloc_const_cpuset_t\fP modifier_set)"
+Allocate a new empty CPU set. \fBReturns:\fP
+.RS 4
+A valid CPU set or NULL.
+.RE
 .PP
-And set \fCmodifier_set\fP into set \fCset\fP. 
-.SS "int hwloc_cpuset_asprintf (char ** strp, \fBhwloc_const_cpuset_t\fP set)"
+The CPU set should be freed by a corresponding call to \fBhwloc_cpuset_free()\fP. 
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_and (\fBhwloc_cpuset_t\fP res, \fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.PP
+And sets \fCset1\fP and \fCset2\fP and store the result in set \fCres\fP. 
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_andnot (\fBhwloc_cpuset_t\fP res, \fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.PP
+And set \fCset1\fP and the negation of \fCset2\fP and store the result in set \fCres\fP. 
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_asprintf (char ** strp, \fBhwloc_const_cpuset_t\fP set)"
 .PP
 Stringify a cpuset into a newly allocated string. \fBReturns:\fP
 .RS 4
@@ -219,79 +234,100 @@ the number of character that were actually written (not including the ending \\0
 .RE
 .PP
 
-.SS "void hwloc_cpuset_clearset (\fBhwloc_cpuset_t\fP set, \fBhwloc_const_cpuset_t\fP modifier_set)"
-.PP
-Clear set \fCmodifier_set\fP out of set \fCset\fP. 
-.SS "void hwloc_cpuset_clr (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_clr (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
 .PP
 Remove CPU \fCcpu\fP from CPU set \fCset\fP. 
-.SS "int hwloc_cpuset_compar (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_clr_range (\fBhwloc_cpuset_t\fP set, unsigned begincpu, unsigned endcpu)"
 .PP
-Compar CPU sets \fCset1\fP and \fCset2\fP using their last bits. Higher most significant bit is higher. The empty CPU set is considered lower than anything. 
-.SS "int hwloc_cpuset_compar_first (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+Remove CPUs from \fCbegincpu\fP to \fCendcpu\fP in CPU set \fCset\fP. 
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_compare (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
 .PP
-Compar CPU sets \fCset1\fP and \fCset2\fP using their first set bit. Smaller least significant bit is smaller. The empty CPU set is considered higher than anything. 
-.SS "void hwloc_cpuset_copy (\fBhwloc_cpuset_t\fP dst, \fBhwloc_cpuset_t\fP src)"
+Compare CPU sets \fCset1\fP and \fCset2\fP using their highest index CPU. Higher most significant bit is higher. The empty CPU set is considered lower than anything. 
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_compare_first (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.PP
+Compare CPU sets \fCset1\fP and \fCset2\fP using their lowest index CPU. Smaller least significant bit is smaller. The empty CPU set is considered higher than anything. 
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_copy (\fBhwloc_cpuset_t\fP dst, \fBhwloc_const_cpuset_t\fP src)"
 .PP
 Copy the contents of CPU set \fCsrc\fP into the already allocated CPU set \fCdst\fP. 
-.SS "void hwloc_cpuset_cpu (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_cpu (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
 .PP
-Clear CPU set \fCset\fP and set CPU \fCcpu\fP. 
-.SS "\fBhwloc_cpuset_t\fP hwloc_cpuset_dup (\fBhwloc_cpuset_t\fP set)"
+Empty the CPU set \fCset\fP and add CPU \fCcpu\fP. 
+.SS "HWLOC_DECLSPEC \fBhwloc_cpuset_t\fP hwloc_cpuset_dup (\fBhwloc_const_cpuset_t\fP set)"
 .PP
-Duplicate CPU set \fCset\fP by allocating a new CPU set and copying its contents. 
-.SS "void hwloc_cpuset_fill (\fBhwloc_cpuset_t\fP set)"
+Duplicate CPU set \fCset\fP by allocating a new CPU set and copying \fCset's\fP contents. 
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_fill (\fBhwloc_cpuset_t\fP set)"
 .PP
-Fill CPU set \fCset\fP. 
-.SS "int hwloc_cpuset_first (\fBhwloc_const_cpuset_t\fP set)"
+Fill CPU set \fCset\fP with all possible CPUs (even if those CPUs don't exist or are otherwise unavailable). 
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_first (\fBhwloc_const_cpuset_t\fP set)"
 .PP
-Compute the first CPU (least significant bit) in CPU set \fCset\fP. 
-.SS "void hwloc_cpuset_free (\fBhwloc_cpuset_t\fP set)"
+Compute the first CPU (least significant bit) in CPU set \fCset\fP. \fBReturns:\fP
+.RS 4
+-1 if no CPU is set. 
+.RE
+.PP
+
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_free (\fBhwloc_cpuset_t\fP set)"
 .PP
 Free CPU set \fCset\fP. 
-.SS "void hwloc_cpuset_from_ith_ulong (\fBhwloc_cpuset_t\fP set, int i, unsigned long mask)"
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_from_ith_ulong (\fBhwloc_cpuset_t\fP set, unsigned i, unsigned long mask)"
 .PP
 Setup CPU set \fCset\fP from unsigned long \fCmask\fP used as \fCi\fP -th subset. 
-.SS "\fBhwloc_cpuset_t\fP hwloc_cpuset_from_string (const char *restrict string)"
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_from_string (\fBhwloc_cpuset_t\fP set, const char *__hwloc_restrict string)"
 .PP
-Parse a cpuset string. Must start and end with a digit. 
-.SS "void hwloc_cpuset_from_ulong (\fBhwloc_cpuset_t\fP set, unsigned long mask)"
+Parse a cpuset string and stores it in CPU set \fCset\fP. Must start and end with a digit. 
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_from_ulong (\fBhwloc_cpuset_t\fP set, unsigned long mask)"
 .PP
 Setup CPU set \fCset\fP from unsigned long \fCmask\fP. 
-.SS "int hwloc_cpuset_intersects (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_intersects (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
 .PP
 Test whether sets \fCset1\fP and \fCset2\fP intersects. 
-.SS "int hwloc_cpuset_isequal (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_isequal (\fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
 .PP
 Test whether set \fCset1\fP is equal to set \fCset2\fP. 
-.SS "int hwloc_cpuset_isfull (\fBhwloc_const_cpuset_t\fP set)"
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_isfull (\fBhwloc_const_cpuset_t\fP set)"
 .PP
-Test whether set \fCset\fP is full. 
-.SS "int hwloc_cpuset_isincluded (\fBhwloc_const_cpuset_t\fP sub_set, \fBhwloc_const_cpuset_t\fP super_set)"
+Test whether set \fCset\fP is completely full. 
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_isincluded (\fBhwloc_const_cpuset_t\fP sub_set, \fBhwloc_const_cpuset_t\fP super_set)"
 .PP
 Test whether set \fCsub_set\fP is part of set \fCsuper_set\fP. 
-.SS "int hwloc_cpuset_isset (\fBhwloc_const_cpuset_t\fP set, unsigned cpu)"
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_isset (\fBhwloc_const_cpuset_t\fP set, unsigned cpu)"
 .PP
 Test whether CPU \fCcpu\fP is part of set \fCset\fP. 
-.SS "int hwloc_cpuset_iszero (\fBhwloc_const_cpuset_t\fP set)"
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_iszero (\fBhwloc_const_cpuset_t\fP set)"
 .PP
-Test whether set \fCset\fP is zero. 
-.SS "int hwloc_cpuset_last (\fBhwloc_const_cpuset_t\fP set)"
+Test whether set \fCset\fP is empty. 
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_last (\fBhwloc_const_cpuset_t\fP set)"
 .PP
-Compute the last CPU (most significant bit) in CPU set \fCset\fP. 
-.SS "void hwloc_cpuset_orset (\fBhwloc_cpuset_t\fP set, \fBhwloc_const_cpuset_t\fP modifier_set)"
+Compute the last CPU (most significant bit) in CPU set \fCset\fP. \fBReturns:\fP
+.RS 4
+-1 if no CPU is set. 
+.RE
 .PP
-Or set \fCmodifier_set\fP into set \fCset\fP. 
-.SS "void hwloc_cpuset_set (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
+
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_next (\fBhwloc_const_cpuset_t\fP set, unsigned prev_cpu)"
+.PP
+Compute the next CPU in CPU set \fCset\fP which is after CPU \fCprev_cpu\fP. \fBReturns:\fP
+.RS 4
+-1 if no CPU with higher index is set. 
+.RE
+.PP
+
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_not (\fBhwloc_cpuset_t\fP res, \fBhwloc_const_cpuset_t\fP set)"
+.PP
+Negate set \fCset\fP and store the result in set \fCres\fP. 
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_or (\fBhwloc_cpuset_t\fP res, \fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
+.PP
+Or sets \fCset1\fP and \fCset2\fP and store the result in set \fCres\fP. 
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_set (\fBhwloc_cpuset_t\fP set, unsigned cpu)"
 .PP
 Add CPU \fCcpu\fP in CPU set \fCset\fP. 
-.SS "void hwloc_cpuset_set_range (\fBhwloc_cpuset_t\fP set, unsigned begincpu, unsigned endcpu)"
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_set_range (\fBhwloc_cpuset_t\fP set, unsigned begincpu, unsigned endcpu)"
 .PP
 Add CPUs from \fCbegincpu\fP to \fCendcpu\fP in CPU set \fCset\fP. 
-.SS "void hwloc_cpuset_singlify (\fBhwloc_cpuset_t\fP set)"
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_singlify (\fBhwloc_cpuset_t\fP set)"
 .PP
-Keep a single CPU among those set in CPU set \fCset\fP. Might be used before binding so that the process does not have a chance of migrating between multiple logical CPUs in the original mask. 
-.SS "int hwloc_cpuset_snprintf (char *restrict buf, size_t buflen, \fBhwloc_const_cpuset_t\fP set)"
+Keep a single CPU among those set in CPU set \fCset\fP. May be useful before binding so that the process does not have a chance of migrating between multiple logical CPUs in the original mask. 
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_snprintf (char *__hwloc_restrict buf, size_t buflen, \fBhwloc_const_cpuset_t\fP set)"
 .PP
 Stringify a cpuset. Up to \fCbuflen\fP characters may be written in buffer \fCbuf\fP.
 .PP
@@ -301,21 +337,26 @@ the number of character that were actually written if not truncating, or that wo
 .RE
 .PP
 
-.SS "unsigned long hwloc_cpuset_to_ith_ulong (\fBhwloc_const_cpuset_t\fP set, int i)"
+.SS "HWLOC_DECLSPEC unsigned long hwloc_cpuset_to_ith_ulong (\fBhwloc_const_cpuset_t\fP set, unsigned i)"
 .PP
 Convert the \fCi\fP -th subset of CPU set \fCset\fP into unsigned long mask. 
-.SS "unsigned long hwloc_cpuset_to_ulong (\fBhwloc_const_cpuset_t\fP set)"
+.SS "HWLOC_DECLSPEC unsigned long hwloc_cpuset_to_ulong (\fBhwloc_const_cpuset_t\fP set)"
 .PP
 Convert the beginning part of CPU set \fCset\fP into unsigned long \fCmask\fP. 
-.SS "int hwloc_cpuset_weight (\fBhwloc_const_cpuset_t\fP set)"
+.SS "HWLOC_DECLSPEC int hwloc_cpuset_weight (\fBhwloc_const_cpuset_t\fP set)"
 .PP
-Compute the weight of CPU set \fCset\fP. 
-.SS "void hwloc_cpuset_xorset (\fBhwloc_cpuset_t\fP set, \fBhwloc_const_cpuset_t\fP modifier_set)"
+Compute the 'weight' of CPU set \fCset\fP (i.e., number of CPUs that are in the set). \fBReturns:\fP
+.RS 4
+the number of CPUs that are in the set. 
+.RE
 .PP
-Xor set \fCset\fP with set \fCmodifier_set\fP. 
-.SS "void hwloc_cpuset_zero (\fBhwloc_cpuset_t\fP set)"
+
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_xor (\fBhwloc_cpuset_t\fP res, \fBhwloc_const_cpuset_t\fP set1, \fBhwloc_const_cpuset_t\fP set2)"
 .PP
-Primitives & macros for building, modifying and consulting 'sets' of cpus. Empty CPU set \fCset\fP 
+Xor sets \fCset1\fP and \fCset2\fP and store the result in set \fCres\fP. 
+.SS "HWLOC_DECLSPEC void hwloc_cpuset_zero (\fBhwloc_cpuset_t\fP set)"
+.PP
+Empty the CPU set \fCset\fP. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Hardware Locality (hwloc) from the source code.

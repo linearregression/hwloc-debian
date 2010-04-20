@@ -1,4 +1,4 @@
-# generated automatically by aclocal 1.11 -*- Autoconf -*-
+# generated automatically by aclocal 1.11.1 -*- Autoconf -*-
 
 # Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004,
 # 2005, 2006, 2007, 2008, 2009  Free Software Foundation, Inc.
@@ -13,8 +13,8 @@
 
 m4_ifndef([AC_AUTOCONF_VERSION],
   [m4_copy([m4_PACKAGE_VERSION], [AC_AUTOCONF_VERSION])])dnl
-m4_if(m4_defn([AC_AUTOCONF_VERSION]), [2.64],,
-[m4_warning([this file was generated for autoconf 2.64.
+m4_if(m4_defn([AC_AUTOCONF_VERSION]), [2.65],,
+[m4_warning([this file was generated for autoconf 2.65.
 You have another version of autoconf.  It may work, but is not guaranteed to.
 If you have problems, you may need to regenerate the build system entirely.
 To do so, use the procedure documented by the package, typically `autoreconf'.])])
@@ -34,7 +34,7 @@ AC_DEFUN([AM_AUTOMAKE_VERSION],
 [am__api_version='1.11'
 dnl Some users find AM_AUTOMAKE_VERSION and mistake it for a way to
 dnl require some minimum version.  Point them to the right macro.
-m4_if([$1], [1.11], [],
+m4_if([$1], [1.11.1], [],
       [AC_FATAL([Do not call $0, use AM_INIT_AUTOMAKE([$1]).])])dnl
 ])
 
@@ -50,7 +50,7 @@ m4_define([_AM_AUTOCONF_VERSION], [])
 # Call AM_AUTOMAKE_VERSION and AM_AUTOMAKE_VERSION so they can be traced.
 # This function is AC_REQUIREd by AM_INIT_AUTOMAKE.
 AC_DEFUN([AM_SET_CURRENT_AUTOMAKE_VERSION],
-[AM_AUTOMAKE_VERSION([1.11])dnl
+[AM_AUTOMAKE_VERSION([1.11.1])dnl
 m4_ifndef([AC_AUTOCONF_VERSION],
   [m4_copy([m4_PACKAGE_VERSION], [AC_AUTOCONF_VERSION])])dnl
 _AM_AUTOCONF_VERSION(m4_defn([AC_AUTOCONF_VERSION]))])
@@ -405,6 +405,18 @@ AC_DEFUN([AM_OUTPUT_DEPENDENCY_COMMANDS],
      [test x"$AMDEP_TRUE" != x"" || _AM_OUTPUT_DEPENDENCY_COMMANDS],
      [AMDEP_TRUE="$AMDEP_TRUE" ac_aux_dir="$ac_aux_dir"])
 ])
+
+# Copyright (C) 1996, 1997, 2000, 2001, 2003, 2005
+# Free Software Foundation, Inc.
+#
+# This file is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# serial 8
+
+# AM_CONFIG_HEADER is obsolete.  It has been replaced by AC_CONFIG_HEADERS.
+AU_DEFUN([AM_CONFIG_HEADER], [AC_CONFIG_HEADERS($@)])
 
 # Do all the work for Automake.                             -*- Autoconf -*-
 
@@ -858,6 +870,33 @@ Check your system clock])
 fi
 AC_MSG_RESULT(yes)])
 
+# Copyright (C) 2009  Free Software Foundation, Inc.
+#
+# This file is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# serial 1
+
+# AM_SILENT_RULES([DEFAULT])
+# --------------------------
+# Enable less verbose build rules; with the default set to DEFAULT
+# (`yes' being less verbose, `no' or empty being verbose).
+AC_DEFUN([AM_SILENT_RULES],
+[AC_ARG_ENABLE([silent-rules],
+[  --enable-silent-rules          less verbose build output (undo: `make V=1')
+  --disable-silent-rules         verbose build output (undo: `make V=0')])
+case $enable_silent_rules in
+yes) AM_DEFAULT_VERBOSITY=0;;
+no)  AM_DEFAULT_VERBOSITY=1;;
+*)   AM_DEFAULT_VERBOSITY=m4_if([$1], [yes], [0], [1]);;
+esac
+AC_SUBST([AM_DEFAULT_VERBOSITY])dnl
+AM_BACKSLASH='\'
+AC_SUBST([AM_BACKSLASH])dnl
+_AM_SUBST_NOTMAKE([AM_BACKSLASH])dnl
+])
+
 # Copyright (C) 2001, 2003, 2005  Free Software Foundation, Inc.
 #
 # This file is free software; the Free Software Foundation
@@ -1001,11 +1040,13 @@ AC_SUBST([am__tar])
 AC_SUBST([am__untar])
 ]) # _AM_PROG_TAR
 
-m4_include([m4/decl.m4])
 m4_include([config/hwloc.m4])
+m4_include([config/hwloc_check_attributes.m4])
+m4_include([config/hwloc_check_visibility.m4])
+m4_include([config/hwloc_internal.m4])
+m4_include([config/hwloc_pkg.m4])
 m4_include([config/libtool.m4])
 m4_include([config/ltoptions.m4])
 m4_include([config/ltsugar.m4])
 m4_include([config/ltversion.m4])
 m4_include([config/lt~obsolete.m4])
-m4_include([config/pkg.m4])

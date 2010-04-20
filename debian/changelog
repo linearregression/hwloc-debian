@@ -1,3 +1,18 @@
+hwloc (1.0~rc1-1) experimental; urgency=low
+
+  * New upstream release canditate.
+  * debian/format/options: Switch to bz2 compression.
+  * debian/control:
+    - Fix libhwloc-common short description.
+    - Remove duplicate Section field.
+    - Bump Standards-Version to 3.8.4 (no change needed).
+    - Add libibverbs-dev Build-Depends on Linux ports.
+  * debian/rules: Pass --enable-static to configure.
+  * debian/hwloc-nox.install: Use a wildcard instead of the list of hwloc-*
+    tools.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 20 Apr 2010 14:53:48 +0200
+
 hwloc (0.9.3~rc1-1) unstable; urgency=low
 
   * New upstream bugfix release.

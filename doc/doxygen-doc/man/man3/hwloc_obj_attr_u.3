@@ -1,4 +1,4 @@
-.TH "hwloc_obj_attr_u" 3 "24 Nov 2009" "Version 0.9.3rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj_attr_u" 3 "17 Apr 2010" "Version 1.0rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -19,17 +19,13 @@ Object type-specific Attributes.
 .br
 .RI "\fICache-specific Object Attributes. \fP"
 .ti -1c
+.RI "struct \fBhwloc_group_attr_s\fP"
+.br
+.RI "\fIGroup-specific Object Attributes. \fP"
+.ti -1c
 .RI "struct \fBhwloc_machine_attr_s\fP"
 .br
 .RI "\fIMachine-specific Object Attributes. \fP"
-.ti -1c
-.RI "struct \fBhwloc_memory_attr_s\fP"
-.br
-.RI "\fINode-specific Object Attributes. \fP"
-.ti -1c
-.RI "struct \fBhwloc_misc_attr_s\fP"
-.br
-.RI "\fIMisc-specific Object Attributes. \fP"
 .in -1c
 .SS "Data Fields"
 
@@ -39,21 +35,13 @@ Object type-specific Attributes.
 .br
 .RI "\fICache-specific Object Attributes. \fP"
 .ti -1c
-.RI "struct \fBhwloc_obj_attr_u::hwloc_memory_attr_s\fP \fBnode\fP"
-.br
-.RI "\fINode-specific Object Attributes. \fP"
-.ti -1c
 .RI "struct \fBhwloc_obj_attr_u::hwloc_machine_attr_s\fP \fBmachine\fP"
 .br
 .RI "\fIMachine-specific Object Attributes. \fP"
 .ti -1c
-.RI "struct \fBhwloc_machine_attr_s\fP \fBsystem\fP"
+.RI "struct \fBhwloc_obj_attr_u::hwloc_group_attr_s\fP \fBgroup\fP"
 .br
-.RI "\fISystem-specific Object Attributes. \fP"
-.ti -1c
-.RI "struct \fBhwloc_obj_attr_u::hwloc_misc_attr_s\fP \fBmisc\fP"
-.br
-.RI "\fIMisc-specific Object Attributes. \fP"
+.RI "\fIGroup-specific Object Attributes. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -63,18 +51,12 @@ Object type-specific Attributes.
 .SS "struct \fBhwloc_obj_attr_u::hwloc_cache_attr_s\fP  \fBhwloc_obj_attr_u::cache\fP"
 .PP
 Cache-specific Object Attributes. 
+.SS "struct \fBhwloc_obj_attr_u::hwloc_group_attr_s\fP  \fBhwloc_obj_attr_u::group\fP"
+.PP
+Group-specific Object Attributes. 
 .SS "struct \fBhwloc_obj_attr_u::hwloc_machine_attr_s\fP  \fBhwloc_obj_attr_u::machine\fP"
 .PP
 Machine-specific Object Attributes. 
-.SS "struct \fBhwloc_obj_attr_u::hwloc_misc_attr_s\fP  \fBhwloc_obj_attr_u::misc\fP"
-.PP
-Misc-specific Object Attributes. 
-.SS "struct \fBhwloc_obj_attr_u::hwloc_memory_attr_s\fP  \fBhwloc_obj_attr_u::node\fP"
-.PP
-Node-specific Object Attributes. 
-.SS "struct \fBhwloc_machine_attr_s\fP \fBhwloc_obj_attr_u::system\fP\fC [read]\fP"
-.PP
-System-specific Object Attributes. 
 
 .SH "Author"
 .PP 

@@ -1,4 +1,4 @@
-.TH "hwloc_obj_attr_u::hwloc_cache_attr_s" 3 "24 Nov 2009" "Version 0.9.3rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj_attr_u::hwloc_cache_attr_s" 3 "17 Apr 2010" "Version 1.0rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,9 +15,9 @@ Cache-specific Object Attributes.
 
 .in +1c
 .ti -1c
-.RI "unsigned long \fBmemory_kB\fP"
+.RI "uint64_t \fBsize\fP"
 .br
-.RI "\fISize of cache. \fP"
+.RI "\fISize of cache in bytes. \fP"
 .ti -1c
 .RI "unsigned \fBdepth\fP"
 .br
@@ -31,9 +31,9 @@ Cache-specific Object Attributes.
 .SS "unsigned \fBhwloc_obj_attr_u::hwloc_cache_attr_s::depth\fP"
 .PP
 Depth of cache. 
-.SS "unsigned long \fBhwloc_obj_attr_u::hwloc_cache_attr_s::memory_kB\fP"
+.SS "uint64_t \fBhwloc_obj_attr_u::hwloc_cache_attr_s::size\fP"
 .PP
-Size of cache. 
+Size of cache in bytes. 
 
 .SH "Author"
 .PP 

@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+include /usr/share/cdbs/1/class/langcore.mk
+
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 ifneq ($(DEB_HOST_GNU_TYPE),$(DEB_BUILD_GNU_TYPE))
@@ -8,10 +10,8 @@ else
 CROSS= --build $(DEB_BUILD_GNU_TYPE)
 endif
 
-ifneq (,$(filter noopt,$(DEB_BUILD_OPTIONS)))
-CFLAGS += -O0
-else
-CFLAGS += -O2
+ifneq (,$(DEB_PARALLEL_JOBS))
+MAKEFLAGS += -j$(DEB_PARALELL_JOBS)
 endif
 
 confflags=--prefix=/usr --libdir=\$${prefix}/lib/$(DEB_HOST_GNU_TYPE) --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --enable-static CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
@@ -29,11 +29,17 @@ obj-nox/config.status: configure
 	cd obj-nox && ../configure $(CROSS) $(confflags) --disable-cairo
 
 
-build: build-stamp
-build-stamp: obj-x/config.status obj-nox/config.status
+build: build-stamp-x build-stamp-nox
+build-stamp-x: obj-x/config.status
 	dh_testdir
 
 	cd obj-x && $(MAKE)
+
+	touch $@
+
+build-stamp-nox: obj-nox/config.status
+	dh_testdir
+
 	cd obj-nox && $(MAKE)
 	-cd obj-nox && $(MAKE) check
 
@@ -42,7 +48,8 @@ build-stamp: obj-x/config.status obj-nox/config.status
 clean: 
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp 
+	rm -f build-stamp-x
+	rm -f build-stamp-nox
 
 	rm -fr obj-x obj-nox
 	rm -f config.sub config.guess

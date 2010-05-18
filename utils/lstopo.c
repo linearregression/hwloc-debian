@@ -27,7 +27,7 @@ unsigned int gridsize = 10;
 unsigned int force_horiz = 0;
 unsigned int force_vert = 0;
 unsigned int top = 0;
-hwloc_pid_t pid = -1;
+hwloc_pid_t pid = (hwloc_pid_t) -1;
 
 FILE *open_file(const char *filename, const char *mode)
 {
@@ -60,24 +60,25 @@ static void add_process_objects(hwloc_topology_t topology)
   cpuset = hwloc_cpuset_alloc();
 
   while ((dirent = readdir(dir))) {
-    long pid;
+    long local_pid;
     char *end;
     char name[64];
 
-    pid = strtol(dirent->d_name, &end, 10);
+    local_pid = strtol(dirent->d_name, &end, 10);
     if (*end)
       /* Not a number */
       continue;
 
-    snprintf(name, sizeof(name), "%ld", pid);
+    snprintf(name, sizeof(name), "%ld", local_pid);
 
 #ifdef HWLOC_LINUX_SYS
     {
       char path[6 + strlen(dirent->d_name) + 1 + 7 + 1];
-      snprintf(path, sizeof(path), "/proc/%s/cmdline", dirent->d_name);
       char cmd[64], *c;
       int file;
       ssize_t n;
+
+      snprintf(path, sizeof(path), "/proc/%s/cmdline", dirent->d_name);
 
       if ((file = open(path, O_RDONLY)) >= 0) {
         n = read(file, cmd, sizeof(cmd) - 1);
@@ -90,12 +91,12 @@ static void add_process_objects(hwloc_topology_t topology)
         cmd[n] = 0;
         if ((c = strchr(cmd, ' ')))
           *c = 0;
-        snprintf(name, sizeof(name), "%ld %s", pid, cmd);
+        snprintf(name, sizeof(name), "%ld %s", local_pid, cmd);
       }
     }
 #endif /* HWLOC_LINUX_SYS */
 
-    if (hwloc_get_proc_cpubind(topology, pid, cpuset, 0))
+    if (hwloc_get_proc_cpubind(topology, local_pid, cpuset, 0))
       continue;
 
     if (hwloc_cpuset_isincluded(root->cpuset, cpuset))
@@ -340,7 +341,7 @@ main (int argc, char *argv[])
       return EXIT_FAILURE;
     }
   }
-  if (pid > 0) {
+  if (pid != (hwloc_pid_t) -1 && pid != 0) {
     if (hwloc_topology_set_pid(topology, pid)) {
       perror("Setting target pid");
       return EXIT_FAILURE;

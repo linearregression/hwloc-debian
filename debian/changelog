@@ -1,3 +1,12 @@
+hwloc (1.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control: Build-Depend on cdbs.
+  * debian/rules: Include /usr/share/cdbs/1/class/langcore.mk instead of
+    parsing DEB_BUILD_OPTIONS by hand, enable parallel build.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 18 May 2010 18:23:34 +0200
+
 hwloc (1.0~rc1-1) experimental; urgency=low
 
   * New upstream release canditate.

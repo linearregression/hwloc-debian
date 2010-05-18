@@ -115,7 +115,7 @@ typedef enum {
 			  * any structure.
 			  */
 
-  HWLOC_OBJ_MISC,	/**< \brief Miscellaneous objects.
+  HWLOC_OBJ_MISC 	/**< \brief Miscellaneous objects.
 			  * Objects without particular meaning, that can e.g. be
 			  * added by the application for its own use.
 			  */
@@ -416,7 +416,7 @@ enum hwloc_topology_flags_e {
    * and ignore the fact that some resources may be offline.
    */
 
-  HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM = (1<<1),
+  HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM = (1<<1)
  /**< \brief Assume that the selected backend provides the topology for the
    * system on which we are running.
    * \hideinitializer
@@ -621,7 +621,7 @@ HWLOC_DECLSPEC unsigned hwloc_get_nbobjs_by_depth (hwloc_topology_t topology, un
  * If no object for that type exists, 0 is returned.
  * If there are several levels with objects of that type, -1 is returned.
  */
-static __inline int __hwloc_attribute_pure
+static __hwloc_inline int __hwloc_attribute_pure
 hwloc_get_nbobjs_by_type (hwloc_topology_t topology, hwloc_obj_type_t type)
 {
 	int depth = hwloc_get_type_depth(topology, type);
@@ -658,7 +658,7 @@ HWLOC_DECLSPEC hwloc_obj_t hwloc_get_obj_by_depth (hwloc_topology_t topology, un
  * If there are several levels with objects of that type, \c NULL is returned
  * and ther caller may fallback to hwloc_get_obj_by_depth().
  */
-static __inline hwloc_obj_t __hwloc_attribute_pure
+static __hwloc_inline hwloc_obj_t __hwloc_attribute_pure
 hwloc_get_obj_by_type (hwloc_topology_t topology, hwloc_obj_type_t type, unsigned idx)
 {
   int depth = hwloc_get_type_depth(topology, type);
@@ -691,7 +691,8 @@ HWLOC_DECLSPEC hwloc_obj_type_t hwloc_obj_type_of_string (const char * string) _
  * It differs from hwloc_obj_type_string() because it prints type attributes such
  * as cache depth.
  *
- * \return how many characters were actually written (not including the ending \\0).
+ * \return how many characters were actually written (not including the ending
+ * \\0), or -1 on error.
  */
 HWLOC_DECLSPEC int hwloc_obj_type_snprintf(char * __hwloc_restrict string, size_t size, hwloc_obj_t obj,
 				   int verbose);
@@ -702,7 +703,8 @@ HWLOC_DECLSPEC int hwloc_obj_type_snprintf(char * __hwloc_restrict string, size_
  *
  * Only the major attributes are printed in non-verbose mode.
  *
- * \return how many characters were actually written (not including the ending \\0).
+ * \return how many characters were actually written (not including the ending
+ * \\0), or -1 on error.
  */
 HWLOC_DECLSPEC int hwloc_obj_attr_snprintf(char * __hwloc_restrict string, size_t size, hwloc_obj_t obj, const char * __hwloc_restrict separator,
 				   int verbose);
@@ -722,7 +724,8 @@ HWLOC_DECLSPEC int hwloc_obj_attr_snprintf(char * __hwloc_restrict string, size_
  * \p indexprefix is used to prefix the \p os_index attribute number of
  * the object in the description. If \c NULL, the \c # character is used.
  *
- * \return how many characters were actually written (not including the ending \\0).
+ * \return how many characters were actually written (not including the ending
+ * \\0), or -1 on error.
  */
 HWLOC_DECLSPEC int hwloc_obj_snprintf(char * __hwloc_restrict string, size_t size,
 			     hwloc_topology_t topology, hwloc_obj_t obj,
@@ -784,7 +787,7 @@ typedef enum {
                                    * \hideinitializer */
   HWLOC_CPUBIND_THREAD = (1<<1),  /**< \brief Bind current thread of current process.
                                    * \hideinitializer */
-  HWLOC_CPUBIND_STRICT = (1<<2),  /**< \brief Request for strict binding from the OS.
+  HWLOC_CPUBIND_STRICT = (1<<2)   /**< \brief Request for strict binding from the OS.
                                    * \hideinitializer
                                    *
                                    * By default, when the designated CPUs are

@@ -73,15 +73,18 @@ PROGRAMS = $(bin_PROGRAMS)
 hwloc_bind_SOURCES = hwloc-bind.c
 hwloc_bind_OBJECTS = hwloc-bind.$(OBJEXT)
 hwloc_bind_LDADD = $(LDADD)
+hwloc_bind_DEPENDENCIES = $(HWLOC_top_builddir)/src/libhwloc.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 am_hwloc_calc_OBJECTS = hwloc-calc.$(OBJEXT)
 hwloc_calc_OBJECTS = $(am_hwloc_calc_OBJECTS)
 hwloc_calc_LDADD = $(LDADD)
+hwloc_calc_DEPENDENCIES = $(HWLOC_top_builddir)/src/libhwloc.la
 hwloc_distrib_SOURCES = hwloc-distrib.c
 hwloc_distrib_OBJECTS = hwloc-distrib.$(OBJEXT)
 hwloc_distrib_LDADD = $(LDADD)
+hwloc_distrib_DEPENDENCIES = $(HWLOC_top_builddir)/src/libhwloc.la
 am__lstopo_SOURCES_DIST = lstopo.h lstopo.c lstopo-color.c \
 	lstopo-text.c lstopo-draw.c lstopo-fig.c lstopo-cairo.c \
 	lstopo-xml.c lstopo-windows.c
@@ -95,8 +98,9 @@ am_lstopo_OBJECTS = lstopo-lstopo.$(OBJEXT) \
 	$(am__objects_1) $(am__objects_2) $(am__objects_3)
 lstopo_OBJECTS = $(am_lstopo_OBJECTS)
 am__DEPENDENCIES_1 =
-lstopo_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+lstopo_DEPENDENCIES = $(LDADD) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 lstopo_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(lstopo_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
@@ -199,10 +203,12 @@ HWLOC_DIFF_U = @HWLOC_DIFF_U@
 HWLOC_EMBEDDED_CFLAGS = @HWLOC_EMBEDDED_CFLAGS@
 HWLOC_EMBEDDED_CPPFLAGS = @HWLOC_EMBEDDED_CPPFLAGS@
 HWLOC_EMBEDDED_LDADD = @HWLOC_EMBEDDED_LDADD@
+HWLOC_EMBEDDED_LIBS = @HWLOC_EMBEDDED_LIBS@
 HWLOC_HAVE_XML = @HWLOC_HAVE_XML@
 HWLOC_KERRIGHED_CFLAGS = @HWLOC_KERRIGHED_CFLAGS@
 HWLOC_KERRIGHED_LIBS = @HWLOC_KERRIGHED_LIBS@
 HWLOC_LDFLAGS = @HWLOC_LDFLAGS@
+HWLOC_LIBS = @HWLOC_LIBS@
 HWLOC_MS_LIB = @HWLOC_MS_LIB@
 HWLOC_PKG_CONFIG = @HWLOC_PKG_CONFIG@
 HWLOC_RELEASE_DATE = @HWLOC_RELEASE_DATE@
@@ -224,7 +230,7 @@ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
-LIBS = @LIBS@ $(HWLOC_top_builddir)/src/libhwloc.la
+LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
@@ -321,12 +327,13 @@ top_srcdir = @top_srcdir@
 AM_CFLAGS = $(HWLOC_CFLAGS)
 AM_CPPFLAGS = $(HWLOC_CPPFLAGS)
 AM_LDFLAGS = $(HWLOC_LDFLAGS)
+LDADD = $(HWLOC_top_builddir)/src/libhwloc.la
 EXTRA_DIST = test-hwloc-distrib.output $(am__append_4)
 lstopo_SOURCES = lstopo.h lstopo.c lstopo-color.c lstopo-text.c \
 	lstopo-draw.c lstopo-fig.c $(am__append_1) $(am__append_2) \
 	$(am__append_3)
 lstopo_CFLAGS = $(HWLOC_CAIRO_CFLAGS) $(HWLOC_XML_CFLAGS)
-lstopo_LDADD = $(HWLOC_CAIRO_LIBS) $(HWLOC_XML_LIBS) -lm $(HWLOC_TERMCAP_LIBS) $(HWLOC_X11_LIBS)
+lstopo_LDADD = $(LDADD) $(HWLOC_CAIRO_LIBS) $(HWLOC_XML_LIBS) -lm $(HWLOC_TERMCAP_LIBS) $(HWLOC_X11_LIBS)
 hwloc_calc_SOURCES = hwloc-calc.c hwloc-calc.h
 
 # Only run the tests if we're building standalone, because the tests

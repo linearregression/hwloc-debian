@@ -1,3 +1,14 @@
+hwloc (1.0.2-1) unstable; urgency=low
+
+  New upstream release.
+  * debian/hwloc-nox.manpages, debian/hwloc.manpages: Install hwloc.7 too.
+  * debian/libhwloc-doc.manpages: No need to install linux_* any more.
+  * debian/control:
+    - Bump Standards-Version to 3.9.0 (no change needed).
+    - Replace [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386] with [linux-any].
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 21 Jul 2010 22:09:08 +0200
+
 hwloc (1.0-1) unstable; urgency=low
 
   * New upstream release.

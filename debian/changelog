@@ -1,3 +1,17 @@
+hwloc (1.0.2-2) unstable; urgency=low
+
+  * debian/control:
+    - Bump Standards-Version to 3.9.1 (no change needed).
+    - Build-Depend on autoconf (>= 2.63), Build-conflicts with autoconf2.13
+  * debian/rules:
+    - Run autoconf before build to permit autoconf patches.
+    - Remove configure on clean.
+    - Fix typo for parallel build.
+  * debian/patches/no-ibverbs-dep: New upstream patch to avoid libibverbs
+    dependency.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 27 Jul 2010 11:43:35 +0200
+
 hwloc (1.0.2-1) unstable; urgency=low
 
   New upstream release.

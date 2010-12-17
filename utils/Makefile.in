@@ -15,8 +15,10 @@
 
 @SET_MAKE@
 
-# Copyright 2009 INRIA, Université Bordeaux 1
+# Copyright © 2009-2010 INRIA
+# Copyright © 2009-2010 Université Bordeaux 1
 # Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.
+
 
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
@@ -41,14 +43,15 @@ target_triplet = @target@
 @HWLOC_BUILD_UTILS_TRUE@bin_PROGRAMS = lstopo$(EXEEXT) \
 @HWLOC_BUILD_UTILS_TRUE@	hwloc-calc$(EXEEXT) \
 @HWLOC_BUILD_UTILS_TRUE@	hwloc-bind$(EXEEXT) \
-@HWLOC_BUILD_UTILS_TRUE@	hwloc-distrib$(EXEEXT)
+@HWLOC_BUILD_UTILS_TRUE@	hwloc-distrib$(EXEEXT) \
+@HWLOC_BUILD_UTILS_TRUE@	hwloc-ps$(EXEEXT)
 @HWLOC_HAVE_CAIRO_TRUE@am__append_1 = lstopo-cairo.c
 @HWLOC_HAVE_XML_TRUE@am__append_2 = lstopo-xml.c
 @HWLOC_HAVE_WINDOWS_TRUE@am__append_3 = lstopo-windows.c
 @HWLOC_BUILD_UTILS_TRUE@am__append_4 = $(man1_pages:.1=.1in) $(man7_pages:.7=.7in)
 subdir = utils
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/test-hwloc-distrib.sh.in
+DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(srcdir)/test-hwloc-distrib.sh.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/config/hwloc.m4 \
 	$(top_srcdir)/config/hwloc_check_attributes.m4 \
@@ -85,6 +88,10 @@ hwloc_distrib_SOURCES = hwloc-distrib.c
 hwloc_distrib_OBJECTS = hwloc-distrib.$(OBJEXT)
 hwloc_distrib_LDADD = $(LDADD)
 hwloc_distrib_DEPENDENCIES = $(HWLOC_top_builddir)/src/libhwloc.la
+hwloc_ps_SOURCES = hwloc-ps.c
+hwloc_ps_OBJECTS = hwloc-ps.$(OBJEXT)
+hwloc_ps_LDADD = $(LDADD)
+hwloc_ps_DEPENDENCIES = $(HWLOC_top_builddir)/src/libhwloc.la
 am__lstopo_SOURCES_DIST = lstopo.h lstopo.c lstopo-color.c \
 	lstopo-text.c lstopo-draw.c lstopo-fig.c lstopo-cairo.c \
 	lstopo-xml.c lstopo-windows.c
@@ -131,9 +138,9 @@ AM_V_GEN = $(am__v_GEN_$(V))
 am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
 am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = hwloc-bind.c $(hwloc_calc_SOURCES) hwloc-distrib.c \
-	$(lstopo_SOURCES)
+	hwloc-ps.c $(lstopo_SOURCES)
 DIST_SOURCES = hwloc-bind.c $(hwloc_calc_SOURCES) hwloc-distrib.c \
-	$(am__lstopo_SOURCES_DIST)
+	hwloc-ps.c $(am__lstopo_SOURCES_DIST)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -159,6 +166,7 @@ man1dir = $(mandir)/man1
 man7dir = $(mandir)/man7
 NROFF = nroff
 MANS = $(nodist_man_MANS)
+HEADERS = $(noinst_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 am__tty_colors = \
@@ -174,6 +182,7 @@ AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
 BASH = @BASH@
+BUNZIPP = @BUNZIPP@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -191,10 +200,12 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
+EPSTOPDF = @EPSTOPDF@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
 FIG2DEV = @FIG2DEV@
 GREP = @GREP@
+GS = @GS@
 HWLOC_CAIRO_CFLAGS = @HWLOC_CAIRO_CFLAGS@
 HWLOC_CAIRO_LIBS = @HWLOC_CAIRO_LIBS@
 HWLOC_CFLAGS = @HWLOC_CFLAGS@
@@ -209,6 +220,7 @@ HWLOC_KERRIGHED_CFLAGS = @HWLOC_KERRIGHED_CFLAGS@
 HWLOC_KERRIGHED_LIBS = @HWLOC_KERRIGHED_LIBS@
 HWLOC_LDFLAGS = @HWLOC_LDFLAGS@
 HWLOC_LIBS = @HWLOC_LIBS@
+HWLOC_LINUX_LIBNUMA_LIBS = @HWLOC_LINUX_LIBNUMA_LIBS@
 HWLOC_MS_LIB = @HWLOC_MS_LIB@
 HWLOC_PKG_CONFIG = @HWLOC_PKG_CONFIG@
 HWLOC_RELEASE_DATE = @HWLOC_RELEASE_DATE@
@@ -238,6 +250,7 @@ LTLIBOBJS = @LTLIBOBJS@
 LYNX = @LYNX@
 MAKEINDEX = @MAKEINDEX@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
 NMEDIT = @NMEDIT@
@@ -271,6 +284,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
@@ -304,7 +318,6 @@ libexecdir = @libexecdir@
 libhwloc_so_version = @libhwloc_so_version@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -329,6 +342,7 @@ AM_CPPFLAGS = $(HWLOC_CPPFLAGS)
 AM_LDFLAGS = $(HWLOC_LDFLAGS)
 LDADD = $(HWLOC_top_builddir)/src/libhwloc.la
 EXTRA_DIST = test-hwloc-distrib.output $(am__append_4)
+noinst_HEADERS = misc.h
 lstopo_SOURCES = lstopo.h lstopo.c lstopo-color.c lstopo-text.c \
 	lstopo-draw.c lstopo-fig.c $(am__append_1) $(am__append_2) \
 	$(am__append_3)
@@ -341,7 +355,7 @@ hwloc_calc_SOURCES = hwloc-calc.c hwloc-calc.h
 @HWLOC_BUILD_TESTS_TRUE@@HWLOC_HAVE_MINGW32_FALSE@TESTS = test-hwloc-distrib.sh
 
 # Only install man pages if we're building in standalone mode
-@HWLOC_BUILD_UTILS_TRUE@man1_pages = lstopo.1 hwloc-bind.1 hwloc-distrib.1 hwloc-calc.1
+@HWLOC_BUILD_UTILS_TRUE@man1_pages = lstopo.1 hwloc-bind.1 hwloc-distrib.1 hwloc-calc.1 hwloc-ps.1
 @HWLOC_BUILD_UTILS_TRUE@man7_pages = hwloc.7
 @HWLOC_BUILD_UTILS_TRUE@man_pages = $(man7_pages) $(man1_pages)
 @HWLOC_BUILD_UTILS_TRUE@nodist_man_MANS = $(man_pages)
@@ -433,6 +447,9 @@ hwloc-calc$(EXEEXT): $(hwloc_calc_OBJECTS) $(hwloc_calc_DEPENDENCIES)
 hwloc-distrib$(EXEEXT): $(hwloc_distrib_OBJECTS) $(hwloc_distrib_DEPENDENCIES) 
 	@rm -f hwloc-distrib$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(hwloc_distrib_OBJECTS) $(hwloc_distrib_LDADD) $(LIBS)
+hwloc-ps$(EXEEXT): $(hwloc_ps_OBJECTS) $(hwloc_ps_DEPENDENCIES) 
+	@rm -f hwloc-ps$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(hwloc_ps_OBJECTS) $(hwloc_ps_LDADD) $(LIBS)
 lstopo$(EXEEXT): $(lstopo_OBJECTS) $(lstopo_DEPENDENCIES) 
 	@rm -f lstopo$(EXEEXT)
 	$(AM_V_CCLD)$(lstopo_LINK) $(lstopo_OBJECTS) $(lstopo_LDADD) $(LIBS)
@@ -446,6 +463,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hwloc-bind.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hwloc-calc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hwloc-distrib.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hwloc-ps.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lstopo-lstopo-cairo.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lstopo-lstopo-color.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lstopo-lstopo-draw.Po@am__quote@
@@ -882,7 +900,7 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-TESTS
 check: check-am
-all-am: Makefile $(PROGRAMS) $(MANS)
+all-am: Makefile $(PROGRAMS) $(MANS) $(HEADERS)
 installdirs:
 	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(man7dir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \

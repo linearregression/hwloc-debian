@@ -15,7 +15,8 @@
 
 @SET_MAKE@
 
-# Copyright 2009 INRIA, Université Bordeaux 1
+# Copyright © 2009-2010 INRIA
+# Copyright © 2009 Université Bordeaux 1
 # Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
@@ -120,6 +121,7 @@ AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
 BASH = @BASH@
+BUNZIPP = @BUNZIPP@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -137,10 +139,12 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
+EPSTOPDF = @EPSTOPDF@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
 FIG2DEV = @FIG2DEV@
 GREP = @GREP@
+GS = @GS@
 HWLOC_CAIRO_CFLAGS = @HWLOC_CAIRO_CFLAGS@
 HWLOC_CAIRO_LIBS = @HWLOC_CAIRO_LIBS@
 HWLOC_CFLAGS = @HWLOC_CFLAGS@
@@ -155,6 +159,7 @@ HWLOC_KERRIGHED_CFLAGS = @HWLOC_KERRIGHED_CFLAGS@
 HWLOC_KERRIGHED_LIBS = @HWLOC_KERRIGHED_LIBS@
 HWLOC_LDFLAGS = @HWLOC_LDFLAGS@
 HWLOC_LIBS = @HWLOC_LIBS@
+HWLOC_LINUX_LIBNUMA_LIBS = @HWLOC_LINUX_LIBNUMA_LIBS@
 HWLOC_MS_LIB = @HWLOC_MS_LIB@
 HWLOC_PKG_CONFIG = @HWLOC_PKG_CONFIG@
 HWLOC_RELEASE_DATE = @HWLOC_RELEASE_DATE@
@@ -184,6 +189,7 @@ LTLIBOBJS = @LTLIBOBJS@
 LYNX = @LYNX@
 MAKEINDEX = @MAKEINDEX@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
 NMEDIT = @NMEDIT@
@@ -217,6 +223,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
@@ -250,7 +257,6 @@ libexecdir = @libexecdir@
 libhwloc_so_version = @libhwloc_so_version@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -316,7 +322,7 @@ libhwloc_ports_la_CPPFLAGS = \
         -I$(HWLOC_top_srcdir)/include \
         -I$(HWLOC_top_srcdir)/tests/ports/include \
         -DHWLOC_COMPILE_PORTS \
-        -DHWLOC_SOLARIS_SYS -DHAVE_LIBLGRP -DHAVE_LIBKSTAT \
+        -DHWLOC_SOLARIS_SYS -DHAVE_LIBLGRP -DHAVE_LIBKSTAT -DHAVE_LGRP_LATENCY_COOKIE \
         -DHWLOC_AIX_SYS \
         -DHWLOC_OSF_SYS \
         -DHWLOC_WIN_SYS \

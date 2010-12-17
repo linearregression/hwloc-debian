@@ -1,4 +1,4 @@
-.TH "Create and Destroy Topologies" 3 "20 Jul 2010" "Version 1.0.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Create and Destroy Topologies" 3 "Thu Dec 16 2010" "Version 1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -56,7 +56,7 @@ Allocate a topology context. \fBParameters:\fP
 
 .SS "HWLOC_DECLSPEC int hwloc_topology_load (\fBhwloc_topology_t\fP topology)"
 .PP
-Build the actual topology. Build the actual topology once initialized with \fBhwloc_topology_init()\fP and tuned with hwlocality_configuration routine. No other routine may be called earlier using this topology context.
+Build the actual topology. Build the actual topology once initialized with \fBhwloc_topology_init()\fP and tuned with \fBConfigure Topology Detection\fP routines. No other routine may be called earlier using this topology context.
 .PP
 \fBParameters:\fP
 .RS 4

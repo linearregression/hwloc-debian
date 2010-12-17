@@ -1,4 +1,4 @@
-.TH "hwloc_obj" 3 "20 Jul 2010" "Version 1.0.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj" 3 "Thu Dec 16 2010" "Version 1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -33,7 +33,7 @@ Structure of a topology object.
 .ti -1c
 .RI "union \fBhwloc_obj_attr_u\fP * \fBattr\fP"
 .br
-.RI "\fIObject type-specific Attributes. \fP"
+.RI "\fIObject type-specific Attributes, may be \fCNULL\fP if no attribute value was found. \fP"
 .ti -1c
 .RI "unsigned \fBdepth\fP"
 .br
@@ -107,17 +107,25 @@ Structure of a topology object.
 .br
 .RI "\fIThe CPU set of allowed logical processors. \fP"
 .ti -1c
-.RI "\fBhwloc_cpuset_t\fP \fBnodeset\fP"
+.RI "\fBhwloc_nodeset_t\fP \fBnodeset\fP"
 .br
 .RI "\fINUMA nodes covered by this object or containing this object. \fP"
 .ti -1c
-.RI "\fBhwloc_cpuset_t\fP \fBcomplete_nodeset\fP"
+.RI "\fBhwloc_nodeset_t\fP \fBcomplete_nodeset\fP"
 .br
 .RI "\fIThe complete NUMA node set of this object,. \fP"
 .ti -1c
-.RI "\fBhwloc_cpuset_t\fP \fBallowed_nodeset\fP"
+.RI "\fBhwloc_nodeset_t\fP \fBallowed_nodeset\fP"
 .br
 .RI "\fIThe set of allowed NUMA memory nodes. \fP"
+.ti -1c
+.RI "struct \fBhwloc_obj_info_s\fP * \fBinfos\fP"
+.br
+.RI "\fIArray of stringified info type=name. \fP"
+.ti -1c
+.RI "unsigned \fBinfos_count\fP"
+.br
+.RI "\fISize of infos array. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -132,17 +140,19 @@ The CPU set of allowed logical processors. This includes the CPUs contained in t
 .PP
 \fBNote:\fP
 .RS 4
-Its value must not be changed, hwloc_cpuset_dup must be used instead. 
+Its value must not be changed, hwloc_bitmap_dup must be used instead. 
 .RE
 .PP
 
-.SS "\fBhwloc_cpuset_t\fP \fBhwloc_obj::allowed_nodeset\fP"
+.SS "\fBhwloc_nodeset_t\fP \fBhwloc_obj::allowed_nodeset\fP"
 .PP
 The set of allowed NUMA memory nodes. This includes the NUMA memory nodes contained in this object which are allowed for memory allocation, i.e. passing them to NUMA node-directed memory allocation should not return permission errors. This is usually restricted by administration rules.
 .PP
+If there are no NUMA nodes in the machine, all the memory is close to this object, so \fCallowed_nodeset\fP is full.
+.PP
 \fBNote:\fP
 .RS 4
-Its value must not be changed, hwloc_cpuset_dup must be used instead. 
+Its value must not be changed, hwloc_bitmap_dup must be used instead. 
 .RE
 .PP
 
@@ -151,7 +161,7 @@ Its value must not be changed, hwloc_cpuset_dup must be used instead.
 Number of children. 
 .SS "union \fBhwloc_obj_attr_u\fP* \fBhwloc_obj::attr\fP"
 .PP
-Object type-specific Attributes. 
+Object type-specific Attributes, may be \fCNULL\fP if no attribute value was found. 
 .SS "struct \fBhwloc_obj\fP** \fBhwloc_obj::children\fP"
 .PP
 Children, \fCchildren\fP[0 .. arity -1]. 
@@ -161,17 +171,19 @@ The complete CPU set of logical processors of this object,. This includes not on
 .PP
 \fBNote:\fP
 .RS 4
-Its value must not be changed, hwloc_cpuset_dup must be used instead. 
+Its value must not be changed, hwloc_bitmap_dup must be used instead. 
 .RE
 .PP
 
-.SS "\fBhwloc_cpuset_t\fP \fBhwloc_obj::complete_nodeset\fP"
+.SS "\fBhwloc_nodeset_t\fP \fBhwloc_obj::complete_nodeset\fP"
 .PP
 The complete NUMA node set of this object,. This includes not only the same as the nodeset field, but also the NUMA nodes for which topology information is unknown or incomplete, and the nodes that are ignored when the HWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM flag is not set. Thus no corresponding NODE object may be found in the topology, because the precise position is undefined. It is however known that it would be somewhere under this object.
 .PP
+If there are no NUMA nodes in the machine, all the memory is close to this object, so \fCcomplete_nodeset\fP is full.
+.PP
 \fBNote:\fP
 .RS 4
-Its value must not be changed, hwloc_cpuset_dup must be used instead. 
+Its value must not be changed, hwloc_bitmap_dup must be used instead. 
 .RE
 .PP
 
@@ -183,7 +195,7 @@ If the HWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM configuration flag is set, some of these
 .PP
 \fBNote:\fP
 .RS 4
-Its value must not be changed, hwloc_cpuset_dup must be used instead. 
+Its value must not be changed, hwloc_bitmap_dup must be used instead. 
 .RE
 .PP
 
@@ -193,6 +205,12 @@ Vertical index in the hierarchy.
 .SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::first_child\fP"
 .PP
 First child. 
+.SS "struct \fBhwloc_obj_info_s\fP* \fBhwloc_obj::infos\fP"
+.PP
+Array of stringified info type=name. 
+.SS "unsigned \fBhwloc_obj::infos_count\fP"
+.PP
+Size of infos array. 
 .SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::last_child\fP"
 .PP
 Last child. 
@@ -211,15 +229,19 @@ Next object of same type.
 .SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::next_sibling\fP"
 .PP
 Next object below the same parent. 
-.SS "\fBhwloc_cpuset_t\fP \fBhwloc_obj::nodeset\fP"
+.SS "\fBhwloc_nodeset_t\fP \fBhwloc_obj::nodeset\fP"
 .PP
 NUMA nodes covered by this object or containing this object. This is the set of NUMA nodes for which there are NODE objects in the topology under or above this object, i.e. which are known to be physically contained in this object or containing it and known how (the children path between this object and the NODE objects).
 .PP
+In the end, these nodes are those that are close to the current object.
+.PP
 If the HWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM configuration flag is set, some of these nodes may not be allowed for allocation, see allowed_nodeset.
+.PP
+If there are no NUMA nodes in the machine, all the memory is close to this object, so \fCnodeset\fP is full.
 .PP
 \fBNote:\fP
 .RS 4
-Its value must not be changed, hwloc_cpuset_dup must be used instead. 
+Its value must not be changed, hwloc_bitmap_dup must be used instead. 
 .RE
 .PP
 
@@ -229,7 +251,7 @@ The CPU set of online logical processors. This includes the CPUs contained in th
 .PP
 \fBNote:\fP
 .RS 4
-Its value must not be changed, hwloc_cpuset_dup must be used instead. 
+Its value must not be changed, hwloc_bitmap_dup must be used instead. 
 .RE
 .PP
 

@@ -1,3 +1,9 @@
+hwloc (1.1-2) experimental; urgency=low
+
+  * Rename libhwloc0 packages name into libhwloc1 due to soname change.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 03 Jan 2011 11:12:18 +0100
+
 hwloc (1.1-1) experimental; urgency=low
 
   * New upstream release.

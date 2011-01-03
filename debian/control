@@ -62,7 +62,7 @@ Description: Hierarchical view of the machine - non-X version of utilities
 Package: libhwloc-dev
 Section: libdevel
 Architecture: any
-Depends: ${misc:Depends}, libhwloc0 (= ${binary:Version}), libxml2-dev
+Depends: ${misc:Depends}, libhwloc1 (= ${binary:Version}), libxml2-dev
 Description: Hierarchical view of the machine - static libs and headers
  Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It
@@ -79,7 +79,7 @@ Description: Hierarchical view of the machine - static libs and headers
  .
  This package contains static libraries and development headers.
 
-Package: libhwloc0
+Package: libhwloc1
 Architecture: any
 Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}

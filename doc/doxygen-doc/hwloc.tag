@@ -21,7 +21,7 @@
   </compound>
   <compound kind="page">
     <name>tools</name>
-    <title>Command-line tools</title>
+    <title>Command-Line Tools</title>
     <filename>a00002</filename>
     <docanchor file="a00002">cli_hwloc_ps</docanchor>
     <docanchor file="a00002">cli_hwloc_bind</docanchor>
@@ -31,27 +31,27 @@
   </compound>
   <compound kind="page">
     <name>envvar</name>
-    <title>Environment variables</title>
+    <title>Environment Variables</title>
     <filename>a00003</filename>
   </compound>
   <compound kind="page">
     <name>cpu_mem_bind</name>
-    <title>CPU Binding and Memory Binding</title>
+    <title>CPU and Memory Binding Overview</title>
     <filename>a00004</filename>
   </compound>
   <compound kind="page">
     <name>interoperability</name>
-    <title>Interoperability with other software</title>
+    <title>Interoperability With Other Software</title>
     <filename>a00005</filename>
   </compound>
   <compound kind="page">
     <name>threadsafety</name>
-    <title>Thread safety</title>
+    <title>Thread Safety</title>
     <filename>a00006</filename>
   </compound>
   <compound kind="page">
     <name>embed</name>
-    <title>Embedding hwloc in other software</title>
+    <title>Embedding hwloc in Other Software</title>
     <filename>a00007</filename>
     <docanchor file="a00007">embedding_example</docanchor>
     <docanchor file="a00007">embedding_m4</docanchor>
@@ -69,6 +69,7 @@
     <name>faq</name>
     <title>Frequently Asked Questions</title>
     <filename>a00009</filename>
+    <docanchor file="a00009">faq_upgrade</docanchor>
     <docanchor file="a00009">faq_xml</docanchor>
   </compound>
   <compound kind="group">
@@ -81,6 +82,13 @@
       <anchorfile>a00032.html</anchorfile>
       <anchor>ga8f4dfb8eef138af55dd1a0fa802e5476</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>HWLOC_DECLSPEC unsigned</type>
+      <name>hwloc_get_api_version</name>
+      <anchorfile>a00032.html</anchorfile>
+      <anchor>ga61ef7566efe550d314b0ce4f3421ec5d</anchor>
+      <arglist>(void)</arglist>
     </member>
   </compound>
   <compound kind="group">
@@ -97,7 +105,7 @@
   </compound>
   <compound kind="group">
     <name>hwlocality_sets</name>
-    <title>Object sets</title>
+    <title>Object sets (hwloc_cpuset_t and hwloc_nodeset_t)</title>
     <filename>a00034.html</filename>
     <member kind="typedef">
       <type>hwloc_bitmap_t</type>
@@ -650,6 +658,12 @@
       <name>HWLOC_MEMBIND_NEXTTOUCH</name>
       <anchorfile>a00044.html</anchorfile>
       <anchor>ggac9764f79505775d06407b40f5e4661e8aecdd4164d647708fbb51a00d98dbb138</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>HWLOC_MEMBIND_MIXED</name>
+      <anchorfile>a00044.html</anchorfile>
+      <anchor>ggac9764f79505775d06407b40f5e4661e8a3185bd869b67817fb2bd5164bf360402</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">

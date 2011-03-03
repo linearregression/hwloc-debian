@@ -1,4 +1,4 @@
-.TH "hwloc_obj_memory_s::hwloc_obj_memory_page_type_s" 3 "Mon Jan 24 2011" "Version 1.1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj_memory_s::hwloc_obj_memory_page_type_s" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,10 +15,10 @@ Array of local memory page types, \fCNULL\fP if no local memory and \fCpage_type
 
 .in +1c
 .ti -1c
-.RI "uint64_t \fBsize\fP"
+.RI "hwloc_uint64_t \fBsize\fP"
 .br
 .ti -1c
-.RI "uint64_t \fBcount\fP"
+.RI "hwloc_uint64_t \fBcount\fP"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -28,10 +28,10 @@ Array of local memory page types, \fCNULL\fP if no local memory and \fCpage_type
 The array is sorted by increasing \fCsize\fP fields. It contains \fCpage_types_len\fP slots. 
 .SH "Field Documentation"
 .PP 
-.SS "uint64_t \fBhwloc_obj_memory_s::hwloc_obj_memory_page_type_s::count\fP"
+.SS "hwloc_uint64_t \fBhwloc_obj_memory_s::hwloc_obj_memory_page_type_s::count\fP"
 .PP
 Number of pages of this size. 
-.SS "uint64_t \fBhwloc_obj_memory_s::hwloc_obj_memory_page_type_s::size\fP"
+.SS "hwloc_uint64_t \fBhwloc_obj_memory_s::hwloc_obj_memory_page_type_s::size\fP"
 .PP
 Size of pages. 
 

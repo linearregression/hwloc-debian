@@ -1,3 +1,11 @@
+hwloc (1.1.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control: Replace doxygen+texlive* build dependency with
+    doxygen-latex (Closes: Bug#616253).
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 03 Mar 2011 15:06:51 +0100
+
 hwloc (1.1.1-1) unstable; urgency=low
 
   * New upstream release, rename libhwloc1 package into libhwloc2 due to

@@ -1,4 +1,4 @@
-.TH "Object/String Conversion" 3 "Mon Jan 24 2011" "Version 1.1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Object/String Conversion" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Object/String Conversion \-
 .in -1c
 .SH "Function Documentation"
 .PP 
-.SS " int hwloc_obj_attr_snprintf (char *restrict string, size_t size, \fBhwloc_obj_t\fP obj, const char *restrict separator, int verbose)"
+.SS " int hwloc_obj_attr_snprintf (char *restrictstring, size_tsize, \fBhwloc_obj_t\fPobj, const char *restrictseparator, intverbose)"
 .PP
 Stringify the attributes of a given topology object into a human-readable form. Attribute values are separated by \fCseparator\fP.
 .PP
@@ -44,7 +44,7 @@ the number of character that were actually written if not truncating, or that wo
 .RE
 .PP
 
-.SS " int hwloc_obj_cpuset_snprintf (char *restrict str, size_t size, size_t nobj, const \fBhwloc_obj_t\fP *restrict objs)"
+.SS " int hwloc_obj_cpuset_snprintf (char *restrictstr, size_tsize, size_tnobj, const \fBhwloc_obj_t\fP *restrictobjs)"
 .PP
 Stringify the cpuset containing a set of objects. If \fCsize\fP is 0, \fCstring\fP may safely be \fCNULL\fP.
 .PP
@@ -54,7 +54,7 @@ the number of character that were actually written if not truncating, or that wo
 .RE
 .PP
 
-.SS "static inline char*  hwloc_obj_get_info_by_name (\fBhwloc_obj_t\fP obj, const char * name)\fC [static]\fP"
+.SS "static inline char*  hwloc_obj_get_info_by_name (\fBhwloc_obj_t\fPobj, const char *name)\fC [static]\fP"
 .PP
 Search the given key name in object infos and return the corresponding value. \fBReturns:\fP
 .RS 4
@@ -62,7 +62,7 @@ Search the given key name in object infos and return the corresponding value. \f
 .RE
 .PP
 
-.SS " int hwloc_obj_snprintf (char *restrict string, size_t size, \fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fP obj, const char *restrict indexprefix, int verbose)"
+.SS " int hwloc_obj_snprintf (char *restrictstring, size_tsize, \fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPobj, const char *restrictindexprefix, intverbose)"
 .PP
 Stringify a given topology object into a human-readable form. \fBNote:\fP
 .RS 4
@@ -83,7 +83,7 @@ the number of character that were actually written if not truncating, or that wo
 .RE
 .PP
 
-.SS " \fBhwloc_obj_type_t\fP hwloc_obj_type_of_string (const char * string)"
+.SS " \fBhwloc_obj_type_t\fP hwloc_obj_type_of_string (const char *string)"
 .PP
 Return an object type from the string. \fBReturns:\fP
 .RS 4
@@ -91,7 +91,7 @@ Return an object type from the string. \fBReturns:\fP
 .RE
 .PP
 
-.SS " int hwloc_obj_type_snprintf (char *restrict string, size_t size, \fBhwloc_obj_t\fP obj, int verbose)"
+.SS " int hwloc_obj_type_snprintf (char *restrictstring, size_tsize, \fBhwloc_obj_t\fPobj, intverbose)"
 .PP
 Stringify the type of a given topology object into a human-readable form. It differs from \fBhwloc_obj_type_string()\fP because it prints type attributes such as cache depth.
 .PP
@@ -103,7 +103,7 @@ the number of character that were actually written if not truncating, or that wo
 .RE
 .PP
 
-.SS " const char* hwloc_obj_type_string (\fBhwloc_obj_type_t\fP type) const"
+.SS " const char* hwloc_obj_type_string (\fBhwloc_obj_type_t\fPtype) const"
 .PP
 Return a stringified topology object type. 
 .SH "Author"

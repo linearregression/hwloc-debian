@@ -44,11 +44,11 @@ subdir = .
 DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/hwloc.pc.in \
 	$(top_srcdir)/configure \
-	$(top_srcdir)/include/hwloc/config.h.in \
-	$(top_srcdir)/include/private/config.h.in ./config/compile \
-	./config/config.guess ./config/config.sub ./config/depcomp \
-	./config/install-sh ./config/ltmain.sh ./config/missing \
-	AUTHORS COPYING NEWS
+	$(top_srcdir)/include/hwloc/autogen/config.h.in \
+	$(top_srcdir)/include/private/autogen/config.h.in \
+	./config/compile ./config/config.guess ./config/config.sub \
+	./config/depcomp ./config/install-sh ./config/ltmain.sh \
+	./config/missing AUTHORS COPYING NEWS
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/config/hwloc.m4 \
 	$(top_srcdir)/config/hwloc_check_attributes.m4 \
@@ -65,8 +65,8 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/include/private/config.h \
-	$(top_builddir)/include/hwloc/config.h
+CONFIG_HEADER = $(top_builddir)/include/private/autogen/config.h \
+	$(top_builddir)/include/hwloc/autogen/config.h
 CONFIG_CLEAN_FILES = hwloc.pc
 CONFIG_CLEAN_VPATH_FILES =
 AM_V_GEN = $(am__v_GEN_$(V))
@@ -377,32 +377,32 @@ $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
 
-include/private/config.h: include/private/stamp-h1
+include/private/autogen/config.h: include/private/autogen/stamp-h1
 	@if test ! -f $@; then \
-	  rm -f include/private/stamp-h1; \
-	  $(MAKE) $(AM_MAKEFLAGS) include/private/stamp-h1; \
+	  rm -f include/private/autogen/stamp-h1; \
+	  $(MAKE) $(AM_MAKEFLAGS) include/private/autogen/stamp-h1; \
 	else :; fi
 
-include/private/stamp-h1: $(top_srcdir)/include/private/config.h.in $(top_builddir)/config.status
-	@rm -f include/private/stamp-h1
-	cd $(top_builddir) && $(SHELL) ./config.status include/private/config.h
-$(top_srcdir)/include/private/config.h.in:  $(am__configure_deps) 
+include/private/autogen/stamp-h1: $(top_srcdir)/include/private/autogen/config.h.in $(top_builddir)/config.status
+	@rm -f include/private/autogen/stamp-h1
+	cd $(top_builddir) && $(SHELL) ./config.status include/private/autogen/config.h
+$(top_srcdir)/include/private/autogen/config.h.in:  $(am__configure_deps) 
 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
-	rm -f include/private/stamp-h1
+	rm -f include/private/autogen/stamp-h1
 	touch $@
 
-include/hwloc/config.h: include/hwloc/stamp-h2
+include/hwloc/autogen/config.h: include/hwloc/autogen/stamp-h2
 	@if test ! -f $@; then \
-	  rm -f include/hwloc/stamp-h2; \
-	  $(MAKE) $(AM_MAKEFLAGS) include/hwloc/stamp-h2; \
+	  rm -f include/hwloc/autogen/stamp-h2; \
+	  $(MAKE) $(AM_MAKEFLAGS) include/hwloc/autogen/stamp-h2; \
 	else :; fi
 
-include/hwloc/stamp-h2: $(top_srcdir)/include/hwloc/config.h.in $(top_builddir)/config.status
-	@rm -f include/hwloc/stamp-h2
-	cd $(top_builddir) && $(SHELL) ./config.status include/hwloc/config.h
+include/hwloc/autogen/stamp-h2: $(top_srcdir)/include/hwloc/autogen/config.h.in $(top_builddir)/config.status
+	@rm -f include/hwloc/autogen/stamp-h2
+	cd $(top_builddir) && $(SHELL) ./config.status include/hwloc/autogen/config.h
 
 distclean-hdr:
-	-rm -f include/private/config.h include/private/stamp-h1 include/hwloc/config.h include/hwloc/stamp-h2
+	-rm -f include/private/autogen/config.h include/private/autogen/stamp-h1 include/hwloc/autogen/config.h include/hwloc/autogen/stamp-h2
 hwloc.pc: $(top_builddir)/config.status $(srcdir)/hwloc.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 

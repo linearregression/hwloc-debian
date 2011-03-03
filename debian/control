@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 7), autotools-dev, help2man, cdbs,
   libnuma-dev [amd64 i386 ia64 mips mipsel powerpc],
   libibverbs-dev [linux-any],
   autoconf (>= 2.63)
-Build-Depends-Indep: doxygen, texlive-latex-base, transfig
+Build-Depends-Indep: doxygen-latex, transfig
 Build-Conflicts: autoconf2.13
 Standards-Version: 3.9.1
 Section: libs

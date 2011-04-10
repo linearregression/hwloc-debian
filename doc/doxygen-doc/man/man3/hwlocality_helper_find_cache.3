@@ -1,4 +1,4 @@
-.TH "Cache-specific Finding Helpers" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Cache-specific Finding Helpers" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -27,7 +27,7 @@ Get the first cache covering a cpuset \fCset\fP. \fBReturns:\fP
 .PP
 Get the first cache shared between an object and somebody else. \fBReturns:\fP
 .RS 4
-\fCNULL\fP if no cache matches 
+\fCNULL\fP if no cache matches or if an invalid object is given. 
 .RE
 .PP
 

@@ -1,4 +1,4 @@
-.TH "hwloc_topology_cpubind_support" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_topology_cpubind_support" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -38,6 +38,15 @@ Flags describing actual PU binding support for this topology.
 .ti -1c
 .RI "unsigned char \fBget_thread_cpubind\fP"
 .br
+.ti -1c
+.RI "unsigned char \fBget_thisproc_last_cpu_location\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBget_proc_last_cpu_location\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBget_thisthread_last_cpu_location\fP"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -45,8 +54,11 @@ Flags describing actual PU binding support for this topology.
 .SH "Field Documentation"
 .PP 
 .SS "unsigned char \fBhwloc_topology_cpubind_support::get_proc_cpubind\fP"Getting the binding of a whole given process is supported. 
+.SS "unsigned char \fBhwloc_topology_cpubind_support::get_proc_last_cpu_location\fP"Getting the last processors where a whole process ran is supported 
 .SS "unsigned char \fBhwloc_topology_cpubind_support::get_thisproc_cpubind\fP"Getting the binding of the whole current process is supported. 
+.SS "unsigned char \fBhwloc_topology_cpubind_support::get_thisproc_last_cpu_location\fP"Getting the last processors where the whole current process ran is supported 
 .SS "unsigned char \fBhwloc_topology_cpubind_support::get_thisthread_cpubind\fP"Getting the binding of the current thread only is supported. 
+.SS "unsigned char \fBhwloc_topology_cpubind_support::get_thisthread_last_cpu_location\fP"Getting the last processors where the current thread ran is supported 
 .SS "unsigned char \fBhwloc_topology_cpubind_support::get_thread_cpubind\fP"Getting the binding of a given thread only is supported. 
 .SS "unsigned char \fBhwloc_topology_cpubind_support::set_proc_cpubind\fP"Binding a whole given process is supported. 
 .SS "unsigned char \fBhwloc_topology_cpubind_support::set_thisproc_cpubind\fP"Binding the whole current process is supported. 

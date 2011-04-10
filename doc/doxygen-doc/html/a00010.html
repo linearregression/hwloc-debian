@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Hardware Locality (hwloc): hwloc_obj_attr_u::hwloc_cache_attr_s Struct Reference</title>
+<title>Hardware Locality (hwloc): hwloc_distances_s Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.1.2</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -35,77 +35,106 @@
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
-  <div id="nav-path" class="navpath">
-    <ul>
-      <li class="navelem"><a class="el" href="a00013.html">hwloc_obj_attr_u</a>      </li>
-      <li class="navelem"><a class="el" href="a00010.html">hwloc_cache_attr_s</a>      </li>
-    </ul>
-  </div>
 </div>
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<h1>hwloc_obj_attr_u::hwloc_cache_attr_s Struct Reference</h1>  </div>
+<h1>hwloc_distances_s Struct Reference<div class="ingroups"><a class="el" href="a00036.html">Topology Objects</a></div></h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="hwloc_obj_attr_u::hwloc_cache_attr_s" -->
-<p>Cache-specific Object Attributes.  
+<!-- doxytag: class="hwloc_distances_s" -->
+<p>Distances between objects.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="a00027_source.html">hwloc.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">hwloc_uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00010.html#abe5e788943ed04302976740c829674c0">size</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00010.html#a5c8f7f39193736c2187ed626940835d5">depth</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00010.html#a801e8a668e28caf06c8b88e9ae5c10db">linesize</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00010.html#a6fe066eaf62ee448aa05bab8e7217ff7">relative_depth</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00010.html#a4ca2af858cebbce7324ec49903d09474">nbobjs</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00010.html#a0f70f48d1bfb18e5e2008825da2967c9">latency</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00010.html#aab61bd1d1ae2e121bfe793c973ec829e">latency_max</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00010.html#a204416418049a272bfb51602fc676342">latency_base</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Cache-specific Object Attributes. </p>
+<div class="textblock"><p>Distances between objects. </p>
+<p>One object may contain a distance structure describing distances between all its descendants at a given relative depth. If the containing object is the root object of the topology, then the distances are available for all objects in the machine.</p>
+<p>The distance may be a memory latency, as defined by the ACPI SLIT specification. If so, the <code>latency</code> pointer will not be <code>NULL</code> and the pointed array will contain non-zero values.</p>
+<p>In the future, some other types of distances may be considered. In these cases, <code>latency</code> will be <code>NULL</code>. </p>
 </div><hr/><h2>Field Documentation</h2>
-<a class="anchor" id="a5c8f7f39193736c2187ed626940835d5"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_cache_attr_s::depth" ref="a5c8f7f39193736c2187ed626940835d5" args="" -->
+<a class="anchor" id="a0f70f48d1bfb18e5e2008825da2967c9"></a><!-- doxytag: member="hwloc_distances_s::latency" ref="a0f70f48d1bfb18e5e2008825da2967c9" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned <a class="el" href="a00010.html#a5c8f7f39193736c2187ed626940835d5">hwloc_obj_attr_u::hwloc_cache_attr_s::depth</a></td>
+          <td class="memname">float* <a class="el" href="a00010.html#a0f70f48d1bfb18e5e2008825da2967c9">hwloc_distances_s::latency</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Depth of cache. </p>
+<p>Matrix of latencies between objects, stored as a one-dimension array. May be <code>NULL</code> if the distances considered here are not latencies. Values are normalized to get 1.0 as the minimal value in the matrix. Latency from i-th to j-th object is stored in slot i*nbobjs+j. </p>
 
 </div>
 </div>
-<a class="anchor" id="a801e8a668e28caf06c8b88e9ae5c10db"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_cache_attr_s::linesize" ref="a801e8a668e28caf06c8b88e9ae5c10db" args="" -->
+<a class="anchor" id="a204416418049a272bfb51602fc676342"></a><!-- doxytag: member="hwloc_distances_s::latency_base" ref="a204416418049a272bfb51602fc676342" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned <a class="el" href="a00010.html#a801e8a668e28caf06c8b88e9ae5c10db">hwloc_obj_attr_u::hwloc_cache_attr_s::linesize</a></td>
+          <td class="memname">float <a class="el" href="a00010.html#a204416418049a272bfb51602fc676342">hwloc_distances_s::latency_base</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Cache-line size in bytes. </p>
+<p>The multiplier that should be applied to latency matrix to retrieve the original OS-provided latencies. Usually 10 on Linux since ACPI SLIT uses 10 for local latency. </p>
 
 </div>
 </div>
-<a class="anchor" id="abe5e788943ed04302976740c829674c0"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_cache_attr_s::size" ref="abe5e788943ed04302976740c829674c0" args="" -->
+<a class="anchor" id="aab61bd1d1ae2e121bfe793c973ec829e"></a><!-- doxytag: member="hwloc_distances_s::latency_max" ref="aab61bd1d1ae2e121bfe793c973ec829e" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">hwloc_uint64_t <a class="el" href="a00010.html#abe5e788943ed04302976740c829674c0">hwloc_obj_attr_u::hwloc_cache_attr_s::size</a></td>
+          <td class="memname">float <a class="el" href="a00010.html#aab61bd1d1ae2e121bfe793c973ec829e">hwloc_distances_s::latency_max</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Size of cache in bytes. </p>
+<p>The maximal value in the latency matrix. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4ca2af858cebbce7324ec49903d09474"></a><!-- doxytag: member="hwloc_distances_s::nbobjs" ref="a4ca2af858cebbce7324ec49903d09474" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned <a class="el" href="a00010.html#a4ca2af858cebbce7324ec49903d09474">hwloc_distances_s::nbobjs</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Number of objects considered in the matrix. It is the number of descendant objects at <code>relative_depth</code> below the containing object. It corresponds to the result of hwloc_get_nbobjs_inside_cpuset_by_depth. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6fe066eaf62ee448aa05bab8e7217ff7"></a><!-- doxytag: member="hwloc_distances_s::relative_depth" ref="a6fe066eaf62ee448aa05bab8e7217ff7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned <a class="el" href="a00010.html#a6fe066eaf62ee448aa05bab8e7217ff7">hwloc_distances_s::relative_depth</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Relative depth of the considered objects below the object containing this distance information. </p>
 
 </div>
 </div>
@@ -113,7 +142,7 @@ Data Fields</h2></td></tr>
 <li><a class="el" href="a00027_source.html">hwloc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 17:31:40 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 14 2011 22:34:49 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

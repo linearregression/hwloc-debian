@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.1.2</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -41,7 +41,7 @@
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment"> * Copyright © 2009 CNRS</span>
-<a name="l00003"></a>00003 <span class="comment"> * Copyright © 2009-2010 INRIA</span>
+<a name="l00003"></a>00003 <span class="comment"> * Copyright © 2009-2010 INRIA.  All rights reserved.</span>
 <a name="l00004"></a>00004 <span class="comment"> * Copyright © 2009-2010 Université Bordeaux 1</span>
 <a name="l00005"></a>00005 <span class="comment"> * Copyright © 2009-2011 Cisco Systems, Inc.  All rights reserved.</span>
 <a name="l00006"></a>00006 <span class="comment"> * See COPYING in top-level directory.</span>
@@ -63,7 +63,7 @@
 <a name="l00032"></a>00032 <span class="preprocessor"></span>
 <a name="l00033"></a>00033 
 <a name="l00046"></a>00046 <span class="keyword">static</span> inline <span class="keywordtype">int</span>
-<a name="l00047"></a><a class="code" href="a00064.html#gaa8ea979ce3a9b8c70ae80bc5716a0fbe">00047</a> <a class="code" href="a00064.html#gaa8ea979ce3a9b8c70ae80bc5716a0fbe" title="Get the CPU set of logical processors that are physically close to device ibdev.">hwloc_ibv_get_device_cpuset</a>(<a class="code" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38" title="Topology context.">hwloc_topology_t</a> topology ,
+<a name="l00047"></a><a class="code" href="a00065.html#gaa8ea979ce3a9b8c70ae80bc5716a0fbe">00047</a> <a class="code" href="a00065.html#gaa8ea979ce3a9b8c70ae80bc5716a0fbe" title="Get the CPU set of logical processors that are physically close to device ibdev.">hwloc_ibv_get_device_cpuset</a>(<a class="code" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38" title="Topology context.">hwloc_topology_t</a> topology ,
 <a name="l00048"></a>00048                             <span class="keyword">struct</span> ibv_device *ibdev, <a class="code" href="a00034.html#ga4bbf39b68b6f568fb92739e7c0ea7801" title="A CPU set is a bitmap whose bits are set according to CPU physical OS indexes.">hwloc_cpuset_t</a> <span class="keyword">set</span>)
 <a name="l00049"></a>00049 {
 <a name="l00050"></a>00050 <span class="preprocessor">#ifdef HWLOC_LINUX_SYS</span>
@@ -79,12 +79,12 @@
 <a name="l00060"></a>00060   <span class="keywordflow">if</span> (!sysfile)
 <a name="l00061"></a>00061     <span class="keywordflow">return</span> -1;
 <a name="l00062"></a>00062 
-<a name="l00063"></a>00063   <a class="code" href="a00058.html#gaeacad897c30dbea284948374ad4b010c" title="Convert a linux kernel cpumap file file into hwloc CPU set.">hwloc_linux_parse_cpumap_file</a>(sysfile, <span class="keyword">set</span>);
+<a name="l00063"></a>00063   <a class="code" href="a00059.html#gaeacad897c30dbea284948374ad4b010c" title="Convert a linux kernel cpumap file file into hwloc CPU set.">hwloc_linux_parse_cpumap_file</a>(sysfile, <span class="keyword">set</span>);
 <a name="l00064"></a>00064 
 <a name="l00065"></a>00065   fclose(sysfile);
 <a name="l00066"></a>00066 <span class="preprocessor">#else</span>
 <a name="l00067"></a>00067 <span class="preprocessor"></span>  <span class="comment">/* Non-Linux systems simply get a full cpuset */</span>
-<a name="l00068"></a>00068   <a class="code" href="a00056.html#gab14743355fa03b36cef521cbcd2fbf64" title="Copy the contents of bitmap src into the already allocated bitmap dst.">hwloc_bitmap_copy</a>(<span class="keyword">set</span>, <a class="code" href="a00053.html#ga75f0ac3ac41e9915541c3ae3153a6e26" title="Get complete CPU set.">hwloc_topology_get_complete_cpuset</a>(topology));
+<a name="l00068"></a>00068   <a class="code" href="a00057.html#gab14743355fa03b36cef521cbcd2fbf64" title="Copy the contents of bitmap src into the already allocated bitmap dst.">hwloc_bitmap_copy</a>(<span class="keyword">set</span>, <a class="code" href="a00053.html#ga75f0ac3ac41e9915541c3ae3153a6e26" title="Get complete CPU set.">hwloc_topology_get_complete_cpuset</a>(topology));
 <a name="l00069"></a>00069 <span class="preprocessor">#endif</span>
 <a name="l00070"></a>00070 <span class="preprocessor"></span>  <span class="keywordflow">return</span> 0;
 <a name="l00071"></a>00071 }
@@ -97,7 +97,7 @@
 <a name="l00081"></a>00081 <span class="preprocessor">#endif </span><span class="comment">/* HWLOC_OPENFABRICS_VERBS_H */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 17:31:40 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 14 2011 22:34:49 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

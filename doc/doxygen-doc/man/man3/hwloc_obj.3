@@ -1,4 +1,4 @@
-.TH "hwloc_obj" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -93,6 +93,12 @@ Structure of a topology object.
 .RI "\fBhwloc_nodeset_t\fP \fBallowed_nodeset\fP"
 .br
 .ti -1c
+.RI "struct \fBhwloc_distances_s\fP ** \fBdistances\fP"
+.br
+.ti -1c
+.RI "unsigned \fBdistances_count\fP"
+.br
+.ti -1c
 .RI "struct \fBhwloc_obj_info_s\fP * \fBinfos\fP"
 .br
 .ti -1c
@@ -174,6 +180,10 @@ Its value must not be changed, hwloc_bitmap_dup must be used instead.
 .SS "unsigned \fBhwloc_obj::depth\fP"
 .PP
 Vertical index in the hierarchy. 
+.SS "struct \fBhwloc_distances_s\fP** \fBhwloc_obj::distances\fP"
+.PP
+Distances between all objects at same depth below this object. 
+.SS "unsigned \fBhwloc_obj::distances_count\fP"
 .SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::first_child\fP"
 .PP
 First child. 
@@ -197,7 +207,7 @@ Memory attributes.
 Object description if any. 
 .SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::next_cousin\fP"
 .PP
-Next object of same type. 
+Next object of same type and depth. 
 .SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::next_sibling\fP"
 .PP
 Next object below the same parent. 
@@ -238,7 +248,7 @@ OS-provided physical level, -1 if unknown or meaningless.
 Parent, \fCNULL\fP if root (system object) 
 .SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::prev_cousin\fP"
 .PP
-Previous object of same type. 
+Previous object of same type and depth. 
 .SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::prev_sibling\fP"
 .PP
 Previous object below the same parent. 

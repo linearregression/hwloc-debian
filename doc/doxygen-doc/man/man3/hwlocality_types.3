@@ -1,4 +1,4 @@
-.TH "Topology Object Types" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Object Types" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -7,7 +7,7 @@ Topology Object Types \-
 
 .in +1c
 .ti -1c
-.RI "enum \fBhwloc_obj_type_t\fP { \fBHWLOC_OBJ_SYSTEM\fP, \fBHWLOC_OBJ_MACHINE\fP, \fBHWLOC_OBJ_NODE\fP, \fBHWLOC_OBJ_SOCKET\fP, \fBHWLOC_OBJ_CACHE\fP, \fBHWLOC_OBJ_CORE\fP, \fBHWLOC_OBJ_PU\fP, \fBHWLOC_OBJ_GROUP\fP, \fBHWLOC_OBJ_MISC\fP }"
+.RI "enum \fBhwloc_obj_type_t\fP { \fBHWLOC_OBJ_SYSTEM\fP, \fBHWLOC_OBJ_MACHINE\fP, \fBHWLOC_OBJ_NODE\fP, \fBHWLOC_OBJ_SOCKET\fP, \fBHWLOC_OBJ_CACHE\fP, \fBHWLOC_OBJ_CORE\fP, \fBHWLOC_OBJ_PU\fP, \fBHWLOC_OBJ_GROUP\fP, \fBHWLOC_OBJ_MISC\fP, \fBHWLOC_OBJ_TYPE_MAX\fP }"
 .br
 .ti -1c
 .RI "enum \fBhwloc_compare_types_e\fP { \fBHWLOC_TYPE_UNORDERED\fP }"
@@ -67,6 +67,9 @@ Group objects. Objects which do not fit in the above but are detected by hwloc a
 .TP
 \fB\fIHWLOC_OBJ_MISC \fP\fP
 Miscellaneous objects. Objects without particular meaning, that can e.g. be added by the application for its own use. 
+.TP
+\fB\fIHWLOC_OBJ_TYPE_MAX \fP\fP
+Sentinel value 
 .SH "Function Documentation"
 .PP 
 .SS " int hwloc_compare_types (\fBhwloc_obj_type_t\fPtype1, \fBhwloc_obj_type_t\fPtype2) const"

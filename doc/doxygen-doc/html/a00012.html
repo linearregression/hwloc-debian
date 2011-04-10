@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.1.2</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -77,6 +77,8 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00034.html#ga37e35730fa7e775b5bb0afe893d6d508">hwloc_nodeset_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#a08f0d0e16c619a6e653526cbee4ffea3">nodeset</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00034.html#ga37e35730fa7e775b5bb0afe893d6d508">hwloc_nodeset_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#ac38c4012127525ef74c5615c526f4c2e">complete_nodeset</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00034.html#ga37e35730fa7e775b5bb0afe893d6d508">hwloc_nodeset_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#a19e3d0a5951a7510fc4fc4722a9bf531">allowed_nodeset</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="a00010.html">hwloc_distances_s</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#a9a5dd75596edc48fe834f81988cdc0d6">distances</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#a8be6f63eca4da91000c832280db927b7">distances_count</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="a00014.html">hwloc_obj_info_s</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#ad59bcd73a10260a0e239be5c4b5888bb">infos</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#a9843acc28cfbba903b63ea14b137ff70">infos_count</a></td></tr>
 </table>
@@ -232,6 +234,34 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a9a5dd75596edc48fe834f81988cdc0d6"></a><!-- doxytag: member="hwloc_obj::distances" ref="a9a5dd75596edc48fe834f81988cdc0d6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00010.html">hwloc_distances_s</a>** <a class="el" href="a00012.html#a9a5dd75596edc48fe834f81988cdc0d6">hwloc_obj::distances</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Distances between all objects at same depth below this object. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8be6f63eca4da91000c832280db927b7"></a><!-- doxytag: member="hwloc_obj::distances_count" ref="a8be6f63eca4da91000c832280db927b7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned <a class="el" href="a00012.html#a8be6f63eca4da91000c832280db927b7">hwloc_obj::distances_count</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="af51d08a0a79dba517c06c5afedc8d2dc"></a><!-- doxytag: member="hwloc_obj::first_child" ref="af51d08a0a79dba517c06c5afedc8d2dc" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +378,7 @@ Data Fields</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Next object of same type. </p>
+<p>Next object of same type and depth. </p>
 
 </div>
 </div>
@@ -460,7 +490,7 @@ Data Fields</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Previous object of same type. </p>
+<p>Previous object of same type and depth. </p>
 
 </div>
 </div>
@@ -528,7 +558,7 @@ Data Fields</h2></td></tr>
 <li><a class="el" href="a00027_source.html">hwloc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 17:31:40 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 14 2011 22:34:49 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

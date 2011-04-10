@@ -5,10 +5,11 @@ Build-Depends: debhelper (>= 7), autotools-dev, help2man, cdbs,
   libcairo2-dev, libx11-dev, libxml2-dev, libxml2-utils, libncurses5-dev,
   libnuma-dev [amd64 i386 ia64 mips mipsel powerpc],
   libibverbs-dev [linux-any],
-  autoconf (>= 2.63)
+  autoconf (>= 2.63),
+  dpkg-dev (>= 1.16)
 Build-Depends-Indep: doxygen-latex, transfig
 Build-Conflicts: autoconf2.13
-Standards-Version: 3.9.1
+Standards-Version: 3.9.2
 Section: libs
 Homepage: http://www.open-mpi.org/projects/hwloc/
 Vcs-Svn: http://svn.open-mpi.org/svn/hwloc/debian
@@ -62,7 +63,7 @@ Description: Hierarchical view of the machine - non-X version of utilities
 Package: libhwloc-dev
 Section: libdevel
 Architecture: any
-Depends: ${misc:Depends}, libhwloc2 (= ${binary:Version}), libxml2-dev
+Depends: ${misc:Depends}, libhwloc3 (= ${binary:Version}), libxml2-dev
 Description: Hierarchical view of the machine - static libs and headers
  Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It
@@ -79,7 +80,7 @@ Description: Hierarchical view of the machine - static libs and headers
  .
  This package contains static libraries and development headers.
 
-Package: libhwloc2
+Package: libhwloc3
 Architecture: any
 Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}

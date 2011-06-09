@@ -638,8 +638,8 @@
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_set_thread_cpubind</name>
       <anchorfile>a00043.html</anchorfile>
-      <anchor>ga2d6cca51524108966752609b6e725243</anchor>
-      <arglist>(hwloc_topology_t topology, hwloc_thread_t tid, hwloc_const_cpuset_t set, int flags)</arglist>
+      <anchor>gaab65c34a0bc19c5a823f824543cedbd4</anchor>
+      <arglist>(hwloc_topology_t topology, hwloc_thread_t thread, hwloc_const_cpuset_t set, int flags)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>

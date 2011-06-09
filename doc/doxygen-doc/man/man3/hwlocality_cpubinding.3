@@ -1,4 +1,4 @@
-.TH "CPU binding" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "CPU binding" 3 "Tue Aug 16 2011" "Version 1.2.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -26,7 +26,7 @@ CPU binding \-
 .RI " int \fBhwloc_get_proc_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_cpuset_t\fP set, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_set_thread_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_thread_t tid, \fBhwloc_const_cpuset_t\fP set, int flags)"
+.RI " int \fBhwloc_set_thread_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_thread_t thread, \fBhwloc_const_cpuset_t\fP set, int flags)"
 .br
 .ti -1c
 .RI " int \fBhwloc_get_thread_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_thread_t tid, \fBhwloc_cpuset_t\fP set, int flags)"
@@ -69,10 +69,10 @@ which binds the current thread of the current program (which may be multithreade
 .RS 4
 To unbind, just call the binding function with either a full cpuset or a cpuset equal to the system cpuset.
 .PP
-On some operating systems, CPU binding may have effects on memory binding, see \fBHWLOC_CPUBIND_NOMEMBIND\fP 
+On some operating systems, CPU binding may have effects on memory binding, see \fBHWLOC_CPUBIND_NOMEMBIND\fP
 .RE
 .PP
-
+Running lstopo --top can be a very convenient tool to check how binding actually happened. 
 .SH "Enumeration Type Documentation"
 .PP 
 .SS "enum \fBhwloc_cpubind_flags_t\fP"
@@ -120,7 +120,7 @@ Avoid any effect on memory binding. On some operating systems, some CPU binding 
 .PP 
 .SS " int hwloc_get_cpubind (\fBhwloc_topology_t\fPtopology, \fBhwloc_cpuset_t\fPset, intflags)"
 .PP
-Get current process or thread binding. 
+Get current process or thread binding. Writes into \fCset\fP the cpuset which the process or thread (according to \fIflags\fP) was last bound to. 
 .SS " int hwloc_get_last_cpu_location (\fBhwloc_topology_t\fPtopology, \fBhwloc_cpuset_t\fPset, intflags)"
 .PP
 Get the last CPU where the current process or thread ran. The operating system may move some tasks from one processor to another at any time according to their binding, so this function may return something that is already outdated. 
@@ -174,9 +174,9 @@ HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP.
 .RE
 .PP
 
-.SS " int hwloc_set_thread_cpubind (\fBhwloc_topology_t\fPtopology, hwloc_thread_ttid, \fBhwloc_const_cpuset_t\fPset, intflags)"
+.SS " int hwloc_set_thread_cpubind (\fBhwloc_topology_t\fPtopology, hwloc_thread_tthread, \fBhwloc_const_cpuset_t\fPset, intflags)"
 .PP
-Bind a thread \fCtid\fP on cpus given in bitmap \fCset\fP. \fBNote:\fP
+Bind a thread \fCthread\fP on cpus given in bitmap \fCset\fP. \fBNote:\fP
 .RS 4
 hwloc_thread_t is pthread_t on unix platforms, and HANDLE on native Windows platforms
 .PP

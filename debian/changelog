@@ -1,3 +1,10 @@
+hwloc (1.2.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/libhwloc-dev.install: Move pkg-config file to multiarch place.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 09 Jun 2011 13:12:59 +0200
+
 hwloc (1.2-3) unstable; urgency=low
 
   * debian/rules: Set libdir to DEB_HOST_MULTIARCH.

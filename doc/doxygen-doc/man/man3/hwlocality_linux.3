@@ -1,4 +1,4 @@
-.TH "Linux-only helpers" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Linux-only helpers" 3 "Tue Aug 16 2011" "Version 1.2.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -23,7 +23,7 @@ This includes helpers for manipulating linux kernel cpumap files, and hwloc equi
 .PP 
 .SS " int hwloc_linux_get_tid_cpubind (\fBhwloc_topology_t\fPtopology, pid_ttid, \fBhwloc_cpuset_t\fPset)"
 .PP
-Get the current binding of thread \fCtid\fP. The behavior is exactly the same as the Linux sched_setaffinity system call, but uses a hwloc cpuset. 
+Get the current binding of thread \fCtid\fP. The behavior is exactly the same as the Linux sched_getaffinity system call, but uses a hwloc cpuset. 
 .SS " int hwloc_linux_parse_cpumap_file (FILE *file, \fBhwloc_cpuset_t\fPset)"
 .PP
 Convert a linux kernel cpumap file \fCfile\fP into hwloc CPU set. Might be used when reading CPU set from sysfs attributes such as topology and caches for processors, or local_cpus for devices. 

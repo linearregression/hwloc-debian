@@ -175,11 +175,8 @@ int main(int argc, char *argv[])
 
     cpuset = malloc(n * sizeof(hwloc_bitmap_t));
 
-    if (input) {
-      err = hwloc_utils_enable_input_format(topology, input, input_format, verbose, callname);
-      if (err)
-	return err;
-    }
+    if (input)
+      hwloc_utils_enable_input_format(topology, input, input_format, verbose, callname);
     hwloc_topology_load(topology);
 
     if (restrictstring) {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Hardware Locality (hwloc): hwloc_obj_attr_u::hwloc_bridge_attr_s Struct Reference</title>
+<title>Hardware Locality (hwloc): hwloc_obj_attr_u::hwloc_cache_attr_s Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3rc1</span></div>
   </td>
  </tr>
  </tbody>
@@ -37,8 +37,8 @@
   </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00016.html">hwloc_obj_attr_u</a>      </li>
-      <li class="navelem"><a class="el" href="a00011.html">hwloc_bridge_attr_s</a>      </li>
+      <li class="navelem"><a class="el" href="a00015.html">hwloc_obj_attr_u</a>      </li>
+      <li class="navelem"><a class="el" href="a00011.html">hwloc_cache_attr_s</a>      </li>
     </ul>
   </div>
 </div>
@@ -46,169 +46,91 @@
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">hwloc_obj_attr_u::hwloc_bridge_attr_s Struct Reference</div>  </div>
+<div class="title">hwloc_obj_attr_u::hwloc_cache_attr_s Struct Reference</div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="hwloc_obj_attr_u::hwloc_bridge_attr_s" -->
-<p>Bridge specific Object Attribues.  
+<!-- doxytag: class="hwloc_obj_attr_u::hwloc_cache_attr_s" -->
+<p>Cache-specific Object Attributes.  
  <a href="a00011.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="a00032_source.html">hwloc.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="a00031_source.html">hwloc.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr><td class="memItemLeft" >union {</td></tr>
-<tr><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="a00021.html">hwloc_pcidev_attr_s</a>&#160;&#160;&#160;<a class="el" href="a00011.html#ab5c564e7c95b747dae9eb84ec0a2c31e">pci</a></td></tr>
-<tr><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#a00ce9d99fc8792d1044fe25dc58605fe">upstream</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00040.html#ga0a947e8c5adcc729b126bd09c01a0153">hwloc_obj_bridge_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#a265dd2164aa2df4972e25a029da72125">upstream_type</a></td></tr>
-<tr><td class="memItemLeft" >union {</td></tr>
-<tr><td class="memItemLeft" >&#160;&#160;&#160;struct {</td></tr>
-<tr><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;unsigned short&#160;&#160;&#160;<a class="el" href="a00011.html#a2c31e565a5f0d23d0a0a3dd3ec8f4b17">domain</a></td></tr>
-<tr><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;unsigned char&#160;&#160;&#160;<a class="el" href="a00011.html#ae2d9dd73ef1d32045c584a8e66d2f83f">secondary_bus</a></td></tr>
-<tr><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;unsigned char&#160;&#160;&#160;<a class="el" href="a00011.html#af3f3f7d76bf03e8d2afa721c2b8d6771">subordinate_bus</a></td></tr>
-<tr><td class="memItemLeft" valign="top">&#160;&#160;&#160;}&#160;&#160;&#160;<a class="el" href="a00011.html#a5a20be20e09d811d141b6332ff864706">pci</a></td></tr>
-<tr><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#acaf1ae02e37182bbb6966f8c4f35e499">downstream</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00040.html#ga0a947e8c5adcc729b126bd09c01a0153">hwloc_obj_bridge_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#ac6a169b672d0e9f75756fd5665828b93">downstream_type</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#a336c8b22893d5d734d8c9dfca4066b46">depth</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">hwloc_uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#abe5e788943ed04302976740c829674c0">size</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#a5c8f7f39193736c2187ed626940835d5">depth</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#a801e8a668e28caf06c8b88e9ae5c10db">linesize</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#ad06525e474d1e2d1423ed71bb998592d">associativity</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Bridge specific Object Attribues. </p>
+<div class="textblock"><p>Cache-specific Object Attributes. </p>
 </div><hr/><h2>Field Documentation</h2>
-<a class="anchor" id="a336c8b22893d5d734d8c9dfca4066b46"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_bridge_attr_s::depth" ref="a336c8b22893d5d734d8c9dfca4066b46" args="" -->
+<a class="anchor" id="ad06525e474d1e2d1423ed71bb998592d"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_cache_attr_s::associativity" ref="ad06525e474d1e2d1423ed71bb998592d" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned <a class="el" href="a00011.html#a336c8b22893d5d734d8c9dfca4066b46">hwloc_obj_attr_u::hwloc_bridge_attr_s::depth</a></td>
+          <td class="memname">int <a class="el" href="a00011.html#ad06525e474d1e2d1423ed71bb998592d">hwloc_obj_attr_u::hwloc_cache_attr_s::associativity</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
+<p>Ways of associativity,. </p>
+<p>-1 if fully associative, 0 if unknown </p>
+
 </div>
 </div>
-<a class="anchor" id="a2c31e565a5f0d23d0a0a3dd3ec8f4b17"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_bridge_attr_s::domain" ref="a2c31e565a5f0d23d0a0a3dd3ec8f4b17" args="" -->
+<a class="anchor" id="a5c8f7f39193736c2187ed626940835d5"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_cache_attr_s::depth" ref="a5c8f7f39193736c2187ed626940835d5" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned short <a class="el" href="a00011.html#a2c31e565a5f0d23d0a0a3dd3ec8f4b17">hwloc_obj_attr_u::hwloc_bridge_attr_s::domain</a></td>
+          <td class="memname">unsigned <a class="el" href="a00011.html#a5c8f7f39193736c2187ed626940835d5">hwloc_obj_attr_u::hwloc_cache_attr_s::depth</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
+<p>Depth of cache. </p>
+
 </div>
 </div>
-<a class="anchor" id="acaf1ae02e37182bbb6966f8c4f35e499"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_bridge_attr_s::downstream" ref="acaf1ae02e37182bbb6966f8c4f35e499" args="" -->
+<a class="anchor" id="a801e8a668e28caf06c8b88e9ae5c10db"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_cache_attr_s::linesize" ref="a801e8a668e28caf06c8b88e9ae5c10db" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">union { ... }   <a class="el" href="a00011.html#acaf1ae02e37182bbb6966f8c4f35e499">hwloc_obj_attr_u::hwloc_bridge_attr_s::downstream</a></td>
+          <td class="memname">unsigned <a class="el" href="a00011.html#a801e8a668e28caf06c8b88e9ae5c10db">hwloc_obj_attr_u::hwloc_cache_attr_s::linesize</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
+<p>Cache-line size in bytes. </p>
+
 </div>
 </div>
-<a class="anchor" id="ac6a169b672d0e9f75756fd5665828b93"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_bridge_attr_s::downstream_type" ref="ac6a169b672d0e9f75756fd5665828b93" args="" -->
+<a class="anchor" id="abe5e788943ed04302976740c829674c0"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_cache_attr_s::size" ref="abe5e788943ed04302976740c829674c0" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00040.html#ga0a947e8c5adcc729b126bd09c01a0153">hwloc_obj_bridge_type_t</a> <a class="el" href="a00011.html#ac6a169b672d0e9f75756fd5665828b93">hwloc_obj_attr_u::hwloc_bridge_attr_s::downstream_type</a></td>
+          <td class="memname">hwloc_uint64_t <a class="el" href="a00011.html#abe5e788943ed04302976740c829674c0">hwloc_obj_attr_u::hwloc_cache_attr_s::size</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="ab5c564e7c95b747dae9eb84ec0a2c31e"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_bridge_attr_s::pci" ref="ab5c564e7c95b747dae9eb84ec0a2c31e" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="a00021.html">hwloc_pcidev_attr_s</a> <a class="el" href="a00011.html#ab5c564e7c95b747dae9eb84ec0a2c31e">hwloc_obj_attr_u::hwloc_bridge_attr_s::pci</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5a20be20e09d811d141b6332ff864706"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_bridge_attr_s::pci" ref="a5a20be20e09d811d141b6332ff864706" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct { ... }   <a class="el" href="a00011.html#ab5c564e7c95b747dae9eb84ec0a2c31e">hwloc_obj_attr_u::hwloc_bridge_attr_s::pci</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae2d9dd73ef1d32045c584a8e66d2f83f"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_bridge_attr_s::secondary_bus" ref="ae2d9dd73ef1d32045c584a8e66d2f83f" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned char <a class="el" href="a00011.html#ae2d9dd73ef1d32045c584a8e66d2f83f">hwloc_obj_attr_u::hwloc_bridge_attr_s::secondary_bus</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af3f3f7d76bf03e8d2afa721c2b8d6771"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_bridge_attr_s::subordinate_bus" ref="af3f3f7d76bf03e8d2afa721c2b8d6771" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned char <a class="el" href="a00011.html#af3f3f7d76bf03e8d2afa721c2b8d6771">hwloc_obj_attr_u::hwloc_bridge_attr_s::subordinate_bus</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a00ce9d99fc8792d1044fe25dc58605fe"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_bridge_attr_s::upstream" ref="a00ce9d99fc8792d1044fe25dc58605fe" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">union { ... }   <a class="el" href="a00011.html#a00ce9d99fc8792d1044fe25dc58605fe">hwloc_obj_attr_u::hwloc_bridge_attr_s::upstream</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a265dd2164aa2df4972e25a029da72125"></a><!-- doxytag: member="hwloc_obj_attr_u::hwloc_bridge_attr_s::upstream_type" ref="a265dd2164aa2df4972e25a029da72125" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00040.html#ga0a947e8c5adcc729b126bd09c01a0153">hwloc_obj_bridge_type_t</a> <a class="el" href="a00011.html#a265dd2164aa2df4972e25a029da72125">hwloc_obj_attr_u::hwloc_bridge_attr_s::upstream_type</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>Size of cache in bytes. </p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li><a class="el" href="a00032_source.html">hwloc.h</a></li>
+<li><a class="el" href="a00031_source.html">hwloc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 12 2011 20:44:41 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Aug 23 2011 07:17:04 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

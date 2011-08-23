@@ -11,8 +11,6 @@ else
 CROSS= --build $(DEB_BUILD_GNU_TYPE)
 endif
 
-export DEB_BUILD_HARDENING=1
-
 ifneq (,$(DEB_PARALLEL_JOBS))
 MAKEFLAGS += -j$(DEB_PARALLEL_JOBS)
 endif

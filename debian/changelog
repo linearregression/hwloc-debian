@@ -1,18 +1,10 @@
-hwloc (1.3-1) unstable; urgency=low
+hwloc (1.3rc1-1) experimental; urgency=low
 
-  * New upstream release, rename libhwloc3 package into libhwloc4 due to
+  * New upstream pre-release, rename libhwloc3 package into libhwloc4 due to
     soname change.
   * debian/control: Build-Depend on libpci-dev.
 
- -- Samuel Thibault <sthibault@debian.org>  Sat, 12 Nov 2011 23:08:06 +0100
-
-hwloc (1.2.2-1) unstable; urgency=low
-
-  * New upstream release.
-  * control: Depend on hardening-check.
-  * rules: Set DEB_BUILD_HARDENING=1 to enable hardening.
-
- -- Samuel Thibault <sthibault@debian.org>  Wed, 14 Sep 2011 17:18:20 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 23 Aug 2011 13:16:33 +0200
 
 hwloc (1.2.1-1) unstable; urgency=low
 

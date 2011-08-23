@@ -134,7 +134,6 @@ hwloc_linux_net_class_fillinfos(struct hwloc_topology *topology __hwloc_attribut
         *eol = 0;
       hwloc_obj_add_info(obj, "Address", address);
     }
-    fclose(fd);
   }
 }
 static void
@@ -698,7 +697,7 @@ hwloc_look_libpci(struct hwloc_topology *topology)
 #endif
 			      );
     if (resname)
-      hwloc_obj_add_info(obj, "PCIDevice", resname);
+      hwloc_obj_add_info(obj, "PCIDevice", name);
 
     resname = pci_lookup_name(pciaccess, name, sizeof(name),
 #if HAVE_DECL_PCI_LOOKUP_NO_NUMBERS

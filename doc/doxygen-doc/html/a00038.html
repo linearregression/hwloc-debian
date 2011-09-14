@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2.1</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -310,7 +310,8 @@ Functions</h2></td></tr>
 
 <p>Change the file-system root path when building the topology from sysfs/procfs. </p>
 <p>On Linux system, use sysfs and procfs files as if they were mounted on the given <code>fsroot_path</code> instead of the main file-system root. Setting the environment variable HWLOC_FSROOT may also result in this behavior. Not using the main file-system root causes <a class="el" href="a00040.html#ga0d109e33fc7990f62f665d336e5e5111" title="Does the topology context come from this system?">hwloc_topology_is_thissystem()</a> to return 0.</p>
-<dl class="note"><dt><b>Note:</b></dt><dd>For conveniency, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system. </dd></dl>
+<p>Note that this function does not actually load topology information; it just tells hwloc where to load it from. You'll still need to invoke <a class="el" href="a00037.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a> to actually load the topology information.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd>For convenience, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system. </dd></dl>
 
 </div>
 </div>
@@ -373,9 +374,10 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Enable synthetic topology. </p>
-<p>Gather topology information from the given <code>description</code> which should be a space-separated string of numbers describing the arity of each level. Each number may be prefixed with a type and a colon to enforce the type of a level. If only some level types are enforced, hwloc will try to choose the other types according to usual topologies, but it may fail and you may have to specify more level types manually.</p>
+<p>Gather topology information from the given <code>description</code>, a space-separated string of numbers describing the arity of each level. Each number may be prefixed with a type and a colon to enforce the type of a level. If only some level types are enforced, hwloc will try to choose the other types according to usual topologies, but it may fail and you may have to specify more level types manually.</p>
 <p>If <code>description</code> was properly parsed and describes a valid topology configuration, this function returns 0. Otherwise -1 is returned and errno is set to EINVAL.</p>
-<dl class="note"><dt><b>Note:</b></dt><dd>For conveniency, this backend provides empty binding hooks which just return success. </dd></dl>
+<p>Note that this function does not actually load topology information; it just tells hwloc where to load it from. You'll still need to invoke <a class="el" href="a00037.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a> to actually load the topology information.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd>For convenience, this backend provides empty binding hooks which just return success. </dd></dl>
 
 </div>
 </div>
@@ -406,7 +408,8 @@ Functions</h2></td></tr>
 
 <p>Enable XML-file based topology. </p>
 <p>Gather topology information from the XML file given at <code>xmlpath</code>. Setting the environment variable HWLOC_XMLFILE may also result in this behavior. This file may have been generated earlier with lstopo file.xml.</p>
-<dl class="note"><dt><b>Note:</b></dt><dd>For conveniency, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system. </dd></dl>
+<p>Note that this function does not actually load topology information; it just tells hwloc where to load it from. You'll still need to invoke <a class="el" href="a00037.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a> to actually load the topology information.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd>For convenience, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system. </dd></dl>
 
 </div>
 </div>
@@ -441,13 +444,14 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Enable XML based topology using a memory buffer instead of a file. </p>
-<p>Gather topology information from the XML memory buffer given at <code>buffer</code> and of length <code>length</code>. </p>
+<p>Enable XML based topology using a memory buffer (instead of a file, as with <a class="el" href="a00038.html#ga93efcc8a962afe1ed23393700682173f" title="Enable XML-file based topology.">hwloc_topology_set_xml()</a>). </p>
+<p>Gather topology information from the XML memory buffer given at <code>buffer</code> and of length <code>size</code>. This buffer may have been filled earlier with <a class="el" href="a00039.html#gad77e72a2ccf32825511818988a09e5c1" title="Export the topology into a newly-allocated XML memory buffer.">hwloc_topology_export_xmlbuffer()</a>.</p>
+<p>Note that this function does not actually load topology information; it just tells hwloc where to load it from. You'll still need to invoke <a class="el" href="a00037.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a> to actually load the topology information. </p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Aug 16 2011 19:37:04 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Oct 2 2011 07:16:30 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

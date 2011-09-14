@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2.1</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -90,11 +90,11 @@
 <p class="enddd"></p>
 </dd>
 <dt>OS or physical index </dt>
-<dd><p class="startdd">The index that the operating system (OS) uses to identify the object. This may be completely arbitrary, non-unique, non-contiguous, not representative of logical proximity, and may depend on the BIOS configuration. That is why hwloc almost never use them, only in the default lstopo output (<code>P::x</code>) and cpuset masks.</p>
+<dd><p class="startdd">The index that the operating system (OS) uses to identify the object. This may be completely arbitrary, non-unique, non-contiguous, not representative of logical proximity, and may depend on the BIOS configuration. That is why hwloc almost never uses them, only in the default lstopo output (<code>P::x</code>) and cpuset masks.</p>
 <p class="enddd"></p>
 </dd>
 <dt>Logical index </dt>
-<dd><p class="startdd">Index to uniquely identify objects of the same type and depth, automatically computed by hwloc according to the topology. It expresses logical proximity in a generic way, i.e. objects which have adjacent logical indexes are adjacent in the topology. That is why hwloc almost always use it in its API, since it expresses logical proximity. They can be shown (as <code>L::x</code>) by <code>lstopo</code> thanks to the <code>-l</code> option. This index is always linear and in the range [0, num_objs_same_type_same_level-1]. Think of it as ``cousin rank.'' The ordering is based on topology first, and then on OS CPU numbers, so it is stable across everything except firmware CPU renumbering. "Logical index" should not be confused with "Logical processor". A "Logical
+<dd><p class="startdd">Index to uniquely identify objects of the same type and depth, automatically computed by hwloc according to the topology. It expresses logical proximity in a generic way, i.e. objects which have adjacent logical indexes are adjacent in the topology. That is why hwloc almost always uses it in its API, since it expresses logical proximity. They can be shown (as <code>L::x</code>) by <code>lstopo</code> thanks to the <code>-l</code> option. This index is always linear and in the range [0, num_objs_same_type_same_level-1]. Think of it as ``cousin rank.'' The ordering is based on topology first, and then on OS CPU numbers, so it is stable across everything except firmware CPU renumbering. "Logical index" should not be confused with "Logical processor". A "Logical
   processor" (which in hwloc we rather call "processing unit" to avoid the confusion) has both a physical index (as chosen arbitrarily by BIOS/OS) and a logical index (as computed according to logical proximity by hwloc). </p>
 <p class="enddd"></p>
 </dd>
@@ -113,7 +113,7 @@
  <p>It should be noted that for PU objects, the logical index -- as computed linearly by hwloc -- is not the same as the OS index.</p>
 <p>See also <a class="el" href="a00008.html#faq_asymmetric">What happens if my topology is asymmetric?</a> for more details. </p>
 </div></div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Aug 16 2011 19:37:04 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Oct 2 2011 07:16:30 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

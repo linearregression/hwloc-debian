@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2.1</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -101,7 +101,8 @@ On some operating systems, CPU binding may have effects on memory binding, see <
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="gga217dc8d373f8958cc93c154ebce1c71ca41ce440443cc3087caed95ab60edcad6"></a><!-- doxytag: member="HWLOC_CPUBIND_NOMEMBIND" ref="gga217dc8d373f8958cc93c154ebce1c71ca41ce440443cc3087caed95ab60edcad6" args="" -->HWLOC_CPUBIND_NOMEMBIND</em>&nbsp;</td><td>
 <p>Avoid any effect on memory binding. </p>
-<p>On some operating systems, some CPU binding function would also bind the memory on the corresponding NUMA node. It is often not a problem for the application, but if it is, setting this flag will make hwloc avoid using OS functions that would also bind memory. This will however reduce the support of CPU bindings, i.e. potentially return -1 with errno set to ENOSYS in some cases. </p>
+<p>On some operating systems, some CPU binding function would also bind the memory on the corresponding NUMA node. It is often not a problem for the application, but if it is, setting this flag will make hwloc avoid using OS functions that would also bind memory. This will however reduce the support of CPU bindings, i.e. potentially return -1 with errno set to ENOSYS in some cases.</p>
+<p>This flag is only meaningful when used with functions that set the CPU binding. It is ignored when used with functions that get CPU binding information. </p>
 </td></tr>
 </table>
 </dd>
@@ -222,7 +223,9 @@ On some operating systems, CPU binding may have effects on memory binding, see <
 <p>Get the current binding of process <code>pid</code>. </p>
 <dl class="note"><dt><b>Note:</b></dt><dd>hwloc_pid_t is pid_t on unix platforms, and HANDLE on native Windows platforms</dd>
 <dd>
-HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>. </dd></dl>
+HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>.</dd>
+<dd>
+As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID), the binding for that specific thread is returned. </dd></dl>
 
 </div>
 </div>
@@ -265,7 +268,9 @@ HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>. </dd></dl>
 
 <p>Get the last CPU where a process ran. </p>
 <p>The operating system may move some tasks from one processor to another at any time according to their binding, so this function may return something that is already outdated.</p>
-<dl class="note"><dt><b>Note:</b></dt><dd>HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>. </dd></dl>
+<dl class="note"><dt><b>Note:</b></dt><dd>HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>.</dd>
+<dd>
+As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID), the binding for that specific thread is returned. </dd></dl>
 
 </div>
 </div>
@@ -440,7 +445,7 @@ HWLOC_CPUBIND_PROCESS can not be used in <code>flags</code>. </dd></dl>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Aug 16 2011 19:37:04 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Oct 2 2011 07:16:30 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

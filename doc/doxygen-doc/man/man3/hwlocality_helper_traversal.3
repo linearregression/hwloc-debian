@@ -1,4 +1,4 @@
-.TH "Advanced Traversal Helpers" 3 "Tue Aug 16 2011" "Version 1.2.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Advanced Traversal Helpers" 3 "Sun Oct 2 2011" "Version 1.2.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -16,6 +16,9 @@ Advanced Traversal Helpers \-
 .RI "static inline \fBhwloc_obj_t\fP  \fBhwloc_get_obj_below_array_by_type\fP (\fBhwloc_topology_t\fP topology, int nr, \fBhwloc_obj_type_t\fP *typev, unsigned *idxv)"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+Be sure to see the figure in \fBTerms and Definitions\fP that shows a complete topology tree, including depths, child/sibling/cousin relationships, and an example of an asymmetric topology where one socket has fewer caches than its peers. 
 .SH "Function Documentation"
 .PP 
 .SS " unsigned hwloc_get_closest_objs (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPsrc, \fBhwloc_obj_t\fP *restrictobjs, unsignedmax)"

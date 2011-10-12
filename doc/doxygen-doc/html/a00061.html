@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Hardware Locality (hwloc): Advanced I/O object traversal helpers</title>
+<title>Hardware Locality (hwloc): Distances</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3rc1</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3</span></div>
   </td>
  </tr>
  </tbody>
@@ -34,43 +34,99 @@
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Advanced I/O object traversal helpers</div>  </div>
+<div class="title">Distances</div>  </div>
 </div>
 <div class="contents">
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#gad7ecce015a75d8edafb4669fba702859">hwloc_get_non_io_ancestor_obj</a> (<a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology , <a class="el" href="a00014.html">hwloc_obj_t</a> ioobj)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#gab17568d759c3a99abe12e3edd4731172">hwloc_get_next_pcidev</a> (<a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00014.html">hwloc_obj_t</a> prev)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga080ae4c731eb1276e8a7cdaad0b8db16">hwloc_get_pcidev_by_busid</a> (<a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, unsigned domain, unsigned bus, unsigned dev, unsigned func)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#gaafa3ac0b038c73d533dd5446e71f7d48">hwloc_get_pcidev_by_busidstring</a> (<a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, const char *busid)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga04b37de10aacb8a2aa48c8c27d7ba1d9">hwloc_get_next_osdev</a> (<a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00014.html">hwloc_obj_t</a> prev)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#gafa52d147ce3062344ca2a3f02670fd4c">hwloc_get_next_bridge</a> (<a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00014.html">hwloc_obj_t</a> prev)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static __inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#gae83076026dd1a60b1db99fe8c3811697">hwloc_bridge_covers_pcibus</a> (<a class="el" href="a00014.html">hwloc_obj_t</a> bridge, unsigned domain, unsigned bus)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga5004b66c2c3a0e390accec96324bd5e9">hwloc_get_hostbridge_by_pcibus</a> (<a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, unsigned domain, unsigned bus)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static inline struct <br class="typebreak"/>
+<a class="el" href="a00013.html">hwloc_distances_s</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga48dfec8b8ba1fb8f2073ecd0728f0ca6">hwloc_get_whole_distance_matrix_by_depth</a> (<a class="el" href="a00038.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, unsigned depth)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static inline struct <br class="typebreak"/>
+<a class="el" href="a00013.html">hwloc_distances_s</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga9979237728f7a00a38836e15a8e8cd17">hwloc_get_whole_distance_matrix_by_type</a> (<a class="el" href="a00038.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00040.html#gacd37bb612667dc437d66bfb175a8dc55">hwloc_obj_type_t</a> type)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static inline struct <br class="typebreak"/>
+<a class="el" href="a00013.html">hwloc_distances_s</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga186ac2711b98a12cf46d58cd005fbb51">hwloc_get_distance_matrix_covering_obj_by_depth</a> (<a class="el" href="a00038.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00015.html">hwloc_obj_t</a> obj, unsigned depth, unsigned *firstp)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga9addde99e34b815df47625f1d6191839">hwloc_get_latency</a> (<a class="el" href="a00038.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00015.html">hwloc_obj_t</a> obj1, <a class="el" href="a00015.html">hwloc_obj_t</a> obj2, float *latency, float *reverse_latency)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="gae83076026dd1a60b1db99fe8c3811697"></a><!-- doxytag: member="helper.h::hwloc_bridge_covers_pcibus" ref="gae83076026dd1a60b1db99fe8c3811697" args="(hwloc_obj_t bridge, unsigned domain, unsigned bus)" -->
+<a class="anchor" id="ga186ac2711b98a12cf46d58cd005fbb51"></a><!-- doxytag: member="helper.h::hwloc_get_distance_matrix_covering_obj_by_depth" ref="ga186ac2711b98a12cf46d58cd005fbb51" args="(hwloc_topology_t topology, hwloc_obj_t obj, unsigned depth, unsigned *firstp)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static __inline int hwloc_bridge_covers_pcibus </td>
+          <td class="memname">static inline struct <a class="el" href="a00013.html">hwloc_distances_s</a>* hwloc_get_distance_matrix_covering_obj_by_depth </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td>
-          <td class="paramname"><em>bridge</em>, </td>
+          <td class="paramtype"><a class="el" href="a00038.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
+          <td class="paramname"><em>topology</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00015.html">hwloc_obj_t</a>&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
+          <td class="paramname"><em>depth</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>bus</em>&#160;</td>
+          <td class="paramtype">unsigned *&#160;</td>
+          <td class="paramname"><em>firstp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static, read]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get distances for the given depth and covering some objects. </p>
+<p>Return a distance matrix that describes depth <code>depth</code> and covers at least object <code>obj</code> and all its ancestors.</p>
+<p>When looking for the distance between some objects, a common ancestor should be passed in <code>obj</code>.</p>
+<p><code>firstp</code> is set to logical index of the first object described by the matrix.</p>
+<p>The returned structure belongs to the hwloc library. The caller should not modify or free it. </p>
+
+</div>
+</div>
+<a class="anchor" id="ga9addde99e34b815df47625f1d6191839"></a><!-- doxytag: member="helper.h::hwloc_get_latency" ref="ga9addde99e34b815df47625f1d6191839" args="(hwloc_topology_t topology, hwloc_obj_t obj1, hwloc_obj_t obj2, float *latency, float *reverse_latency)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static inline int hwloc_get_latency </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00038.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
+          <td class="paramname"><em>topology</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00015.html">hwloc_obj_t</a>&#160;</td>
+          <td class="paramname"><em>obj1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00015.html">hwloc_obj_t</a>&#160;</td>
+          <td class="paramname"><em>obj2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>latency</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>reverse_latency</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -81,242 +137,83 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Get the latency in both directions between two objects. </p>
+<p>Look at ancestor objects from the bottom to the top until one of them contains a distance matrix that matches the objects exactly.</p>
+<p><code>latency</code> gets the value from object <code>obj1</code> to <code>obj2</code>, while <code>reverse_latency</code> gets the reverse-direction value, which may be different on some architectures.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>-1 if no ancestor contains a matching latency matrix. </dd></dl>
+
 </div>
 </div>
-<a class="anchor" id="ga5004b66c2c3a0e390accec96324bd5e9"></a><!-- doxytag: member="helper.h::hwloc_get_hostbridge_by_pcibus" ref="ga5004b66c2c3a0e390accec96324bd5e9" args="(hwloc_topology_t topology, unsigned domain, unsigned bus)" -->
+<a class="anchor" id="ga48dfec8b8ba1fb8f2073ecd0728f0ca6"></a><!-- doxytag: member="helper.h::hwloc_get_whole_distance_matrix_by_depth" ref="ga48dfec8b8ba1fb8f2073ecd0728f0ca6" args="(hwloc_topology_t topology, unsigned depth)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a> hwloc_get_hostbridge_by_pcibus </td>
+          <td class="memname">static inline struct <a class="el" href="a00013.html">hwloc_distances_s</a>* hwloc_get_whole_distance_matrix_by_depth </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="a00038.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
           <td class="paramname"><em>topology</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>bus</em>&#160;</td>
+          <td class="paramname"><em>depth</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [static]</code></td>
+          <td></td><td><code> [static, read]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Find the hostbridge that covers the given PCI bus. </p>
-<p>This is useful for finding the locality of a bus because it is the hostbridge parent cpuset. </p>
+<p>Get the distances between all objects at the given depth. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>a distances structure containing a matrix with all distances between all objects at the given depth.</dd></dl>
+<p>Slot i+nbobjs*j contains the distance from the object of logical index i the object of logical index j.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd>This function only returns matrices covering the whole topology, without any unknown distance value. Those matrices are available in top-level object of the hierarchy. Matrices of lower objects are not reported here since they cover only part of the machine.</dd></dl>
+<p>The returned structure belongs to the hwloc library. The caller should not modify or free it.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><code>NULL</code> if no such distance matrix exists. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="gafa52d147ce3062344ca2a3f02670fd4c"></a><!-- doxytag: member="helper.h::hwloc_get_next_bridge" ref="gafa52d147ce3062344ca2a3f02670fd4c" args="(hwloc_topology_t topology, hwloc_obj_t prev)" -->
+<a class="anchor" id="ga9979237728f7a00a38836e15a8e8cd17"></a><!-- doxytag: member="helper.h::hwloc_get_whole_distance_matrix_by_type" ref="ga9979237728f7a00a38836e15a8e8cd17" args="(hwloc_topology_t topology, hwloc_obj_type_t type)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a> hwloc_get_next_bridge </td>
+          <td class="memname">static inline struct <a class="el" href="a00013.html">hwloc_distances_s</a>* hwloc_get_whole_distance_matrix_by_type </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="a00038.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
           <td class="paramname"><em>topology</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td>
-          <td class="paramname"><em>prev</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="a00040.html#gacd37bb612667dc437d66bfb175a8dc55">hwloc_obj_type_t</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [static]</code></td>
+          <td></td><td><code> [static, read]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Get the next bridge in the system. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the first bridge if <code>prev</code> is <code>NULL</code>. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ga04b37de10aacb8a2aa48c8c27d7ba1d9"></a><!-- doxytag: member="helper.h::hwloc_get_next_osdev" ref="ga04b37de10aacb8a2aa48c8c27d7ba1d9" args="(hwloc_topology_t topology, hwloc_obj_t prev)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a> hwloc_get_next_osdev </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
-          <td class="paramname"><em>topology</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td>
-          <td class="paramname"><em>prev</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Get the next OS device in the system. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the first OS device if <code>prev</code> is <code>NULL</code>. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="gab17568d759c3a99abe12e3edd4731172"></a><!-- doxytag: member="helper.h::hwloc_get_next_pcidev" ref="gab17568d759c3a99abe12e3edd4731172" args="(hwloc_topology_t topology, hwloc_obj_t prev)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a> hwloc_get_next_pcidev </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
-          <td class="paramname"><em>topology</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td>
-          <td class="paramname"><em>prev</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Get the next PCI device in the system. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the first PCI device if <code>prev</code> is <code>NULL</code>. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="gad7ecce015a75d8edafb4669fba702859"></a><!-- doxytag: member="helper.h::hwloc_get_non_io_ancestor_obj" ref="gad7ecce015a75d8edafb4669fba702859" args="(hwloc_topology_t topology , hwloc_obj_t ioobj)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a> hwloc_get_non_io_ancestor_obj </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology&#160;</td>
-          <td class="paramname"><em></em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00014.html">hwloc_obj_t</a>&#160;</td>
-          <td class="paramname"><em>ioobj</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Get the first non-I/O ancestor object. </p>
-<p>Given the I/O object <code>ioobj</code>, find the smallest non-I/O ancestor object. This regular object may then be used for binding because its locality is the same as <code>ioobj</code>. </p>
-
-</div>
-</div>
-<a class="anchor" id="ga080ae4c731eb1276e8a7cdaad0b8db16"></a><!-- doxytag: member="helper.h::hwloc_get_pcidev_by_busid" ref="ga080ae4c731eb1276e8a7cdaad0b8db16" args="(hwloc_topology_t topology, unsigned domain, unsigned bus, unsigned dev, unsigned func)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a> hwloc_get_pcidev_by_busid </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
-          <td class="paramname"><em>topology</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>bus</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>dev</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>func</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Find the PCI device object matching the PCI bus id given domain, bus device and function PCI bus id. </p>
-
-</div>
-</div>
-<a class="anchor" id="gaafa3ac0b038c73d533dd5446e71f7d48"></a><!-- doxytag: member="helper.h::hwloc_get_pcidev_by_busidstring" ref="gaafa3ac0b038c73d533dd5446e71f7d48" args="(hwloc_topology_t topology, const char *busid)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static __inline <a class="el" href="a00014.html">hwloc_obj_t</a> hwloc_get_pcidev_by_busidstring </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
-          <td class="paramname"><em>topology</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>busid</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Find the PCI device object matching the PCI bus id given as a string xxxx:yy:zz.t or yy:zz.t. </p>
+<p>Get the distances between all objects of a given type. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>a distances structure containing a matrix with all distances between all objects of the given type.</dd></dl>
+<p>Slot i+nbobjs*j contains the distance from the object of logical index i the object of logical index j.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd>This function only returns matrices covering the whole topology, without any unknown distance value. Those matrices are available in top-level object of the hierarchy. Matrices of lower objects are not reported here since they cover only part of the machine.</dd></dl>
+<p>The returned structure belongs to the hwloc library. The caller should not modify or free it.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><code>NULL</code> if no such distance matrix exists. </dd></dl>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Aug 23 2011 07:17:04 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 12 2011 20:44:41 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

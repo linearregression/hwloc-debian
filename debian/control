@@ -7,7 +7,8 @@ Build-Depends: debhelper (>= 7), autotools-dev, help2man, cdbs,
   libpci-dev,
   libibverbs-dev [linux-any],
   autoconf (>= 2.63),
-  dpkg-dev (>= 1.16)
+  dpkg-dev (>= 1.16),
+  hardening-wrapper
 Build-Depends-Indep: doxygen-latex, transfig
 Build-Conflicts: autoconf2.13
 Standards-Version: 3.9.2

@@ -148,14 +148,16 @@ if HWLOC_DOXYGEN_BROKEN_SHORT_NAMES
 	-@mv -f $(DOX_DIR)/latex/cpu_mem_bind.tex $(DOX_DIR)/latex/a00004.tex
 	-@mv -f $(DOX_DIR)/html/iodevices.html $(DOX_DIR)/html/a00005.html
 	-@mv -f $(DOX_DIR)/latex/iodevices.tex $(DOX_DIR)/latex/a00005.tex
-	-@mv -f $(DOX_DIR)/html/interoperability.html $(DOX_DIR)/html/a00006.html
-	-@mv -f $(DOX_DIR)/latex/interoperability.tex $(DOX_DIR)/latex/a00006.tex
-	-@mv -f $(DOX_DIR)/html/threadsafety.html $(DOX_DIR)/html/a00007.html
-	-@mv -f $(DOX_DIR)/latex/threadsafety.tex $(DOX_DIR)/latex/a00007.tex
-	-@mv -f $(DOX_DIR)/html/embed.html $(DOX_DIR)/html/a00008.html
-	-@mv -f $(DOX_DIR)/latex/embed.tex $(DOX_DIR)/latex/a00008.tex
-	-@mv -f $(DOX_DIR)/html/faq.html $(DOX_DIR)/html/a00009.html
-	-@mv -f $(DOX_DIR)/latex/faq.tex $(DOX_DIR)/latex/a00009.tex
+	-@mv -f $(DOX_DIR)/html/xml.html $(DOX_DIR)/html/a00006.html
+	-@mv -f $(DOX_DIR)/latex/xml.tex $(DOX_DIR)/latex/a00006.tex
+	-@mv -f $(DOX_DIR)/html/interoperability.html $(DOX_DIR)/html/a00007.html
+	-@mv -f $(DOX_DIR)/latex/interoperability.tex $(DOX_DIR)/latex/a00007.tex
+	-@mv -f $(DOX_DIR)/html/threadsafety.html $(DOX_DIR)/html/a00008.html
+	-@mv -f $(DOX_DIR)/latex/threadsafety.tex $(DOX_DIR)/latex/a00008.tex
+	-@mv -f $(DOX_DIR)/html/embed.html $(DOX_DIR)/html/a00009.html
+	-@mv -f $(DOX_DIR)/latex/embed.tex $(DOX_DIR)/latex/a00009.tex
+	-@mv -f $(DOX_DIR)/html/faq.html $(DOX_DIR)/html/a00010.html
+	-@mv -f $(DOX_DIR)/latex/faq.tex $(DOX_DIR)/latex/a00010.tex
 endif
 endif
 
@@ -367,7 +369,8 @@ man3_MANS = \
         $(DOX_MAN_DIR)/man3/hwloc_cudart_get_device_cpuset.3 \
         $(DOX_MAN_DIR)/man3/hwloc_distribute.3 \
         $(DOX_MAN_DIR)/man3/hwloc_distributev.3 \
-        $(DOX_MAN_DIR)/man3/hwloc_free.3  \
+        $(DOX_MAN_DIR)/man3/hwloc_free.3 \
+        $(DOX_MAN_DIR)/man3/hwloc_free_xmlbuffer.3 \
         $(DOX_MAN_DIR)/man3/hwloc_get_ancestor_obj_by_depth.3 \
         $(DOX_MAN_DIR)/man3/hwloc_get_ancestor_obj_by_type.3 \
         $(DOX_MAN_DIR)/man3/hwloc_get_api_version.3 \

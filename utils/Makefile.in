@@ -48,13 +48,12 @@ target_triplet = @target@
 @HWLOC_BUILD_UTILS_TRUE@	hwloc-distrib$(EXEEXT) \
 @HWLOC_BUILD_UTILS_TRUE@	hwloc-ps$(EXEEXT) $(am__EXEEXT_1)
 @HWLOC_HAVE_CAIRO_TRUE@am__append_1 = lstopo-cairo.c
-@HWLOC_HAVE_XML_TRUE@am__append_2 = lstopo-xml.c
-@HWLOC_HAVE_WINDOWS_TRUE@am__append_3 = lstopo-windows.c
-@HWLOC_BUILD_UTILS_TRUE@@HWLOC_HAVE_WINDOWS_TRUE@am__append_4 = lstopo-win
-@HWLOC_BUILD_UTILS_TRUE@am__append_5 = $(man7_pages:.7=.7in) \
+@HWLOC_HAVE_WINDOWS_TRUE@am__append_2 = lstopo-windows.c
+@HWLOC_BUILD_UTILS_TRUE@@HWLOC_HAVE_WINDOWS_TRUE@am__append_3 = lstopo-win
+@HWLOC_BUILD_UTILS_TRUE@am__append_4 = $(man7_pages:.7=.7in) \
 @HWLOC_BUILD_UTILS_TRUE@	$(man1_pages:.1=.1in) \
 @HWLOC_BUILD_UTILS_TRUE@	$(hgt_page:.1=.1in)
-@HWLOC_BUILD_UTILS_TRUE@@HWLOC_HAVE_LINUX_TRUE@am__append_6 = $(hgt_page)
+@HWLOC_BUILD_UTILS_TRUE@@HWLOC_HAVE_LINUX_TRUE@am__append_5 = $(hgt_page)
 subdir = utils
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/test-hwloc-calc.sh.in \
@@ -101,43 +100,42 @@ hwloc_ps_OBJECTS = hwloc-ps.$(OBJEXT)
 hwloc_ps_LDADD = $(LDADD)
 hwloc_ps_DEPENDENCIES = $(HWLOC_top_builddir)/src/libhwloc.la
 am__lstopo_SOURCES_DIST = lstopo.h lstopo.c lstopo-color.c \
-	lstopo-text.c lstopo-draw.c lstopo-fig.c lstopo-cairo.c \
-	lstopo-xml.c lstopo-windows.c
+	lstopo-text.c lstopo-draw.c lstopo-fig.c lstopo-xml.c \
+	lstopo-cairo.c lstopo-windows.c
 @HWLOC_HAVE_CAIRO_TRUE@am__objects_1 = lstopo-lstopo-cairo.$(OBJEXT)
-@HWLOC_HAVE_XML_TRUE@am__objects_2 = lstopo-lstopo-xml.$(OBJEXT)
-@HWLOC_HAVE_WINDOWS_TRUE@am__objects_3 =  \
+@HWLOC_HAVE_WINDOWS_TRUE@am__objects_2 =  \
 @HWLOC_HAVE_WINDOWS_TRUE@	lstopo-lstopo-windows.$(OBJEXT)
 am_lstopo_OBJECTS = lstopo-lstopo.$(OBJEXT) \
 	lstopo-lstopo-color.$(OBJEXT) lstopo-lstopo-text.$(OBJEXT) \
 	lstopo-lstopo-draw.$(OBJEXT) lstopo-lstopo-fig.$(OBJEXT) \
-	$(am__objects_1) $(am__objects_2) $(am__objects_3)
+	lstopo-lstopo-xml.$(OBJEXT) $(am__objects_1) $(am__objects_2)
 lstopo_OBJECTS = $(am_lstopo_OBJECTS)
 am__DEPENDENCIES_1 =
 lstopo_DEPENDENCIES = $(LDADD) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 lstopo_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(lstopo_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 am__lstopo_win_SOURCES_DIST = lstopo.h lstopo.c lstopo-color.c \
-	lstopo-text.c lstopo-draw.c lstopo-fig.c lstopo-cairo.c \
-	lstopo-xml.c lstopo-windows.c
-@HWLOC_HAVE_CAIRO_TRUE@am__objects_4 =  \
+	lstopo-text.c lstopo-draw.c lstopo-fig.c lstopo-xml.c \
+	lstopo-cairo.c lstopo-windows.c
+@HWLOC_HAVE_CAIRO_TRUE@am__objects_3 =  \
 @HWLOC_HAVE_CAIRO_TRUE@	lstopo_win-lstopo-cairo.$(OBJEXT)
-@HWLOC_HAVE_XML_TRUE@am__objects_5 = lstopo_win-lstopo-xml.$(OBJEXT)
-@HWLOC_HAVE_WINDOWS_TRUE@am__objects_6 =  \
+@HWLOC_HAVE_WINDOWS_TRUE@am__objects_4 =  \
 @HWLOC_HAVE_WINDOWS_TRUE@	lstopo_win-lstopo-windows.$(OBJEXT)
-am__objects_7 = lstopo_win-lstopo.$(OBJEXT) \
+am__objects_5 = lstopo_win-lstopo.$(OBJEXT) \
 	lstopo_win-lstopo-color.$(OBJEXT) \
 	lstopo_win-lstopo-text.$(OBJEXT) \
 	lstopo_win-lstopo-draw.$(OBJEXT) \
-	lstopo_win-lstopo-fig.$(OBJEXT) $(am__objects_4) \
-	$(am__objects_5) $(am__objects_6)
-@HWLOC_BUILD_UTILS_TRUE@@HWLOC_HAVE_WINDOWS_TRUE@am_lstopo_win_OBJECTS = $(am__objects_7)
+	lstopo_win-lstopo-fig.$(OBJEXT) \
+	lstopo_win-lstopo-xml.$(OBJEXT) $(am__objects_3) \
+	$(am__objects_4)
+@HWLOC_BUILD_UTILS_TRUE@@HWLOC_HAVE_WINDOWS_TRUE@am_lstopo_win_OBJECTS = $(am__objects_5)
 lstopo_win_OBJECTS = $(am_lstopo_win_OBJECTS)
 am__DEPENDENCIES_2 = $(LDADD) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 @HWLOC_BUILD_UTILS_TRUE@@HWLOC_HAVE_WINDOWS_TRUE@lstopo_win_DEPENDENCIES = $(am__DEPENDENCIES_2)
 lstopo_win_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(lstopo_win_CFLAGS) \
@@ -243,17 +241,23 @@ HWLOC_CAIRO_LIBS = @HWLOC_CAIRO_LIBS@
 HWLOC_CFLAGS = @HWLOC_CFLAGS@
 HWLOC_CPPFLAGS = @HWLOC_CPPFLAGS@
 HWLOC_DIFF_U = @HWLOC_DIFF_U@
+HWLOC_DIFF_W = @HWLOC_DIFF_W@
 HWLOC_EMBEDDED_CFLAGS = @HWLOC_EMBEDDED_CFLAGS@
 HWLOC_EMBEDDED_CPPFLAGS = @HWLOC_EMBEDDED_CPPFLAGS@
 HWLOC_EMBEDDED_LDADD = @HWLOC_EMBEDDED_LDADD@
 HWLOC_EMBEDDED_LIBS = @HWLOC_EMBEDDED_LIBS@
-HWLOC_HAVE_XML = @HWLOC_HAVE_XML@
+HWLOC_HAVE_LIBPCI = @HWLOC_HAVE_LIBPCI@
+HWLOC_HAVE_LIBXML2 = @HWLOC_HAVE_LIBXML2@
 HWLOC_KERRIGHED_CFLAGS = @HWLOC_KERRIGHED_CFLAGS@
 HWLOC_KERRIGHED_LIBS = @HWLOC_KERRIGHED_LIBS@
 HWLOC_LDFLAGS = @HWLOC_LDFLAGS@
 HWLOC_LIBS = @HWLOC_LIBS@
+HWLOC_LIBXML2_CFLAGS = @HWLOC_LIBXML2_CFLAGS@
+HWLOC_LIBXML2_LIBS = @HWLOC_LIBXML2_LIBS@
 HWLOC_LINUX_LIBNUMA_LIBS = @HWLOC_LINUX_LIBNUMA_LIBS@
 HWLOC_MS_LIB = @HWLOC_MS_LIB@
+HWLOC_PCI_CFLAGS = @HWLOC_PCI_CFLAGS@
+HWLOC_PCI_LIBS = @HWLOC_PCI_LIBS@
 HWLOC_PKG_CONFIG = @HWLOC_PKG_CONFIG@
 HWLOC_RELEASE_DATE = @HWLOC_RELEASE_DATE@
 HWLOC_REQUIRES = @HWLOC_REQUIRES@
@@ -262,8 +266,6 @@ HWLOC_TERMCAP_LIBS = @HWLOC_TERMCAP_LIBS@
 HWLOC_VERSION = @HWLOC_VERSION@
 HWLOC_W3_GENERATOR = @HWLOC_W3_GENERATOR@
 HWLOC_X11_LIBS = @HWLOC_X11_LIBS@
-HWLOC_XML_CFLAGS = @HWLOC_XML_CFLAGS@
-HWLOC_XML_LIBS = @HWLOC_XML_LIBS@
 HWLOC_top_builddir = @HWLOC_top_builddir@
 HWLOC_top_srcdir = @HWLOC_top_srcdir@
 INSTALL = @INSTALL@
@@ -375,13 +377,13 @@ AM_CPPFLAGS = $(HWLOC_CPPFLAGS)
 AM_LDFLAGS = $(HWLOC_LDFLAGS)
 LDADD = $(HWLOC_top_builddir)/src/libhwloc.la
 EXTRA_DIST = test-hwloc-calc.output test-hwloc-distrib.output \
-	$(am__append_5)
+	$(am__append_4)
 noinst_HEADERS = misc.h
 lstopo_SOURCES = lstopo.h lstopo.c lstopo-color.c lstopo-text.c \
-	lstopo-draw.c lstopo-fig.c $(am__append_1) $(am__append_2) \
-	$(am__append_3)
-lstopo_CFLAGS = $(HWLOC_CAIRO_CFLAGS) $(HWLOC_XML_CFLAGS)
-lstopo_LDADD = $(LDADD) $(HWLOC_CAIRO_LIBS) $(HWLOC_XML_LIBS) -lm $(HWLOC_TERMCAP_LIBS) $(HWLOC_X11_LIBS)
+	lstopo-draw.c lstopo-fig.c lstopo-xml.c $(am__append_1) \
+	$(am__append_2)
+lstopo_CFLAGS = $(HWLOC_CAIRO_CFLAGS) $(HWLOC_LIBXML2_CFLAGS) $(HWLOC_PCI_CFLAGS)
+lstopo_LDADD = $(LDADD) $(HWLOC_CAIRO_LIBS) $(HWLOC_LIBXML2_LIBS) -lm $(HWLOC_TERMCAP_LIBS) $(HWLOC_X11_LIBS) $(HWLOC_PCI_LIBS)
 @HWLOC_BUILD_UTILS_TRUE@@HWLOC_HAVE_WINDOWS_TRUE@lstopo_win_SOURCES = $(lstopo_SOURCES)
 @HWLOC_BUILD_UTILS_TRUE@@HWLOC_HAVE_WINDOWS_TRUE@lstopo_win_CFLAGS = $(lstopo_CFLAGS) -mwindows
 @HWLOC_BUILD_UTILS_TRUE@@HWLOC_HAVE_WINDOWS_TRUE@lstopo_win_LDADD = $(lstopo_LDADD)
@@ -394,7 +396,7 @@ hwloc_calc_SOURCES = hwloc-calc.c hwloc-calc.h
 # Only install man pages if we're building in standalone mode
 @HWLOC_BUILD_UTILS_TRUE@man7_pages = hwloc.7
 @HWLOC_BUILD_UTILS_TRUE@nodist_man_MANS = $(man7_pages) $(man1_pages) \
-@HWLOC_BUILD_UTILS_TRUE@	$(am__append_6)
+@HWLOC_BUILD_UTILS_TRUE@	$(am__append_5)
 @HWLOC_BUILD_UTILS_TRUE@man1_pages = lstopo.1 hwloc-bind.1 hwloc-distrib.1 hwloc-calc.1 hwloc-ps.1
 
 # Only install the gather-topology page if we're on Linux, but we need
@@ -635,22 +637,6 @@ lstopo-lstopo-fig.obj: lstopo-fig.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -c -o lstopo-lstopo-fig.obj `if test -f 'lstopo-fig.c'; then $(CYGPATH_W) 'lstopo-fig.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-fig.c'; fi`
 
-lstopo-lstopo-cairo.o: lstopo-cairo.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -MT lstopo-lstopo-cairo.o -MD -MP -MF $(DEPDIR)/lstopo-lstopo-cairo.Tpo -c -o lstopo-lstopo-cairo.o `test -f 'lstopo-cairo.c' || echo '$(srcdir)/'`lstopo-cairo.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lstopo-lstopo-cairo.Tpo $(DEPDIR)/lstopo-lstopo-cairo.Po
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lstopo-cairo.c' object='lstopo-lstopo-cairo.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -c -o lstopo-lstopo-cairo.o `test -f 'lstopo-cairo.c' || echo '$(srcdir)/'`lstopo-cairo.c
-
-lstopo-lstopo-cairo.obj: lstopo-cairo.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -MT lstopo-lstopo-cairo.obj -MD -MP -MF $(DEPDIR)/lstopo-lstopo-cairo.Tpo -c -o lstopo-lstopo-cairo.obj `if test -f 'lstopo-cairo.c'; then $(CYGPATH_W) 'lstopo-cairo.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-cairo.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lstopo-lstopo-cairo.Tpo $(DEPDIR)/lstopo-lstopo-cairo.Po
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lstopo-cairo.c' object='lstopo-lstopo-cairo.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -c -o lstopo-lstopo-cairo.obj `if test -f 'lstopo-cairo.c'; then $(CYGPATH_W) 'lstopo-cairo.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-cairo.c'; fi`
-
 lstopo-lstopo-xml.o: lstopo-xml.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -MT lstopo-lstopo-xml.o -MD -MP -MF $(DEPDIR)/lstopo-lstopo-xml.Tpo -c -o lstopo-lstopo-xml.o `test -f 'lstopo-xml.c' || echo '$(srcdir)/'`lstopo-xml.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lstopo-lstopo-xml.Tpo $(DEPDIR)/lstopo-lstopo-xml.Po
@@ -666,6 +652,22 @@ lstopo-lstopo-xml.obj: lstopo-xml.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lstopo-xml.c' object='lstopo-lstopo-xml.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -c -o lstopo-lstopo-xml.obj `if test -f 'lstopo-xml.c'; then $(CYGPATH_W) 'lstopo-xml.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-xml.c'; fi`
+
+lstopo-lstopo-cairo.o: lstopo-cairo.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -MT lstopo-lstopo-cairo.o -MD -MP -MF $(DEPDIR)/lstopo-lstopo-cairo.Tpo -c -o lstopo-lstopo-cairo.o `test -f 'lstopo-cairo.c' || echo '$(srcdir)/'`lstopo-cairo.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lstopo-lstopo-cairo.Tpo $(DEPDIR)/lstopo-lstopo-cairo.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lstopo-cairo.c' object='lstopo-lstopo-cairo.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -c -o lstopo-lstopo-cairo.o `test -f 'lstopo-cairo.c' || echo '$(srcdir)/'`lstopo-cairo.c
+
+lstopo-lstopo-cairo.obj: lstopo-cairo.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -MT lstopo-lstopo-cairo.obj -MD -MP -MF $(DEPDIR)/lstopo-lstopo-cairo.Tpo -c -o lstopo-lstopo-cairo.obj `if test -f 'lstopo-cairo.c'; then $(CYGPATH_W) 'lstopo-cairo.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-cairo.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lstopo-lstopo-cairo.Tpo $(DEPDIR)/lstopo-lstopo-cairo.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lstopo-cairo.c' object='lstopo-lstopo-cairo.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -c -o lstopo-lstopo-cairo.obj `if test -f 'lstopo-cairo.c'; then $(CYGPATH_W) 'lstopo-cairo.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-cairo.c'; fi`
 
 lstopo-lstopo-windows.o: lstopo-windows.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_CFLAGS) $(CFLAGS) -MT lstopo-lstopo-windows.o -MD -MP -MF $(DEPDIR)/lstopo-lstopo-windows.Tpo -c -o lstopo-lstopo-windows.o `test -f 'lstopo-windows.c' || echo '$(srcdir)/'`lstopo-windows.c
@@ -763,22 +765,6 @@ lstopo_win-lstopo-fig.obj: lstopo-fig.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -c -o lstopo_win-lstopo-fig.obj `if test -f 'lstopo-fig.c'; then $(CYGPATH_W) 'lstopo-fig.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-fig.c'; fi`
 
-lstopo_win-lstopo-cairo.o: lstopo-cairo.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -MT lstopo_win-lstopo-cairo.o -MD -MP -MF $(DEPDIR)/lstopo_win-lstopo-cairo.Tpo -c -o lstopo_win-lstopo-cairo.o `test -f 'lstopo-cairo.c' || echo '$(srcdir)/'`lstopo-cairo.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lstopo_win-lstopo-cairo.Tpo $(DEPDIR)/lstopo_win-lstopo-cairo.Po
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lstopo-cairo.c' object='lstopo_win-lstopo-cairo.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -c -o lstopo_win-lstopo-cairo.o `test -f 'lstopo-cairo.c' || echo '$(srcdir)/'`lstopo-cairo.c
-
-lstopo_win-lstopo-cairo.obj: lstopo-cairo.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -MT lstopo_win-lstopo-cairo.obj -MD -MP -MF $(DEPDIR)/lstopo_win-lstopo-cairo.Tpo -c -o lstopo_win-lstopo-cairo.obj `if test -f 'lstopo-cairo.c'; then $(CYGPATH_W) 'lstopo-cairo.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-cairo.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lstopo_win-lstopo-cairo.Tpo $(DEPDIR)/lstopo_win-lstopo-cairo.Po
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lstopo-cairo.c' object='lstopo_win-lstopo-cairo.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -c -o lstopo_win-lstopo-cairo.obj `if test -f 'lstopo-cairo.c'; then $(CYGPATH_W) 'lstopo-cairo.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-cairo.c'; fi`
-
 lstopo_win-lstopo-xml.o: lstopo-xml.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -MT lstopo_win-lstopo-xml.o -MD -MP -MF $(DEPDIR)/lstopo_win-lstopo-xml.Tpo -c -o lstopo_win-lstopo-xml.o `test -f 'lstopo-xml.c' || echo '$(srcdir)/'`lstopo-xml.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lstopo_win-lstopo-xml.Tpo $(DEPDIR)/lstopo_win-lstopo-xml.Po
@@ -794,6 +780,22 @@ lstopo_win-lstopo-xml.obj: lstopo-xml.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lstopo-xml.c' object='lstopo_win-lstopo-xml.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -c -o lstopo_win-lstopo-xml.obj `if test -f 'lstopo-xml.c'; then $(CYGPATH_W) 'lstopo-xml.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-xml.c'; fi`
+
+lstopo_win-lstopo-cairo.o: lstopo-cairo.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -MT lstopo_win-lstopo-cairo.o -MD -MP -MF $(DEPDIR)/lstopo_win-lstopo-cairo.Tpo -c -o lstopo_win-lstopo-cairo.o `test -f 'lstopo-cairo.c' || echo '$(srcdir)/'`lstopo-cairo.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lstopo_win-lstopo-cairo.Tpo $(DEPDIR)/lstopo_win-lstopo-cairo.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lstopo-cairo.c' object='lstopo_win-lstopo-cairo.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -c -o lstopo_win-lstopo-cairo.o `test -f 'lstopo-cairo.c' || echo '$(srcdir)/'`lstopo-cairo.c
+
+lstopo_win-lstopo-cairo.obj: lstopo-cairo.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -MT lstopo_win-lstopo-cairo.obj -MD -MP -MF $(DEPDIR)/lstopo_win-lstopo-cairo.Tpo -c -o lstopo_win-lstopo-cairo.obj `if test -f 'lstopo-cairo.c'; then $(CYGPATH_W) 'lstopo-cairo.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-cairo.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lstopo_win-lstopo-cairo.Tpo $(DEPDIR)/lstopo_win-lstopo-cairo.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lstopo-cairo.c' object='lstopo_win-lstopo-cairo.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -c -o lstopo_win-lstopo-cairo.obj `if test -f 'lstopo-cairo.c'; then $(CYGPATH_W) 'lstopo-cairo.c'; else $(CYGPATH_W) '$(srcdir)/lstopo-cairo.c'; fi`
 
 lstopo_win-lstopo-windows.o: lstopo-windows.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lstopo_win_CFLAGS) $(CFLAGS) -MT lstopo_win-lstopo-windows.o -MD -MP -MF $(DEPDIR)/lstopo_win-lstopo-windows.Tpo -c -o lstopo_win-lstopo-windows.o `test -f 'lstopo-windows.c' || echo '$(srcdir)/'`lstopo-windows.c

@@ -1,4 +1,4 @@
-.TH "Configure Topology Detection" 3 "Sun Oct 2 2011" "Version 1.2.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Configure Topology Detection" 3 "Wed Oct 12 2011" "Version 1.3" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -27,7 +27,7 @@ Configure Topology Detection \-
 
 .in +1c
 .ti -1c
-.RI "enum \fBhwloc_topology_flags_e\fP { \fBHWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM\fP, \fBHWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM\fP }"
+.RI "enum \fBhwloc_topology_flags_e\fP { \fBHWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM\fP, \fBHWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM\fP, \fBHWLOC_TOPOLOGY_FLAG_IO_DEVICES\fP =  (1<<2), \fBHWLOC_TOPOLOGY_FLAG_IO_BRIDGES\fP =  (1<<3), \fBHWLOC_TOPOLOGY_FLAG_WHOLE_IO\fP =  (1<<4) }"
 .br
 .in -1c
 .SS "Functions"
@@ -92,6 +92,13 @@ Assume that the selected backend provides the topology for the system on which w
 Setting the environment variable HWLOC_THISSYSTEM may also result in the same behavior.
 .PP
 This can be used for efficiency reasons to first detect the topology once, save it to an XML file, and quickly reload it later through the XML backend, but still having binding functions actually do bind. 
+.TP
+\fB\fIHWLOC_TOPOLOGY_FLAG_IO_DEVICES \fP\fP
+.TP
+\fB\fIHWLOC_TOPOLOGY_FLAG_IO_BRIDGES \fP\fP
+.TP
+\fB\fIHWLOC_TOPOLOGY_FLAG_WHOLE_IO \fP\fP
+
 .SH "Function Documentation"
 .PP 
 .SS " struct \fBhwloc_topology_support\fP* hwloc_topology_get_support (\fBhwloc_topology_t\fP restricttopology)\fC [read]\fP"
@@ -99,16 +106,18 @@ This can be used for efficiency reasons to first detect the topology once, save 
 Retrieve the topology support. 
 .SS " int hwloc_topology_ignore_all_keep_structure (\fBhwloc_topology_t\fPtopology)"
 .PP
-Ignore all objects that do not bring any structure. Ignore all objects that do not bring any structure: Each ignored object should have a single children or be the only child of its parent. 
+Ignore all objects that do not bring any structure. Ignore all objects that do not bring any structure: Each ignored object should have a single children or be the only child of its parent. I/O objects may not be ignored, topology flags should be used to configure their discovery instead. 
 .SS " int hwloc_topology_ignore_type (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_type_t\fPtype)"
 .PP
-Ignore an object type. Ignore all objects from the given type. The bottom-level type HWLOC_OBJ_PU may not be ignored. The top-level object of the hierarchy will never be ignored, even if this function succeeds. 
+Ignore an object type. Ignore all objects from the given type. The bottom-level type HWLOC_OBJ_PU may not be ignored. The top-level object of the hierarchy will never be ignored, even if this function succeeds. I/O objects may not be ignored, topology flags should be used to configure their discovery instead. 
 .SS " int hwloc_topology_ignore_type_keep_structure (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_type_t\fPtype)"
 .PP
-Ignore an object type if it does not bring any structure. Ignore all objects from the given type as long as they do not bring any structure: Each ignored object should have a single children or be the only child of its parent. The bottom-level type HWLOC_OBJ_PU may not be ignored. 
+Ignore an object type if it does not bring any structure. Ignore all objects from the given type as long as they do not bring any structure: Each ignored object should have a single children or be the only child of its parent. The bottom-level type HWLOC_OBJ_PU may not be ignored. I/O objects may not be ignored, topology flags should be used to configure their discovery instead. 
 .SS " int hwloc_topology_set_distance_matrix (\fBhwloc_topology_t\fP restricttopology, \fBhwloc_obj_type_t\fPtype, unsignednbobjs, unsigned *os_index, float *distances)"
 .PP
-Provide a distance matrix. Provide the matrix of distances between a set of objects of the given type. The set may or may not contain all the existing objects of this type. The objects are specified by their OS/physical index in the \fCos_index\fP array. The \fCdistances\fP matrix follows the same order. The distance from object i to object j in the i*nbobjs+j. 
+Provide a distance matrix. Provide the matrix of distances between a set of objects of the given type. The set may or may not contain all the existing objects of this type. The objects are specified by their OS/physical index in the \fCos_index\fP array. The \fCdistances\fP matrix follows the same order. The distance from object i to object j in the i*nbobjs+j.
+.PP
+A single latency matrix may be defined for each type. If another distance matrix already exists for the given type, either because the user specified it or because the OS offers it, it will be replaced by the given one. If \fCnbobjs\fP is \fC0\fP, \fCos_index\fP is \fCNULL\fP and \fCdistances\fP is \fCNULL\fP, the existing distance matrix for the given type is removed. 
 .SS " int hwloc_topology_set_flags (\fBhwloc_topology_t\fPtopology, unsigned longflags)"
 .PP
 Set OR'ed flags to non-yet-loaded topology. Set a OR'ed set of \fBhwloc_topology_flags_e\fP onto a topology that was not yet loaded. 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Hardware Locality (hwloc): Thread Safety</title>
+<title>Hardware Locality (hwloc): Importing and exporting topologies from/to XML files</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2.2</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3</span></div>
   </td>
  </tr>
  </tbody>
@@ -32,31 +32,24 @@
 </div>
 <div class="header">
   <div class="headertitle">
-<div class="title">Thread Safety </div>  </div>
+<div class="title">Importing and exporting topologies from/to XML files </div>  </div>
 </div>
 <div class="contents">
-<div class="textblock"><p>Like most libraries that mainly fill data structures, hwloc is not thread safe but rather reentrant: all state is held in a <a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> instance without mutex protection. That means, for example, that two threads can safely operate on and modify two different <a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> instances, but they should not simultaneously invoke functions that modify the <em>same</em> instance. Similarly, one thread should not modify a <a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> instance while another thread is reading or traversing it. However, two threads can safely read or traverse the same <a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> instance concurrently.</p>
-<p>When running in multiprocessor environments, be aware that proper thread synchronization and/or memory coherency protection is needed to pass hwloc data (such as <a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> pointers) from one processor to another (e.g., a mutex, semaphore, or a memory barrier). Note that this is not a hwloc-specific requirement, but it is worth mentioning.</p>
-<p>For reference, <a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> modification operations include (but may not be limited to):</p>
-<dl>
-<dt>Creation and destruction </dt>
-<dd><p class="startdd"><code><a class="el" href="a00037.html#ga5c2d6f476af87005c7bd0811d4548b9f" title="Allocate a topology context.">hwloc_topology_init()</a>, <a class="el" href="a00037.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a>, <a class="el" href="a00037.html#ga6040925d3ee4bbb2647f2a321aca5f4b" title="Terminate and free a topology context.">hwloc_topology_destroy()</a></code> (see <a class="el" href="a00037.html">Create and Destroy Topologies</a>) imply major modifications of the structure, including freeing some objects. No other thread cannot access the topology or any of its objects at the same time.</p>
-<p>Also references to objects inside the topology are not valid anymore after these functions return. </p>
-<p class="enddd"></p>
-</dd>
-<dt>Runtime topology modifications </dt>
-<dd><p class="startdd"><code>hwloc_topology_insert_misc_object_by_*</code> (see <a class="el" href="a00039.html">Tinker With Topologies.</a>) may modify the topology significantly by adding objects inside the tree, changing the topology depth, etc. <code>hwloc_topology_restrict</code> modifies the topology even more dramatically by removing some objects.</p>
-<p>Although references to former objects <em>may</em> still be valid after insertion or restriction, it is strongly advised to not rely on any such guarantee and always re-consult the topology to reacquire new instances of objects. </p>
-<p class="enddd"></p>
-</dd>
-<dt>Locating topologies  </dt>
-<dd><p class="startdd"><code>hwloc_topology_ignore*</code>, <code>hwloc_topology_set*</code> (see <a class="el" href="a00038.html">Configure Topology Detection</a>) do not modify the topology directly, but they do modify internal structures describing the behavior of the next invocation of <code><a class="el" href="a00037.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a></code>. Hence, all of these functions should not be used concurrently.</p>
-<p>Note that these functions do not modify the current topology until it is actually reloaded; it is possible to use them while other threads are only read the current topology. </p>
-<p class="enddd"></p>
-</dd>
-</dl>
+<div class="textblock"><p>hwloc offers the ability to export topologies to XML files and reload them later. This is for instance useful for loading topologies faster (see <a class="el" href="a00010.html#faq_xml">I do not want hwloc to rediscover my enormous machine topology every time I rerun a process</a>), manipulating other nodes' topology, or avoiding the need for privileged processes (see <a class="el" href="a00010.html#faq_privileged">Does hwloc require privileged access?</a>).</p>
+<p>Topologies may be exported to XML files thanks to <a class="el" href="a00044.html#ga45578d725c66865cfef31d0585dcff70" title="Export the topology into an XML file.">hwloc_topology_export_xml()</a>, or to a XML memory buffer with <a class="el" href="a00044.html#ga739330e9402425315e44e5012631fb91" title="Export the topology into a newly-allocated XML memory buffer.">hwloc_topology_export_xmlbuffer()</a>. The lstopo program can also serve as a XML topology export tool.</p>
+<p>XML topologies may then be reloaded later with <a class="el" href="a00043.html#ga93efcc8a962afe1ed23393700682173f" title="Enable XML-file based topology.">hwloc_topology_set_xml()</a> and <a class="el" href="a00043.html#gae7e4bade144652a2b48f5eaf0309b4ec" title="Enable XML based topology using a memory buffer (instead of a file, as with hwloc_topology_set_xml())...">hwloc_topology_set_xmlbuffer()</a>. The XMLFILE environment variable also tells hwloc to load the topology from the given XML file.</p>
+<h2><a class="anchor" id="xml_backends"></a>
+libxml2 and minimalistic XML backends</h2>
+<p>hwloc offers two backends for importing/exporting XML.</p>
+<p>First, it can use the libxml2 library for importing/exporting XML files. It features full XML support, for instance when those files have to be manipulated by non-hwloc software (e.g. a XSLT parser). The libxml2 backend is enabled by default if libxml2 development headers are available.</p>
+<p>If libxml2 is not available at configure time, or if <code>--disable-libxml2</code> is passed, hwloc falls back to a custom backend. Contrary to the aforementioned full XML backend with libxml2, this minimalistic XML backend cannot be guaranteed to work with external programs. It should only be assumed to be compatible with the same hwloc release (even if using the libxml2 backend). Its advantage is however to always be available without requiring any external dependency.</p>
+<h2><a class="anchor" id="xml_errors"></a>
+XML import error management</h2>
+<p>Importing XML files can fail at least because of file access errors, invalid XML syntax or non-hwloc-valid XML contents.</p>
+<p>Both backend cannot detect all these errors when the input XML file or buffer is selected (when <a class="el" href="a00043.html#ga93efcc8a962afe1ed23393700682173f" title="Enable XML-file based topology.">hwloc_topology_set_xml()</a> or <a class="el" href="a00043.html#gae7e4bade144652a2b48f5eaf0309b4ec" title="Enable XML based topology using a memory buffer (instead of a file, as with hwloc_topology_set_xml())...">hwloc_topology_set_xmlbuffer()</a> is called). Some errors such non-hwloc-valid contents can only be detected later when loading the topology with <a class="el" href="a00042.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a>.</p>
+<p>It is therefore strongly recommended to check the return value of both <a class="el" href="a00043.html#ga93efcc8a962afe1ed23393700682173f" title="Enable XML-file based topology.">hwloc_topology_set_xml()</a> (or <a class="el" href="a00043.html#gae7e4bade144652a2b48f5eaf0309b4ec" title="Enable XML based topology using a memory buffer (instead of a file, as with hwloc_topology_set_xml())...">hwloc_topology_set_xmlbuffer()</a>) and <a class="el" href="a00042.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a> to handle all these errors. </p>
 </div></div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Oct 2 2011 07:16:30 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 12 2011 20:44:41 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

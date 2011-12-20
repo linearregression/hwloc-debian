@@ -1,4 +1,4 @@
-.TH "Memory binding" 3 "Wed Oct 12 2011" "Version 1.3" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Memory binding" 3 "Tue Dec 20 2011" "Version 1.3.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -262,7 +262,14 @@ If HWLOC_MEMBIND_STRICT is specified, hwloc will check the default memory polici
 .PP
 Otherwise, the default nodeset from each thread is logically OR'ed together. \fCcpuset\fP is set to the union of CPUs near the NUMA node(s) in the resulting nodeset. If all threads' default policies are the same, \fCpolicy\fP is set to that policy. If they are different, \fCpolicy\fP is set to HWLOC_MEMBIND_MIXED.
 .PP
-If any other flags are specified, -1 is returned and errno is set to EINVAL. 
+If any other flags are specified, -1 is returned and errno is set to EINVAL.
+.PP
+\fBNote:\fP
+.RS 4
+\fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms. 
+.RE
+.PP
+
 .SS " int hwloc_get_proc_membind_nodeset (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
 .PP
 Query the default memory binding policy and locality of the specified process. This function has two output parameters: \fCnodeset\fP and \fCpolicy\fP. The values returned in these parameters depend on both the \fCflags\fP passed in and the current memory binding policies and nodesets in the queried target.
@@ -275,7 +282,14 @@ If HWLOC_MEMBIND_STRICT is specified, hwloc will check the default memory polici
 .PP
 Otherwise, \fCnodeset\fP is set to the logical OR of all threads' default nodeset. If all threads' default policies are the same, \fCpolicy\fP is set to that policy. If they are different, \fCpolicy\fP is set to HWLOC_MEMBIND_MIXED.
 .PP
-If any other flags are specified, -1 is returned and errno is set to EINVAL. 
+If any other flags are specified, -1 is returned and errno is set to EINVAL.
+.PP
+\fBNote:\fP
+.RS 4
+\fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms. 
+.RE
+.PP
+
 .SS " int hwloc_set_area_membind (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 .PP
 Bind the already-allocated memory identified by (addr, len) to the NUMA node(s) near \fCcpuset\fP. \fBReturns:\fP
@@ -326,7 +340,12 @@ Set the default memory binding policy of the specified process to prefer the NUM
 .RS 4
 -1 with errno set to ENOSYS if the action is not supported 
 .PP
--1 with errno set to EXDEV if the binding cannot be enforced 
+-1 with errno set to EXDEV if the binding cannot be enforced
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+\fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms. 
 .RE
 .PP
 
@@ -336,7 +355,12 @@ Set the default memory binding policy of the specified process to prefer the NUM
 .RS 4
 -1 with errno set to ENOSYS if the action is not supported 
 .PP
--1 with errno set to EXDEV if the binding cannot be enforced 
+-1 with errno set to EXDEV if the binding cannot be enforced
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+\fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms. 
 .RE
 .PP
 

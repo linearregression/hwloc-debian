@@ -1,4 +1,4 @@
-.TH "Distances" 3 "Wed Oct 12 2011" "Version 1.3" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Distances" 3 "Tue Dec 20 2011" "Version 1.3.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -23,7 +23,7 @@ Distances \-
 .PP 
 .SS "static inline struct \fBhwloc_distances_s\fP* hwloc_get_distance_matrix_covering_obj_by_depth (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPobj, unsigneddepth, unsigned *firstp)\fC [static, read]\fP"
 .PP
-Get distances for the given depth and covering some objects. Return a distance matrix that describes depth \fCdepth\fP and covers at least object \fCobj\fP and all its ancestors.
+Get distances for the given depth and covering some objects. Return a distance matrix that describes depth \fCdepth\fP and covers at least object \fCobj\fP and all its children.
 .PP
 When looking for the distance between some objects, a common ancestor should be passed in \fCobj\fP.
 .PP

@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3.1</span></div>
   </td>
  </tr>
  </tbody>
@@ -598,7 +598,8 @@ Functions</h2></td></tr>
 <p>Note that it does not make sense to pass HWLOC_MEMBIND_THREAD to this function.</p>
 <p>If HWLOC_MEMBIND_STRICT is specified, hwloc will check the default memory policies and nodesets for all threads in the specified process. If they are not identical, -1 is returned and errno is set to EXDEV. If they are identical, the policy is returned in <code>policy</code>. <code>cpuset</code> is set to the union of CPUs near the NUMA node(s) in the nodeset.</p>
 <p>Otherwise, the default nodeset from each thread is logically OR'ed together. <code>cpuset</code> is set to the union of CPUs near the NUMA node(s) in the resulting nodeset. If all threads' default policies are the same, <code>policy</code> is set to that policy. If they are different, <code>policy</code> is set to HWLOC_MEMBIND_MIXED.</p>
-<p>If any other flags are specified, -1 is returned and errno is set to EINVAL. </p>
+<p>If any other flags are specified, -1 is returned and errno is set to EINVAL.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd><code>hwloc_pid_t</code> is <code>pid_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms. </dd></dl>
 
 </div>
 </div>
@@ -651,7 +652,8 @@ Functions</h2></td></tr>
 <p>Note that it does not make sense to pass HWLOC_MEMBIND_THREAD to this function.</p>
 <p>If HWLOC_MEMBIND_STRICT is specified, hwloc will check the default memory policies and nodesets for all threads in the specified process. If they are not identical, -1 is returned and errno is set to EXDEV. If they are identical, the values are returned in <code>nodeset</code> and <code>policy</code>.</p>
 <p>Otherwise, <code>nodeset</code> is set to the logical OR of all threads' default nodeset. If all threads' default policies are the same, <code>policy</code> is set to that policy. If they are different, <code>policy</code> is set to HWLOC_MEMBIND_MIXED.</p>
-<p>If any other flags are specified, -1 is returned and errno is set to EINVAL. </p>
+<p>If any other flags are specified, -1 is returned and errno is set to EINVAL.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd><code>hwloc_pid_t</code> is <code>pid_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms. </dd></dl>
 
 </div>
 </div>
@@ -903,7 +905,8 @@ Functions</h2></td></tr>
 <p>Set the default memory binding policy of the specified process to prefer the NUMA node(s) near the specified <code>cpuset</code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>-1 with errno set to ENOSYS if the action is not supported </dd>
 <dd>
--1 with errno set to EXDEV if the binding cannot be enforced </dd></dl>
+-1 with errno set to EXDEV if the binding cannot be enforced</dd></dl>
+<dl class="note"><dt><b>Note:</b></dt><dd><code>hwloc_pid_t</code> is <code>pid_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms. </dd></dl>
 
 </div>
 </div>
@@ -953,12 +956,13 @@ Functions</h2></td></tr>
 <p>Set the default memory binding policy of the specified process to prefer the NUMA node(s) specified by <code>nodeset</code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>-1 with errno set to ENOSYS if the action is not supported </dd>
 <dd>
--1 with errno set to EXDEV if the binding cannot be enforced </dd></dl>
+-1 with errno set to EXDEV if the binding cannot be enforced</dd></dl>
+<dl class="note"><dt><b>Note:</b></dt><dd><code>hwloc_pid_t</code> is <code>pid_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms. </dd></dl>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 12 2011 20:44:41 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 20 2011 10:59:26 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3.1</span></div>
   </td>
  </tr>
  </tbody>
@@ -355,7 +355,7 @@ Functions</h2></td></tr>
 
 <p>Change which pid the topology is viewed from. </p>
 <p>On some systems, processes may have different views of the machine, for instance the set of allowed CPUs. By default, hwloc exposes the view from the current process. Calling <a class="el" href="a00043.html#gae1100de0162b3c6a9db750ac14629c05" title="Change which pid the topology is viewed from.">hwloc_topology_set_pid()</a> permits to make it expose the topology of the machine from the point of view of another process.</p>
-<dl class="note"><dt><b>Note:</b></dt><dd>hwloc_pid_t is pid_t on unix platforms, and HANDLE on native Windows platforms </dd>
+<dl class="note"><dt><b>Note:</b></dt><dd><code>hwloc_pid_t</code> is <code>pid_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms.</dd>
 <dd>
 -1 is returned and errno is set to ENOSYS on platforms that do not support this feature. </dd></dl>
 
@@ -464,7 +464,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 12 2011 20:44:41 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 20 2011 10:59:26 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

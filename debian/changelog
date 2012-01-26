@@ -1,3 +1,12 @@
+hwloc (1.4-1) unstable; urgency=low
+
+  * New upstream release, rename libhwloc4 package into libhwloc5 due to
+    soname change.
+  * Add ABI compatibility symlinks, and make libhwloc5 provide, replace and
+    conflict with previous versions.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 26 Jan 2012 17:00:20 +0100
+
 hwloc (1.3.1-1) unstable; urgency=low
 
   * New upstream release.

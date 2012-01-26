@@ -2,7 +2,7 @@
 
 /* -*- c -*-
  *
- * Copyright © 2009 CNRS, INRIA., Université Bordeaux 1  All rights reserved.
+ * Copyright © 2009 CNRS, inria., Université Bordeaux 1  All rights reserved.
  * Copyright © 2009 Cisco Systems, Inc.  All rights reserved.
  * $COPYRIGHT$
  * 
@@ -177,6 +177,9 @@
 
 /* Define to 1 if you have the <pci/pci.h> header file. */
 #undef HAVE_PCI_PCI_H
+
+/* Define to 1 if you have the <picl.h> header file. */
+#undef HAVE_PICL_H
 
 /* Define to 1 if you have the `posix_memalign' function. */
 #undef HAVE_POSIX_MEMALIGN
@@ -595,10 +598,6 @@
 
 /* Define to 1 if you need to in order for `stat' and other things to work. */
 #undef _POSIX_SOURCE
-
-/* Define this to a keyword that can safely replace inline in installed
-   headers */
-#undef __hwloc_inline
 
 /* Define this to the process ID type */
 #undef hwloc_pid_t

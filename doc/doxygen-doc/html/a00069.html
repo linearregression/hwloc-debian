@@ -23,7 +23,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.4</span>
+   &#160;<span id="projectnumber">1.4.1</span>
    </div>
    
   </td>
@@ -57,11 +57,9 @@
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static inline struct <br class="typebreak"/>
-bitmask <br class="typebreak"/>
-*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00069.html#ga067ec565345a346bfd9d721cff5901ae">hwloc_cpuset_to_linux_libnuma_bitmask</a> (<a class="el" href="a00039.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00040.html#ga1f784433e9b606261f62d1134f6a3b25">hwloc_const_cpuset_t</a> cpuset)</td></tr>
+bitmask *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00069.html#ga1a2ad777b9b4cf4aac0123f61c3ab8bd">hwloc_cpuset_to_linux_libnuma_bitmask</a> (<a class="el" href="a00039.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00040.html#ga1f784433e9b606261f62d1134f6a3b25">hwloc_const_cpuset_t</a> cpuset) </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static inline struct <br class="typebreak"/>
-bitmask <br class="typebreak"/>
-*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00069.html#gaa2c4cb4075422a19e07c450dc7092e69">hwloc_nodeset_to_linux_libnuma_bitmask</a> (<a class="el" href="a00039.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00040.html#ga2f5276235841ad66a79bedad16a5a10c">hwloc_const_nodeset_t</a> nodeset)</td></tr>
+bitmask *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00069.html#gab67a395c48ddb56307b1465fab9bb9e6">hwloc_nodeset_to_linux_libnuma_bitmask</a> (<a class="el" href="a00039.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00040.html#ga2f5276235841ad66a79bedad16a5a10c">hwloc_const_nodeset_t</a> nodeset) </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00069.html#ga47747968f12c2674d2840dfbacce4940">hwloc_cpuset_from_linux_libnuma_bitmask</a> (<a class="el" href="a00039.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00040.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a> cpuset, const struct bitmask *bitmask)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00069.html#ga5a1d17375cc7b65cd155330008cbdb6a">hwloc_nodeset_from_linux_libnuma_bitmask</a> (<a class="el" href="a00039.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00040.html#ga37e35730fa7e775b5bb0afe893d6d508">hwloc_nodeset_t</a> nodeset, const struct bitmask *bitmask)</td></tr>
 </table>
@@ -102,12 +100,12 @@ bitmask <br class="typebreak"/>
 
 </div>
 </div>
-<a class="anchor" id="ga067ec565345a346bfd9d721cff5901ae"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_cpuset_to_linux_libnuma_bitmask" ref="ga067ec565345a346bfd9d721cff5901ae" args="(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset)" -->
+<a class="anchor" id="ga1a2ad777b9b4cf4aac0123f61c3ab8bd"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_cpuset_to_linux_libnuma_bitmask" ref="ga1a2ad777b9b4cf4aac0123f61c3ab8bd" args="(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset) " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static inline struct bitmask*  <a class="el" href="a00069.html#ga067ec565345a346bfd9d721cff5901ae">hwloc_cpuset_to_linux_libnuma_bitmask</a> </td>
+          <td class="memname">static inline struct bitmask * <a class="el" href="a00069.html#ga1a2ad777b9b4cf4aac0123f61c3ab8bd">hwloc_cpuset_to_linux_libnuma_bitmask</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="a00039.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
           <td class="paramname"><em>topology</em>, </td>
@@ -170,12 +168,12 @@ bitmask <br class="typebreak"/>
 
 </div>
 </div>
-<a class="anchor" id="gaa2c4cb4075422a19e07c450dc7092e69"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_nodeset_to_linux_libnuma_bitmask" ref="gaa2c4cb4075422a19e07c450dc7092e69" args="(hwloc_topology_t topology, hwloc_const_nodeset_t nodeset)" -->
+<a class="anchor" id="gab67a395c48ddb56307b1465fab9bb9e6"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_nodeset_to_linux_libnuma_bitmask" ref="gab67a395c48ddb56307b1465fab9bb9e6" args="(hwloc_topology_t topology, hwloc_const_nodeset_t nodeset) " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static inline struct bitmask*  <a class="el" href="a00069.html#gaa2c4cb4075422a19e07c450dc7092e69">hwloc_nodeset_to_linux_libnuma_bitmask</a> </td>
+          <td class="memname">static inline struct bitmask * <a class="el" href="a00069.html#gab67a395c48ddb56307b1465fab9bb9e6">hwloc_nodeset_to_linux_libnuma_bitmask</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="a00039.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
           <td class="paramname"><em>topology</em>, </td>
@@ -206,7 +204,7 @@ bitmask <br class="typebreak"/>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 26 2012 11:06:25 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 27 2012 22:07:11 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

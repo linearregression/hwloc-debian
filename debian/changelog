@@ -1,3 +1,10 @@
+hwloc (1.4.1-2) unstable; urgency=low
+
+  * Remove ABI compatibility symlinks and provide/replace/conflict, ldconfig
+    actually removes them so they do not actually work.
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 28 Mar 2012 01:43:52 +0200
+
 hwloc (1.4.1-1) unstable; urgency=low
 
   * New upstream release.

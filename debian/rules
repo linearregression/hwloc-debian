@@ -35,7 +35,7 @@ obj-nox/config.status: configure
 	cd obj-nox && ../configure $(CROSS) $(confflags) --disable-cairo
 
 
-build: build-stamp-x build-stamp-nox
+build: build-stamp-x build-stamp-nox debian/libhwloc5.links
 build-stamp-x: obj-x/config.status
 	dh_testdir
 
@@ -51,11 +51,15 @@ build-stamp-nox: obj-nox/config.status
 
 	touch $@
 
+debian/libhwloc5.links: debian/libhwloc5.links.in
+	sed -e 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' < $< > $@
+
 clean: 
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp-x
 	rm -f build-stamp-nox
+	rm -f debian/libhwloc5.links
 
 	rm -fr obj-x obj-nox
 	rm -f config.sub config.guess

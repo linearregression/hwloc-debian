@@ -1,3 +1,13 @@
+hwloc (1.5-1) experimental; urgency=low
+
+  * New upstream release.
+  * patches/unitialized_bytes_r4576,gfbsd-ftbfs_r4578: Remove, merged
+    upstream.
+  * rules: Do not build hwloc twice any more, use lstopo-no-graphics for the
+    hwloc-nox package.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 30 Jul 2012 20:27:11 +0200
+
 hwloc (1.4.1-4) unstable; urgency=low
 
   * patches/gfbsd-ftbfs_r4578: New upstream patch to avoid missing

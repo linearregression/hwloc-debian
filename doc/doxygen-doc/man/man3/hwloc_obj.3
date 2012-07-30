@@ -1,4 +1,4 @@
-.TH "hwloc_obj" 3 "Mon Feb 27 2012" "Version 1.4.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj" 3 "Mon Jul 30 2012" "Version 1.5" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -112,7 +112,8 @@ Structure of a topology object\&.
 Applications must not modify any field except \fBhwloc_obj\&.userdata\fP\&. 
 .SH "Field Documentation"
 .PP 
-.SS "\fBhwloc_cpuset_t\fP \fBhwloc_obj::allowed_cpuset\fP"
+.SS "\fBhwloc_cpuset_t\fP hwloc_obj::allowed_cpuset"
+
 .PP
 The CPU set of allowed logical processors\&. This includes the CPUs contained in this object which are allowed for binding, i\&.e\&. passing them to the hwloc binding functions should not return permission errors\&. This is usually restricted by administration rules\&. Some of them may however be offline so binding to them may still not be possible, see online_cpuset\&.
 .PP
@@ -122,7 +123,8 @@ Its value must not be changed, hwloc_bitmap_dup must be used instead\&.
 .RE
 .PP
 
-.SS "\fBhwloc_nodeset_t\fP \fBhwloc_obj::allowed_nodeset\fP"
+.SS "\fBhwloc_nodeset_t\fP hwloc_obj::allowed_nodeset"
+
 .PP
 The set of allowed NUMA memory nodes\&. This includes the NUMA memory nodes contained in this object which are allowed for memory allocation, i\&.e\&. passing them to NUMA node-directed memory allocation should not return permission errors\&. This is usually restricted by administration rules\&.
 .PP
@@ -134,16 +136,20 @@ Its value must not be changed, hwloc_bitmap_dup must be used instead\&.
 .RE
 .PP
 
-.SS "unsigned \fBhwloc_obj::arity\fP"
+.SS "unsigned hwloc_obj::arity"
+
 .PP
 Number of children\&. 
-.SS "union \fBhwloc_obj_attr_u\fP* \fBhwloc_obj::attr\fP"
+.SS "union \fBhwloc_obj_attr_u\fP* hwloc_obj::attr"
+
 .PP
 Object type-specific Attributes, may be \fCNULL\fP if no attribute value was found\&. 
-.SS "struct \fBhwloc_obj\fP** \fBhwloc_obj::children\fP"
+.SS "struct \fBhwloc_obj\fP** hwloc_obj::children"
+
 .PP
 Children, \fCchildren\fP[0 \&.\&. arity -1]\&. 
-.SS "\fBhwloc_cpuset_t\fP \fBhwloc_obj::complete_cpuset\fP"
+.SS "\fBhwloc_cpuset_t\fP hwloc_obj::complete_cpuset"
+
 .PP
 The complete CPU set of logical processors of this object,\&. This includes not only the same as the cpuset field, but also the CPUs for which topology information is unknown or incomplete, and the CPUs that are ignored when the HWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM flag is not set\&. Thus no corresponding PU object may be found in the topology, because the precise position is undefined\&. It is however known that it would be somewhere under this object\&.
 .PP
@@ -153,7 +159,8 @@ Its value must not be changed, hwloc_bitmap_dup must be used instead\&.
 .RE
 .PP
 
-.SS "\fBhwloc_nodeset_t\fP \fBhwloc_obj::complete_nodeset\fP"
+.SS "\fBhwloc_nodeset_t\fP hwloc_obj::complete_nodeset"
+
 .PP
 The complete NUMA node set of this object,\&. This includes not only the same as the nodeset field, but also the NUMA nodes for which topology information is unknown or incomplete, and the nodes that are ignored when the HWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM flag is not set\&. Thus no corresponding NODE object may be found in the topology, because the precise position is undefined\&. It is however known that it would be somewhere under this object\&.
 .PP
@@ -165,7 +172,8 @@ Its value must not be changed, hwloc_bitmap_dup must be used instead\&.
 .RE
 .PP
 
-.SS "\fBhwloc_cpuset_t\fP \fBhwloc_obj::cpuset\fP"
+.SS "\fBhwloc_cpuset_t\fP hwloc_obj::cpuset"
+
 .PP
 CPUs covered by this object\&. This is the set of CPUs for which there are PU objects in the topology under this object, i\&.e\&. which are known to be physically contained in this object and known how (the children path between this object and the PU objects)\&.
 .PP
@@ -177,41 +185,54 @@ Its value must not be changed, hwloc_bitmap_dup must be used instead\&.
 .RE
 .PP
 
-.SS "unsigned \fBhwloc_obj::depth\fP"
+.SS "unsigned hwloc_obj::depth"
+
 .PP
 Vertical index in the hierarchy\&. If the topology is symmetric, this is equal to the parent depth plus one, and also equal to the number of parent/child links from the root object to here\&. 
-.SS "struct \fBhwloc_distances_s\fP** \fBhwloc_obj::distances\fP"
+.SS "struct \fBhwloc_distances_s\fP** hwloc_obj::distances"
+
 .PP
 Distances between all objects at same depth below this object\&. 
-.SS "unsigned \fBhwloc_obj::distances_count\fP"
-.SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::first_child\fP"
+.SS "unsigned hwloc_obj::distances_count"
+
+.SS "struct \fBhwloc_obj\fP* hwloc_obj::first_child"
+
 .PP
 First child\&. 
-.SS "struct \fBhwloc_obj_info_s\fP* \fBhwloc_obj::infos\fP"
+.SS "struct \fBhwloc_obj_info_s\fP* hwloc_obj::infos"
+
 .PP
 Array of stringified info type=name\&. 
-.SS "unsigned \fBhwloc_obj::infos_count\fP"
+.SS "unsigned hwloc_obj::infos_count"
+
 .PP
 Size of infos array\&. 
-.SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::last_child\fP"
+.SS "struct \fBhwloc_obj\fP* hwloc_obj::last_child"
+
 .PP
 Last child\&. 
-.SS "unsigned \fBhwloc_obj::logical_index\fP"
+.SS "unsigned hwloc_obj::logical_index"
+
 .PP
 Horizontal index in the whole list of similar objects, could be a 'cousin_rank' since it's the rank within the 'cousin' list below\&. 
-.SS "struct \fBhwloc_obj_memory_s\fP \fBhwloc_obj::memory\fP"
+.SS "struct \fBhwloc_obj_memory_s\fP hwloc_obj::memory"
+
 .PP
 Memory attributes\&. 
-.SS "char* \fBhwloc_obj::name\fP"
+.SS "char* hwloc_obj::name"
+
 .PP
 Object description if any\&. 
-.SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::next_cousin\fP"
+.SS "struct \fBhwloc_obj\fP* hwloc_obj::next_cousin"
+
 .PP
 Next object of same type and depth\&. 
-.SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::next_sibling\fP"
+.SS "struct \fBhwloc_obj\fP* hwloc_obj::next_sibling"
+
 .PP
 Next object below the same parent\&. 
-.SS "\fBhwloc_nodeset_t\fP \fBhwloc_obj::nodeset\fP"
+.SS "\fBhwloc_nodeset_t\fP hwloc_obj::nodeset"
+
 .PP
 NUMA nodes covered by this object or containing this object\&. This is the set of NUMA nodes for which there are NODE objects in the topology under or above this object, i\&.e\&. which are known to be physically contained in this object or containing it and known how (the children path between this object and the NODE objects)\&.
 .PP
@@ -227,7 +248,8 @@ Its value must not be changed, hwloc_bitmap_dup must be used instead\&.
 .RE
 .PP
 
-.SS "\fBhwloc_cpuset_t\fP \fBhwloc_obj::online_cpuset\fP"
+.SS "\fBhwloc_cpuset_t\fP hwloc_obj::online_cpuset"
+
 .PP
 The CPU set of online logical processors\&. This includes the CPUs contained in this object that are online, i\&.e\&. draw power and can execute threads\&. It may however not be allowed to bind to them due to administration rules, see allowed_cpuset\&.
 .PP
@@ -237,31 +259,40 @@ Its value must not be changed, hwloc_bitmap_dup must be used instead\&.
 .RE
 .PP
 
-.SS "unsigned \fBhwloc_obj::os_index\fP"
+.SS "unsigned hwloc_obj::os_index"
+
 .PP
 OS-provided physical index number\&. 
-.SS "signed \fBhwloc_obj::os_level\fP"
+.SS "signed hwloc_obj::os_level"
+
 .PP
 OS-provided physical level, -1 if unknown or meaningless\&. 
-.SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::parent\fP"
+.SS "struct \fBhwloc_obj\fP* hwloc_obj::parent"
+
 .PP
 Parent, \fCNULL\fP if root (system object) 
-.SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::prev_cousin\fP"
+.SS "struct \fBhwloc_obj\fP* hwloc_obj::prev_cousin"
+
 .PP
 Previous object of same type and depth\&. 
-.SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::prev_sibling\fP"
+.SS "struct \fBhwloc_obj\fP* hwloc_obj::prev_sibling"
+
 .PP
 Previous object below the same parent\&. 
-.SS "unsigned \fBhwloc_obj::sibling_rank\fP"
+.SS "unsigned hwloc_obj::sibling_rank"
+
 .PP
 Index in parent's \fCchildren\fP[] array\&. 
-.SS "int \fBhwloc_obj::symmetric_subtree\fP"
+.SS "int hwloc_obj::symmetric_subtree"
+
 .PP
 Set if the subtree of objects below this object is symmetric, which means all children and their children have identical subtrees\&. 
-.SS "\fBhwloc_obj_type_t\fP \fBhwloc_obj::type\fP"
+.SS "\fBhwloc_obj_type_t\fP hwloc_obj::type"
+
 .PP
 Type of object\&. 
-.SS "void* \fBhwloc_obj::userdata\fP"
+.SS "void* hwloc_obj::userdata"
+
 .PP
 Application-given private data pointer, initialized to \fCNULL\fP, use it as you wish\&. 
 

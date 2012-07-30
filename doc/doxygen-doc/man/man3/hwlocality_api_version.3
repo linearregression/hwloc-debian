@@ -1,13 +1,13 @@
-.TH "API version" 3 "Mon Feb 27 2012" "Version 1.4.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "API version" 3 "Mon Jul 30 2012" "Version 1.5" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
 API version \- 
-.SS "Defines"
+.SS "Macros"
 
 .in +1c
 .ti -1c
-.RI "#define \fBHWLOC_API_VERSION\fP   0x00010400"
+.RI "#define \fBHWLOC_API_VERSION\fP   0x00010500"
 .br
 .in -1c
 .SS "Functions"
@@ -17,14 +17,19 @@ API version \-
 .RI " unsigned \fBhwloc_get_api_version\fP (void)"
 .br
 .in -1c
-.SH "Define Documentation"
+.SH "Detailed Description"
 .PP 
-.SS "#define \fBHWLOC_API_VERSION\fP   0x00010400"
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define HWLOC_API_VERSION   0x00010500"
+
 .PP
 Indicate at build time which hwloc API version is being used\&. 
 .SH "Function Documentation"
 .PP 
-.SS " unsigned \fBhwloc_get_api_version\fP (void)"
+.SS " unsigned hwloc_get_api_version (void)"
+
 .PP
 Indicate at runtime which hwloc API version was used at build time\&. 
 .SH "Author"

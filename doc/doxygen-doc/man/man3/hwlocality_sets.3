@@ -1,4 +1,4 @@
-.TH "Object sets (hwloc_cpuset_t and hwloc_nodeset_t)" 3 "Mon Feb 27 2012" "Version 1.4.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Object sets (hwloc_cpuset_t and hwloc_nodeset_t)" 3 "Mon Jul 30 2012" "Version 1.5" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -27,15 +27,19 @@ The rationale for having two different types is that even though the actions one
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef \fBhwloc_const_bitmap_t\fP \fBhwloc_const_cpuset_t\fP"
+
 .PP
 A non-modifiable \fBhwloc_cpuset_t\fP\&. 
 .SS "typedef \fBhwloc_const_bitmap_t\fP \fBhwloc_const_nodeset_t\fP"
+
 .PP
 A non-modifiable \fBhwloc_nodeset_t\fP\&. 
 .SS "typedef \fBhwloc_bitmap_t\fP \fBhwloc_cpuset_t\fP"
+
 .PP
 A CPU set is a bitmap whose bits are set according to CPU physical OS indexes\&. It may be consulted and modified with the bitmap API as any \fBhwloc_bitmap_t\fP (see \fBhwloc/bitmap\&.h\fP)\&. 
 .SS "typedef \fBhwloc_bitmap_t\fP \fBhwloc_nodeset_t\fP"
+
 .PP
 A node set is a bitmap whose bits are set according to NUMA memory node physical OS indexes\&. It may be consulted and modified with the bitmap API as any \fBhwloc_bitmap_t\fP (see \fBhwloc/bitmap\&.h\fP)\&.
 .PP

@@ -22,32 +22,18 @@ confflags=--prefix=/usr --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) --mandir=
 configure: configure.ac config/hwloc.m4
 	autoconf
 
-obj-x/config.status: configure
+config.status: configure
 	dh_testdir
 
-	mkdir -p obj-x
-	cd obj-x && ../configure $(CROSS) $(confflags)
+	./configure $(CROSS) $(confflags)
 
-obj-nox/config.status: configure
+
+build: build-stamp debian/libhwloc5.links
+build-stamp: config.status
 	dh_testdir
 
-	mkdir -p obj-nox
-	cd obj-nox && ../configure $(CROSS) $(confflags) --disable-cairo
-
-
-build: build-stamp-x build-stamp-nox debian/libhwloc5.links
-build-stamp-x: obj-x/config.status
-	dh_testdir
-
-	cd obj-x && $(MAKE)
-
-	touch $@
-
-build-stamp-nox: obj-nox/config.status
-	dh_testdir
-
-	cd obj-nox && $(MAKE)
-	-cd obj-nox && $(MAKE) check
+	$(MAKE)
+	-$(MAKE) check
 
 	touch $@
 
@@ -57,11 +43,10 @@ debian/libhwloc5.links: debian/libhwloc5.links.in
 clean: 
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp-x
-	rm -f build-stamp-nox
+	rm -f build-stamp
 	rm -f debian/libhwloc5.links
 
-	rm -fr obj-x obj-nox
+	-$(MAKE) distclean
 	rm -f config.sub config.guess
 	rm -f configure
 
@@ -73,7 +58,7 @@ install: build
 	dh_prep  
 	dh_installdirs
 
-	cd obj-x && $(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
+	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
 
 binary-indep: export DH_OPTIONS=-i
 binary-indep: install

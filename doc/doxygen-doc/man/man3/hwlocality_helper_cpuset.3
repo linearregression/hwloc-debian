@@ -1,4 +1,4 @@
-.TH "Cpuset Helpers" 3 "Mon Feb 27 2012" "Version 1.4.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Cpuset Helpers" 3 "Mon Jul 30 2012" "Version 1.5" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -27,9 +27,13 @@ Cpuset Helpers \-
 \fBhwloc_const_cpuset_t\fP \fBhwloc_topology_get_allowed_cpuset\fP (\fBhwloc_topology_t\fP topology) "
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+
 .SH "Function Documentation"
 .PP 
-.SS "static inline \fBhwloc_const_cpuset_t\fP \fBhwloc_topology_get_allowed_cpuset\fP (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
+.SS "static inline \fBhwloc_const_cpuset_t\fP hwloc_topology_get_allowed_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
+
 .PP
 Get allowed CPU set\&. \fBReturns:\fP
 .RS 4
@@ -42,7 +46,8 @@ The returned cpuset is not newly allocated and should thus not be changed or fre
 .RE
 .PP
 
-.SS "static inline \fBhwloc_const_cpuset_t\fP \fBhwloc_topology_get_complete_cpuset\fP (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
+.SS "static inline \fBhwloc_const_cpuset_t\fP hwloc_topology_get_complete_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
+
 .PP
 Get complete CPU set\&. \fBReturns:\fP
 .RS 4
@@ -55,7 +60,8 @@ The returned cpuset is not newly allocated and should thus not be changed or fre
 .RE
 .PP
 
-.SS "static inline \fBhwloc_const_cpuset_t\fP \fBhwloc_topology_get_online_cpuset\fP (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
+.SS "static inline \fBhwloc_const_cpuset_t\fP hwloc_topology_get_online_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
+
 .PP
 Get online CPU set\&. \fBReturns:\fP
 .RS 4
@@ -68,7 +74,8 @@ The returned cpuset is not newly allocated and should thus not be changed or fre
 .RE
 .PP
 
-.SS "static inline \fBhwloc_const_cpuset_t\fP \fBhwloc_topology_get_topology_cpuset\fP (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
+.SS "static inline \fBhwloc_const_cpuset_t\fP hwloc_topology_get_topology_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
+
 .PP
 Get topology CPU set\&. \fBReturns:\fP
 .RS 4

@@ -1,4 +1,4 @@
-.TH "Topology Object Types" 3 "Mon Feb 27 2012" "Version 1.4.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Object Types" 3 "Mon Jul 30 2012" "Version 1.5" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -6,6 +6,9 @@ Topology Object Types \-
 .SS "Typedefs"
 
 .in +1c
+.ti -1c
+.RI "typedef enum \fBhwloc_obj_cache_type_e\fP \fBhwloc_obj_cache_type_t\fP"
+.br
 .ti -1c
 .RI "typedef enum 
 .br
@@ -20,6 +23,9 @@ Topology Object Types \-
 .in +1c
 .ti -1c
 .RI "enum \fBhwloc_obj_type_t\fP { \fBHWLOC_OBJ_SYSTEM\fP, \fBHWLOC_OBJ_MACHINE\fP, \fBHWLOC_OBJ_NODE\fP, \fBHWLOC_OBJ_SOCKET\fP, \fBHWLOC_OBJ_CACHE\fP, \fBHWLOC_OBJ_CORE\fP, \fBHWLOC_OBJ_PU\fP, \fBHWLOC_OBJ_GROUP\fP, \fBHWLOC_OBJ_MISC\fP, \fBHWLOC_OBJ_BRIDGE\fP, \fBHWLOC_OBJ_PCI_DEVICE\fP, \fBHWLOC_OBJ_OS_DEVICE\fP, \fBHWLOC_OBJ_TYPE_MAX\fP }"
+.br
+.ti -1c
+.RI "enum \fBhwloc_obj_cache_type_e\fP { \fBHWLOC_OBJ_CACHE_UNIFIED\fP, \fBHWLOC_OBJ_CACHE_DATA\fP, \fBHWLOC_OBJ_CACHE_INSTRUCTION\fP }"
 .br
 .ti -1c
 .RI "enum \fBhwloc_obj_bridge_type_e\fP { \fBHWLOC_OBJ_BRIDGE_HOST\fP, \fBHWLOC_OBJ_BRIDGE_PCI\fP }"
@@ -38,17 +44,27 @@ Topology Object Types \-
 .RI " int \fBhwloc_compare_types\fP (\fBhwloc_obj_type_t\fP type1, \fBhwloc_obj_type_t\fP type2) "
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef enum \fBhwloc_obj_bridge_type_e\fP  \fBhwloc_obj_bridge_type_t\fP"
+
 .PP
 Type of one side (upstream or downstream) of an I/O bridge\&. 
+.SS "typedef enum \fBhwloc_obj_cache_type_e\fP  \fBhwloc_obj_cache_type_t\fP"
+
+.PP
+Cache type\&. 
 .SS "typedef enum \fBhwloc_obj_osdev_type_e\fP  \fBhwloc_obj_osdev_type_t\fP"
+
 .PP
 Type of a OS device\&. 
 .SH "Enumeration Type Documentation"
 .PP 
 .SS "enum \fBhwloc_compare_types_e\fP"
+
 .PP
 \fBEnumerator: \fP
 .in +1c
@@ -56,6 +72,7 @@ Type of a OS device\&.
 \fB\fIHWLOC_TYPE_UNORDERED \fP\fP
 Value returned by hwloc_compare_types when types can not be compared\&. 
 .SS "enum \fBhwloc_obj_bridge_type_e\fP"
+
 .PP
 Type of one side (upstream or downstream) of an I/O bridge\&. 
 .PP
@@ -67,7 +84,24 @@ Host-side of a bridge, only possible upstream\&.
 .TP
 \fB\fIHWLOC_OBJ_BRIDGE_PCI \fP\fP
 PCI-side of a bridge\&. 
+.SS "enum \fBhwloc_obj_cache_type_e\fP"
+
+.PP
+Cache type\&. 
+.PP
+\fBEnumerator: \fP
+.in +1c
+.TP
+\fB\fIHWLOC_OBJ_CACHE_UNIFIED \fP\fP
+Unified cache\&. 
+.TP
+\fB\fIHWLOC_OBJ_CACHE_DATA \fP\fP
+Data cache\&. 
+.TP
+\fB\fIHWLOC_OBJ_CACHE_INSTRUCTION \fP\fP
+Instruction cache\&. Only used when the HWLOC_TOPOLOGY_FLAG_ICACHES topology flag is set\&. 
 .SS "enum \fBhwloc_obj_osdev_type_e\fP"
+
 .PP
 Type of a OS device\&. 
 .PP
@@ -89,6 +123,7 @@ Operating system openfabrics device\&. For instance the 'mlx4_0' InfiniBand HCA 
 \fB\fIHWLOC_OBJ_OSDEV_DMA \fP\fP
 Operating system dma engine device\&. For instance the 'dma0chan0' DMA channel on Linux\&. 
 .SS "enum \fBhwloc_obj_type_t\fP"
+
 .PP
 Type of topology object\&. \fBNote:\fP
 .RS 4
@@ -113,7 +148,7 @@ NUMA node\&. A set of processors around memory which the processors can directly
 Socket, physical package, or chip\&. In the physical meaning, i\&.e\&. that you can add or remove physically\&. 
 .TP
 \fB\fIHWLOC_OBJ_CACHE \fP\fP
-Data cache\&. Can be L1, L2, L3, \&.\&.\&. 
+Cache\&. Can be L1i, L1d, L2, L3, \&.\&.\&. 
 .TP
 \fB\fIHWLOC_OBJ_CORE \fP\fP
 Core\&. A computation unit (may be shared by several logical processors)\&. 
@@ -140,7 +175,8 @@ Operating system device\&. These objects have neither CPU sets nor node sets\&. 
 Sentinel value 
 .SH "Function Documentation"
 .PP 
-.SS " int \fBhwloc_compare_types\fP (\fBhwloc_obj_type_t\fPtype1, \fBhwloc_obj_type_t\fPtype2) const"
+.SS " int hwloc_compare_types (\fBhwloc_obj_type_t\fPtype1, \fBhwloc_obj_type_t\fPtype2) const"
+
 .PP
 Compare the depth of two object types\&. Types shouldn't be compared as they are, since newer ones may be added in the future\&. This function returns less than, equal to, or greater than zero respectively if \fCtype1\fP objects usually include \fCtype2\fP objects, are the same as \fCtype2\fP objects, or are included in \fCtype2\fP objects\&. If the types can not be compared (because neither is usually contained in the other), HWLOC_TYPE_UNORDERED is returned\&. Object types containing CPUs can always be compared (usually, a system contains machines which contain nodes which contain sockets which contain caches, which contain cores, which contain processors)\&.
 .PP

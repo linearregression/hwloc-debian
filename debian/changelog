@@ -1,3 +1,11 @@
+hwloc (1.6-1) experimental; urgency=low
+
+  * New upstream release.
+  * rules: Do not ignore all make distclean errors, only ignore Makefile not
+    being present.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 03 Dec 2012 20:28:04 +0100
+
 hwloc (1.5-1) experimental; urgency=low
 
   * New upstream release.

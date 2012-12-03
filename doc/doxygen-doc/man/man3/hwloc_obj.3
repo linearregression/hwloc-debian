@@ -1,4 +1,4 @@
-.TH "hwloc_obj" 3 "Mon Jul 30 2012" "Version 1.5" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj" 3 "Mon Dec 3 2012" "Version 1.6" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -286,7 +286,7 @@ Index in parent's \fCchildren\fP[] array\&.
 .SS "int hwloc_obj::symmetric_subtree"
 
 .PP
-Set if the subtree of objects below this object is symmetric, which means all children and their children have identical subtrees\&. 
+Set if the subtree of objects below this object is symmetric, which means all children and their children have identical subtrees\&. If set in the topology root object, lstopo may export the topology as a synthetic string\&. 
 .SS "\fBhwloc_obj_type_t\fP hwloc_obj::type"
 
 .PP
@@ -294,7 +294,7 @@ Type of object\&.
 .SS "void* hwloc_obj::userdata"
 
 .PP
-Application-given private data pointer, initialized to \fCNULL\fP, use it as you wish\&. 
+Application-given private data pointer, initialized to \fCNULL\fP, use it as you wish\&. See \fBhwloc_topology_set_userdata_export_callback()\fP if you wish to export this field to XML\&. 
 
 .SH "Author"
 .PP 

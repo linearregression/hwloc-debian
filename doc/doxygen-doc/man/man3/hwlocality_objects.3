@@ -1,4 +1,4 @@
-.TH "Topology Objects" 3 "Mon Jul 30 2012" "Version 1.5" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Objects" 3 "Mon Dec 3 2012" "Version 1.6" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -11,6 +11,10 @@ Topology Objects \-
 .br
 .RI "\fIObject memory\&. \fP"
 .ti -1c
+.RI "struct \fBhwloc_obj_memory_s::hwloc_obj_memory_page_type_s\fP"
+.br
+.RI "\fIArray of local memory page types, \fCNULL\fP if no local memory and \fCpage_types\fP is 0\&. \fP"
+.ti -1c
 .RI "struct \fBhwloc_obj\fP"
 .br
 .RI "\fIStructure of a topology object\&. \fP"
@@ -18,6 +22,26 @@ Topology Objects \-
 .RI "union \fBhwloc_obj_attr_u\fP"
 .br
 .RI "\fIObject type-specific Attributes\&. \fP"
+.ti -1c
+.RI "struct \fBhwloc_obj_attr_u::hwloc_bridge_attr_s\fP"
+.br
+.RI "\fIBridge specific Object Attribues\&. \fP"
+.ti -1c
+.RI "struct \fBhwloc_obj_attr_u::hwloc_cache_attr_s\fP"
+.br
+.RI "\fICache-specific Object Attributes\&. \fP"
+.ti -1c
+.RI "struct \fBhwloc_obj_attr_u::hwloc_group_attr_s\fP"
+.br
+.RI "\fIGroup-specific Object Attributes\&. \fP"
+.ti -1c
+.RI "struct \fBhwloc_obj_attr_u::hwloc_osdev_attr_s\fP"
+.br
+.RI "\fIOS Device specific Object Attributes\&. \fP"
+.ti -1c
+.RI "struct \fBhwloc_obj_attr_u::hwloc_pcidev_attr_s\fP"
+.br
+.RI "\fIPCI Device specific Object Attributes\&. \fP"
 .ti -1c
 .RI "struct \fBhwloc_distances_s\fP"
 .br

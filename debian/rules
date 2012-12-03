@@ -46,7 +46,7 @@ clean:
 	rm -f build-stamp
 	rm -f debian/libhwloc5.links
 
-	-$(MAKE) distclean
+	[ ! -f Makefile ] || $(MAKE) distclean
 	rm -f config.sub config.guess
 	rm -f configure
 

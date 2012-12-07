@@ -1,7 +1,7 @@
 Source: hwloc
 Priority: extra
 Maintainer: Samuel Thibault <sthibault@debian.org>
-Build-Depends: debhelper (>= 7), autotools-dev, help2man, cdbs,
+Build-Depends: debhelper (>= 7), autotools-dev, help2man, cdbs, libltdl-dev,
   libcairo2-dev, libx11-dev, libxml2-dev, libxml2-utils, libncurses5-dev,
   libnuma-dev [amd64 i386 ia64 mips mipsel powerpc],
   libpci-dev,
@@ -87,6 +87,7 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: multiarch-support
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: libhwloc-plugins
 Provides: libhwloc0, libhwloc1, libhwloc2, libhwloc3, libhwloc4
 Replaces: libhwloc0, libhwloc1, libhwloc2, libhwloc3, libhwloc4
 Conflicts: libhwloc0, libhwloc1, libhwloc2, libhwloc3, libhwloc4
@@ -105,6 +106,27 @@ Description: Hierarchical view of the machine - shared libs
  with knowledge of cpusets, offline cpus, and Kerrighed support
  .
  This package contains shared libraries.
+
+Package: libhwloc-plugins
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Hierarchical view of the machine - plugins
+ libhwloc provides a portable abstraction (across OS, versions,
+ architectures, ...) of the hierarchical topology of modern architectures. It
+ primarily aims at helping high-performance computing applications with
+ gathering information about the hardware so as to exploit it accordingly and
+ efficiently.
+ .
+ libhwloc provides a hierarchical view of the machine, NUMA memory nodes,
+ sockets, shared caches, cores and simultaneous multithreading. It also gathers
+ various attributes such as cache and memory information.
+ .
+ libhwloc supports old kernels not having sysfs topology information,
+ with knowledge of cpusets, offline cpus, and Kerrighed support
+ .
+ This package contains plugins to add more discovery support. This includes
+  - PCI support
+  - libxml support
 
 Package: libhwloc-common
 Architecture: all

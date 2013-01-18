@@ -101,16 +101,20 @@ shell$ make install
 The hwloc command-line tool "lstopo" produces human-readable topology maps, as
 mentioned above. It can also export maps to the "fig" file format. Support for
 PDF, Postscript, and PNG exporting is provided if the "Cairo" development
-package can be found in "lstopo" when hwloc is configured and build.
+package (usually cairo-devel or libcairo2-dev) can be found in "lstopo" when
+hwloc is configured and build.
 
 The hwloc core may also benefit from the following development packages:
 
-  * pciutils (libpci) for I/O discovery.
-  * libnuma for memory binding and migration support on Linux.
+  * pciutils (libpci) for I/O discovery. The relevant development package is
+ usually pciutils-devel or libpci-dev.
+  * libnuma for memory binding and migration support on Linux (numactl-devel or
+ libnuma-dev package).
   * libxml2 for full XML import/export support (otherwise, the internal
  minimalistic parser will only be able to import XML files that were
  exported by the same hwloc release). See Importing and exporting topologies
- from/to XML files for details.
+ from/to XML files for details. The relevant development package is usually
+ libxml2-devel or libxml2-dev.
 
 libpci and libxml2 support may be statically built inside the main hwloc
 library, or as separate dynamically-loaded plugins (see the Components and
@@ -682,5 +686,5 @@ Make sure to have had a look at those too!
 
 -------------------------------------------------------------------------------
 
-Generated on Mon Dec 3 2012 03:22:49 for Hardware Locality (hwloc) by   doxygen
-1.8.2
+Generated on Thu Jan 17 2013 22:35:29 for Hardware Locality (hwloc) by   
+doxygen 1.8.2

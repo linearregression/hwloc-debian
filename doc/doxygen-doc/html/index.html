@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.6</span>
+   &#160;<span id="projectnumber">1.6.1</span>
    </div>
   </td>
  </tr>
@@ -102,15 +102,15 @@ shell$ ./autogen.sh
 <pre class="fragment">shell$ ./configure --prefix=...
 shell$ make
 shell$ make install
-</pre><p>The hwloc command-line tool "lstopo" produces human-readable topology maps, as mentioned above. It can also export maps to the "fig" file format. Support for PDF, Postscript, and PNG exporting is provided if the "Cairo" development package can be found in "lstopo" when hwloc is configured and build.</p>
+</pre><p>The hwloc command-line tool "lstopo" produces human-readable topology maps, as mentioned above. It can also export maps to the "fig" file format. Support for PDF, Postscript, and PNG exporting is provided if the "Cairo" development package (usually <code>cairo-devel</code> or <code>libcairo2-dev</code>) can be found in "lstopo" when hwloc is configured and build.</p>
 <p>The hwloc core may also benefit from the following development packages: </p>
 <ul>
 <li>
-pciutils (libpci) for I/O discovery. </li>
+pciutils (libpci) for I/O discovery. The relevant development package is usually <code>pciutils-devel</code> or <code>libpci-dev</code>.  </li>
 <li>
-libnuma for memory binding and migration support on Linux. </li>
+libnuma for memory binding and migration support on Linux (<code>numactl-devel</code> or <code>libnuma-dev</code> package).  </li>
 <li>
-libxml2 for full XML import/export support (otherwise, the internal minimalistic parser will only be able to import XML files that were exported by the same hwloc release). See <a class="el" href="a00008.html#xml">Importing and exporting topologies from/to XML files</a> for details. </li>
+libxml2 for full XML import/export support (otherwise, the internal minimalistic parser will only be able to import XML files that were exported by the same hwloc release). See <a class="el" href="a00008.html#xml">Importing and exporting topologies from/to XML files</a> for details. The relevant development package is usually <code>libxml2-devel</code> or <code>libxml2-dev</code>.  </li>
 </ul>
 <p>libpci and libxml2 support may be statically built inside the main hwloc library, or as separate dynamically-loaded plugins (see the <a class="el" href="a00012.html#plugins">Components and plugins</a> section).</p>
  
@@ -589,7 +589,7 @@ Further Reading</h1>
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 3 2012 03:22:49 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 17 2013 22:35:29 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

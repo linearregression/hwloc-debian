@@ -1,5 +1,5 @@
 /*
- * Copyright © 2009-2012 Inria.  All rights reserved.
+ * Copyright © 2009-2013 Inria.  All rights reserved.
  * Copyright © 2012 Université Bordeau 1
  * See COPYING in top-level directory.
  */
@@ -355,7 +355,7 @@ hwloc_disc_component_try_enable(struct hwloc_topology *topology,
   int err;
 
   if ((*excludes) & comp->type) {
-    if (hwloc_components_verbose)
+    if (hwloc_components_verbose || verbose_errors)
       fprintf(stderr, "Excluding %s component `%s', conflicts with excludes 0x%x\n",
 	      hwloc_disc_component_type_string(comp->type), comp->name, *excludes);
     return -1;
@@ -382,14 +382,16 @@ void
 hwloc_disc_components_enable_others(struct hwloc_topology *topology)
 {
   struct hwloc_disc_component *comp;
+  struct hwloc_backend *backend;
   unsigned excludes = 0;
   int tryall = 1;
   char *env;
 
-  /* we have either no backends, or a single one, use its exclude */
-  if (topology->backends) {
-    excludes = topology->backends->component->excludes;
-    assert(!topology->backends->next);
+  /* compute current excludes */
+  backend = topology->backends;
+  while (backend) {
+    excludes |= backend->component->excludes;
+    backend = backend->next;
   }
 
   env = getenv("HWLOC_COMPONENTS");
@@ -418,7 +420,7 @@ hwloc_disc_components_enable_others(struct hwloc_topology *topology)
 
 	comp = hwloc_disc_component_find(-1, env);
 	if (comp) {
-	  hwloc_disc_component_try_enable(topology, comp, arg, &excludes, 1 /* envvar forced */, 1 /* envvar forced need warnings on conflicts */);
+	  hwloc_disc_component_try_enable(topology, comp, arg, &excludes, 1 /* envvar forced */, 1 /* envvar forced need warnings */);
 	} else {
 	  fprintf(stderr, "Cannot find component `%s'\n", env);
 	}
@@ -625,6 +627,15 @@ hwloc_backends_reset(struct hwloc_topology *topology)
 {
   hwloc_backends_disable_all(topology);
   if (topology->is_loaded) {
+    static int deprecated_warning = 0;
+    if (!deprecated_warning) {
+      if (!getenv("HWLOC_HIDE_DEPRECATED")) {
+	fprintf(stderr, "*** Modifying an already-loaded topology.\n");
+	fprintf(stderr, "*** This non-documented behavior will not be supported in future releases.\n");
+	fprintf(stderr, "*** Set HWLOC_HIDE_DEPRECATED in the environment to hide this message.\n");
+      }
+      deprecated_warning = 1;
+    }
     hwloc_topology_clear(topology);
     hwloc_distances_destroy(topology);
     hwloc_topology_setup_defaults(topology);

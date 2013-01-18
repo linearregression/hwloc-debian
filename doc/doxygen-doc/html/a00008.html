@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.6</span>
+   &#160;<span id="projectnumber">1.6.1</span>
    </div>
   </td>
  </tr>
@@ -49,7 +49,7 @@ XML topology files are not localized. They use a dot as a decimal separator. The
 <h1><a class="anchor" id="xml_backends"></a>
 libxml2 and minimalistic XML backends</h1>
 <p>hwloc offers two backends for importing/exporting XML.</p>
-<p>First, it can use the libxml2 library for importing/exporting XML files. It features full XML support, for instance when those files have to be manipulated by non-hwloc software (e.g. a XSLT parser). The libxml2 backend is enabled by default if libxml2 development headers are available.</p>
+<p>First, it can use the libxml2 library for importing/exporting XML files. It features full XML support, for instance when those files have to be manipulated by non-hwloc software (e.g. a XSLT parser). The libxml2 backend is enabled by default if libxml2 development headers are available (the relevant development package is usually <code>libxml2-devel</code> or <code>libxml2-dev</code>).</p>
 <p>If libxml2 is not available at configure time, or if <code>&ndash;disable-libxml2</code> is passed, hwloc falls back to a custom backend. Contrary to the aforementioned full XML backend with libxml2, this minimalistic XML backend cannot be guaranteed to work with external programs. It should only be assumed to be compatible with the same hwloc release (even if using the libxml2 backend). Its advantage is however to always be available without requiring any external dependency.</p>
 <p>If libxml2 is available but the core hwloc library should not directly depend on it, the libxml2 support may be built as a dynamicall-loaded plugin. One should pass <code>&ndash;enable-plugins</code> to enable plugin support (when supported) and build as plugins all component that support it. Or pass <code>&ndash;enable-plugins=xml_libxml</code> to only build this libxml2 support as a plugin.</p>
 <h1><a class="anchor" id="xml_errors"></a>
@@ -60,7 +60,7 @@ XML import error management</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 3 2012 03:22:49 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 17 2013 22:35:28 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

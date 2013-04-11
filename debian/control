@@ -4,7 +4,7 @@ Maintainer: Samuel Thibault <sthibault@debian.org>
 Build-Depends: debhelper (>= 7), autotools-dev, help2man, cdbs, libltdl-dev,
   libcairo2-dev, libx11-dev, libxml2-dev, libxml2-utils, libncurses5-dev,
   libnuma-dev [amd64 i386 ia64 mips mipsel powerpc],
-  libpci-dev,
+  libpciaccess-dev,
   libibverbs-dev [linux-any],
   autoconf (>= 2.63),
   dpkg-dev (>= 1.16),

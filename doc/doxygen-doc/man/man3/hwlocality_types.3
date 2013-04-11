@@ -1,4 +1,4 @@
-.TH "Topology Object Types" 3 "Thu Jan 17 2013" "Version 1.6.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Object Types" 3 "Sun Apr 7 2013" "Version 1.7" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -31,7 +31,7 @@ Topology Object Types \-
 .RI "enum \fBhwloc_obj_bridge_type_e\fP { \fBHWLOC_OBJ_BRIDGE_HOST\fP, \fBHWLOC_OBJ_BRIDGE_PCI\fP }"
 .br
 .ti -1c
-.RI "enum \fBhwloc_obj_osdev_type_e\fP { \fBHWLOC_OBJ_OSDEV_BLOCK\fP, \fBHWLOC_OBJ_OSDEV_GPU\fP, \fBHWLOC_OBJ_OSDEV_NETWORK\fP, \fBHWLOC_OBJ_OSDEV_OPENFABRICS\fP, \fBHWLOC_OBJ_OSDEV_DMA\fP }"
+.RI "enum \fBhwloc_obj_osdev_type_e\fP { \fBHWLOC_OBJ_OSDEV_BLOCK\fP, \fBHWLOC_OBJ_OSDEV_GPU\fP, \fBHWLOC_OBJ_OSDEV_NETWORK\fP, \fBHWLOC_OBJ_OSDEV_OPENFABRICS\fP, \fBHWLOC_OBJ_OSDEV_DMA\fP, \fBHWLOC_OBJ_OSDEV_COPROC\fP }"
 .br
 .ti -1c
 .RI "enum \fBhwloc_compare_types_e\fP { \fBHWLOC_TYPE_UNORDERED\fP }"
@@ -66,7 +66,7 @@ Type of a OS device\&.
 .SS "enum \fBhwloc_compare_types_e\fP"
 
 .PP
-\fBEnumerator: \fP
+\fBEnumerator\fP
 .in +1c
 .TP
 \fB\fIHWLOC_TYPE_UNORDERED \fP\fP
@@ -76,7 +76,7 @@ Value returned by hwloc_compare_types when types can not be compared\&.
 .PP
 Type of one side (upstream or downstream) of an I/O bridge\&. 
 .PP
-\fBEnumerator: \fP
+\fBEnumerator\fP
 .in +1c
 .TP
 \fB\fIHWLOC_OBJ_BRIDGE_HOST \fP\fP
@@ -89,7 +89,7 @@ PCI-side of a bridge\&.
 .PP
 Cache type\&. 
 .PP
-\fBEnumerator: \fP
+\fBEnumerator\fP
 .in +1c
 .TP
 \fB\fIHWLOC_OBJ_CACHE_UNIFIED \fP\fP
@@ -105,14 +105,14 @@ Instruction cache\&. Only used when the HWLOC_TOPOLOGY_FLAG_ICACHES topology fla
 .PP
 Type of a OS device\&. 
 .PP
-\fBEnumerator: \fP
+\fBEnumerator\fP
 .in +1c
 .TP
 \fB\fIHWLOC_OBJ_OSDEV_BLOCK \fP\fP
 Operating system block device\&. For instance 'sda' on Linux\&. 
 .TP
 \fB\fIHWLOC_OBJ_OSDEV_GPU \fP\fP
-Operating system GPU device\&. For instance the 'card0' DRM device on Linux\&. 
+Operating system GPU device\&. For instance ':0\&.0' for a GL display, 'card0' for a Linux DRM device\&. 
 .TP
 \fB\fIHWLOC_OBJ_OSDEV_NETWORK \fP\fP
 Operating system network device\&. For instance the 'eth0' interface on Linux\&. 
@@ -122,6 +122,9 @@ Operating system openfabrics device\&. For instance the 'mlx4_0' InfiniBand HCA 
 .TP
 \fB\fIHWLOC_OBJ_OSDEV_DMA \fP\fP
 Operating system dma engine device\&. For instance the 'dma0chan0' DMA channel on Linux\&. 
+.TP
+\fB\fIHWLOC_OBJ_OSDEV_COPROC \fP\fP
+Operating system co-processor device\&. For instance 'mic0' for a Xeon Phi (MIC) on Linux, 'opencl0d0' for a OpenCL device, 'cuda0' for a CUDA device\&. 
 .SS "enum \fBhwloc_obj_type_t\fP"
 
 .PP
@@ -132,7 +135,7 @@ Do not rely on the ordering or completeness of the values as new ones may be def
 .PP
 
 .PP
-\fBEnumerator: \fP
+\fBEnumerator\fP
 .in +1c
 .TP
 \fB\fIHWLOC_OBJ_SYSTEM \fP\fP

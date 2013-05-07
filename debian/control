@@ -89,6 +89,7 @@ Multi-Arch: same
 Pre-Depends: multiarch-support
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: libhwloc-plugins
+Suggests: libhwloc-contrib-plugins
 Provides: libhwloc0, libhwloc1, libhwloc2, libhwloc3, libhwloc4
 Replaces: libhwloc0, libhwloc1, libhwloc2, libhwloc3, libhwloc4
 Conflicts: libhwloc0, libhwloc1, libhwloc2, libhwloc3, libhwloc4
@@ -110,7 +111,7 @@ Description: Hierarchical view of the machine - shared libs
 
 Package: libhwloc-plugins
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, libhwloc5
 Description: Hierarchical view of the machine - plugins
  libhwloc provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It

@@ -1,3 +1,12 @@
+hwloc (1.7-3) unstable; urgency=low
+
+  * Do not symlink lstopo into hwloc-info any more.
+  * control: explicitly build-depend on pkg-config for PCI support.
+  * patches/cpuset_ABI: Restore cpuset functions which were dropped without
+    soname bump. Closes: #707452.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 14 May 2013 12:04:12 +0200
+
 hwloc (1.7-2) unstable; urgency=low
 
   * Upload to unstable.

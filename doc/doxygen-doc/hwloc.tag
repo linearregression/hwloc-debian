@@ -129,6 +129,7 @@
     <docanchor file="a00014" title="Why does Valgrind complain about hwloc memory leaks?">faq_valgrind</docanchor>
     <docanchor file="a00014" title="How do I handle API upgrades?">faq_upgrade</docanchor>
     <docanchor file="a00014" title="How do I build hwloc for BlueGene/Q?">faq_bgq</docanchor>
+    <docanchor file="a00014" title="How to get useful topology information on NetBSD?">faq_netbsd_bind</docanchor>
   </compound>
   <compound kind="group">
     <name>hwlocality_api_version</name>
@@ -1840,8 +1841,8 @@
       <type>static __hwloc_inline void</type>
       <name>hwloc_distribute</name>
       <anchorfile>a00071.html</anchorfile>
-      <anchor>ga6d5c88292ad5aa062c1bebc99369c042</anchor>
-      <arglist>(hwloc_topology_t topology, hwloc_obj_t root, hwloc_cpuset_t *cpuset, unsigned n, unsigned until)</arglist>
+      <anchor>ga0b274e6d12a5c199137bd81ab37855f2</anchor>
+      <arglist>(hwloc_topology_t topology, hwloc_obj_t root, hwloc_cpuset_t *set, unsigned n, unsigned until)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline void *</type>
@@ -1854,8 +1855,8 @@
       <type>static __hwloc_inline void *</type>
       <name>hwloc_alloc_membind_policy</name>
       <anchorfile>a00071.html</anchorfile>
-      <anchor>ga6178c6a9ec1dd88ec9f6a9fcdcc7d634</anchor>
-      <arglist>(hwloc_topology_t topology, size_t len, hwloc_const_cpuset_t cpuset, hwloc_membind_policy_t policy, int flags)</arglist>
+      <anchor>ga59e84f7c1b468258e858235e2c34f936</anchor>
+      <arglist>(hwloc_topology_t topology, size_t len, hwloc_const_cpuset_t set, hwloc_membind_policy_t policy, int flags)</arglist>
     </member>
   </compound>
   <compound kind="group">
@@ -1925,29 +1926,29 @@
       <type>static __hwloc_inline void</type>
       <name>hwloc_cpuset_to_nodeset</name>
       <anchorfile>a00074.html</anchorfile>
-      <anchor>ga60ecc4ae480c28b5fbd34aca4fc37daa</anchor>
-      <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset, hwloc_nodeset_t nodeset)</arglist>
+      <anchor>ga2ebf84c6c3469626a3716854bc5a7396</anchor>
+      <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t _cpuset, hwloc_nodeset_t nodeset)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline void</type>
       <name>hwloc_cpuset_to_nodeset_strict</name>
       <anchorfile>a00074.html</anchorfile>
-      <anchor>ga9162785e39d7c697f76f99524c4a2fb4</anchor>
-      <arglist>(struct hwloc_topology *topology, hwloc_const_cpuset_t cpuset, hwloc_nodeset_t nodeset)</arglist>
+      <anchor>gad0752bad15b76ecce4b1ea2faacacc31</anchor>
+      <arglist>(struct hwloc_topology *topology, hwloc_const_cpuset_t _cpuset, hwloc_nodeset_t nodeset)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline void</type>
       <name>hwloc_cpuset_from_nodeset</name>
       <anchorfile>a00074.html</anchorfile>
-      <anchor>gaa677fd588304b5615de4ea78104adfb5</anchor>
-      <arglist>(hwloc_topology_t topology, hwloc_cpuset_t cpuset, hwloc_const_nodeset_t nodeset)</arglist>
+      <anchor>ga24a1861482add2e8e6d6f787f1f8a2d4</anchor>
+      <arglist>(hwloc_topology_t topology, hwloc_cpuset_t _cpuset, hwloc_const_nodeset_t nodeset)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline void</type>
       <name>hwloc_cpuset_from_nodeset_strict</name>
       <anchorfile>a00074.html</anchorfile>
-      <anchor>gaa7c3f39802b00a758c58e024a8119979</anchor>
-      <arglist>(struct hwloc_topology *topology, hwloc_cpuset_t cpuset, hwloc_const_nodeset_t nodeset)</arglist>
+      <anchor>gaf4cf4f965f174babea7ba1c6db0330fb</anchor>
+      <arglist>(struct hwloc_topology *topology, hwloc_cpuset_t _cpuset, hwloc_const_nodeset_t nodeset)</arglist>
     </member>
   </compound>
   <compound kind="group">

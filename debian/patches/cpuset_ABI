@@ -166,8 +166,8 @@ reverted:
 +#endif
 +
  #include <private/autogen/config.h>
- #include <private/misc.h>
- #include <private/private.h>
+ #include <hwloc/autogen/config.h>
+ #include <hwloc.h>
 @@ -1159,3 +1167,101 @@ int hwloc_bitmap_weight(const struct hwl
  		weight += hwloc_weight_long(set->ulongs[i]);
  	return weight;

@@ -60,6 +60,9 @@ install: build
 
 	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
 
+	mkdir -p $(CURDIR)/debian/tmp/usr/include/$(DEB_HOST_MULTIARCH)/hwloc/autogen
+	mv $(CURDIR)/debian/tmp/usr/include/hwloc/autogen/config.h $(CURDIR)/debian/tmp/usr/include/$(DEB_HOST_MULTIARCH)/hwloc/autogen/
+
 binary-indep: export DH_OPTIONS=-i
 binary-indep: install
 	dh_testdir

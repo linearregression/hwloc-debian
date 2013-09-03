@@ -1,4 +1,4 @@
-.TH "Nodeset Helpers" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Nodeset Helpers" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,9 @@ Nodeset Helpers \-
 .SS "static inline \fBhwloc_const_nodeset_t\fP hwloc_topology_get_allowed_nodeset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 
 .PP
-Get allowed node set\&. \fBReturns:\fP
+Get allowed node set\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the node set of allowed memory of the system\&. If the topology is the result of a combination of several systems, NULL is returned\&.
 .RE
@@ -44,7 +46,9 @@ The returned nodeset is not newly allocated and should thus not be changed or fr
 .SS "static inline \fBhwloc_const_nodeset_t\fP hwloc_topology_get_complete_nodeset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 
 .PP
-Get complete node set\&. \fBReturns:\fP
+Get complete node set\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the complete node set of memory of the system\&. If the topology is the result of a combination of several systems, NULL is returned\&.
 .RE
@@ -58,7 +62,9 @@ The returned nodeset is not newly allocated and should thus not be changed or fr
 .SS "static inline \fBhwloc_const_nodeset_t\fP hwloc_topology_get_topology_nodeset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 
 .PP
-Get topology node set\&. \fBReturns:\fP
+Get topology node set\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the node set of memory of the system for which hwloc provides topology information\&. This is equivalent to the nodeset of the system object\&. If the topology is the result of a combination of several systems, NULL is returned\&.
 .RE

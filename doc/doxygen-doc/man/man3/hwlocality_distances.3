@@ -1,4 +1,4 @@
-.TH "Distances" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Distances" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Distances \-
 
 .SH "Function Documentation"
 .PP 
-.SS "static inline struct \fBhwloc_distances_s\fP* hwloc_get_distance_matrix_covering_obj_by_depth (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPobj, unsigneddepth, unsigned *firstp)\fC [static]\fP, \fC [read]\fP"
+.SS "static inline struct \fBhwloc_distances_s\fP* hwloc_get_distance_matrix_covering_obj_by_depth (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPobj, unsigneddepth, unsigned *firstp)\fC [static]\fP"
 
 .PP
 Get distances for the given depth and covering some objects\&. Return a distance matrix that describes depth \fCdepth\fP and covers at least object \fCobj\fP and all its children\&.
@@ -53,10 +53,12 @@ Get the latency in both directions between two objects\&. Look at ancestor objec
 .RE
 .PP
 
-.SS "static inline struct \fBhwloc_distances_s\fP* hwloc_get_whole_distance_matrix_by_depth (\fBhwloc_topology_t\fPtopology, unsigneddepth)\fC [static]\fP, \fC [read]\fP"
+.SS "static inline struct \fBhwloc_distances_s\fP* hwloc_get_whole_distance_matrix_by_depth (\fBhwloc_topology_t\fPtopology, unsigneddepth)\fC [static]\fP"
 
 .PP
-Get the distances between all objects at the given depth\&. \fBReturns:\fP
+Get the distances between all objects at the given depth\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 a distances structure containing a matrix with all distances between all objects at the given depth\&.
 .RE
@@ -76,10 +78,12 @@ The returned structure belongs to the hwloc library\&. The caller should not mod
 .RE
 .PP
 
-.SS "static inline struct \fBhwloc_distances_s\fP* hwloc_get_whole_distance_matrix_by_type (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_type_t\fPtype)\fC [static]\fP, \fC [read]\fP"
+.SS "static inline struct \fBhwloc_distances_s\fP* hwloc_get_whole_distance_matrix_by_type (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_type_t\fPtype)\fC [static]\fP"
 
 .PP
-Get the distances between all objects of a given type\&. \fBReturns:\fP
+Get the distances between all objects of a given type\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 a distances structure containing a matrix with all distances between all objects of the given type\&.
 .RE

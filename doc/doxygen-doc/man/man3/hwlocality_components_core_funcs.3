@@ -1,4 +1,4 @@
-.TH "Core functions to be used by components" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Core functions to be used by components" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -45,11 +45,11 @@ Core functions to be used by components \-
 Type of error callbacks during object insertion\&. 
 .SH "Function Documentation"
 .PP 
-.SS " struct \fBhwloc_obj\fP* hwloc__insert_object_by_cpuset (struct hwloc_topology *topology, \fBhwloc_obj_t\fPobj, \fBhwloc_report_error_t\fPreport_error)\fC [read]\fP"
+.SS " struct \fBhwloc_obj\fP* hwloc__insert_object_by_cpuset (struct hwloc_topology *topology, \fBhwloc_obj_t\fPobj, \fBhwloc_report_error_t\fPreport_error)"
 
 .PP
 Add an object to the topology and specify which error callback to use\&. Aside from the error callback selection, this function is identical to \fBhwloc_insert_object_by_cpuset()\fP 
-.SS "static inline struct \fBhwloc_obj\fP* hwloc_alloc_setup_object (\fBhwloc_obj_type_t\fPtype, signedos_index)\fC [static]\fP, \fC [read]\fP"
+.SS "static inline struct \fBhwloc_obj\fP* hwloc_alloc_setup_object (\fBhwloc_obj_type_t\fPtype, signedos_index)\fC [static]\fP"
 
 .PP
 Allocate and initialize an object of the given type and physical index\&. 
@@ -57,7 +57,7 @@ Allocate and initialize an object of the given type and physical index\&.
 
 .PP
 Check whether insertion errors are hidden\&. 
-.SS " struct \fBhwloc_obj\fP* hwloc_insert_object_by_cpuset (struct hwloc_topology *topology, \fBhwloc_obj_t\fPobj)\fC [read]\fP"
+.SS " struct \fBhwloc_obj\fP* hwloc_insert_object_by_cpuset (struct hwloc_topology *topology, \fBhwloc_obj_t\fPobj)"
 
 .PP
 Add an object to the topology\&. It is sorted along the tree of other objects according to the inclusion of cpusets, to eventually be added as a child of the smallest object including this object\&.

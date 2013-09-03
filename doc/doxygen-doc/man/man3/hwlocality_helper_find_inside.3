@@ -1,4 +1,4 @@
-.TH "Finding Objects Inside a CPU set" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Finding Objects Inside a CPU set" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -42,7 +42,9 @@ Finding Objects Inside a CPU set \-
 .SS "static inline \fBhwloc_obj_t\fP hwloc_get_first_largest_obj_inside_cpuset (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPset)\fC [static]\fP"
 
 .PP
-Get the first largest object included in the given cpuset \fCset\fP\&. \fBReturns:\fP
+Get the first largest object included in the given cpuset \fCset\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the first object that is included in \fCset\fP and whose parent is not\&.
 .RE
@@ -58,7 +60,9 @@ This function cannot work if the root object does not have a CPU set, e\&.g\&. i
 .SS " int hwloc_get_largest_objs_inside_cpuset (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPset, \fBhwloc_obj_t\fP *restrictobjs, intmax)"
 
 .PP
-Get the set of largest objects covering exactly a given cpuset \fCset\fP\&. \fBReturns:\fP
+Get the set of largest objects covering exactly a given cpuset \fCset\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the number of objects returned in \fCobjs\fP\&.
 .RE
@@ -72,7 +76,9 @@ This function cannot work if the root object does not have a CPU set, e\&.g\&. i
 .SS "static inline unsigned hwloc_get_nbobjs_inside_cpuset_by_depth (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPset, unsigneddepth)\fC [static]\fP"
 
 .PP
-Return the number of objects at depth \fCdepth\fP included in CPU set \fCset\fP\&. \fBNote:\fP
+Return the number of objects at depth \fCdepth\fP included in CPU set \fCset\fP\&. 
+.PP
+\fBNote:\fP
 .RS 4
 This function cannot work if objects at the given depth do not have CPU sets or if the topology is made of different machines\&. 
 .RE
@@ -118,7 +124,9 @@ Return the logical index among the objects included in CPU set \fCset\fP\&. Cons
 .SS "static inline \fBhwloc_obj_t\fP hwloc_get_obj_inside_cpuset_by_depth (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPset, unsigneddepth, unsignedidx)\fC [static]\fP"
 
 .PP
-Return the (logically) \fCidx\fP -th object at depth \fCdepth\fP included in CPU set \fCset\fP\&. \fBNote:\fP
+Return the (logically) \fCidx\fP -th object at depth \fCdepth\fP included in CPU set \fCset\fP\&. 
+.PP
+\fBNote:\fP
 .RS 4
 This function cannot work if objects at the given depth do not have CPU sets or if the topology is made of different machines\&. 
 .RE

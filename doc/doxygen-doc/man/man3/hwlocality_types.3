@@ -1,4 +1,4 @@
-.TH "Topology Object Types" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Object Types" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -128,7 +128,9 @@ Operating system co-processor device\&. For instance 'mic0' for a Xeon Phi (MIC)
 .SS "enum \fBhwloc_obj_type_t\fP"
 
 .PP
-Type of topology object\&. \fBNote:\fP
+Type of topology object\&. 
+.PP
+\fBNote:\fP
 .RS 4
 Do not rely on the ordering or completeness of the values as new ones may be defined in the future! If you need to compare types, use \fBhwloc_compare_types()\fP instead\&. 
 .RE

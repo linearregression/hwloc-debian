@@ -6,12 +6,13 @@ Build-Depends: debhelper (>= 7), autotools-dev, help2man, cdbs, libltdl-dev,
   libnuma-dev [amd64 i386 ia64 mips mipsel powerpc],
   libpciaccess-dev, pkg-config,
   libibverbs-dev [linux-any],
+  ocl-icd-opencl-dev, opencl-headers,
   autoconf (>= 2.63),
   dpkg-dev (>= 1.16),
   hardening-wrapper
 Build-Depends-Indep: doxygen-latex, transfig
 Build-Conflicts: autoconf2.13
-Standards-Version: 3.9.3
+Standards-Version: 3.9.4
 Section: libs
 Homepage: http://www.open-mpi.org/projects/hwloc/
 Vcs-Svn: http://svn.open-mpi.org/svn/hwloc/debian

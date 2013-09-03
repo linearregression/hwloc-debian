@@ -1,4 +1,4 @@
-.TH "The bitmap API" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "The bitmap API" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -208,7 +208,9 @@ Fill the bitmap \fCand\fP clear the index \fCid\fP\&.
 .SS " \fBhwloc_bitmap_t\fP hwloc_bitmap_alloc (void)"
 
 .PP
-Allocate a new empty bitmap\&. \fBReturns:\fP
+Allocate a new empty bitmap\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 A valid bitmap or \fCNULL\fP\&.
 .RE
@@ -261,7 +263,9 @@ Fill bitmap \fCbitmap\fP with all possible indexes (even if those objects don't 
 .SS " int hwloc_bitmap_first (\fBhwloc_const_bitmap_t\fPbitmap)"
 
 .PP
-Compute the first index (least significant bit) in bitmap \fCbitmap\fP\&. \fBReturns:\fP
+Compute the first index (least significant bit) in bitmap \fCbitmap\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 -1 if no index is set\&. 
 .RE
@@ -306,7 +310,9 @@ Test whether bitmap \fCbitmap\fP is empty\&.
 .SS " int hwloc_bitmap_last (\fBhwloc_const_bitmap_t\fPbitmap)"
 
 .PP
-Compute the last index (most significant bit) in bitmap \fCbitmap\fP\&. \fBReturns:\fP
+Compute the last index (most significant bit) in bitmap \fCbitmap\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 -1 if no index is bitmap, or if the index bitmap is infinite\&. 
 .RE
@@ -425,7 +431,9 @@ Convert the beginning part of bitmap \fCbitmap\fP into unsigned long \fCmask\fP\
 .SS " int hwloc_bitmap_weight (\fBhwloc_const_bitmap_t\fPbitmap)"
 
 .PP
-Compute the 'weight' of bitmap \fCbitmap\fP (i\&.e\&., number of indexes that are in the bitmap)\&. \fBReturns:\fP
+Compute the 'weight' of bitmap \fCbitmap\fP (i\&.e\&., number of indexes that are in the bitmap)\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the number of indexes that are in the bitmap\&. 
 .RE

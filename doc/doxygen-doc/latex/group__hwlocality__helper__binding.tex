@@ -1,0 +1,24 @@
+\hypertarget{group__hwlocality__helper__binding}{
+\section{Binding Helpers}
+\label{group__hwlocality__helper__binding}\index{Binding Helpers@{Binding Helpers}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static inline void \hyperlink{group__hwlocality__helper__binding_gaea68e92b026930cf5c368e2d98cb6aac}{hwloc\_\-distribute} (\hyperlink{group__hwlocality__topology_ga9d1e76ee15a7dee158b786c30b6a6e38}{hwloc\_\-topology\_\-t} topology, \hyperlink{structhwloc__obj}{hwloc\_\-obj\_\-t} root, \hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} $\ast$cpuset, int n)
+\begin{DoxyCompactList}\small\item\em Distribute {\ttfamily n} items over the topology under {\ttfamily root}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__hwlocality__helper__binding_gaea68e92b026930cf5c368e2d98cb6aac}{
+\index{hwlocality\_\-helper\_\-binding@{hwlocality\_\-helper\_\-binding}!hwloc\_\-distribute@{hwloc\_\-distribute}}
+\index{hwloc\_\-distribute@{hwloc\_\-distribute}!hwlocality_helper_binding@{hwlocality\_\-helper\_\-binding}}
+\subsubsection[{hwloc\_\-distribute}]{\setlength{\rightskip}{0pt plus 5cm}static inline void hwloc\_\-distribute ({\bf hwloc\_\-topology\_\-t} {\em topology}, \/  {\bf hwloc\_\-obj\_\-t} {\em root}, \/  {\bf hwloc\_\-cpuset\_\-t} $\ast$ {\em cpuset}, \/  int {\em n})\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{group__hwlocality__helper__binding_gaea68e92b026930cf5c368e2d98cb6aac}
+
+
+Distribute {\ttfamily n} items over the topology under {\ttfamily root}. Array {\ttfamily cpuset} will be filled with {\ttfamily n} cpusets distributed linearly over the topology under {\ttfamily root} .
+
+This is typically useful when an application wants to distribute {\ttfamily n} threads over a machine, giving each of them as much private cache as possible and keeping them locally in number order.
+
+The caller may typicall want to additionally call \hyperlink{group__hwlocality__cpuset_ga548a6620cce008fc5b1e2110d25135fe}{hwloc\_\-cpuset\_\-singlify()} before binding a thread, so that it doesn't move at all. 

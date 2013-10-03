@@ -1,0 +1,387 @@
+\hypertarget{group__hwlocality__cpuset}{
+\section{The Cpuset API}
+\label{group__hwlocality__cpuset}\index{The Cpuset API@{The Cpuset API}}
+}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__hwlocality__cpuset_ga8f896ce703ad1740fdf9ce8ac6361359}{hwloc\_\-cpuset\_\-foreach\_\-begin}(cpu, set)
+\begin{DoxyCompactList}\small\item\em Loop macro iterating on CPU set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{group__hwlocality__cpuset_gae2974be78a7d7cddbd38cb23fcc6240a}{hwloc\_\-cpuset\_\-foreach\_\-end}()~\}
+\begin{DoxyCompactList}\small\item\em End of loop. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct hwloc\_\-cpuset\_\-s $\ast$ \hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t}
+\begin{DoxyCompactList}\small\item\em Set of CPUs represented as an opaque pointer to an internal bitmask. \item\end{DoxyCompactList}\item 
+typedef struct hwloc\_\-cpuset\_\-s $\ast$ \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} \hyperlink{group__hwlocality__cpuset_ga82803256c7e78369aad77a2a9e5599a2}{hwloc\_\-cpuset\_\-alloc} (void)
+\begin{DoxyCompactList}\small\item\em Allocate a new empty CPU set. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_gaf5d5a9e082a43f8311fdcff55e611b23}{hwloc\_\-cpuset\_\-free} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Free CPU set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} \hyperlink{group__hwlocality__cpuset_ga19d8c163e4834ba69c808560aa5a89b3}{hwloc\_\-cpuset\_\-dup} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Duplicate CPU set {\ttfamily set} by allocating a new CPU set and copying its contents. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_gadad3d25553afca090a81ffa270208f2e}{hwloc\_\-cpuset\_\-copy} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} dst, \hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} src)
+\begin{DoxyCompactList}\small\item\em Copy the contents of CPU set {\ttfamily src} into the already allocated CPU set {\ttfamily dst}. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_gae60387d479de85cd556ce5faa8f0894e}{hwloc\_\-cpuset\_\-snprintf} (char $\ast$\_\-\_\-hwloc\_\-restrict buf, size\_\-t buflen, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Stringify a cpuset. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_ga29160016d2e89318b5db99046d93dc0a}{hwloc\_\-cpuset\_\-asprintf} (char $\ast$$\ast$strp, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Stringify a cpuset into a newly allocated string. \item\end{DoxyCompactList}\item 
+\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} \hyperlink{group__hwlocality__cpuset_ga63e62db35640c1b90684952d7a3b5175}{hwloc\_\-cpuset\_\-from\_\-string} (const char $\ast$\_\-\_\-hwloc\_\-restrict string)
+\begin{DoxyCompactList}\small\item\em Parse a cpuset string. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_ga4d63507128a35e6eda3fa6104970ac99}{hwloc\_\-cpuset\_\-zero} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Primitives \& macros for building, modifying and consulting \char`\"{}sets\char`\"{} of cpus. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_gad1a6c02ae378aff412c2b843cf8cc3f4}{hwloc\_\-cpuset\_\-fill} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Fill CPU set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_ga1dbccf3bbf6e6ec0464bfd9e4d47e5cb}{hwloc\_\-cpuset\_\-from\_\-ulong} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, unsigned long mask)
+\begin{DoxyCompactList}\small\item\em Setup CPU set {\ttfamily set} from unsigned long {\ttfamily mask}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_gae681e6cd7486dbd03185a8760dc2fa5e}{hwloc\_\-cpuset\_\-from\_\-ith\_\-ulong} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, int i, unsigned long mask)
+\begin{DoxyCompactList}\small\item\em Setup CPU set {\ttfamily set} from unsigned long {\ttfamily mask} used as {\ttfamily i} -\/th subset. \item\end{DoxyCompactList}\item 
+unsigned long \hyperlink{group__hwlocality__cpuset_gab5930725c5193c3c3864989b15c746f4}{hwloc\_\-cpuset\_\-to\_\-ulong} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Convert the beginning part of CPU set {\ttfamily set} into unsigned long {\ttfamily mask}. \item\end{DoxyCompactList}\item 
+unsigned long \hyperlink{group__hwlocality__cpuset_ga15761bb808fef3477b0cfb4f9112d29d}{hwloc\_\-cpuset\_\-to\_\-ith\_\-ulong} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set, int i)
+\begin{DoxyCompactList}\small\item\em Convert the {\ttfamily i} -\/th subset of CPU set {\ttfamily set} into unsigned long mask. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_ga212f2df54a64817dd094550a51b32c4f}{hwloc\_\-cpuset\_\-cpu} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, unsigned cpu)
+\begin{DoxyCompactList}\small\item\em Clear CPU set {\ttfamily set} and set CPU {\ttfamily cpu}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_gaddd96b6d8b7d11e0891c7416e5a68598}{hwloc\_\-cpuset\_\-all\_\-but\_\-cpu} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, unsigned cpu)
+\begin{DoxyCompactList}\small\item\em Clear CPU set {\ttfamily set} and set all but the CPU {\ttfamily cpu}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_gac5ba8c6d6367436995f67dbd4b3ba1de}{hwloc\_\-cpuset\_\-set} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, unsigned cpu)
+\begin{DoxyCompactList}\small\item\em Add CPU {\ttfamily cpu} in CPU set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_ga9bcf94a6a5c877071116ff2f4a395956}{hwloc\_\-cpuset\_\-set\_\-range} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, unsigned begincpu, unsigned endcpu)
+\begin{DoxyCompactList}\small\item\em Add CPUs from {\ttfamily begincpu} to {\ttfamily endcpu} in CPU set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_ga9ae6610a008402bf7959234bd2044a82}{hwloc\_\-cpuset\_\-clr} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, unsigned cpu)
+\begin{DoxyCompactList}\small\item\em Remove CPU {\ttfamily cpu} from CPU set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_ga0632cf820ffa41df6f64dcd14fd0d541}{hwloc\_\-cpuset\_\-isset} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set, unsigned cpu)
+\begin{DoxyCompactList}\small\item\em Test whether CPU {\ttfamily cpu} is part of set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_ga0c2a23ccf879c9e640a3a407bed94090}{hwloc\_\-cpuset\_\-iszero} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Test whether set {\ttfamily set} is zero. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_gac89f1c227a367732eabaaa48f8227355}{hwloc\_\-cpuset\_\-isfull} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Test whether set {\ttfamily set} is full. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_ga817f53201f0c04b12db42c562cd64993}{hwloc\_\-cpuset\_\-isequal} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set1, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set2)
+\begin{DoxyCompactList}\small\item\em Test whether set {\ttfamily set1} is equal to set {\ttfamily set2}. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_ga7f9ed2d6373d6c1b4f697b4c14ff1dc4}{hwloc\_\-cpuset\_\-intersects} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set1, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set2)
+\begin{DoxyCompactList}\small\item\em Test whether sets {\ttfamily set1} and {\ttfamily set2} intersects. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_ga59a0cb0bbe3b32945768a06264891035}{hwloc\_\-cpuset\_\-isincluded} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} sub\_\-set, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} super\_\-set)
+\begin{DoxyCompactList}\small\item\em Test whether set {\ttfamily sub\_\-set} is part of set {\ttfamily super\_\-set}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_gaae983503932659b0c4142716201d8f40}{hwloc\_\-cpuset\_\-orset} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} modifier\_\-set)
+\begin{DoxyCompactList}\small\item\em Or set {\ttfamily modifier\_\-set} into set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_ga79ccfa8ee2a2f76be5076297ba7e4182}{hwloc\_\-cpuset\_\-andset} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} modifier\_\-set)
+\begin{DoxyCompactList}\small\item\em And set {\ttfamily modifier\_\-set} into set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_gad9de58dc5695a3ab4ae12d571ea7f29f}{hwloc\_\-cpuset\_\-clearset} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} modifier\_\-set)
+\begin{DoxyCompactList}\small\item\em Clear set {\ttfamily modifier\_\-set} out of set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_gaec9d3e361521741e8e67e127b2f62089}{hwloc\_\-cpuset\_\-xorset} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} modifier\_\-set)
+\begin{DoxyCompactList}\small\item\em Xor set {\ttfamily set} with set {\ttfamily modifier\_\-set}. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_ga9126cbb0970146e1b09df91efc11889b}{hwloc\_\-cpuset\_\-first} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Compute the first CPU (least significant bit) in CPU set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_ga2a18b213d53e23342ebc5ec3fde508ba}{hwloc\_\-cpuset\_\-last} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Compute the last CPU (most significant bit) in CPU set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+void \hyperlink{group__hwlocality__cpuset_ga548a6620cce008fc5b1e2110d25135fe}{hwloc\_\-cpuset\_\-singlify} (\hyperlink{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{hwloc\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Keep a single CPU among those set in CPU set {\ttfamily set}. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_gae6281c5c6c916db85a9860ed570d6a56}{hwloc\_\-cpuset\_\-compar\_\-first} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set1, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set2)
+\begin{DoxyCompactList}\small\item\em Compar CPU sets {\ttfamily set1} and {\ttfamily set2} using their first set bit. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_ga65b27f4710b7d2a2a6568cf3e2cb6d3b}{hwloc\_\-cpuset\_\-compar} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set1, \hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set2)
+\begin{DoxyCompactList}\small\item\em Compar CPU sets {\ttfamily set1} and {\ttfamily set2} using their last bits. \item\end{DoxyCompactList}\item 
+int \hyperlink{group__hwlocality__cpuset_gad8604bd7111c2b4db14e02c16204d88d}{hwloc\_\-cpuset\_\-weight} (\hyperlink{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{hwloc\_\-const\_\-cpuset\_\-t} set)
+\begin{DoxyCompactList}\small\item\em Compute the weight of CPU set {\ttfamily set}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+For use in hwloc itself, a hwloc\_\-cpuset\_\-t represents a set of logical processors.
+
+\begin{DoxyNote}{Note}
+cpusets are indexed by OS logical processor number. 
+\end{DoxyNote}
+
+
+\subsection{Define Documentation}
+\hypertarget{group__hwlocality__cpuset_ga8f896ce703ad1740fdf9ce8ac6361359}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-foreach\_\-begin@{hwloc\_\-cpuset\_\-foreach\_\-begin}}
+\index{hwloc\_\-cpuset\_\-foreach\_\-begin@{hwloc\_\-cpuset\_\-foreach\_\-begin}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-foreach\_\-begin}]{\setlength{\rightskip}{0pt plus 5cm}\#define hwloc\_\-cpuset\_\-foreach\_\-begin(cpu, \/  set)}}
+\label{group__hwlocality__cpuset_ga8f896ce703ad1740fdf9ce8ac6361359}
+{\bfseries Value:}
+\begin{DoxyCode}
+for (cpu = 0; cpu < HWLOC_NBMAXCPUS; cpu++) \
+                if (hwloc_cpuset_isset(set, cpu)) {
+\end{DoxyCode}
+
+
+Loop macro iterating on CPU set {\ttfamily set}. It yields on each cpu that is member of the set. It uses variables {\ttfamily set} (the cpu set) and {\ttfamily cpu} (the loop variable) \hypertarget{group__hwlocality__cpuset_gae2974be78a7d7cddbd38cb23fcc6240a}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-foreach\_\-end@{hwloc\_\-cpuset\_\-foreach\_\-end}}
+\index{hwloc\_\-cpuset\_\-foreach\_\-end@{hwloc\_\-cpuset\_\-foreach\_\-end}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-foreach\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}\#define hwloc\_\-cpuset\_\-foreach\_\-end()~\}}}
+\label{group__hwlocality__cpuset_gae2974be78a7d7cddbd38cb23fcc6240a}
+
+
+End of loop. \begin{DoxySeeAlso}{See also}
+\hyperlink{group__hwlocality__cpuset_ga8f896ce703ad1740fdf9ce8ac6361359}{hwloc\_\-cpuset\_\-foreach\_\-begin} 
+\end{DoxySeeAlso}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-const\_\-cpuset\_\-t@{hwloc\_\-const\_\-cpuset\_\-t}}
+\index{hwloc\_\-const\_\-cpuset\_\-t@{hwloc\_\-const\_\-cpuset\_\-t}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-const\_\-cpuset\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct hwloc\_\-cpuset\_\-s$\ast$ {\bf hwloc\_\-const\_\-cpuset\_\-t}}}
+\label{group__hwlocality__cpuset_gad2f7833583d020af31e01554251dbe11}
+\hypertarget{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-t@{hwloc\_\-cpuset\_\-t}}
+\index{hwloc\_\-cpuset\_\-t@{hwloc\_\-cpuset\_\-t}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct hwloc\_\-cpuset\_\-s$\ast$ {\bf hwloc\_\-cpuset\_\-t}}}
+\label{group__hwlocality__cpuset_ga7366332f7090f5b54d4b25a0c2c4b411}
+
+
+Set of CPUs represented as an opaque pointer to an internal bitmask. 
+
+\subsection{Function Documentation}
+\hypertarget{group__hwlocality__cpuset_gaddd96b6d8b7d11e0891c7416e5a68598}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-all\_\-but\_\-cpu@{hwloc\_\-cpuset\_\-all\_\-but\_\-cpu}}
+\index{hwloc\_\-cpuset\_\-all\_\-but\_\-cpu@{hwloc\_\-cpuset\_\-all\_\-but\_\-cpu}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-all\_\-but\_\-cpu}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-all\_\-but\_\-cpu ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  unsigned {\em cpu})}}
+\label{group__hwlocality__cpuset_gaddd96b6d8b7d11e0891c7416e5a68598}
+
+
+Clear CPU set {\ttfamily set} and set all but the CPU {\ttfamily cpu}. \hypertarget{group__hwlocality__cpuset_ga82803256c7e78369aad77a2a9e5599a2}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-alloc@{hwloc\_\-cpuset\_\-alloc}}
+\index{hwloc\_\-cpuset\_\-alloc@{hwloc\_\-cpuset\_\-alloc}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-alloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hwloc\_\-cpuset\_\-t} hwloc\_\-cpuset\_\-alloc (void)}}
+\label{group__hwlocality__cpuset_ga82803256c7e78369aad77a2a9e5599a2}
+
+
+Allocate a new empty CPU set. \hypertarget{group__hwlocality__cpuset_ga79ccfa8ee2a2f76be5076297ba7e4182}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-andset@{hwloc\_\-cpuset\_\-andset}}
+\index{hwloc\_\-cpuset\_\-andset@{hwloc\_\-cpuset\_\-andset}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-andset}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-andset ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em modifier\_\-set})}}
+\label{group__hwlocality__cpuset_ga79ccfa8ee2a2f76be5076297ba7e4182}
+
+
+And set {\ttfamily modifier\_\-set} into set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_ga29160016d2e89318b5db99046d93dc0a}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-asprintf@{hwloc\_\-cpuset\_\-asprintf}}
+\index{hwloc\_\-cpuset\_\-asprintf@{hwloc\_\-cpuset\_\-asprintf}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-asprintf}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-asprintf (char $\ast$$\ast$ {\em strp}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_ga29160016d2e89318b5db99046d93dc0a}
+
+
+Stringify a cpuset into a newly allocated string. \begin{DoxyReturn}{Returns}
+the number of character that were actually written (not including the ending $\backslash$0). 
+\end{DoxyReturn}
+\hypertarget{group__hwlocality__cpuset_gad9de58dc5695a3ab4ae12d571ea7f29f}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-clearset@{hwloc\_\-cpuset\_\-clearset}}
+\index{hwloc\_\-cpuset\_\-clearset@{hwloc\_\-cpuset\_\-clearset}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-clearset}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-clearset ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em modifier\_\-set})}}
+\label{group__hwlocality__cpuset_gad9de58dc5695a3ab4ae12d571ea7f29f}
+
+
+Clear set {\ttfamily modifier\_\-set} out of set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_ga9ae6610a008402bf7959234bd2044a82}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-clr@{hwloc\_\-cpuset\_\-clr}}
+\index{hwloc\_\-cpuset\_\-clr@{hwloc\_\-cpuset\_\-clr}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-clr}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-clr ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  unsigned {\em cpu})}}
+\label{group__hwlocality__cpuset_ga9ae6610a008402bf7959234bd2044a82}
+
+
+Remove CPU {\ttfamily cpu} from CPU set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_ga65b27f4710b7d2a2a6568cf3e2cb6d3b}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-compar@{hwloc\_\-cpuset\_\-compar}}
+\index{hwloc\_\-cpuset\_\-compar@{hwloc\_\-cpuset\_\-compar}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-compar}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-compar ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set1}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set2})}}
+\label{group__hwlocality__cpuset_ga65b27f4710b7d2a2a6568cf3e2cb6d3b}
+
+
+Compar CPU sets {\ttfamily set1} and {\ttfamily set2} using their last bits. Higher most significant bit is higher. The empty CPU set is considered lower than anything. \hypertarget{group__hwlocality__cpuset_gae6281c5c6c916db85a9860ed570d6a56}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-compar\_\-first@{hwloc\_\-cpuset\_\-compar\_\-first}}
+\index{hwloc\_\-cpuset\_\-compar\_\-first@{hwloc\_\-cpuset\_\-compar\_\-first}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-compar\_\-first}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-compar\_\-first ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set1}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set2})}}
+\label{group__hwlocality__cpuset_gae6281c5c6c916db85a9860ed570d6a56}
+
+
+Compar CPU sets {\ttfamily set1} and {\ttfamily set2} using their first set bit. Smaller least significant bit is smaller. The empty CPU set is considered higher than anything. \hypertarget{group__hwlocality__cpuset_gadad3d25553afca090a81ffa270208f2e}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-copy@{hwloc\_\-cpuset\_\-copy}}
+\index{hwloc\_\-cpuset\_\-copy@{hwloc\_\-cpuset\_\-copy}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-copy}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-copy ({\bf hwloc\_\-cpuset\_\-t} {\em dst}, \/  {\bf hwloc\_\-cpuset\_\-t} {\em src})}}
+\label{group__hwlocality__cpuset_gadad3d25553afca090a81ffa270208f2e}
+
+
+Copy the contents of CPU set {\ttfamily src} into the already allocated CPU set {\ttfamily dst}. \hypertarget{group__hwlocality__cpuset_ga212f2df54a64817dd094550a51b32c4f}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-cpu@{hwloc\_\-cpuset\_\-cpu}}
+\index{hwloc\_\-cpuset\_\-cpu@{hwloc\_\-cpuset\_\-cpu}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-cpu}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-cpu ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  unsigned {\em cpu})}}
+\label{group__hwlocality__cpuset_ga212f2df54a64817dd094550a51b32c4f}
+
+
+Clear CPU set {\ttfamily set} and set CPU {\ttfamily cpu}. \hypertarget{group__hwlocality__cpuset_ga19d8c163e4834ba69c808560aa5a89b3}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-dup@{hwloc\_\-cpuset\_\-dup}}
+\index{hwloc\_\-cpuset\_\-dup@{hwloc\_\-cpuset\_\-dup}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-dup}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hwloc\_\-cpuset\_\-t} hwloc\_\-cpuset\_\-dup ({\bf hwloc\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_ga19d8c163e4834ba69c808560aa5a89b3}
+
+
+Duplicate CPU set {\ttfamily set} by allocating a new CPU set and copying its contents. \hypertarget{group__hwlocality__cpuset_gad1a6c02ae378aff412c2b843cf8cc3f4}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-fill@{hwloc\_\-cpuset\_\-fill}}
+\index{hwloc\_\-cpuset\_\-fill@{hwloc\_\-cpuset\_\-fill}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-fill}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-fill ({\bf hwloc\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_gad1a6c02ae378aff412c2b843cf8cc3f4}
+
+
+Fill CPU set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_ga9126cbb0970146e1b09df91efc11889b}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-first@{hwloc\_\-cpuset\_\-first}}
+\index{hwloc\_\-cpuset\_\-first@{hwloc\_\-cpuset\_\-first}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-first}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-first ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_ga9126cbb0970146e1b09df91efc11889b}
+
+
+Compute the first CPU (least significant bit) in CPU set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_gaf5d5a9e082a43f8311fdcff55e611b23}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-free@{hwloc\_\-cpuset\_\-free}}
+\index{hwloc\_\-cpuset\_\-free@{hwloc\_\-cpuset\_\-free}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-free ({\bf hwloc\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_gaf5d5a9e082a43f8311fdcff55e611b23}
+
+
+Free CPU set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_gae681e6cd7486dbd03185a8760dc2fa5e}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-from\_\-ith\_\-ulong@{hwloc\_\-cpuset\_\-from\_\-ith\_\-ulong}}
+\index{hwloc\_\-cpuset\_\-from\_\-ith\_\-ulong@{hwloc\_\-cpuset\_\-from\_\-ith\_\-ulong}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-from\_\-ith\_\-ulong}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-from\_\-ith\_\-ulong ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  int {\em i}, \/  unsigned long {\em mask})}}
+\label{group__hwlocality__cpuset_gae681e6cd7486dbd03185a8760dc2fa5e}
+
+
+Setup CPU set {\ttfamily set} from unsigned long {\ttfamily mask} used as {\ttfamily i} -\/th subset. \hypertarget{group__hwlocality__cpuset_ga63e62db35640c1b90684952d7a3b5175}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-from\_\-string@{hwloc\_\-cpuset\_\-from\_\-string}}
+\index{hwloc\_\-cpuset\_\-from\_\-string@{hwloc\_\-cpuset\_\-from\_\-string}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-from\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hwloc\_\-cpuset\_\-t} hwloc\_\-cpuset\_\-from\_\-string (const char $\ast$\_\-\_\-hwloc\_\-restrict {\em string})}}
+\label{group__hwlocality__cpuset_ga63e62db35640c1b90684952d7a3b5175}
+
+
+Parse a cpuset string. Must start and end with a digit. \hypertarget{group__hwlocality__cpuset_ga1dbccf3bbf6e6ec0464bfd9e4d47e5cb}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-from\_\-ulong@{hwloc\_\-cpuset\_\-from\_\-ulong}}
+\index{hwloc\_\-cpuset\_\-from\_\-ulong@{hwloc\_\-cpuset\_\-from\_\-ulong}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-from\_\-ulong}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-from\_\-ulong ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  unsigned long {\em mask})}}
+\label{group__hwlocality__cpuset_ga1dbccf3bbf6e6ec0464bfd9e4d47e5cb}
+
+
+Setup CPU set {\ttfamily set} from unsigned long {\ttfamily mask}. \hypertarget{group__hwlocality__cpuset_ga7f9ed2d6373d6c1b4f697b4c14ff1dc4}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-intersects@{hwloc\_\-cpuset\_\-intersects}}
+\index{hwloc\_\-cpuset\_\-intersects@{hwloc\_\-cpuset\_\-intersects}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-intersects}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-intersects ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set1}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set2})}}
+\label{group__hwlocality__cpuset_ga7f9ed2d6373d6c1b4f697b4c14ff1dc4}
+
+
+Test whether sets {\ttfamily set1} and {\ttfamily set2} intersects. \hypertarget{group__hwlocality__cpuset_ga817f53201f0c04b12db42c562cd64993}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-isequal@{hwloc\_\-cpuset\_\-isequal}}
+\index{hwloc\_\-cpuset\_\-isequal@{hwloc\_\-cpuset\_\-isequal}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-isequal}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-isequal ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set1}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set2})}}
+\label{group__hwlocality__cpuset_ga817f53201f0c04b12db42c562cd64993}
+
+
+Test whether set {\ttfamily set1} is equal to set {\ttfamily set2}. \hypertarget{group__hwlocality__cpuset_gac89f1c227a367732eabaaa48f8227355}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-isfull@{hwloc\_\-cpuset\_\-isfull}}
+\index{hwloc\_\-cpuset\_\-isfull@{hwloc\_\-cpuset\_\-isfull}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-isfull}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-isfull ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_gac89f1c227a367732eabaaa48f8227355}
+
+
+Test whether set {\ttfamily set} is full. \hypertarget{group__hwlocality__cpuset_ga59a0cb0bbe3b32945768a06264891035}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-isincluded@{hwloc\_\-cpuset\_\-isincluded}}
+\index{hwloc\_\-cpuset\_\-isincluded@{hwloc\_\-cpuset\_\-isincluded}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-isincluded}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-isincluded ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em sub\_\-set}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em super\_\-set})}}
+\label{group__hwlocality__cpuset_ga59a0cb0bbe3b32945768a06264891035}
+
+
+Test whether set {\ttfamily sub\_\-set} is part of set {\ttfamily super\_\-set}. \hypertarget{group__hwlocality__cpuset_ga0632cf820ffa41df6f64dcd14fd0d541}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-isset@{hwloc\_\-cpuset\_\-isset}}
+\index{hwloc\_\-cpuset\_\-isset@{hwloc\_\-cpuset\_\-isset}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-isset}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-isset ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set}, \/  unsigned {\em cpu})}}
+\label{group__hwlocality__cpuset_ga0632cf820ffa41df6f64dcd14fd0d541}
+
+
+Test whether CPU {\ttfamily cpu} is part of set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_ga0c2a23ccf879c9e640a3a407bed94090}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-iszero@{hwloc\_\-cpuset\_\-iszero}}
+\index{hwloc\_\-cpuset\_\-iszero@{hwloc\_\-cpuset\_\-iszero}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-iszero}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-iszero ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_ga0c2a23ccf879c9e640a3a407bed94090}
+
+
+Test whether set {\ttfamily set} is zero. \hypertarget{group__hwlocality__cpuset_ga2a18b213d53e23342ebc5ec3fde508ba}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-last@{hwloc\_\-cpuset\_\-last}}
+\index{hwloc\_\-cpuset\_\-last@{hwloc\_\-cpuset\_\-last}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-last}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-last ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_ga2a18b213d53e23342ebc5ec3fde508ba}
+
+
+Compute the last CPU (most significant bit) in CPU set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_gaae983503932659b0c4142716201d8f40}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-orset@{hwloc\_\-cpuset\_\-orset}}
+\index{hwloc\_\-cpuset\_\-orset@{hwloc\_\-cpuset\_\-orset}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-orset}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-orset ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em modifier\_\-set})}}
+\label{group__hwlocality__cpuset_gaae983503932659b0c4142716201d8f40}
+
+
+Or set {\ttfamily modifier\_\-set} into set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_gac5ba8c6d6367436995f67dbd4b3ba1de}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-set@{hwloc\_\-cpuset\_\-set}}
+\index{hwloc\_\-cpuset\_\-set@{hwloc\_\-cpuset\_\-set}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-set ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  unsigned {\em cpu})}}
+\label{group__hwlocality__cpuset_gac5ba8c6d6367436995f67dbd4b3ba1de}
+
+
+Add CPU {\ttfamily cpu} in CPU set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_ga9bcf94a6a5c877071116ff2f4a395956}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-set\_\-range@{hwloc\_\-cpuset\_\-set\_\-range}}
+\index{hwloc\_\-cpuset\_\-set\_\-range@{hwloc\_\-cpuset\_\-set\_\-range}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-set\_\-range}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-set\_\-range ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  unsigned {\em begincpu}, \/  unsigned {\em endcpu})}}
+\label{group__hwlocality__cpuset_ga9bcf94a6a5c877071116ff2f4a395956}
+
+
+Add CPUs from {\ttfamily begincpu} to {\ttfamily endcpu} in CPU set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_ga548a6620cce008fc5b1e2110d25135fe}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-singlify@{hwloc\_\-cpuset\_\-singlify}}
+\index{hwloc\_\-cpuset\_\-singlify@{hwloc\_\-cpuset\_\-singlify}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-singlify}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-singlify ({\bf hwloc\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_ga548a6620cce008fc5b1e2110d25135fe}
+
+
+Keep a single CPU among those set in CPU set {\ttfamily set}. Might be used before binding so that the process does not have a chance of migrating between multiple logical CPUs in the original mask. \hypertarget{group__hwlocality__cpuset_gae60387d479de85cd556ce5faa8f0894e}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-snprintf@{hwloc\_\-cpuset\_\-snprintf}}
+\index{hwloc\_\-cpuset\_\-snprintf@{hwloc\_\-cpuset\_\-snprintf}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-snprintf}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-snprintf (char $\ast$\_\-\_\-hwloc\_\-restrict {\em buf}, \/  size\_\-t {\em buflen}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_gae60387d479de85cd556ce5faa8f0894e}
+
+
+Stringify a cpuset. Up to {\ttfamily buflen} characters may be written in buffer {\ttfamily buf}.
+
+\begin{DoxyReturn}{Returns}
+the number of character that were actually written if not truncating, or that would have been written (not including the ending $\backslash$0). 
+\end{DoxyReturn}
+\hypertarget{group__hwlocality__cpuset_ga15761bb808fef3477b0cfb4f9112d29d}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-to\_\-ith\_\-ulong@{hwloc\_\-cpuset\_\-to\_\-ith\_\-ulong}}
+\index{hwloc\_\-cpuset\_\-to\_\-ith\_\-ulong@{hwloc\_\-cpuset\_\-to\_\-ith\_\-ulong}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-to\_\-ith\_\-ulong}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long hwloc\_\-cpuset\_\-to\_\-ith\_\-ulong ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set}, \/  int {\em i})}}
+\label{group__hwlocality__cpuset_ga15761bb808fef3477b0cfb4f9112d29d}
+
+
+Convert the {\ttfamily i} -\/th subset of CPU set {\ttfamily set} into unsigned long mask. \hypertarget{group__hwlocality__cpuset_gab5930725c5193c3c3864989b15c746f4}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-to\_\-ulong@{hwloc\_\-cpuset\_\-to\_\-ulong}}
+\index{hwloc\_\-cpuset\_\-to\_\-ulong@{hwloc\_\-cpuset\_\-to\_\-ulong}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-to\_\-ulong}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long hwloc\_\-cpuset\_\-to\_\-ulong ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_gab5930725c5193c3c3864989b15c746f4}
+
+
+Convert the beginning part of CPU set {\ttfamily set} into unsigned long {\ttfamily mask}. \hypertarget{group__hwlocality__cpuset_gad8604bd7111c2b4db14e02c16204d88d}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-weight@{hwloc\_\-cpuset\_\-weight}}
+\index{hwloc\_\-cpuset\_\-weight@{hwloc\_\-cpuset\_\-weight}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-weight}]{\setlength{\rightskip}{0pt plus 5cm}int hwloc\_\-cpuset\_\-weight ({\bf hwloc\_\-const\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_gad8604bd7111c2b4db14e02c16204d88d}
+
+
+Compute the weight of CPU set {\ttfamily set}. \hypertarget{group__hwlocality__cpuset_gaec9d3e361521741e8e67e127b2f62089}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-xorset@{hwloc\_\-cpuset\_\-xorset}}
+\index{hwloc\_\-cpuset\_\-xorset@{hwloc\_\-cpuset\_\-xorset}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-xorset}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-xorset ({\bf hwloc\_\-cpuset\_\-t} {\em set}, \/  {\bf hwloc\_\-const\_\-cpuset\_\-t} {\em modifier\_\-set})}}
+\label{group__hwlocality__cpuset_gaec9d3e361521741e8e67e127b2f62089}
+
+
+Xor set {\ttfamily set} with set {\ttfamily modifier\_\-set}. \hypertarget{group__hwlocality__cpuset_ga4d63507128a35e6eda3fa6104970ac99}{
+\index{hwlocality\_\-cpuset@{hwlocality\_\-cpuset}!hwloc\_\-cpuset\_\-zero@{hwloc\_\-cpuset\_\-zero}}
+\index{hwloc\_\-cpuset\_\-zero@{hwloc\_\-cpuset\_\-zero}!hwlocality_cpuset@{hwlocality\_\-cpuset}}
+\subsubsection[{hwloc\_\-cpuset\_\-zero}]{\setlength{\rightskip}{0pt plus 5cm}void hwloc\_\-cpuset\_\-zero ({\bf hwloc\_\-cpuset\_\-t} {\em set})}}
+\label{group__hwlocality__cpuset_ga4d63507128a35e6eda3fa6104970ac99}
+
+
+Primitives \& macros for building, modifying and consulting \char`\"{}sets\char`\"{} of cpus. Empty CPU set {\ttfamily set} 

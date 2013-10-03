@@ -43,23 +43,22 @@ host_triplet = @host@
 target_triplet = @target@
 
 # Conditionally add to the sources and ldflags
-@HWLOC_HAVE_XML_TRUE@am__append_1 = topology-xml.c
-@HWLOC_HAVE_LIBPCI_TRUE@am__append_2 = topology-libpci.c
-@HWLOC_HAVE_SOLARIS_TRUE@am__append_3 = topology-solaris.c
-@HWLOC_HAVE_LINUX_TRUE@am__append_4 = topology-linux.c
-@HWLOC_HAVE_AIX_TRUE@am__append_5 = topology-aix.c
-@HWLOC_HAVE_AIX_TRUE@am__append_6 = -lpthread
-@HWLOC_HAVE_OSF_TRUE@am__append_7 = topology-osf.c
-@HWLOC_HAVE_OSF_TRUE@am__append_8 = -lnuma -lpthread
-@HWLOC_HAVE_HPUX_TRUE@am__append_9 = topology-hpux.c
-@HWLOC_HAVE_HPUX_TRUE@am__append_10 = -lpthread
-@HWLOC_HAVE_WINDOWS_TRUE@am__append_11 = topology-windows.c
-@HWLOC_HAVE_DARWIN_TRUE@am__append_12 = topology-darwin.c
-@HWLOC_HAVE_FREEBSD_TRUE@am__append_13 = topology-freebsd.c
-@HWLOC_HAVE_GCC_TRUE@am__append_14 = -no-undefined
-@HWLOC_HAVE_WINDOWS_TRUE@am__append_15 = -Xlinker --output-def -Xlinker .libs/libhwloc.def
-@HWLOC_HAVE_CPUID_TRUE@am__append_16 = topology-x86.c
-@HWLOC_BUILD_STANDALONE_TRUE@am__append_17 = hwloc.dtd
+@HWLOC_HAVE_LIBPCI_TRUE@am__append_1 = topology-libpci.c
+@HWLOC_HAVE_SOLARIS_TRUE@am__append_2 = topology-solaris.c
+@HWLOC_HAVE_LINUX_TRUE@am__append_3 = topology-linux.c
+@HWLOC_HAVE_AIX_TRUE@am__append_4 = topology-aix.c
+@HWLOC_HAVE_AIX_TRUE@am__append_5 = -lpthread
+@HWLOC_HAVE_OSF_TRUE@am__append_6 = topology-osf.c
+@HWLOC_HAVE_OSF_TRUE@am__append_7 = -lnuma -lpthread
+@HWLOC_HAVE_HPUX_TRUE@am__append_8 = topology-hpux.c
+@HWLOC_HAVE_HPUX_TRUE@am__append_9 = -lpthread
+@HWLOC_HAVE_WINDOWS_TRUE@am__append_10 = topology-windows.c
+@HWLOC_HAVE_DARWIN_TRUE@am__append_11 = topology-darwin.c
+@HWLOC_HAVE_FREEBSD_TRUE@am__append_12 = topology-freebsd.c
+@HWLOC_HAVE_GCC_TRUE@am__append_13 = -no-undefined
+@HWLOC_HAVE_WINDOWS_TRUE@am__append_14 = -Xlinker --output-def -Xlinker .libs/libhwloc.def
+@HWLOC_HAVE_CPUID_TRUE@am__append_15 = topology-x86.c
+@HWLOC_BUILD_STANDALONE_TRUE@am__append_16 = hwloc.dtd
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/topology-aix.c $(srcdir)/topology-darwin.c \
@@ -110,29 +109,28 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(xmldir)"
 LTLIBRARIES = $(lib_LTLIBRARIES) $(noinst_LTLIBRARIES)
 libhwloc_la_LIBADD =
 am__libhwloc_la_SOURCES_DIST = topology.c traversal.c distances.c \
-	topology-synthetic.c bind.c cpuset.c misc.c topology-xml.c \
+	topology-synthetic.c topology-xml.c bind.c cpuset.c misc.c \
 	topology-libpci.c topology-solaris.c topology-linux.c \
 	topology-aix.c topology-osf.c topology-hpux.c \
 	topology-windows.c topology-darwin.c topology-freebsd.c \
 	topology-x86.c
-@HWLOC_HAVE_XML_TRUE@am__objects_1 = topology-xml.lo
-@HWLOC_HAVE_LIBPCI_TRUE@am__objects_2 = topology-libpci.lo
-@HWLOC_HAVE_SOLARIS_TRUE@am__objects_3 = topology-solaris.lo
-@HWLOC_HAVE_LINUX_TRUE@am__objects_4 = topology-linux.lo
-@HWLOC_HAVE_AIX_TRUE@am__objects_5 = topology-aix.lo
-@HWLOC_HAVE_OSF_TRUE@am__objects_6 = topology-osf.lo
-@HWLOC_HAVE_HPUX_TRUE@am__objects_7 = topology-hpux.lo
-@HWLOC_HAVE_WINDOWS_TRUE@am__objects_8 = topology-windows.lo
-@HWLOC_HAVE_DARWIN_TRUE@am__objects_9 = topology-darwin.lo
-@HWLOC_HAVE_FREEBSD_TRUE@am__objects_10 = topology-freebsd.lo
-@HWLOC_HAVE_CPUID_TRUE@am__objects_11 = topology-x86.lo
-am__objects_12 = topology.lo traversal.lo distances.lo \
-	topology-synthetic.lo bind.lo cpuset.lo misc.lo \
-	$(am__objects_1) $(am__objects_2) $(am__objects_3) \
+@HWLOC_HAVE_LIBPCI_TRUE@am__objects_1 = topology-libpci.lo
+@HWLOC_HAVE_SOLARIS_TRUE@am__objects_2 = topology-solaris.lo
+@HWLOC_HAVE_LINUX_TRUE@am__objects_3 = topology-linux.lo
+@HWLOC_HAVE_AIX_TRUE@am__objects_4 = topology-aix.lo
+@HWLOC_HAVE_OSF_TRUE@am__objects_5 = topology-osf.lo
+@HWLOC_HAVE_HPUX_TRUE@am__objects_6 = topology-hpux.lo
+@HWLOC_HAVE_WINDOWS_TRUE@am__objects_7 = topology-windows.lo
+@HWLOC_HAVE_DARWIN_TRUE@am__objects_8 = topology-darwin.lo
+@HWLOC_HAVE_FREEBSD_TRUE@am__objects_9 = topology-freebsd.lo
+@HWLOC_HAVE_CPUID_TRUE@am__objects_10 = topology-x86.lo
+am__objects_11 = topology.lo traversal.lo distances.lo \
+	topology-synthetic.lo topology-xml.lo bind.lo cpuset.lo \
+	misc.lo $(am__objects_1) $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5) $(am__objects_6) \
 	$(am__objects_7) $(am__objects_8) $(am__objects_9) \
-	$(am__objects_10) $(am__objects_11)
-am_libhwloc_la_OBJECTS = $(am__objects_12)
+	$(am__objects_10)
+am_libhwloc_la_OBJECTS = $(am__objects_11)
 libhwloc_la_OBJECTS = $(am_libhwloc_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -143,12 +141,12 @@ libhwloc_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 @HWLOC_BUILD_STANDALONE_TRUE@am_libhwloc_la_rpath = -rpath $(libdir)
 libhwloc_embedded_la_LIBADD =
 am__libhwloc_embedded_la_SOURCES_DIST = topology.c traversal.c \
-	distances.c topology-synthetic.c bind.c cpuset.c misc.c \
-	topology-xml.c topology-libpci.c topology-solaris.c \
+	distances.c topology-synthetic.c topology-xml.c bind.c \
+	cpuset.c misc.c topology-libpci.c topology-solaris.c \
 	topology-linux.c topology-aix.c topology-osf.c topology-hpux.c \
 	topology-windows.c topology-darwin.c topology-freebsd.c \
 	topology-x86.c
-am_libhwloc_embedded_la_OBJECTS = $(am__objects_12)
+am_libhwloc_embedded_la_OBJECTS = $(am__objects_11)
 libhwloc_embedded_la_OBJECTS = $(am_libhwloc_embedded_la_OBJECTS)
 libhwloc_embedded_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
@@ -227,16 +225,19 @@ HWLOC_CAIRO_LIBS = @HWLOC_CAIRO_LIBS@
 HWLOC_CFLAGS = @HWLOC_CFLAGS@
 HWLOC_CPPFLAGS = @HWLOC_CPPFLAGS@
 HWLOC_DIFF_U = @HWLOC_DIFF_U@
+HWLOC_DIFF_W = @HWLOC_DIFF_W@
 HWLOC_EMBEDDED_CFLAGS = @HWLOC_EMBEDDED_CFLAGS@
 HWLOC_EMBEDDED_CPPFLAGS = @HWLOC_EMBEDDED_CPPFLAGS@
 HWLOC_EMBEDDED_LDADD = @HWLOC_EMBEDDED_LDADD@
 HWLOC_EMBEDDED_LIBS = @HWLOC_EMBEDDED_LIBS@
 HWLOC_HAVE_LIBPCI = @HWLOC_HAVE_LIBPCI@
-HWLOC_HAVE_XML = @HWLOC_HAVE_XML@
+HWLOC_HAVE_LIBXML2 = @HWLOC_HAVE_LIBXML2@
 HWLOC_KERRIGHED_CFLAGS = @HWLOC_KERRIGHED_CFLAGS@
 HWLOC_KERRIGHED_LIBS = @HWLOC_KERRIGHED_LIBS@
 HWLOC_LDFLAGS = @HWLOC_LDFLAGS@
 HWLOC_LIBS = @HWLOC_LIBS@
+HWLOC_LIBXML2_CFLAGS = @HWLOC_LIBXML2_CFLAGS@
+HWLOC_LIBXML2_LIBS = @HWLOC_LIBXML2_LIBS@
 HWLOC_LINUX_LIBNUMA_LIBS = @HWLOC_LINUX_LIBNUMA_LIBS@
 HWLOC_MS_LIB = @HWLOC_MS_LIB@
 HWLOC_PCI_CFLAGS = @HWLOC_PCI_CFLAGS@
@@ -249,8 +250,6 @@ HWLOC_TERMCAP_LIBS = @HWLOC_TERMCAP_LIBS@
 HWLOC_VERSION = @HWLOC_VERSION@
 HWLOC_W3_GENERATOR = @HWLOC_W3_GENERATOR@
 HWLOC_X11_LIBS = @HWLOC_X11_LIBS@
-HWLOC_XML_CFLAGS = @HWLOC_XML_CFLAGS@
-HWLOC_XML_LIBS = @HWLOC_XML_LIBS@
 HWLOC_top_builddir = @HWLOC_top_builddir@
 HWLOC_top_srcdir = @HWLOC_top_srcdir@
 INSTALL = @INSTALL@
@@ -360,7 +359,7 @@ top_srcdir = @top_srcdir@
 AM_CFLAGS = $(HWLOC_CFLAGS)
 AM_CPPFLAGS = $(HWLOC_CPPFLAGS)
 AM_LDFLAGS = $(HWLOC_LDFLAGS)
-EXTRA_DIST = dolib.c $(am__append_17)
+EXTRA_DIST = dolib.c $(am__append_16)
 
 # If we're in standalone mode, build the installable library.
 # Otherwise, build the embedded library.
@@ -369,22 +368,22 @@ EXTRA_DIST = dolib.c $(am__append_17)
 
 # Sources and ldflags
 sources = topology.c traversal.c distances.c topology-synthetic.c \
-	bind.c cpuset.c misc.c $(am__append_1) $(am__append_2) \
-	$(am__append_3) $(am__append_4) $(am__append_5) \
-	$(am__append_7) $(am__append_9) $(am__append_11) \
-	$(am__append_12) $(am__append_13) $(am__append_16)
-ldflags = $(am__append_6) $(am__append_8) $(am__append_10) \
-	$(am__append_14) $(am__append_15)
+	topology-xml.c bind.c cpuset.c misc.c $(am__append_1) \
+	$(am__append_2) $(am__append_3) $(am__append_4) \
+	$(am__append_6) $(am__append_8) $(am__append_10) \
+	$(am__append_11) $(am__append_12) $(am__append_15)
+ldflags = $(am__append_5) $(am__append_7) $(am__append_9) \
+	$(am__append_13) $(am__append_14)
 @HWLOC_HAVE_WINDOWS_TRUE@LC_MESSAGES = C
 
 # Installable library
 libhwloc_la_SOURCES = $(sources)
-libhwloc_la_LDFLAGS = $(ldflags) -version-number $(libhwloc_so_version) $(HWLOC_XML_LIBS) $(HWLOC_LINUX_LIBNUMA_LIBS) $(HWLOC_PCI_LIBS)
+libhwloc_la_LDFLAGS = $(ldflags) -version-number $(libhwloc_so_version) $(HWLOC_LIBXML2_LIBS) $(HWLOC_LINUX_LIBNUMA_LIBS) $(HWLOC_PCI_LIBS)
 
 # Embedded library (note the lack of a .so version number -- that
 # intentionally only appears in the installable library)
 libhwloc_embedded_la_SOURCES = $(sources)
-libhwloc_embedded_la_LDFLAGS = $(ldflags) $(HWLOC_XML_LIBS) $(HWLOC_LINUX_LIBNUMA_LIBS)
+libhwloc_embedded_la_LDFLAGS = $(ldflags) $(HWLOC_LIBXML2_LIBS) $(HWLOC_LINUX_LIBNUMA_LIBS)
 
 # XML data (only install if we're building in standalone mode)
 @HWLOC_BUILD_STANDALONE_TRUE@xml_DATA = $(srcdir)/hwloc.dtd

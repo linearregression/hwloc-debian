@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Hardware Locality (hwloc): Topology context</title>
+<title>Hardware Locality (hwloc): API version</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3rc1</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.3</span></div>
   </td>
  </tr>
  </tbody>
@@ -32,35 +32,58 @@
 </div>
 <div class="header">
   <div class="summary">
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#define-members">Defines</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Topology context</div>  </div>
+<div class="title">API version</div>  </div>
 </div>
 <div class="contents">
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef struct hwloc_topology *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a></td></tr>
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00037.html#ga8f4dfb8eef138af55dd1a0fa802e5476">HWLOC_API_VERSION</a>&#160;&#160;&#160;0x00010300</td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"> unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00037.html#ga61ef7566efe550d314b0ce4f3421ec5d">hwloc_get_api_version</a> (void)</td></tr>
 </table>
-<hr/><h2>Typedef Documentation</h2>
-<a class="anchor" id="ga9d1e76ee15a7dee158b786c30b6a6e38"></a><!-- doxytag: member="hwloc.h::hwloc_topology_t" ref="ga9d1e76ee15a7dee158b786c30b6a6e38" args="" -->
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="ga8f4dfb8eef138af55dd1a0fa802e5476"></a><!-- doxytag: member="hwloc.h::HWLOC_API_VERSION" ref="ga8f4dfb8eef138af55dd1a0fa802e5476" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct hwloc_topology* <a class="el" href="a00037.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a></td>
+          <td class="memname">#define HWLOC_API_VERSION&#160;&#160;&#160;0x00010300</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Topology context. </p>
-<p>To be initialized with <a class="el" href="a00041.html#ga5c2d6f476af87005c7bd0811d4548b9f" title="Allocate a topology context.">hwloc_topology_init()</a> and built with <a class="el" href="a00041.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a>. </p>
+<p>Indicate at build time which hwloc API version is being used. </p>
+
+</div>
+</div>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="ga61ef7566efe550d314b0ce4f3421ec5d"></a><!-- doxytag: member="hwloc.h::hwloc_get_api_version" ref="ga61ef7566efe550d314b0ce4f3421ec5d" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> unsigned hwloc_get_api_version </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Indicate at runtime which hwloc API version was used at build time. </p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Aug 23 2011 07:17:04 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Oct 12 2011 20:44:41 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

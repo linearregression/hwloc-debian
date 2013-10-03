@@ -102,9 +102,12 @@ package can be found when hwloc is configured and build.
 
 The hwloc core may also benefit from the following development packages:
 
-  * libxml2 for XML import/export (also needed for lstopo XML support).
   * pciutils (libpci) for I/O discovery.
   * libnuma for memory binding and migration support on Linux.
+  * libxml2 for full XML import/export support (otherwise, the internal
+ minimalistic parser will only be able to import XML files that were
+ exported by the same hwloc release). See Importing and exporting topologies
+ from/to XML files for details.
 
 CLI Examples
 
@@ -357,7 +360,8 @@ The basic interface is available in hwloc.h. It essentially offers low-level
 routines for advanced programmers that want to manually manipulate objects and
 follow links between them. Documentation for everything in hwloc.h are provided
 later in this document. Developers should also look at hwloc/helper.h (and also
-in this document, which provides good higher-level topology traversal examples.
+in this document, which provides good higher-level topology traversal
+examples).
 
 To precisely define the vocabulary used by hwloc, a Terms and Definitions
 section is available and should probably be read first.
@@ -701,6 +705,7 @@ The documentation chapters include
   * Environment Variables
   * CPU and Memory Binding Overview
   * I/O Devices
+  * Importing and exporting topologies from/to XML files
   * Interoperability With Other Software
   * Thread Safety
   * Embedding hwloc in Other Software
@@ -710,5 +715,5 @@ Make sure to have had a look at those too!
 
 -------------------------------------------------------------------------------
 
-Generated on Tue Aug 23 2011 07:17:03 for Hardware Locality (hwloc) by  doxygen
+Generated on Wed Oct 12 2011 20:44:40 for Hardware Locality (hwloc) by  doxygen
 1.7.4

@@ -1,4 +1,4 @@
-.TH "Myrinet Express-Specific Functions" 3 "Thu Jan 17 2013" "Version 1.6.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Myrinet Express-Specific Functions" 3 "Sun Apr 7 2013" "Version 1.7" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,15 +21,19 @@ Myrinet Express-Specific Functions \-
 .SS "static inline int hwloc_mx_board_get_device_cpuset (\fBhwloc_topology_t\fPtopology, unsignedid, \fBhwloc_cpuset_t\fPset)\fC [static]\fP"
 
 .PP
-Get the CPU set of logical processors that are physically close the MX board \fCid\fP\&. For the given Myrinet Express board index \fCid\fP, read the OS-provided NUMA node and return the corresponding CPU set\&.
+Get the CPU set of logical processors that are physically close the MX board \fCid\fP\&. Return the CPU set describing the locality of the Myrinet Express board whose index is \fCid\fP\&.
 .PP
-Topology \fCtopology\fP must match the current machine\&. 
+Topology \fCtopology\fP and device \fCid\fP must match the local machine\&. I/O devices detection is not needed in the topology\&.
+.PP
+The function only returns the locality of the device\&. No additional information about the device is available\&. 
 .SS "static inline int hwloc_mx_endpoint_get_device_cpuset (\fBhwloc_topology_t\fPtopology, mx_endpoint_tendpoint, \fBhwloc_cpuset_t\fPset)\fC [static]\fP"
 
 .PP
-Get the CPU set of logical processors that are physically close to endpoint \fCendpoint\fP\&. For the given Myrinet Express endpoint \fCendpoint\fP, read the OS-provided NUMA node and return the corresponding CPU set\&.
+Get the CPU set of logical processors that are physically close the MX endpoint \fCendpoint\fP\&. Return the CPU set describing the locality of the Myrinet Express board that runs the MX endpoint \fCendpoint\fP\&.
 .PP
-Topology \fCtopology\fP must match the current machine\&. 
+Topology \fCtopology\fP and device \fCid\fP must match the local machine\&. I/O devices detection is not needed in the topology\&.
+.PP
+The function only returns the locality of the endpoint\&. No additional information about the endpoint or device is available\&. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Hardware Locality (hwloc) from the source code\&.

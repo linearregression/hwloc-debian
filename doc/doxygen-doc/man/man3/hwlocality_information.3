@@ -1,4 +1,4 @@
-.TH "Get Some Topology Information" 3 "Thu Jan 17 2013" "Version 1.6.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Get Some Topology Information" 3 "Sun Apr 7 2013" "Version 1.7" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -31,6 +31,9 @@ Get Some Topology Information \-
 .ti -1c
 .RI " int \fBhwloc_topology_is_thissystem\fP (\fBhwloc_topology_t\fP restrict topology) "
 .br
+.ti -1c
+.RI " unsigned long \fBhwloc_topology_get_flags\fP (\fBhwloc_topology_t\fP topology)"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -40,7 +43,7 @@ Be sure to see the figure in \fBtermsanddefs\fP that shows a complete topology t
 .SS "enum \fBhwloc_get_type_depth_e\fP"
 
 .PP
-\fBEnumerator: \fP
+\fBEnumerator\fP
 .in +1c
 .TP
 \fB\fIHWLOC_TYPE_DEPTH_UNKNOWN \fP\fP
@@ -90,6 +93,17 @@ If an I/O object type is given, the function returns a virtual value because I/O
 
 .PP
 Get the depth of the hierarchical tree of objects\&. This is the depth of HWLOC_OBJ_PU objects plus one\&. 
+.SS " unsigned long hwloc_topology_get_flags (\fBhwloc_topology_t\fPtopology)"
+
+.PP
+Get OR'ed flags of a topology\&. Get the OR'ed set of \fBhwloc_topology_flags_e\fP of a topology\&.
+.PP
+\fBReturns:\fP
+.RS 4
+the flags previously set with \fBhwloc_topology_set_flags()\fP\&. 
+.RE
+.PP
+
 .SS " int hwloc_topology_is_thissystem (\fBhwloc_topology_t\fP restricttopology)"
 
 .PP

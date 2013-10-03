@@ -1,4 +1,4 @@
-.TH "Finding Objects Inside a CPU set" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Finding Objects Inside a CPU set" 3 "Tue Aug 16 2011" "Version 1.2.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -63,7 +63,7 @@ Return the next object at depth \fCdepth\fP included in CPU set \fCset\fP. If \f
 Return the next object of type \fCtype\fP included in CPU set \fCset\fP. If there are multiple or no depth for given type, return \fCNULL\fP and let the caller fallback to \fBhwloc_get_next_obj_inside_cpuset_by_depth()\fP. 
 .SS "static inline \fBhwloc_obj_t\fP  hwloc_get_obj_inside_cpuset_by_depth (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPset, unsigneddepth, unsignedidx)\fC [static]\fP"
 .PP
-Return the \fCindex\fP -th object at depth \fCdepth\fP included in CPU set \fCset\fP. 
+Return the (logically) \fCidx\fP -th object at depth \fCdepth\fP included in CPU set \fCset\fP. 
 .SS "static inline \fBhwloc_obj_t\fP  hwloc_get_obj_inside_cpuset_by_type (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPset, \fBhwloc_obj_type_t\fPtype, unsignedidx)\fC [static]\fP"
 .PP
 Return the \fCidx\fP -th object of type \fCtype\fP included in CPU set \fCset\fP. If there are multiple or no depth for given type, return \fCNULL\fP and let the caller fallback to \fBhwloc_get_obj_inside_cpuset_by_depth()\fP. 

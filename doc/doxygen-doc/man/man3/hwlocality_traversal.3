@@ -1,4 +1,4 @@
-.TH "Retrieve Objects" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Retrieve Objects" 3 "Tue Aug 16 2011" "Version 1.2.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,10 +17,10 @@ Retrieve Objects \-
 .PP 
 .SS " \fBhwloc_obj_t\fP hwloc_get_obj_by_depth (\fBhwloc_topology_t\fPtopology, unsigneddepth, unsignedidx)"
 .PP
-Returns the topology object at index \fCindex\fP from depth \fCdepth\fP. 
+Returns the topology object at logical index \fCidx\fP from depth \fCdepth\fP. 
 .SS "static inline \fBhwloc_obj_t\fP  hwloc_get_obj_by_type (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_type_t\fPtype, unsignedidx)\fC [static]\fP"
 .PP
-Returns the topology object at index \fCindex\fP with type \fCtype\fP. If no object for that type exists, \fCNULL\fP is returned. If there are several levels with objects of that type, \fCNULL\fP is returned and ther caller may fallback to \fBhwloc_get_obj_by_depth()\fP. 
+Returns the topology object at logical index \fCidx\fP with type \fCtype\fP. If no object for that type exists, \fCNULL\fP is returned. If there are several levels with objects of that type, \fCNULL\fP is returned and ther caller may fallback to \fBhwloc_get_obj_by_depth()\fP. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Hardware Locality (hwloc) from the source code.

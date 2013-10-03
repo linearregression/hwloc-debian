@@ -1,4 +1,4 @@
-.TH "hwloc_obj_attr_u" 3 "Sun Oct 2 2011" "Version 1.2.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj_attr_u" 3 "Wed Oct 12 2011" "Version 1.3" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,6 +15,10 @@ Object type-specific Attributes.
 
 .in +1c
 .ti -1c
+.RI "struct \fBhwloc_bridge_attr_s\fP"
+.br
+.RI "\fIBridge specific Object Attribues. \fP"
+.ti -1c
 .RI "struct \fBhwloc_cache_attr_s\fP"
 .br
 .RI "\fICache-specific Object Attributes. \fP"
@@ -22,6 +26,14 @@ Object type-specific Attributes.
 .RI "struct \fBhwloc_group_attr_s\fP"
 .br
 .RI "\fIGroup-specific Object Attributes. \fP"
+.ti -1c
+.RI "struct \fBhwloc_osdev_attr_s\fP"
+.br
+.RI "\fIOS Device specific Object Attributes. \fP"
+.ti -1c
+.RI "struct \fBhwloc_pcidev_attr_s\fP"
+.br
+.RI "\fIPCI Device specific Object Attributes. \fP"
 .in -1c
 .SS "Data Fields"
 
@@ -32,14 +44,26 @@ Object type-specific Attributes.
 .ti -1c
 .RI "struct \fBhwloc_obj_attr_u::hwloc_group_attr_s\fP \fBgroup\fP"
 .br
+.ti -1c
+.RI "struct \fBhwloc_obj_attr_u::hwloc_pcidev_attr_s\fP \fBpcidev\fP"
+.br
+.ti -1c
+.RI "struct \fBhwloc_obj_attr_u::hwloc_bridge_attr_s\fP \fBbridge\fP"
+.br
+.ti -1c
+.RI "struct \fBhwloc_obj_attr_u::hwloc_osdev_attr_s\fP \fBosdev\fP"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
 Object type-specific Attributes. 
 .SH "Field Documentation"
 .PP 
+.SS "struct \fBhwloc_obj_attr_u::hwloc_bridge_attr_s\fP  \fBhwloc_obj_attr_u::bridge\fP"
 .SS "struct \fBhwloc_obj_attr_u::hwloc_cache_attr_s\fP  \fBhwloc_obj_attr_u::cache\fP"
 .SS "struct \fBhwloc_obj_attr_u::hwloc_group_attr_s\fP  \fBhwloc_obj_attr_u::group\fP"
+.SS "struct \fBhwloc_obj_attr_u::hwloc_osdev_attr_s\fP  \fBhwloc_obj_attr_u::osdev\fP"
+.SS "struct \fBhwloc_obj_attr_u::hwloc_pcidev_attr_s\fP  \fBhwloc_obj_attr_u::pcidev\fP"
 
 .SH "Author"
 .PP 

@@ -50,6 +50,10 @@
    don't. */
 #undef HAVE_DECL_HW_NCPU
 
+/* Define to 1 if you have the declaration of `PCI_LOOKUP_NO_NUMBERS', and to
+   0 if you don't. */
+#undef HAVE_DECL_PCI_LOOKUP_NO_NUMBERS
+
 /* Define to 1 if you have the declaration of `pthread_getaffinity_np', and to
    0 if you don't. */
 #undef HAVE_DECL_PTHREAD_GETAFFINITY_NP
@@ -132,6 +136,9 @@
 /* Define to 1 if we have -llgrp */
 #undef HAVE_LIBLGRP
 
+/* Define to 1 if you have the `pci' library (-lpci). */
+#undef HAVE_LIBPCI
+
 /* Define to 1 if you have the <locale.h> header file. */
 #undef HAVE_LOCALE_H
 
@@ -167,6 +174,9 @@
 
 /* Define to 1 if you have the `openat' function. */
 #undef HAVE_OPENAT
+
+/* Define to 1 if you have the <pci/pci.h> header file. */
+#undef HAVE_PCI_PCI_H
 
 /* Define to 1 if you have the `posix_memalign' function. */
 #undef HAVE_POSIX_MEMALIGN
@@ -396,8 +406,14 @@
 /* Define to 1 if you have the `flsl' function. */
 #undef HWLOC_HAVE_FLSL
 
+/* Define to 1 if you have the `libpci' library. */
+#undef HWLOC_HAVE_LIBPCI
+
 /* Define to 1 if you have a library providing the termcap interface */
 #undef HWLOC_HAVE_LIBTERMCAP
+
+/* Define to 1 if you have the `libxml2' library. */
+#undef HWLOC_HAVE_LIBXML2
 
 /* Define to 1 if mbind is available. */
 #undef HWLOC_HAVE_MBIND
@@ -407,6 +423,15 @@
 
 /* Define to 1 if glibc provides the old prototype of sched_setaffinity() */
 #undef HWLOC_HAVE_OLD_SCHED_SETAFFINITY
+
+/* Define to 1 if struct pci_dev has a `device_class' field. */
+#undef HWLOC_HAVE_PCIDEV_DEVICE_CLASS
+
+/* Define to 1 if struct pci_dev has a `domain' field. */
+#undef HWLOC_HAVE_PCIDEV_DOMAIN
+
+/* Define to 1 if `libpci' has the `pci_find_cap' function. */
+#undef HWLOC_HAVE_PCI_FIND_CAP
 
 /* `Define to 1 if you have pthread_getthrds_np' */
 #undef HWLOC_HAVE_PTHREAD_GETTHRDS_NP
@@ -422,9 +447,6 @@
 
 /* Define to 1 if X11 libraries are available. */
 #undef HWLOC_HAVE_X11
-
-/* Define to 1 if you have the `xml' library. */
-#undef HWLOC_HAVE_XML
 
 /* Define to 1 if the _syscall3 macro works */
 #undef HWLOC_HAVE__SYSCALL3

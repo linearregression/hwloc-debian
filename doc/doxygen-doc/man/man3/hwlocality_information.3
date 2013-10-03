@@ -1,4 +1,4 @@
-.TH "Get Some Topology Information" 3 "Sun Oct 2 2011" "Version 1.2.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Get Some Topology Information" 3 "Wed Oct 12 2011" "Version 1.3" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -7,7 +7,7 @@ Get Some Topology Information \-
 
 .in +1c
 .ti -1c
-.RI "enum \fBhwloc_get_type_depth_e\fP { \fBHWLOC_TYPE_DEPTH_UNKNOWN\fP, \fBHWLOC_TYPE_DEPTH_MULTIPLE\fP }"
+.RI "enum \fBhwloc_get_type_depth_e\fP { \fBHWLOC_TYPE_DEPTH_UNKNOWN\fP, \fBHWLOC_TYPE_DEPTH_MULTIPLE\fP, \fBHWLOC_TYPE_DEPTH_BRIDGE\fP, \fBHWLOC_TYPE_DEPTH_PCI_DEVICE\fP, \fBHWLOC_TYPE_DEPTH_OS_DEVICE\fP }"
 .br
 .in -1c
 .SS "Functions"
@@ -47,6 +47,15 @@ No object of given type exists in the topology.
 .TP
 \fB\fIHWLOC_TYPE_DEPTH_MULTIPLE \fP\fP
 Objects of given type exist at different depth in the topology. 
+.TP
+\fB\fIHWLOC_TYPE_DEPTH_BRIDGE \fP\fP
+Virtual depth for bridge object level. 
+.TP
+\fB\fIHWLOC_TYPE_DEPTH_PCI_DEVICE \fP\fP
+Virtual depth for PCI device object level. 
+.TP
+\fB\fIHWLOC_TYPE_DEPTH_OS_DEVICE \fP\fP
+Virtual depth for software device object level. 
 .SH "Function Documentation"
 .PP 
 .SS " \fBhwloc_obj_type_t\fP hwloc_get_depth_type (\fBhwloc_topology_t\fPtopology, unsigneddepth)"
@@ -69,7 +78,9 @@ Returns the depth of objects of type \fCtype\fP. If no object of this type is pr
 .PP
 If type is absent but a similar type is acceptable, see also \fBhwloc_get_type_or_below_depth()\fP and \fBhwloc_get_type_or_above_depth()\fP.
 .PP
-If some objects of the given type exist in different levels, for instance L1 and L2 caches, the function returns HWLOC_TYPE_DEPTH_MULTIPLE. 
+If some objects of the given type exist in different levels, for instance L1 and L2 caches, the function returns HWLOC_TYPE_DEPTH_MULTIPLE.
+.PP
+If an I/O object type is given, the function returns a virtual value because I/O objects are stored in special levels that are not CPU-related. This virtual depth may be passed to other hwloc functions such as \fBhwloc_get_obj_by_depth()\fP but it should not be considered as an actual depth by the application. In particular, it should not be compared with any other object depth or with the entire topology depth. 
 .SS " unsigned hwloc_topology_get_depth (\fBhwloc_topology_t\fP restricttopology)"
 .PP
 Get the depth of the hierarchical tree of objects. This is the depth of HWLOC_OBJ_PU objects plus one. 

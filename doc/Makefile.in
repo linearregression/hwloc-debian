@@ -169,17 +169,23 @@ HWLOC_CAIRO_LIBS = @HWLOC_CAIRO_LIBS@
 HWLOC_CFLAGS = @HWLOC_CFLAGS@
 HWLOC_CPPFLAGS = @HWLOC_CPPFLAGS@
 HWLOC_DIFF_U = @HWLOC_DIFF_U@
+HWLOC_DIFF_W = @HWLOC_DIFF_W@
 HWLOC_EMBEDDED_CFLAGS = @HWLOC_EMBEDDED_CFLAGS@
 HWLOC_EMBEDDED_CPPFLAGS = @HWLOC_EMBEDDED_CPPFLAGS@
 HWLOC_EMBEDDED_LDADD = @HWLOC_EMBEDDED_LDADD@
 HWLOC_EMBEDDED_LIBS = @HWLOC_EMBEDDED_LIBS@
-HWLOC_HAVE_XML = @HWLOC_HAVE_XML@
+HWLOC_HAVE_LIBPCI = @HWLOC_HAVE_LIBPCI@
+HWLOC_HAVE_LIBXML2 = @HWLOC_HAVE_LIBXML2@
 HWLOC_KERRIGHED_CFLAGS = @HWLOC_KERRIGHED_CFLAGS@
 HWLOC_KERRIGHED_LIBS = @HWLOC_KERRIGHED_LIBS@
 HWLOC_LDFLAGS = @HWLOC_LDFLAGS@
 HWLOC_LIBS = @HWLOC_LIBS@
+HWLOC_LIBXML2_CFLAGS = @HWLOC_LIBXML2_CFLAGS@
+HWLOC_LIBXML2_LIBS = @HWLOC_LIBXML2_LIBS@
 HWLOC_LINUX_LIBNUMA_LIBS = @HWLOC_LINUX_LIBNUMA_LIBS@
 HWLOC_MS_LIB = @HWLOC_MS_LIB@
+HWLOC_PCI_CFLAGS = @HWLOC_PCI_CFLAGS@
+HWLOC_PCI_LIBS = @HWLOC_PCI_LIBS@
 HWLOC_PKG_CONFIG = @HWLOC_PKG_CONFIG@
 HWLOC_RELEASE_DATE = @HWLOC_RELEASE_DATE@
 HWLOC_REQUIRES = @HWLOC_REQUIRES@
@@ -188,8 +194,6 @@ HWLOC_TERMCAP_LIBS = @HWLOC_TERMCAP_LIBS@
 HWLOC_VERSION = @HWLOC_VERSION@
 HWLOC_W3_GENERATOR = @HWLOC_W3_GENERATOR@
 HWLOC_X11_LIBS = @HWLOC_X11_LIBS@
-HWLOC_XML_CFLAGS = @HWLOC_XML_CFLAGS@
-HWLOC_XML_LIBS = @HWLOC_XML_LIBS@
 HWLOC_top_builddir = @HWLOC_top_builddir@
 HWLOC_top_srcdir = @HWLOC_top_srcdir@
 INSTALL = @INSTALL@
@@ -399,19 +403,33 @@ dox_inputs = $(DOX_CONFIG) \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_MEMBIND_REPLICATE.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_MEMBIND_STRICT.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_MEMBIND_THREAD.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_BRIDGE.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_BRIDGE_HOST.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_BRIDGE_PCI.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_CACHE.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_CORE.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_GROUP.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_MACHINE.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_MISC.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_NODE.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_OS_DEVICE.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_OSDEV_BLOCK.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_OSDEV_DMA.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_OSDEV_GPU.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_OSDEV_NETWORK.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_OSDEV_OPENFABRICS.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_PU.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_PCI_DEVICE.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_SOCKET.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_SYSTEM.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_TYPE_MAX.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_RESTRICT_FLAG_ADAPT_DISTANCES.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_RESTRICT_FLAG_ADAPT_IO.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_RESTRICT_FLAG_ADAPT_MISC.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_TOPOLOGY_FLAG_IO_BRIDGES.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_TOPOLOGY_FLAG_IO_DEVICES.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_TOPOLOGY_FLAG_WHOLE_IO.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_TYPE_DEPTH_MULTIPLE.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/HWLOC_TYPE_DEPTH_UNKNOWN.3 \
@@ -469,6 +487,7 @@ dox_inputs = $(DOX_CONFIG) \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_bitmap_weight.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_bitmap_xor.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_bitmap_zero.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_bridge_covers_pcibus.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_compare_types.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_compare_types_e.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_const_bitmap_t.3 \
@@ -492,7 +511,8 @@ dox_inputs = $(DOX_CONFIG) \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_cudart_get_device_cpuset.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_distribute.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_distributev.3 \
-@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_free.3  \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_free.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_free_xmlbuffer.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_ancestor_obj_by_depth.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_ancestor_obj_by_type.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_api_version.3 \
@@ -505,6 +525,7 @@ dox_inputs = $(DOX_CONFIG) \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_cpubind.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_depth_type.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_first_largest_obj_inside_cpuset.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_hostbridge_by_pcibus.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_largest_objs_inside_cpuset.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_last_cpu_location.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_membind.3 \
@@ -513,6 +534,7 @@ dox_inputs = $(DOX_CONFIG) \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_nbobjs_by_type.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_nbobjs_inside_cpuset_by_depth.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_nbobjs_inside_cpuset_by_type.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_next_bridge.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_next_child.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_next_obj_by_depth.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_next_obj_by_type.3 \
@@ -520,6 +542,9 @@ dox_inputs = $(DOX_CONFIG) \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_next_obj_covering_cpuset_by_type.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_next_obj_inside_cpuset_by_depth.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_next_obj_inside_cpuset_by_type.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_next_osdev.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_next_pcidev.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_non_io_ancestor_obj.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_obj_below_array_by_type.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_obj_below_by_type.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_obj_by_depth.3 \
@@ -527,6 +552,8 @@ dox_inputs = $(DOX_CONFIG) \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_obj_covering_cpuset.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_obj_inside_cpuset_by_depth.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_obj_inside_cpuset_by_type.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_pcidev_by_busid.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_pcidev_by_busidstring.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_proc_cpubind.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_proc_last_cpu_location.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_get_proc_membind.3 \
@@ -561,9 +588,17 @@ dox_inputs = $(DOX_CONFIG) \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_attr_snprintf.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_attr_u.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_attr_u_hwloc_bridge_attr_s.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_attr_u_hwloc_cache_attr_s.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_attr_u_hwloc_group_attr_s.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_attr_u_hwloc_osdev_attr_s.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_attr_u_hwloc_pcidev_attr_s.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_bridge_type_e.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_bridge_type_t.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_osdev_type_e.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_osdev_type_t.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_distances_s.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_add_info.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_cpuset_snprintf.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_get_info_by_name.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_obj_info_s.3 \
@@ -621,6 +656,7 @@ dox_inputs = $(DOX_CONFIG) \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_topology_set_distance_matrix.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_topology_support.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwloc_topology_t.3 \
+@HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwlocality_advanced_io.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwlocality_api_version.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwlocality_bitmap.3 \
 @HWLOC_INSTALL_DOXYGEN_TRUE@        $(DOX_MAN_DIR)/man3/hwlocality_configuration.3 \
@@ -1196,14 +1232,18 @@ uninstall-man: uninstall-man3
 @HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/envvar.tex $(DOX_DIR)/latex/a00003.tex
 @HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/cpu_mem_bind.html $(DOX_DIR)/html/a00004.html
 @HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/cpu_mem_bind.tex $(DOX_DIR)/latex/a00004.tex
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/interoperability.html $(DOX_DIR)/html/a00005.html
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/interoperability.tex $(DOX_DIR)/latex/a00005.tex
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/threadsafety.html $(DOX_DIR)/html/a00006.html
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/threadsafety.tex $(DOX_DIR)/latex/a00006.tex
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/embed.html $(DOX_DIR)/html/a00007.html
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/embed.tex $(DOX_DIR)/latex/a00007.tex
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/faq.html $(DOX_DIR)/html/a00008.html
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/faq.tex $(DOX_DIR)/latex/a00008.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/iodevices.html $(DOX_DIR)/html/a00005.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/iodevices.tex $(DOX_DIR)/latex/a00005.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/xml.html $(DOX_DIR)/html/a00006.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/xml.tex $(DOX_DIR)/latex/a00006.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/interoperability.html $(DOX_DIR)/html/a00007.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/interoperability.tex $(DOX_DIR)/latex/a00007.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/threadsafety.html $(DOX_DIR)/html/a00008.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/threadsafety.tex $(DOX_DIR)/latex/a00008.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/embed.html $(DOX_DIR)/html/a00009.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/embed.tex $(DOX_DIR)/latex/a00009.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/faq.html $(DOX_DIR)/html/a00010.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/faq.tex $(DOX_DIR)/latex/a00010.tex
 
 #
 # Rules for building the PDF

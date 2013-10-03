@@ -1,4 +1,4 @@
-.TH "hwloc_obj_attr_u::hwloc_machine_attr_s" 3 "5 Nov 2009" "Version 0.9.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj_attr_u::hwloc_machine_attr_s" 3 "24 Nov 2009" "Version 0.9.3rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME

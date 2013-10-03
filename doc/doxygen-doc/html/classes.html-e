@@ -12,7 +12,6 @@
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&nbsp;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -31,7 +30,7 @@
 <tr><td><a name="letter_H"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&nbsp;&nbsp;H&nbsp;&nbsp;</div></td></tr></table>
 </td><td><a class="el" href="structhwloc__obj__attr__u_1_1hwloc__machine__attr__s.html">hwloc_obj_attr_u::hwloc_machine_attr_s</a>&nbsp;&nbsp;&nbsp;</td><td><a class="el" href="structhwloc__obj__attr__u_1_1hwloc__misc__attr__s.html">hwloc_obj_attr_u::hwloc_misc_attr_s</a>&nbsp;&nbsp;&nbsp;</td><td><a class="el" href="structhwloc__obj.html">hwloc_obj</a>&nbsp;&nbsp;&nbsp;</td><td><a class="el" href="unionhwloc__obj__attr__u.html">hwloc_obj_attr_u</a>&nbsp;&nbsp;&nbsp;</td></tr><tr><td><a class="el" href="structhwloc__obj__attr__u_1_1hwloc__cache__attr__s.html">hwloc_obj_attr_u::hwloc_cache_attr_s</a>&nbsp;&nbsp;&nbsp;</td><td><a class="el" href="structhwloc__obj__attr__u_1_1hwloc__memory__attr__s.html">hwloc_obj_attr_u::hwloc_memory_attr_s</a>&nbsp;&nbsp;&nbsp;</td></tr></table><div class="qindex"><a class="qindex" href="#letter_H">H</a></div>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Nov 5 09:58:42 2009 for Hardware Locality (hwloc) by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Nov 24 11:55:11 2009 for Hardware Locality (hwloc) by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

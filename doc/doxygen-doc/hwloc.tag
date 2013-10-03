@@ -25,6 +25,7 @@
     <filename>a00002</filename>
     <docanchor file="a00002">cli_hwloc_ps</docanchor>
     <docanchor file="a00002">cli_hwloc_bind</docanchor>
+    <docanchor file="a00002">cli_hwloc_gather</docanchor>
     <docanchor file="a00002">cli_hwloc_distrib</docanchor>
     <docanchor file="a00002">cli_lstopo</docanchor>
     <docanchor file="a00002">cli_hwloc_calc</docanchor>
@@ -57,20 +58,15 @@
     <docanchor file="a00007">embedding_m4</docanchor>
   </compound>
   <compound kind="page">
-    <name>switchfromplpa</name>
-    <title>Switching from PLPA to hwloc</title>
-    <filename>a00008</filename>
-    <docanchor file="a00008">switchfromplpa_counting</docanchor>
-    <docanchor file="a00008">switchfromplpa_indexes</docanchor>
-    <docanchor file="a00008">switchfromplpa_caching</docanchor>
-    <docanchor file="a00008">switchfromplpa_hierarchy</docanchor>
-  </compound>
-  <compound kind="page">
     <name>faq</name>
     <title>Frequently Asked Questions</title>
-    <filename>a00009</filename>
-    <docanchor file="a00009">faq_upgrade</docanchor>
-    <docanchor file="a00009">faq_xml</docanchor>
+    <filename>a00008</filename>
+    <docanchor file="a00008">faq_smt</docanchor>
+    <docanchor file="a00008">faq_onedim</docanchor>
+    <docanchor file="a00008">faq_upgrade</docanchor>
+    <docanchor file="a00008">faq_asymmetric</docanchor>
+    <docanchor file="a00008">faq_xml</docanchor>
+    <docanchor file="a00008">faq_annotate</docanchor>
   </compound>
   <compound kind="group">
     <name>hwlocality_api_version</name>
@@ -200,6 +196,12 @@
       <anchor>ggacd37bb612667dc437d66bfb175a8dc55a19f8a6953fa91efc76bcbcdf2d22de4d</anchor>
       <arglist></arglist>
     </member>
+    <member kind="enumvalue">
+      <name>HWLOC_OBJ_TYPE_MAX</name>
+      <anchorfile>a00035.html</anchorfile>
+      <anchor>ggacd37bb612667dc437d66bfb175a8dc55addb5f843e1812445a84e6b2a844b1ebc</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="enumeration">
       <name>hwloc_compare_types_e</name>
       <anchorfile>a00035.html</anchorfile>
@@ -227,6 +229,7 @@
     <class kind="struct">hwloc_obj_memory_s</class>
     <class kind="struct">hwloc_obj</class>
     <class kind="union">hwloc_obj_attr_u</class>
+    <class kind="struct">hwloc_distances_s</class>
     <class kind="struct">hwloc_obj_info_s</class>
     <member kind="typedef">
       <type>struct hwloc_obj *</type>
@@ -359,6 +362,13 @@
       <arglist>(hwloc_topology_t __hwloc_restrict topology, const char *__hwloc_restrict buffer, int size)</arglist>
     </member>
     <member kind="function">
+      <type>HWLOC_DECLSPEC int</type>
+      <name>hwloc_topology_set_distance_matrix</name>
+      <anchorfile>a00038.html</anchorfile>
+      <anchor>gabda6afa67a495cd652f064ad51d3fe47</anchor>
+      <arglist>(hwloc_topology_t __hwloc_restrict topology, hwloc_obj_type_t type, unsigned nbobjs, unsigned *os_index, float *distances)</arglist>
+    </member>
+    <member kind="function">
       <type>HWLOC_DECLSPEC struct hwloc_topology_support *</type>
       <name>hwloc_topology_get_support</name>
       <anchorfile>a00038.html</anchorfile>
@@ -370,6 +380,24 @@
     <name>hwlocality_tinker</name>
     <title>Tinker with topologies.</title>
     <filename>a00039.html</filename>
+    <member kind="enumeration">
+      <name>hwloc_restrict_flags_e</name>
+      <anchorfile>a00039.html</anchorfile>
+      <anchor>ga9d80f08eb25b7ac22f1b998dc8bf521f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>HWLOC_RESTRICT_FLAG_ADAPT_DISTANCES</name>
+      <anchorfile>a00039.html</anchorfile>
+      <anchor>gga9d80f08eb25b7ac22f1b998dc8bf521fa4d18407f5520793b50b9e892f5bb55d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>HWLOC_RESTRICT_FLAG_ADAPT_MISC</name>
+      <anchorfile>a00039.html</anchorfile>
+      <anchor>gga9d80f08eb25b7ac22f1b998dc8bf521fa699969227a09bbc1a7de51dc9fb7be4b</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_topology_export_xml</name>
@@ -397,6 +425,13 @@
       <anchorfile>a00039.html</anchorfile>
       <anchor>gadacd7a3d21220fbb30c3256d8b22a294</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t parent, const char *name)</arglist>
+    </member>
+    <member kind="function">
+      <type>HWLOC_DECLSPEC int</type>
+      <name>hwloc_topology_restrict</name>
+      <anchorfile>a00039.html</anchorfile>
+      <anchor>gad75fa918e3eb54663bdeab25ed89b648</anchor>
+      <arglist>(hwloc_topology_t __hwloc_restrict topology, hwloc_const_cpuset_t cpuset, unsigned long flags)</arglist>
     </member>
   </compound>
   <compound kind="group">
@@ -612,6 +647,20 @@
       <anchorfile>a00043.html</anchorfile>
       <anchor>ga58c49328c4213c9fbf8d80d5188d4c1e</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_thread_t tid, hwloc_cpuset_t set, int flags)</arglist>
+    </member>
+    <member kind="function">
+      <type>HWLOC_DECLSPEC int</type>
+      <name>hwloc_get_last_cpu_location</name>
+      <anchorfile>a00043.html</anchorfile>
+      <anchor>ga8e9a4b5ee3eaa18fd3a229790c6b5b17</anchor>
+      <arglist>(hwloc_topology_t topology, hwloc_cpuset_t set, int flags)</arglist>
+    </member>
+    <member kind="function">
+      <type>HWLOC_DECLSPEC int</type>
+      <name>hwloc_get_proc_last_cpu_location</name>
+      <anchorfile>a00043.html</anchorfile>
+      <anchor>ga1e005ddb9701e6a993a9eb8abe67a710</anchor>
+      <arglist>(hwloc_topology_t topology, hwloc_pid_t pid, hwloc_cpuset_t set, int flags)</arglist>
     </member>
   </compound>
   <compound kind="group">
@@ -1172,328 +1221,382 @@
     </member>
   </compound>
   <compound kind="group">
+    <name>hwlocality_distances</name>
+    <title>Distances</title>
+    <filename>a00056.html</filename>
+    <member kind="function" static="yes">
+      <type>static __hwloc_inline struct hwloc_distances_s *</type>
+      <name>hwloc_get_whole_distance_matrix_by_depth</name>
+      <anchorfile>a00056.html</anchorfile>
+      <anchor>ga48dfec8b8ba1fb8f2073ecd0728f0ca6</anchor>
+      <arglist>(hwloc_topology_t topology, unsigned depth)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static __hwloc_inline struct hwloc_distances_s *</type>
+      <name>hwloc_get_whole_distance_matrix_by_type</name>
+      <anchorfile>a00056.html</anchorfile>
+      <anchor>ga9979237728f7a00a38836e15a8e8cd17</anchor>
+      <arglist>(hwloc_topology_t topology, hwloc_obj_type_t type)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static __hwloc_inline struct hwloc_distances_s *</type>
+      <name>hwloc_get_distance_matrix_covering_obj_by_depth</name>
+      <anchorfile>a00056.html</anchorfile>
+      <anchor>ga186ac2711b98a12cf46d58cd005fbb51</anchor>
+      <arglist>(hwloc_topology_t topology, hwloc_obj_t obj, unsigned depth, unsigned *firstp)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static __hwloc_inline int</type>
+      <name>hwloc_get_latency</name>
+      <anchorfile>a00056.html</anchorfile>
+      <anchor>ga9addde99e34b815df47625f1d6191839</anchor>
+      <arglist>(hwloc_topology_t topology, hwloc_obj_t obj1, hwloc_obj_t obj2, float *latency, float *reverse_latency)</arglist>
+    </member>
+  </compound>
+  <compound kind="group">
     <name>hwlocality_bitmap</name>
     <title>The bitmap API</title>
-    <filename>a00056.html</filename>
+    <filename>a00057.html</filename>
     <member kind="define">
       <type>#define</type>
       <name>hwloc_bitmap_foreach_begin</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga3f6861045a8029ade373510ffa727d2a</anchor>
       <arglist>(id, bitmap)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>hwloc_bitmap_foreach_end</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gafcf3246db406218d4e155735b3fa6528</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="typedef">
       <type>struct hwloc_bitmap_s *</type>
       <name>hwloc_bitmap_t</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gaa3c2bf4c776d603dcebbb61b0c923d84</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>struct hwloc_bitmap_s *</type>
       <name>hwloc_const_bitmap_t</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga2fb1bbc8aea1ea22dee2f0fd39659f48</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC hwloc_bitmap_t</type>
       <name>hwloc_bitmap_alloc</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga9fb6aedc30d4ef4998fa53e2403b6130</anchor>
       <arglist>(void) __hwloc_attribute_malloc</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC hwloc_bitmap_t</type>
       <name>hwloc_bitmap_alloc_full</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gadd4479485685bda179f4b8b9b70f671e</anchor>
       <arglist>(void) __hwloc_attribute_malloc</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_free</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga8e7035fe555ef96921bfb98e08519bc7</anchor>
       <arglist>(hwloc_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC hwloc_bitmap_t</type>
       <name>hwloc_bitmap_dup</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gaaa4ed76211cd3694dfbea2109fc440be</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap) __hwloc_attribute_malloc</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_copy</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gab14743355fa03b36cef521cbcd2fbf64</anchor>
       <arglist>(hwloc_bitmap_t dst, hwloc_const_bitmap_t src)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_snprintf</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga6c0d60db98f27276752c1e5fafcbd7d1</anchor>
       <arglist>(char *__hwloc_restrict buf, size_t buflen, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_asprintf</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gad3cf87ceb58aa91656756bbb58057320</anchor>
       <arglist>(char **strp, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_sscanf</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga553cd5ceb1925bfd31788e70b4a46ae8</anchor>
       <arglist>(hwloc_bitmap_t bitmap, const char *__hwloc_restrict string)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
+      <name>hwloc_bitmap_list_snprintf</name>
+      <anchorfile>a00057.html</anchorfile>
+      <anchor>gab94b52560ea4333663895b3276e89af2</anchor>
+      <arglist>(char *__hwloc_restrict buf, size_t buflen, hwloc_const_bitmap_t bitmap)</arglist>
+    </member>
+    <member kind="function">
+      <type>HWLOC_DECLSPEC int</type>
+      <name>hwloc_bitmap_list_asprintf</name>
+      <anchorfile>a00057.html</anchorfile>
+      <anchor>ga600651f00d39d378f423acbd75d938d2</anchor>
+      <arglist>(char **strp, hwloc_const_bitmap_t bitmap)</arglist>
+    </member>
+    <member kind="function">
+      <type>HWLOC_DECLSPEC int</type>
+      <name>hwloc_bitmap_list_sscanf</name>
+      <anchorfile>a00057.html</anchorfile>
+      <anchor>gafe8fc90e7a9171e287cf1bfa11e85980</anchor>
+      <arglist>(hwloc_bitmap_t bitmap, const char *__hwloc_restrict string)</arglist>
+    </member>
+    <member kind="function">
+      <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_taskset_snprintf</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gae0e0619f43a4af5efafb75f489c1c6ec</anchor>
       <arglist>(char *__hwloc_restrict buf, size_t buflen, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_taskset_asprintf</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gaa3df92e204ffb24ceddd44d8d58f6eaa</anchor>
       <arglist>(char **strp, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_taskset_sscanf</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga71b28ef0d7206e37adbb94468c03e1a9</anchor>
       <arglist>(hwloc_bitmap_t bitmap, const char *__hwloc_restrict string)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_zero</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga6c540b9fe63b8223b6aba46d56dd63b8</anchor>
       <arglist>(hwloc_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_fill</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga52456f7ef79d68e610cb65e3f7ffafad</anchor>
       <arglist>(hwloc_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_only</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga8ea10f5ebaadb8418f28f953d6106190</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned id)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_allbut</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga88204c1c313aa067da10241b5886a166</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned id)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_from_ulong</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga02eae57cff32b6aa55044e6609ae7d73</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned long mask)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_from_ith_ulong</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga3c44c943cb3a3e4577b32d924e4f36f2</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned i, unsigned long mask)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_set</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga497556af0cc34f109ae0277999c074d3</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned id)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_set_range</name>
-      <anchorfile>a00056.html</anchorfile>
-      <anchor>ga371be6d389287d5b22a8034d61ccd7e3</anchor>
-      <arglist>(hwloc_bitmap_t bitmap, unsigned begin, unsigned end)</arglist>
+      <anchorfile>a00057.html</anchorfile>
+      <anchor>ga9d4f8fc40f552a76c943b5b773ac17d6</anchor>
+      <arglist>(hwloc_bitmap_t bitmap, unsigned begin, int end)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_set_ith_ulong</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga56027d6b141a3da441925e6e999de1c1</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned i, unsigned long mask)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_clr</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga54e89b87ba5f5c18323f16690e0e5730</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned id)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_clr_range</name>
-      <anchorfile>a00056.html</anchorfile>
-      <anchor>gacddc932644e34fc2e914caf2fdaa70ce</anchor>
-      <arglist>(hwloc_bitmap_t bitmap, unsigned begin, unsigned end)</arglist>
+      <anchorfile>a00057.html</anchorfile>
+      <anchor>gac27bd46fd5b387def6b40712b7ee2796</anchor>
+      <arglist>(hwloc_bitmap_t bitmap, unsigned begin, int end)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_singlify</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga4630aa1b7e08eac5b41be126194e84a1</anchor>
       <arglist>(hwloc_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC unsigned long</type>
       <name>hwloc_bitmap_to_ulong</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga4fee4e3cea99e4a389c54a6c3f0c78ed</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC unsigned long</type>
       <name>hwloc_bitmap_to_ith_ulong</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gabc0b9f4cae56a1303c38b2380086efc2</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap, unsigned i) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_isset</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga2583f44cbdb5fff2ea40efdcf3975d3f</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap, unsigned id) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_iszero</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gaa94fed35d2a598bc4a8657b6955b7bf5</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_isfull</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga59a07ecd8e74f2d4ee4271a1dbf0e4dd</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_first</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga42472a7b75ca79cae19f0611fdb849e6</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_next</name>
-      <anchorfile>a00056.html</anchorfile>
-      <anchor>gae351afd7046295683112f0876cc782f1</anchor>
-      <arglist>(hwloc_const_bitmap_t bitmap, unsigned prev) __hwloc_attribute_pure</arglist>
+      <anchorfile>a00057.html</anchorfile>
+      <anchor>ga00fc0b9d7d603e271b75956a7dd28826</anchor>
+      <arglist>(hwloc_const_bitmap_t bitmap, int prev) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_last</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga4d5786ea9561d9ddbf90bc0ce606c549</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_weight</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga12d520387be74f849f191d7a06ac325c</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_or</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga1ba1de709ee9a7cf5cc8ad2d9a1a81d4</anchor>
       <arglist>(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_and</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gac2f7675dcf1b664a832413d9990d1bcf</anchor>
       <arglist>(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_andnot</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga7618a962685d95564564ba07e9b2199b</anchor>
       <arglist>(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_xor</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga5743af61c30758df75aec29c12444616</anchor>
       <arglist>(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC void</type>
       <name>hwloc_bitmap_not</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga4a8088d62755a083ffce9d592c9e3878</anchor>
       <arglist>(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_intersects</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga575c27953709a8cb9a047aae65157526</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_isincluded</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gaae29e14a926c198e8f91e6e4790621e7</anchor>
       <arglist>(hwloc_const_bitmap_t sub_bitmap, hwloc_const_bitmap_t super_bitmap) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_isequal</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>ga4dd6a75ab63d33ef33bd626b0e489388</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_compare_first</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gac1cbd1e03f9986552243761e657e1752</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_bitmap_compare</name>
-      <anchorfile>a00056.html</anchorfile>
+      <anchorfile>a00057.html</anchorfile>
       <anchor>gadd3aa325f2d6a17b5aa3b3be9c740da0</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure</arglist>
     </member>
@@ -1501,18 +1604,18 @@
   <compound kind="group">
     <name>hwlocality_glibc_sched</name>
     <title>Helpers for manipulating glibc sched affinity</title>
-    <filename>a00057.html</filename>
+    <filename>a00058.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cpuset_to_glibc_sched_affinity</name>
-      <anchorfile>a00057.html</anchorfile>
+      <anchorfile>a00058.html</anchorfile>
       <anchor>ga39454e6013441d32e58ef4c4fcba7e4b</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, hwloc_const_cpuset_t hwlocset, cpu_set_t *schedset, size_t schedsetsize)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cpuset_from_glibc_sched_affinity</name>
-      <anchorfile>a00057.html</anchorfile>
+      <anchorfile>a00058.html</anchorfile>
       <anchor>ga6df504b2f5440b527be05cdad6b1655e</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, hwloc_cpuset_t hwlocset, const cpu_set_t *schedset, size_t schedsetsize)</arglist>
     </member>
@@ -1520,25 +1623,25 @@
   <compound kind="group">
     <name>hwlocality_linux</name>
     <title>Linux-only helpers</title>
-    <filename>a00058.html</filename>
+    <filename>a00059.html</filename>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_linux_parse_cpumap_file</name>
-      <anchorfile>a00058.html</anchorfile>
+      <anchorfile>a00059.html</anchorfile>
       <anchor>gaeacad897c30dbea284948374ad4b010c</anchor>
       <arglist>(FILE *file, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_linux_set_tid_cpubind</name>
-      <anchorfile>a00058.html</anchorfile>
+      <anchorfile>a00059.html</anchorfile>
       <anchor>gaaaca5d1687053b6c3326b2c165bd6530</anchor>
       <arglist>(hwloc_topology_t topology, pid_t tid, hwloc_const_cpuset_t set)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_linux_get_tid_cpubind</name>
-      <anchorfile>a00058.html</anchorfile>
+      <anchorfile>a00059.html</anchorfile>
       <anchor>gaf36a9211a21eb930f59090eb5d460b8e</anchor>
       <arglist>(hwloc_topology_t topology, pid_t tid, hwloc_cpuset_t set)</arglist>
     </member>
@@ -1546,32 +1649,32 @@
   <compound kind="group">
     <name>hwlocality_linux_libnuma_ulongs</name>
     <title>Helpers for manipulating Linux libnuma unsigned long masks</title>
-    <filename>a00059.html</filename>
+    <filename>a00060.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cpuset_to_linux_libnuma_ulongs</name>
-      <anchorfile>a00059.html</anchorfile>
+      <anchorfile>a00060.html</anchorfile>
       <anchor>ga018e57a42a780ce2ba2e35ef975d8888</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset, unsigned long *mask, unsigned long *maxnode)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_nodeset_to_linux_libnuma_ulongs</name>
-      <anchorfile>a00059.html</anchorfile>
+      <anchorfile>a00060.html</anchorfile>
       <anchor>gaf213df50d229c5d17a5a56b5d8f10b74</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_nodeset_t nodeset, unsigned long *mask, unsigned long *maxnode)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cpuset_from_linux_libnuma_ulongs</name>
-      <anchorfile>a00059.html</anchorfile>
+      <anchorfile>a00060.html</anchorfile>
       <anchor>gafa60816dde33d69149497bcf6c7818e0</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_cpuset_t cpuset, const unsigned long *mask, unsigned long maxnode)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_nodeset_from_linux_libnuma_ulongs</name>
-      <anchorfile>a00059.html</anchorfile>
+      <anchorfile>a00060.html</anchorfile>
       <anchor>ga5b51a4a96a0c3ad9f4c0da308bbf4d8f</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_nodeset_t nodeset, const unsigned long *mask, unsigned long maxnode)</arglist>
     </member>
@@ -1579,32 +1682,32 @@
   <compound kind="group">
     <name>hwlocality_linux_libnuma_bitmask</name>
     <title>Helpers for manipulating Linux libnuma bitmask</title>
-    <filename>a00060.html</filename>
+    <filename>a00061.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline struct bitmask *__hwloc_attribute_malloc</type>
       <name>hwloc_cpuset_to_linux_libnuma_bitmask</name>
-      <anchorfile>a00060.html</anchorfile>
+      <anchorfile>a00061.html</anchorfile>
       <anchor>ga067ec565345a346bfd9d721cff5901ae</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline struct bitmask *__hwloc_attribute_malloc</type>
       <name>hwloc_nodeset_to_linux_libnuma_bitmask</name>
-      <anchorfile>a00060.html</anchorfile>
+      <anchorfile>a00061.html</anchorfile>
       <anchor>gaa2c4cb4075422a19e07c450dc7092e69</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_nodeset_t nodeset)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cpuset_from_linux_libnuma_bitmask</name>
-      <anchorfile>a00060.html</anchorfile>
+      <anchorfile>a00061.html</anchorfile>
       <anchor>ga47747968f12c2674d2840dfbacce4940</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_cpuset_t cpuset, const struct bitmask *bitmask)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_nodeset_from_linux_libnuma_bitmask</name>
-      <anchorfile>a00060.html</anchorfile>
+      <anchorfile>a00061.html</anchorfile>
       <anchor>ga5a1d17375cc7b65cd155330008cbdb6a</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_nodeset_t nodeset, const struct bitmask *bitmask)</arglist>
     </member>
@@ -1612,32 +1715,32 @@
   <compound kind="group">
     <name>hwlocality_linux_libnuma_nodemask</name>
     <title>Helpers for manipulating Linux libnuma nodemask_t</title>
-    <filename>a00061.html</filename>
+    <filename>a00062.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cpuset_to_linux_libnuma_nodemask</name>
-      <anchorfile>a00061.html</anchorfile>
+      <anchorfile>a00062.html</anchorfile>
       <anchor>ga36feb81315de87ce11d9a5aa2b4c6e6d</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset, nodemask_t *nodemask)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_nodeset_to_linux_libnuma_nodemask</name>
-      <anchorfile>a00061.html</anchorfile>
+      <anchorfile>a00062.html</anchorfile>
       <anchor>gafa4e7cc68f0f99724f8d99541d9ab3de</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_nodeset_t nodeset, nodemask_t *nodemask)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cpuset_from_linux_libnuma_nodemask</name>
-      <anchorfile>a00061.html</anchorfile>
+      <anchorfile>a00062.html</anchorfile>
       <anchor>gac24c9e4bb2eab3e23b2039559adc9df8</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_cpuset_t cpuset, const nodemask_t *nodemask)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_nodeset_from_linux_libnuma_nodemask</name>
-      <anchorfile>a00061.html</anchorfile>
+      <anchorfile>a00062.html</anchorfile>
       <anchor>ga22862f485346ae3b2ab7d052f538fc5f</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_nodeset_t nodeset, const nodemask_t *nodemask)</arglist>
     </member>
@@ -1645,11 +1748,11 @@
   <compound kind="group">
     <name>hwlocality_cuda</name>
     <title>CUDA Driver API Specific Functions</title>
-    <filename>a00062.html</filename>
+    <filename>a00063.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cuda_get_device_cpuset</name>
-      <anchorfile>a00062.html</anchorfile>
+      <anchorfile>a00063.html</anchorfile>
       <anchor>gae06cf330d2f0d9949feb52b146b7d136</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, CUdevice cudevice, hwloc_cpuset_t set)</arglist>
     </member>
@@ -1657,11 +1760,11 @@
   <compound kind="group">
     <name>hwlocality_cudart</name>
     <title>CUDA Runtime API Specific Functions</title>
-    <filename>a00063.html</filename>
+    <filename>a00064.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cudart_get_device_cpuset</name>
-      <anchorfile>a00063.html</anchorfile>
+      <anchorfile>a00064.html</anchorfile>
       <anchor>ga2daaf1dd1a9a7f11ccbc6821374120e9</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, int device, hwloc_cpuset_t set)</arglist>
     </member>
@@ -1669,11 +1772,11 @@
   <compound kind="group">
     <name>hwlocality_openfabrics</name>
     <title>OpenFabrics-Specific Functions</title>
-    <filename>a00064.html</filename>
+    <filename>a00065.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_ibv_get_device_cpuset</name>
-      <anchorfile>a00064.html</anchorfile>
+      <anchorfile>a00065.html</anchorfile>
       <anchor>gaa8ea979ce3a9b8c70ae80bc5716a0fbe</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, struct ibv_device *ibdev, hwloc_cpuset_t set)</arglist>
     </member>
@@ -1681,20 +1784,59 @@
   <compound kind="group">
     <name>hwlocality_myriexpress</name>
     <title>Myrinet Express-Specific Functions</title>
-    <filename>a00065.html</filename>
+    <filename>a00066.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_mx_board_get_device_cpuset</name>
-      <anchorfile>a00065.html</anchorfile>
+      <anchorfile>a00066.html</anchorfile>
       <anchor>ga87f4746d0cad579ce4e86b98088f22a1</anchor>
       <arglist>(hwloc_topology_t topology, unsigned id, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_mx_endpoint_get_device_cpuset</name>
-      <anchorfile>a00065.html</anchorfile>
+      <anchorfile>a00066.html</anchorfile>
       <anchor>ga2ff7763b9c2c5975f9a2e3d638351535</anchor>
       <arglist>(hwloc_topology_t topology, mx_endpoint_t endpoint, hwloc_cpuset_t set)</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>hwloc_distances_s</name>
+    <filename>a00010.html</filename>
+    <member kind="variable">
+      <type>unsigned</type>
+      <name>relative_depth</name>
+      <anchorfile>a00010.html</anchorfile>
+      <anchor>a6fe066eaf62ee448aa05bab8e7217ff7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>unsigned</type>
+      <name>nbobjs</name>
+      <anchorfile>a00010.html</anchorfile>
+      <anchor>a4ca2af858cebbce7324ec49903d09474</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>float *</type>
+      <name>latency</name>
+      <anchorfile>a00010.html</anchorfile>
+      <anchor>a0f70f48d1bfb18e5e2008825da2967c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>float</type>
+      <name>latency_max</name>
+      <anchorfile>a00010.html</anchorfile>
+      <anchor>aab61bd1d1ae2e121bfe793c973ec829e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>float</type>
+      <name>latency_base</name>
+      <anchorfile>a00010.html</anchorfile>
+      <anchor>a204416418049a272bfb51602fc676342</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -1883,6 +2025,20 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>struct hwloc_distances_s **</type>
+      <name>distances</name>
+      <anchorfile>a00012.html</anchorfile>
+      <anchor>a9a5dd75596edc48fe834f81988cdc0d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>unsigned</type>
+      <name>distances_count</name>
+      <anchorfile>a00012.html</anchorfile>
+      <anchor>a8be6f63eca4da91000c832280db927b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>struct hwloc_obj_info_s *</type>
       <name>infos</name>
       <anchorfile>a00012.html</anchorfile>
@@ -1919,25 +2075,25 @@
   </compound>
   <compound kind="struct">
     <name>hwloc_obj_attr_u::hwloc_cache_attr_s</name>
-    <filename>a00010.html</filename>
+    <filename>a00009.html</filename>
     <member kind="variable">
       <type>hwloc_uint64_t</type>
       <name>size</name>
-      <anchorfile>a00010.html</anchorfile>
+      <anchorfile>a00009.html</anchorfile>
       <anchor>abe5e788943ed04302976740c829674c0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>unsigned</type>
       <name>depth</name>
-      <anchorfile>a00010.html</anchorfile>
+      <anchorfile>a00009.html</anchorfile>
       <anchor>a5c8f7f39193736c2187ed626940835d5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>unsigned</type>
       <name>linesize</name>
-      <anchorfile>a00010.html</anchorfile>
+      <anchorfile>a00009.html</anchorfile>
       <anchor>a801e8a668e28caf06c8b88e9ae5c10db</anchor>
       <arglist></arglist>
     </member>
@@ -2079,6 +2235,27 @@
       <name>get_thread_cpubind</name>
       <anchorfile>a00017.html</anchorfile>
       <anchor>a8dd4d8531ed2eebdce1507e7d104154e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>unsigned char</type>
+      <name>get_thisproc_last_cpu_location</name>
+      <anchorfile>a00017.html</anchorfile>
+      <anchor>ad2d5c94b738d92b7d2ede87e4e96321d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>unsigned char</type>
+      <name>get_proc_last_cpu_location</name>
+      <anchorfile>a00017.html</anchorfile>
+      <anchor>a2554620148b7992a5093f338f5ae254f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>unsigned char</type>
+      <name>get_thisthread_last_cpu_location</name>
+      <anchorfile>a00017.html</anchorfile>
+      <anchor>a6be1f042fdce6bf41b4ea39f6f193808</anchor>
       <arglist></arglist>
     </member>
   </compound>

@@ -1,4 +1,4 @@
-.TH "CPU binding" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "CPU binding" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,6 +30,12 @@ CPU binding \-
 .br
 .ti -1c
 .RI " int \fBhwloc_get_thread_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_thread_t tid, \fBhwloc_cpuset_t\fP set, int flags)"
+.br
+.ti -1c
+.RI " int \fBhwloc_get_last_cpu_location\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_cpuset_t\fP set, int flags)"
+.br
+.ti -1c
+.RI " int \fBhwloc_get_proc_last_cpu_location\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_cpuset_t\fP set, int flags)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -115,12 +121,25 @@ Avoid any effect on memory binding. On some operating systems, some CPU binding 
 .SS " int hwloc_get_cpubind (\fBhwloc_topology_t\fPtopology, \fBhwloc_cpuset_t\fPset, intflags)"
 .PP
 Get current process or thread binding. 
+.SS " int hwloc_get_last_cpu_location (\fBhwloc_topology_t\fPtopology, \fBhwloc_cpuset_t\fPset, intflags)"
+.PP
+Get the last CPU where the current process or thread ran. The operating system may move some tasks from one processor to another at any time according to their binding, so this function may return something that is already outdated. 
 .SS " int hwloc_get_proc_cpubind (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_cpuset_t\fPset, intflags)"
 .PP
 Get the current binding of process \fCpid\fP. \fBNote:\fP
 .RS 4
 hwloc_pid_t is pid_t on unix platforms, and HANDLE on native Windows platforms
 .PP
+HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP. 
+.RE
+.PP
+
+.SS " int hwloc_get_proc_last_cpu_location (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_cpuset_t\fPset, intflags)"
+.PP
+Get the last CPU where a process ran. The operating system may move some tasks from one processor to another at any time according to their binding, so this function may return something that is already outdated.
+.PP
+\fBNote:\fP
+.RS 4
 HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP. 
 .RE
 .PP

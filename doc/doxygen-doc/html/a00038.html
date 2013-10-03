@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.1.2</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -66,6 +66,7 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00038.html#ga2fcb52181b586c20f001b7a999550324">hwloc_topology_set_synthetic</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> restrict topology, const char *restrict description)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00038.html#ga93efcc8a962afe1ed23393700682173f">hwloc_topology_set_xml</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> restrict topology, const char *restrict xmlpath)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00038.html#gae7e4bade144652a2b48f5eaf0309b4ec">hwloc_topology_set_xmlbuffer</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> restrict topology, const char *restrict buffer, int size)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00038.html#gabda6afa67a495cd652f064ad51d3fe47">hwloc_topology_set_distance_matrix</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> restrict topology, <a class="el" href="a00035.html#gacd37bb612667dc437d66bfb175a8dc55">hwloc_obj_type_t</a> type, unsigned nbobjs, unsigned *os_index, float *distances)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"> struct <br class="typebreak"/>
 <a class="el" href="a00020.html">hwloc_topology_support</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00038.html#gac2126e105f3ae708efca2e90d612625a">hwloc_topology_get_support</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> restrict topology)</td></tr>
 </table>
@@ -201,6 +202,54 @@ Functions</h2></td></tr>
 
 <p>Ignore an object type if it does not bring any structure. </p>
 <p>Ignore all objects from the given type as long as they do not bring any structure: Each ignored object should have a single children or be the only child of its parent. The bottom-level type HWLOC_OBJ_PU may not be ignored. </p>
+
+</div>
+</div>
+<a class="anchor" id="gabda6afa67a495cd652f064ad51d3fe47"></a><!-- doxytag: member="hwloc.h::hwloc_topology_set_distance_matrix" ref="gabda6afa67a495cd652f064ad51d3fe47" args="(hwloc_topology_t restrict topology, hwloc_obj_type_t type, unsigned nbobjs, unsigned *os_index, float *distances)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int hwloc_topology_set_distance_matrix </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> restrict&#160;</td>
+          <td class="paramname"><em>topology</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00035.html#gacd37bb612667dc437d66bfb175a8dc55">hwloc_obj_type_t</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>nbobjs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned *&#160;</td>
+          <td class="paramname"><em>os_index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>distances</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Provide a distance matrix. </p>
+<p>Provide the matrix of distances between a set of objects of the given type. The set may or may not contain all the existing objects of this type. The objects are specified by their OS/physical index in the <code>os_index</code> array. The <code>distances</code> matrix follows the same order. The distance from object i to object j in the i*nbobjs+j. </p>
 
 </div>
 </div>
@@ -398,7 +447,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 17:31:40 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 14 2011 22:34:49 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

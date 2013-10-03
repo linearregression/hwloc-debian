@@ -1,4 +1,4 @@
-.TH "Configure Topology Detection" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Configure Topology Detection" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -61,6 +61,9 @@ Configure Topology Detection \-
 .RI " int \fBhwloc_topology_set_xmlbuffer\fP (\fBhwloc_topology_t\fP restrict topology, const char *restrict buffer, int size)"
 .br
 .ti -1c
+.RI " int \fBhwloc_topology_set_distance_matrix\fP (\fBhwloc_topology_t\fP restrict topology, \fBhwloc_obj_type_t\fP type, unsigned nbobjs, unsigned *os_index, float *distances)"
+.br
+.ti -1c
 .RI " struct \fBhwloc_topology_support\fP * \fBhwloc_topology_get_support\fP (\fBhwloc_topology_t\fP restrict topology)"
 .br
 .in -1c
@@ -103,6 +106,9 @@ Ignore an object type. Ignore all objects from the given type. The bottom-level 
 .SS " int hwloc_topology_ignore_type_keep_structure (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_type_t\fPtype)"
 .PP
 Ignore an object type if it does not bring any structure. Ignore all objects from the given type as long as they do not bring any structure: Each ignored object should have a single children or be the only child of its parent. The bottom-level type HWLOC_OBJ_PU may not be ignored. 
+.SS " int hwloc_topology_set_distance_matrix (\fBhwloc_topology_t\fP restricttopology, \fBhwloc_obj_type_t\fPtype, unsignednbobjs, unsigned *os_index, float *distances)"
+.PP
+Provide a distance matrix. Provide the matrix of distances between a set of objects of the given type. The set may or may not contain all the existing objects of this type. The objects are specified by their OS/physical index in the \fCos_index\fP array. The \fCdistances\fP matrix follows the same order. The distance from object i to object j in the i*nbobjs+j. 
 .SS " int hwloc_topology_set_flags (\fBhwloc_topology_t\fPtopology, unsigned longflags)"
 .PP
 Set OR'ed flags to non-yet-loaded topology. Set a OR'ed set of \fBhwloc_topology_flags_e\fP onto a topology that was not yet loaded. 

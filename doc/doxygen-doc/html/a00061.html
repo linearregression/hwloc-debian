@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Hardware Locality (hwloc): Helpers for manipulating Linux libnuma nodemask_t</title>
+<title>Hardware Locality (hwloc): Helpers for manipulating Linux libnuma bitmask</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.1.2</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -34,24 +34,28 @@
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<h1>Helpers for manipulating Linux libnuma nodemask_t</h1>  </div>
+<h1>Helpers for manipulating Linux libnuma bitmask</h1>  </div>
 </div>
 <div class="contents">
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga36feb81315de87ce11d9a5aa2b4c6e6d">hwloc_cpuset_to_linux_libnuma_nodemask</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00034.html#ga1f784433e9b606261f62d1134f6a3b25">hwloc_const_cpuset_t</a> cpuset, nodemask_t *nodemask)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#gafa4e7cc68f0f99724f8d99541d9ab3de">hwloc_nodeset_to_linux_libnuma_nodemask</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00034.html#ga2f5276235841ad66a79bedad16a5a10c">hwloc_const_nodeset_t</a> nodeset, nodemask_t *nodemask)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#gac24c9e4bb2eab3e23b2039559adc9df8">hwloc_cpuset_from_linux_libnuma_nodemask</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00034.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a> cpuset, const nodemask_t *nodemask)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga22862f485346ae3b2ab7d052f538fc5f">hwloc_nodeset_from_linux_libnuma_nodemask</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00034.html#ga37e35730fa7e775b5bb0afe893d6d508">hwloc_nodeset_t</a> nodeset, const nodemask_t *nodemask)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static inline struct <br class="typebreak"/>
+bitmask <br class="typebreak"/>
+*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga067ec565345a346bfd9d721cff5901ae">hwloc_cpuset_to_linux_libnuma_bitmask</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00034.html#ga1f784433e9b606261f62d1134f6a3b25">hwloc_const_cpuset_t</a> cpuset)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static inline struct <br class="typebreak"/>
+bitmask <br class="typebreak"/>
+*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#gaa2c4cb4075422a19e07c450dc7092e69">hwloc_nodeset_to_linux_libnuma_bitmask</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00034.html#ga2f5276235841ad66a79bedad16a5a10c">hwloc_const_nodeset_t</a> nodeset)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga47747968f12c2674d2840dfbacce4940">hwloc_cpuset_from_linux_libnuma_bitmask</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00034.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a> cpuset, const struct bitmask *bitmask)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html#ga5a1d17375cc7b65cd155330008cbdb6a">hwloc_nodeset_from_linux_libnuma_bitmask</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00034.html#ga37e35730fa7e775b5bb0afe893d6d508">hwloc_nodeset_t</a> nodeset, const struct bitmask *bitmask)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="gac24c9e4bb2eab3e23b2039559adc9df8"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_cpuset_from_linux_libnuma_nodemask" ref="gac24c9e4bb2eab3e23b2039559adc9df8" args="(hwloc_topology_t topology, hwloc_cpuset_t cpuset, const nodemask_t *nodemask)" -->
+<a class="anchor" id="ga47747968f12c2674d2840dfbacce4940"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_cpuset_from_linux_libnuma_bitmask" ref="ga47747968f12c2674d2840dfbacce4940" args="(hwloc_topology_t topology, hwloc_cpuset_t cpuset, const struct bitmask *bitmask)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static inline int hwloc_cpuset_from_linux_libnuma_nodemask </td>
+          <td class="memname">static inline int hwloc_cpuset_from_linux_libnuma_bitmask </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
           <td class="paramname"><em>topology</em>, </td>
@@ -65,8 +69,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const nodemask_t *&#160;</td>
-          <td class="paramname"><em>nodemask</em>&#160;</td>
+          <td class="paramtype">const struct bitmask *&#160;</td>
+          <td class="paramname"><em>bitmask</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -77,17 +81,17 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Convert libnuma nodemask <code>nodemask</code> into hwloc CPU set <code>cpuset</code>. </p>
-<p>This function may be used before calling some old libnuma functions that use a nodemask_t as an output parameter. </p>
+<p>Convert libnuma bitmask <code>bitmask</code> into hwloc CPU set <code>cpuset</code>. </p>
+<p>This function may be used after calling many numa_ functions that use a struct bitmask as an output parameter. </p>
 
 </div>
 </div>
-<a class="anchor" id="ga36feb81315de87ce11d9a5aa2b4c6e6d"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_cpuset_to_linux_libnuma_nodemask" ref="ga36feb81315de87ce11d9a5aa2b4c6e6d" args="(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset, nodemask_t *nodemask)" -->
+<a class="anchor" id="ga067ec565345a346bfd9d721cff5901ae"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_cpuset_to_linux_libnuma_bitmask" ref="ga067ec565345a346bfd9d721cff5901ae" args="(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static inline int hwloc_cpuset_to_linux_libnuma_nodemask </td>
+          <td class="memname">static inline struct bitmask*  hwloc_cpuset_to_linux_libnuma_bitmask </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
           <td class="paramname"><em>topology</em>, </td>
@@ -96,34 +100,30 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="a00034.html#ga1f784433e9b606261f62d1134f6a3b25">hwloc_const_cpuset_t</a>&#160;</td>
-          <td class="paramname"><em>cpuset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">nodemask_t *&#160;</td>
-          <td class="paramname"><em>nodemask</em>&#160;</td>
+          <td class="paramname"><em>cpuset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [static]</code></td>
+          <td></td><td><code> [static, read]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Convert hwloc CPU set <code>cpuset</code> into libnuma nodemask <code>nodemask</code>. </p>
-<p>This function may be used before calling some old libnuma functions that use a nodemask_t as an input parameter. </p>
+<p>Convert hwloc CPU set <code>cpuset</code> into the returned libnuma bitmask. </p>
+<p>The returned bitmask should later be freed with numa_bitmask_free.</p>
+<p>This function may be used before calling many numa_ functions that use a struct bitmask as an input parameter.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>newly allocated struct bitmask. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ga22862f485346ae3b2ab7d052f538fc5f"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_nodeset_from_linux_libnuma_nodemask" ref="ga22862f485346ae3b2ab7d052f538fc5f" args="(hwloc_topology_t topology, hwloc_nodeset_t nodeset, const nodemask_t *nodemask)" -->
+<a class="anchor" id="ga5a1d17375cc7b65cd155330008cbdb6a"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_nodeset_from_linux_libnuma_bitmask" ref="ga5a1d17375cc7b65cd155330008cbdb6a" args="(hwloc_topology_t topology, hwloc_nodeset_t nodeset, const struct bitmask *bitmask)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static inline int hwloc_nodeset_from_linux_libnuma_nodemask </td>
+          <td class="memname">static inline int hwloc_nodeset_from_linux_libnuma_bitmask </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
           <td class="paramname"><em>topology</em>, </td>
@@ -137,8 +137,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const nodemask_t *&#160;</td>
-          <td class="paramname"><em>nodemask</em>&#160;</td>
+          <td class="paramtype">const struct bitmask *&#160;</td>
+          <td class="paramname"><em>bitmask</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -149,17 +149,17 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Convert libnuma nodemask <code>nodemask</code> into hwloc NUMA node set <code>nodeset</code>. </p>
-<p>This function may be used before calling some old libnuma functions that use a nodemask_t as an output parameter. </p>
+<p>Convert libnuma bitmask <code>bitmask</code> into hwloc NUMA node set <code>nodeset</code>. </p>
+<p>This function may be used after calling many numa_ functions that use a struct bitmask as an output parameter. </p>
 
 </div>
 </div>
-<a class="anchor" id="gafa4e7cc68f0f99724f8d99541d9ab3de"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_nodeset_to_linux_libnuma_nodemask" ref="gafa4e7cc68f0f99724f8d99541d9ab3de" args="(hwloc_topology_t topology, hwloc_const_nodeset_t nodeset, nodemask_t *nodemask)" -->
+<a class="anchor" id="gaa2c4cb4075422a19e07c450dc7092e69"></a><!-- doxytag: member="linux&#45;libnuma.h::hwloc_nodeset_to_linux_libnuma_bitmask" ref="gaa2c4cb4075422a19e07c450dc7092e69" args="(hwloc_topology_t topology, hwloc_const_nodeset_t nodeset)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static inline int hwloc_nodeset_to_linux_libnuma_nodemask </td>
+          <td class="memname">static inline struct bitmask*  hwloc_nodeset_to_linux_libnuma_bitmask </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
           <td class="paramname"><em>topology</em>, </td>
@@ -168,30 +168,26 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="a00034.html#ga2f5276235841ad66a79bedad16a5a10c">hwloc_const_nodeset_t</a>&#160;</td>
-          <td class="paramname"><em>nodeset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">nodemask_t *&#160;</td>
-          <td class="paramname"><em>nodemask</em>&#160;</td>
+          <td class="paramname"><em>nodeset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [static]</code></td>
+          <td></td><td><code> [static, read]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Convert hwloc NUMA node set <code>nodeset</code> into libnuma nodemask <code>nodemask</code>. </p>
-<p>This function may be used before calling some old libnuma functions that use a nodemask_t as an input parameter. </p>
+<p>Convert hwloc NUMA node set <code>nodeset</code> into the returned libnuma bitmask. </p>
+<p>The returned bitmask should later be freed with numa_bitmask_free.</p>
+<p>This function may be used before calling many numa_ functions that use a struct bitmask as an input parameter.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>newly allocated struct bitmask. </dd></dl>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 17:31:40 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 14 2011 22:34:49 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

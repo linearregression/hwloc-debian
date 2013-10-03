@@ -1,4 +1,4 @@
-.TH "The bitmap API" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "The bitmap API" 3 "Thu Apr 14 2011" "Version 1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -51,6 +51,15 @@ The bitmap API \-
 .RI " int \fBhwloc_bitmap_sscanf\fP (\fBhwloc_bitmap_t\fP bitmap, const char *restrict string)"
 .br
 .ti -1c
+.RI " int \fBhwloc_bitmap_list_snprintf\fP (char *restrict buf, size_t buflen, \fBhwloc_const_bitmap_t\fP bitmap)"
+.br
+.ti -1c
+.RI " int \fBhwloc_bitmap_list_asprintf\fP (char **strp, \fBhwloc_const_bitmap_t\fP bitmap)"
+.br
+.ti -1c
+.RI " int \fBhwloc_bitmap_list_sscanf\fP (\fBhwloc_bitmap_t\fP bitmap, const char *restrict string)"
+.br
+.ti -1c
 .RI " int \fBhwloc_bitmap_taskset_snprintf\fP (char *restrict buf, size_t buflen, \fBhwloc_const_bitmap_t\fP bitmap)"
 .br
 .ti -1c
@@ -81,7 +90,7 @@ The bitmap API \-
 .RI " void \fBhwloc_bitmap_set\fP (\fBhwloc_bitmap_t\fP bitmap, unsigned id)"
 .br
 .ti -1c
-.RI " void \fBhwloc_bitmap_set_range\fP (\fBhwloc_bitmap_t\fP bitmap, unsigned begin, unsigned end)"
+.RI " void \fBhwloc_bitmap_set_range\fP (\fBhwloc_bitmap_t\fP bitmap, unsigned begin, int end)"
 .br
 .ti -1c
 .RI " void \fBhwloc_bitmap_set_ith_ulong\fP (\fBhwloc_bitmap_t\fP bitmap, unsigned i, unsigned long mask)"
@@ -90,7 +99,7 @@ The bitmap API \-
 .RI " void \fBhwloc_bitmap_clr\fP (\fBhwloc_bitmap_t\fP bitmap, unsigned id)"
 .br
 .ti -1c
-.RI " void \fBhwloc_bitmap_clr_range\fP (\fBhwloc_bitmap_t\fP bitmap, unsigned begin, unsigned end)"
+.RI " void \fBhwloc_bitmap_clr_range\fP (\fBhwloc_bitmap_t\fP bitmap, unsigned begin, int end)"
 .br
 .ti -1c
 .RI " void \fBhwloc_bitmap_singlify\fP (\fBhwloc_bitmap_t\fP bitmap)"
@@ -114,7 +123,7 @@ The bitmap API \-
 .RI " int \fBhwloc_bitmap_first\fP (\fBhwloc_const_bitmap_t\fP bitmap) "
 .br
 .ti -1c
-.RI " int \fBhwloc_bitmap_next\fP (\fBhwloc_const_bitmap_t\fP bitmap, unsigned prev) "
+.RI " int \fBhwloc_bitmap_next\fP (\fBhwloc_const_bitmap_t\fP bitmap, int prev) "
 .br
 .ti -1c
 .RI " int \fBhwloc_bitmap_last\fP (\fBhwloc_const_bitmap_t\fP bitmap) "
@@ -216,9 +225,9 @@ Stringify a bitmap into a newly allocated string.
 .SS " void hwloc_bitmap_clr (\fBhwloc_bitmap_t\fPbitmap, unsignedid)"
 .PP
 Remove index \fCid\fP from bitmap \fCbitmap\fP. 
-.SS " void hwloc_bitmap_clr_range (\fBhwloc_bitmap_t\fPbitmap, unsignedbegin, unsignedend)"
+.SS " void hwloc_bitmap_clr_range (\fBhwloc_bitmap_t\fPbitmap, unsignedbegin, intend)"
 .PP
-Remove indexes from \fCbegin\fP to \fCend\fP in bitmap \fCbitmap\fP. 
+Remove indexes from \fCbegin\fP to \fCend\fP in bitmap \fCbitmap\fP. If \fCend\fP is \fC-1\fP, the range is infinite. 
 .SS " int hwloc_bitmap_compare (\fBhwloc_const_bitmap_t\fPbitmap1, \fBhwloc_const_bitmap_t\fPbitmap2)"
 .PP
 Compare bitmaps \fCbitmap1\fP and \fCbitmap2\fP using their highest index. Higher most significant bit is higher. The empty bitmap is considered lower than anything. 
@@ -230,7 +239,7 @@ Compare bitmaps \fCbitmap1\fP and \fCbitmap2\fP using their lowest index. Smalle
 Copy the contents of bitmap \fCsrc\fP into the already allocated bitmap \fCdst\fP. 
 .SS " \fBhwloc_bitmap_t\fP hwloc_bitmap_dup (\fBhwloc_const_bitmap_t\fPbitmap)"
 .PP
-Duplicate bitmap \fCbitmap\fP by allocating a new bitmap and copying \fCbitmap\fP contents. 
+Duplicate bitmap \fCbitmap\fP by allocating a new bitmap and copying \fCbitmap\fP contents. If \fCbitmap\fP is \fCNULL\fP, \fCNULL\fP is returned. 
 .SS " void hwloc_bitmap_fill (\fBhwloc_bitmap_t\fPbitmap)"
 .PP
 Fill bitmap \fCbitmap\fP with all possible indexes (even if those objects don't exist or are otherwise unavailable) 
@@ -277,9 +286,31 @@ Compute the last index (most significant bit) in bitmap \fCbitmap\fP. \fBReturns
 .RE
 .PP
 
-.SS " int hwloc_bitmap_next (\fBhwloc_const_bitmap_t\fPbitmap, unsignedprev)"
+.SS " int hwloc_bitmap_list_asprintf (char **strp, \fBhwloc_const_bitmap_t\fPbitmap)"
 .PP
-Compute the next index in bitmap \fCbitmap\fP which is after index \fCprev\fP. \fBReturns:\fP
+Stringify a bitmap into a newly allocated list string. 
+.SS " int hwloc_bitmap_list_snprintf (char *restrictbuf, size_tbuflen, \fBhwloc_const_bitmap_t\fPbitmap)"
+.PP
+Stringify a bitmap in the list format. Lists are comma-separated indexes or ranges. Ranges are dash separated indexes. The last range may not have a ending indexes if the bitmap is infinite.
+.PP
+Up to \fCbuflen\fP characters may be written in buffer \fCbuf\fP.
+.PP
+If \fCbuflen\fP is 0, \fCbuf\fP may safely be \fCNULL\fP.
+.PP
+\fBReturns:\fP
+.RS 4
+the number of character that were actually written if not truncating, or that would have been written (not including the ending \\0). 
+.RE
+.PP
+
+.SS " int hwloc_bitmap_list_sscanf (\fBhwloc_bitmap_t\fPbitmap, const char *restrictstring)"
+.PP
+Parse a list string and stores it in bitmap \fCbitmap\fP. 
+.SS " int hwloc_bitmap_next (\fBhwloc_const_bitmap_t\fPbitmap, intprev)"
+.PP
+Compute the next index in bitmap \fCbitmap\fP which is after index \fCprev\fP. If \fCprev\fP is -1, the first index is returned.
+.PP
+\fBReturns:\fP
 .RS 4
 -1 if no index with higher index is bitmap. 
 .RE
@@ -300,9 +331,9 @@ Add index \fCid\fP in bitmap \fCbitmap\fP.
 .SS " void hwloc_bitmap_set_ith_ulong (\fBhwloc_bitmap_t\fPbitmap, unsignedi, unsigned longmask)"
 .PP
 Replace \fCi\fP -th subset of bitmap \fCbitmap\fP with unsigned long \fCmask\fP. 
-.SS " void hwloc_bitmap_set_range (\fBhwloc_bitmap_t\fPbitmap, unsignedbegin, unsignedend)"
+.SS " void hwloc_bitmap_set_range (\fBhwloc_bitmap_t\fPbitmap, unsignedbegin, intend)"
 .PP
-Add indexes from \fCbegin\fP to \fCend\fP in bitmap \fCbitmap\fP. 
+Add indexes from \fCbegin\fP to \fCend\fP in bitmap \fCbitmap\fP. If \fCend\fP is \fC-1\fP, the range is infinite. 
 .SS " void hwloc_bitmap_singlify (\fBhwloc_bitmap_t\fPbitmap)"
 .PP
 Keep a single index among those set in bitmap \fCbitmap\fP. May be useful before binding so that the process does not have a chance of migrating between multiple logical CPUs in the original mask. 

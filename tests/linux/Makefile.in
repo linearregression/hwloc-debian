@@ -15,9 +15,10 @@
 
 @SET_MAKE@
 
-# Copyright © 2009-2010 INRIA
-# Copyright © 2009-2010 Université Bordeaux 1
+# Copyright © 2009-2010 INRIA.  All rights reserved.
+# Copyright © 2009-2011 Université Bordeaux 1
 # Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.
+# See COPYING in top-level directory.
 
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
@@ -41,7 +42,7 @@ host_triplet = @host@
 target_triplet = @target@
 subdir = tests/linux
 DIST_COMMON = README $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/hwloc-gather-topology.sh.in \
+	$(srcdir)/hwloc-gather-topology.in \
 	$(srcdir)/test-topology.sh.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/config/hwloc.m4 \
@@ -59,7 +60,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/include/private/autogen/config.h \
 	$(top_builddir)/include/hwloc/autogen/config.h
-CONFIG_CLEAN_FILES = hwloc-gather-topology.sh test-topology.sh
+CONFIG_CLEAN_FILES = hwloc-gather-topology test-topology.sh
 CONFIG_CLEAN_VPATH_FILES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
@@ -315,6 +316,7 @@ sysfs_outputs = \
 		256ppc-8n8s4t.output \
 		256ppc-8n8s4t-nocache.output \
 		256ppc-8n8s4t-nosys.output \
+		32ppc-4n4c2c.output \
 		8amd64-4n2c.output  \
 		8em64t-4c2t.output \
 		8em64t-2s2ca2c.output \
@@ -355,6 +357,7 @@ sysfs_tarballs = \
 		256ppc-8n8s4t.tar.bz2 \
 		256ppc-8n8s4t-nocache.source \
 		256ppc-8n8s4t-nosys.source \
+		32ppc-4n4c2c.tar.bz2 \
 		8amd64-4n2c.tar.bz2  \
 		8em64t-4c2t.tar.bz2 \
 		8em64t-2s2ca2c.tar.bz2 \
@@ -405,7 +408,7 @@ sysfs_options = \
 @HWLOC_BUILD_TESTS_TRUE@@HWLOC_HAVE_BUNZIPP_TRUE@@HWLOC_HAVE_OPENAT_TRUE@TESTS = $(sysfs_outputs)
 EXTRA_DIST = $(sysfs_outputs) $(sysfs_tarballs) $(sysfs_excludes) $(sysfs_options)
 TESTS_ENVIRONMENT = $(builddir)/test-topology.sh
-bin_SCRIPTS = hwloc-gather-topology.sh
+bin_SCRIPTS = hwloc-gather-topology
 SUBDIRS = gather
 all: all-recursive
 
@@ -440,7 +443,7 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-hwloc-gather-topology.sh: $(top_builddir)/config.status $(srcdir)/hwloc-gather-topology.sh.in
+hwloc-gather-topology: $(top_builddir)/config.status $(srcdir)/hwloc-gather-topology.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 test-topology.sh: $(top_builddir)/config.status $(srcdir)/test-topology.sh.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
@@ -892,7 +895,7 @@ uninstall-am: uninstall-binSCRIPTS
 
 
 install-exec-hook:
-	$(SED) -e 's/abs_top_builddir\/utils/bindir/' -e '/abs_top_builddir/d' -i $(DESTDIR)$(bindir)/hwloc-gather-topology.sh
+	$(SED) -e 's/abs_top_builddir\/utils/bindir/' -e '/abs_top_builddir/d' -i $(DESTDIR)$(bindir)/hwloc-gather-topology
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

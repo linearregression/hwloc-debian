@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.1.2</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -54,9 +54,11 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#gaa1373a002b9a0a87eb002e26c590f2da">hwloc_get_proc_cpubind</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, hwloc_pid_t pid, <a class="el" href="a00034.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a> set, int flags)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#ga2d6cca51524108966752609b6e725243">hwloc_set_thread_cpubind</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, hwloc_thread_t tid, <a class="el" href="a00034.html#ga1f784433e9b606261f62d1134f6a3b25">hwloc_const_cpuset_t</a> set, int flags)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#ga58c49328c4213c9fbf8d80d5188d4c1e">hwloc_get_thread_cpubind</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, hwloc_thread_t tid, <a class="el" href="a00034.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a> set, int flags)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#ga8e9a4b5ee3eaa18fd3a229790c6b5b17">hwloc_get_last_cpu_location</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, <a class="el" href="a00034.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a> set, int flags)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#ga1e005ddb9701e6a993a9eb8abe67a710">hwloc_get_proc_last_cpu_location</a> (<a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, hwloc_pid_t pid, <a class="el" href="a00034.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a> set, int flags)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>It is often useful to call <a class="el" href="a00056.html#ga4630aa1b7e08eac5b41be126194e84a1" title="Keep a single index among those set in bitmap bitmap.">hwloc_bitmap_singlify()</a> first so that a single CPU remains in the set. This way, the process will not even migrate between different CPUs. Some operating systems also only support that kind of binding.</p>
+<p>It is often useful to call <a class="el" href="a00057.html#ga4630aa1b7e08eac5b41be126194e84a1" title="Keep a single index among those set in bitmap bitmap.">hwloc_bitmap_singlify()</a> first so that a single CPU remains in the set. This way, the process will not even migrate between different CPUs. Some operating systems also only support that kind of binding.</p>
 <dl class="note"><dt><b>Note:</b></dt><dd>Some operating systems do not provide all hwloc-supported mechanisms to bind processes, threads, etc. and the corresponding binding functions may fail. -1 is returned and errno is set to ENOSYS when it is not possible to bind the requested kind of object processes/threads. errno is set to EXDEV when the requested cpuset can not be enforced (e.g. some systems only allow one CPU, and some other systems only allow one NUMA node).</dd></dl>
 <p>The most portable version that should be preferred over the others, whenever possible, is</p>
 <div class="fragment"><pre class="fragment"> <a class="code" href="a00043.html#gaf4cc194d5c0d38004a21b9f03522a7e3" title="Bind current process or thread on cpus given in bitmap set.">hwloc_set_cpubind</a>(topology, <span class="keyword">set</span>, 0),
@@ -142,6 +144,42 @@ On some operating systems, CPU binding may have effects on memory binding, see <
 
 </div>
 </div>
+<a class="anchor" id="ga8e9a4b5ee3eaa18fd3a229790c6b5b17"></a><!-- doxytag: member="hwloc.h::hwloc_get_last_cpu_location" ref="ga8e9a4b5ee3eaa18fd3a229790c6b5b17" args="(hwloc_topology_t topology, hwloc_cpuset_t set, int flags)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int hwloc_get_last_cpu_location </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
+          <td class="paramname"><em>topology</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00034.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a>&#160;</td>
+          <td class="paramname"><em>set</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the last CPU where the current process or thread ran. </p>
+<p>The operating system may move some tasks from one processor to another at any time according to their binding, so this function may return something that is already outdated. </p>
+
+</div>
+</div>
 <a class="anchor" id="gaa1373a002b9a0a87eb002e26c590f2da"></a><!-- doxytag: member="hwloc.h::hwloc_get_proc_cpubind" ref="gaa1373a002b9a0a87eb002e26c590f2da" args="(hwloc_topology_t topology, hwloc_pid_t pid, hwloc_cpuset_t set, int flags)" -->
 <div class="memitem">
 <div class="memproto">
@@ -183,6 +221,49 @@ On some operating systems, CPU binding may have effects on memory binding, see <
 <dl class="note"><dt><b>Note:</b></dt><dd>hwloc_pid_t is pid_t on unix platforms, and HANDLE on native Windows platforms</dd>
 <dd>
 HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga1e005ddb9701e6a993a9eb8abe67a710"></a><!-- doxytag: member="hwloc.h::hwloc_get_proc_last_cpu_location" ref="ga1e005ddb9701e6a993a9eb8abe67a710" args="(hwloc_topology_t topology, hwloc_pid_t pid, hwloc_cpuset_t set, int flags)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int hwloc_get_proc_last_cpu_location </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00033.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
+          <td class="paramname"><em>topology</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">hwloc_pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00034.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a>&#160;</td>
+          <td class="paramname"><em>set</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the last CPU where a process ran. </p>
+<p>The operating system may move some tasks from one processor to another at any time according to their binding, so this function may return something that is already outdated.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd>HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>. </dd></dl>
 
 </div>
 </div>
@@ -357,7 +438,7 @@ HWLOC_CPUBIND_PROCESS can not be used in <code>flags</code>. </dd></dl>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 17:31:40 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 14 2011 22:34:49 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.1.2</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -43,7 +43,7 @@
 Introduction</h2>
 <p>hwloc provides command line tools and a C API to obtain the hierarchical map of key computing elements, such as: NUMA memory nodes, shared caches, processor sockets, processor cores, and processing units (logical processors or "threads"). hwloc also gathers various attributes such as cache and memory information, and is portable across a variety of different operating systems and platforms.</p>
 <p>hwloc primarily aims at helping high-performance computing (HPC) applications, but is also applicable to any project seeking to exploit code and/or data locality on modern computing platforms.</p>
-<p>Note that the hwloc project represents the merger of the libtopology project from INRIA and the Portable Linux Processor Affinity (PLPA) sub-project from Open MPI. <em>Both of these prior projects are now deprecated.</em> The first hwloc release is essentially a "re-branding" of the libtopology code base, but with both a few genuinely new features and a few PLPA-like features added in. More new features and more PLPA-like features will be added to hwloc over time. See <a class="el" href="a00008.html">Switching from PLPA to hwloc</a> for more details about converting your application from PLPA to hwloc.</p>
+<p>Note that the hwloc project represents the merger of the libtopology project from INRIA and the Portable Linux Processor Affinity (PLPA) sub-project from Open MPI. <em>Both of these prior projects are now deprecated.</em> The first hwloc release was essentially a "re-branding" of the libtopology code base, but with both a few genuinely new features and a few PLPA-like features added in. Prior releases of hwloc included documentation about switching from PLPA to hwloc; this documentation has been dropped on the assumption that everyone who was using PLPA has already switched to hwloc.</p>
 <p>hwloc supports the following operating systems:</p>
 <ul>
 <li>
@@ -358,9 +358,10 @@ API Example</h3>
 <p>The following small C example (named ``hwloc-hello.c'') prints the topology of the machine and bring the process to the first logical processor of the second core of the machine.</p>
 <div class="fragment"><pre class="fragment"><span class="comment">/* Example hwloc API program.</span>
 <span class="comment"> *</span>
-<span class="comment"> * Copyright © 2009-2010 INRIA</span>
+<span class="comment"> * Copyright © 2009-2010 INRIA.  All rights reserved.</span>
 <span class="comment"> * Copyright © 2009-2011 Université Bordeaux 1</span>
 <span class="comment"> * Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.</span>
+<span class="comment"> * See COPYING in top-level directory.</span>
 <span class="comment"> *</span>
 <span class="comment"> * hwloc-hello.c</span>
 <span class="comment"> */</span>
@@ -459,7 +460,7 @@ API Example</h3>
          obj = obj-&gt;<a class="code" href="a00012.html#adc494f6aed939992be1c55cca5822900" title="Parent, NULL if root (system object)">parent</a>)
       <span class="keywordflow">if</span> (obj-&gt;<a class="code" href="a00012.html#acc4f0803f244867e68fe0036800be5de" title="Type of object.">type</a> == <a class="code" href="a00035.html#ggacd37bb612667dc437d66bfb175a8dc55a56ee0b7eca88f363b75b34fdde8c9ddc" title="Data cache. Can be L1, L2, L3, ...">HWLOC_OBJ_CACHE</a>) {
         levels++;
-        size += obj-&gt;<a class="code" href="a00012.html#accd40e29f71f19e88db62ea3df02adc8" title="Object type-specific Attributes, may be NULL if no attribute value was found.">attr</a>-&gt;<a class="code" href="a00013.html#ab5a8ae3bf490e6b1071fea53f7382836">cache</a>.<a class="code" href="a00010.html#abe5e788943ed04302976740c829674c0" title="Size of cache in bytes.">size</a>;
+        size += obj-&gt;<a class="code" href="a00012.html#accd40e29f71f19e88db62ea3df02adc8" title="Object type-specific Attributes, may be NULL if no attribute value was found.">attr</a>-&gt;<a class="code" href="a00013.html#ab5a8ae3bf490e6b1071fea53f7382836">cache</a>.<a class="code" href="a00009.html#abe5e788943ed04302976740c829674c0" title="Size of cache in bytes.">size</a>;
       }
     printf(<span class="stringliteral">&quot;*** Logical processor 0 has %d caches totaling %luKB\n&quot;</span>, 
            levels, size / 1024);
@@ -478,23 +479,23 @@ API Example</h3>
                    <a class="code" href="a00040.html#ga20cfe2456f4cfdd789c9aca6d2fdd69f" title="Returns the width of level at depth depth.">hwloc_get_nbobjs_by_depth</a>(topology, depth) - 1);
     <span class="keywordflow">if</span> (obj) {
         <span class="comment">/* Get a copy of its cpuset that we may modify. */</span>
-        cpuset = <a class="code" href="a00056.html#gaaa4ed76211cd3694dfbea2109fc440be" title="Duplicate bitmap bitmap by allocating a new bitmap and copying bitmap contents.">hwloc_bitmap_dup</a>(obj-&gt;<a class="code" href="a00012.html#a67925e0f2c47f50408fbdb9bddd0790f" title="CPUs covered by this object.">cpuset</a>);
+        cpuset = <a class="code" href="a00057.html#gaaa4ed76211cd3694dfbea2109fc440be" title="Duplicate bitmap bitmap by allocating a new bitmap and copying bitmap contents.">hwloc_bitmap_dup</a>(obj-&gt;<a class="code" href="a00012.html#a67925e0f2c47f50408fbdb9bddd0790f" title="CPUs covered by this object.">cpuset</a>);
 
         <span class="comment">/* Get only one logical processor (in case the core is</span>
 <span class="comment">           SMT/hyperthreaded). */</span>
-        <a class="code" href="a00056.html#ga4630aa1b7e08eac5b41be126194e84a1" title="Keep a single index among those set in bitmap bitmap.">hwloc_bitmap_singlify</a>(cpuset);
+        <a class="code" href="a00057.html#ga4630aa1b7e08eac5b41be126194e84a1" title="Keep a single index among those set in bitmap bitmap.">hwloc_bitmap_singlify</a>(cpuset);
 
         <span class="comment">/* And try to bind ourself there. */</span>
         <span class="keywordflow">if</span> (<a class="code" href="a00043.html#gaf4cc194d5c0d38004a21b9f03522a7e3" title="Bind current process or thread on cpus given in bitmap set.">hwloc_set_cpubind</a>(topology, cpuset, 0)) {
             <span class="keywordtype">char</span> *str;
             <span class="keywordtype">int</span> error = errno;
-            <a class="code" href="a00056.html#gad3cf87ceb58aa91656756bbb58057320" title="Stringify a bitmap into a newly allocated string.">hwloc_bitmap_asprintf</a>(&amp;str, obj-&gt;<a class="code" href="a00012.html#a67925e0f2c47f50408fbdb9bddd0790f" title="CPUs covered by this object.">cpuset</a>);
+            <a class="code" href="a00057.html#gad3cf87ceb58aa91656756bbb58057320" title="Stringify a bitmap into a newly allocated string.">hwloc_bitmap_asprintf</a>(&amp;str, obj-&gt;<a class="code" href="a00012.html#a67925e0f2c47f50408fbdb9bddd0790f" title="CPUs covered by this object.">cpuset</a>);
             printf(<span class="stringliteral">&quot;Couldn&#39;t bind to cpuset %s: %s\n&quot;</span>, str, strerror(error));
             free(str);
         }
 
         <span class="comment">/* Free our cpuset copy */</span>
-        <a class="code" href="a00056.html#ga8e7035fe555ef96921bfb98e08519bc7" title="Free bitmap bitmap.">hwloc_bitmap_free</a>(cpuset);
+        <a class="code" href="a00057.html#ga8e7035fe555ef96921bfb98e08519bc7" title="Free bitmap bitmap.">hwloc_bitmap_free</a>(cpuset);
     }
 
     <span class="comment">/*****************************************************************</span>
@@ -595,15 +596,13 @@ Further Reading</h2>
 <li>
 <a class="el" href="a00007.html">Embedding hwloc in Other Software</a> </li>
 <li>
-<a class="el" href="a00008.html">Switching from PLPA to hwloc</a> </li>
-<li>
-<a class="el" href="a00009.html">Frequently Asked Questions</a> </li>
+<a class="el" href="a00008.html">Frequently Asked Questions</a> </li>
 </ul>
 <p>Make sure to have had a look at those too!</p>
  
 </div>
  </div></div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 17:31:39 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 14 2011 22:34:49 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

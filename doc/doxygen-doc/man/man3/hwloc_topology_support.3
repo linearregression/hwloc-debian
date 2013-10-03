@@ -1,4 +1,4 @@
-.TH "hwloc_topology_support" 3 "20 Jul 2010" "Version 1.0.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_topology_support" 3 "Thu Dec 16 2010" "Version 1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -20,6 +20,9 @@ Set of flags describing actual support for this topology.
 .ti -1c
 .RI "struct \fBhwloc_topology_cpubind_support\fP * \fBcpubind\fP"
 .br
+.ti -1c
+.RI "struct \fBhwloc_topology_membind_support\fP * \fBmembind\fP"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -30,6 +33,7 @@ This is retrieved with \fBhwloc_topology_get_support()\fP and will be valid unti
 .PP 
 .SS "struct \fBhwloc_topology_cpubind_support\fP* \fBhwloc_topology_support::cpubind\fP"
 .SS "struct \fBhwloc_topology_discovery_support\fP* \fBhwloc_topology_support::discovery\fP"
+.SS "struct \fBhwloc_topology_membind_support\fP* \fBhwloc_topology_support::membind\fP"
 
 .SH "Author"
 .PP 

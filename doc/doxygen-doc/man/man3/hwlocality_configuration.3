@@ -1,4 +1,4 @@
-.TH "Configure Topology Detection" 3 "20 Jul 2010" "Version 1.0.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Configure Topology Detection" 3 "Thu Dec 16 2010" "Version 1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -13,7 +13,11 @@ Configure Topology Detection \-
 .ti -1c
 .RI "struct \fBhwloc_topology_cpubind_support\fP"
 .br
-.RI "\fIFlags describing actual binding support for this topology. \fP"
+.RI "\fIFlags describing actual PU binding support for this topology. \fP"
+.ti -1c
+.RI "struct \fBhwloc_topology_membind_support\fP"
+.br
+.RI "\fIFlags describing actual memory binding support for this topology. \fP"
 .ti -1c
 .RI "struct \fBhwloc_topology_support\fP"
 .br
@@ -62,6 +66,10 @@ Configure Topology Detection \-
 .RI "HWLOC_DECLSPEC int \fBhwloc_topology_set_xml\fP (\fBhwloc_topology_t\fP __hwloc_restrict topology, const char *__hwloc_restrict xmlpath)"
 .br
 .RI "\fIEnable XML-file based topology. \fP"
+.ti -1c
+.RI "HWLOC_DECLSPEC int \fBhwloc_topology_set_xmlbuffer\fP (\fBhwloc_topology_t\fP __hwloc_restrict topology, const char *__hwloc_restrict buffer, int size)"
+.br
+.RI "\fIEnable XML based topology using a memory buffer instead of a file. \fP"
 .ti -1c
 .RI "HWLOC_DECLSPEC struct \fBhwloc_topology_support\fP * \fBhwloc_topology_get_support\fP (\fBhwloc_topology_t\fP __hwloc_restrict topology)"
 .br
@@ -127,7 +135,7 @@ Change which pid the topology is viewed from. On some systems, processes may hav
 .RS 4
 hwloc_pid_t is pid_t on unix platforms, and HANDLE on native Windows platforms 
 .PP
-The ENOSYS error is returned on platforms that does not support this feature. 
+-1 is returned and errno is set to ENOSYS on platforms that do not support this feature. 
 .RE
 .PP
 
@@ -143,7 +151,7 @@ For conveniency, this backend provides empty binding hooks which just return suc
 
 .SS "HWLOC_DECLSPEC int hwloc_topology_set_xml (\fBhwloc_topology_t\fP __hwloc_restrict topology, const char *__hwloc_restrict xmlpath)"
 .PP
-Enable XML-file based topology. Gather topology information the XML file given at \fCxmlpath\fP. Setting the environment variable HWLOC_XMLFILE may also result in this behavior. This file may have been generated earlier with lstopo file.xml.
+Enable XML-file based topology. Gather topology information from the XML file given at \fCxmlpath\fP. Setting the environment variable HWLOC_XMLFILE may also result in this behavior. This file may have been generated earlier with lstopo file.xml.
 .PP
 \fBNote:\fP
 .RS 4
@@ -151,6 +159,9 @@ For conveniency, this backend provides empty binding hooks which just return suc
 .RE
 .PP
 
+.SS "HWLOC_DECLSPEC int hwloc_topology_set_xmlbuffer (\fBhwloc_topology_t\fP __hwloc_restrict topology, const char *__hwloc_restrict buffer, int size)"
+.PP
+Enable XML based topology using a memory buffer instead of a file. Gather topology information from the XML memory buffer given at \fCbuffer\fP and of length \fClength\fP. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Hardware Locality (hwloc) from the source code.

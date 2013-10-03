@@ -1,4 +1,4 @@
-.TH "Object/String Conversion" 3 "20 Jul 2010" "Version 1.0.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Object/String Conversion" 3 "Thu Dec 16 2010" "Version 1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,6 +30,10 @@ Object/String Conversion \-
 .RI "HWLOC_DECLSPEC int \fBhwloc_obj_cpuset_snprintf\fP (char *__hwloc_restrict str, size_t size, size_t nobj, const \fBhwloc_obj_t\fP *__hwloc_restrict objs)"
 .br
 .RI "\fIStringify the cpuset containing a set of objects. \fP"
+.ti -1c
+.RI "static __hwloc_inline char *__hwloc_attribute_pure \fBhwloc_obj_get_info_by_name\fP (\fBhwloc_obj_t\fP obj, const char *name)"
+.br
+.RI "\fISearch the given key name in object infos and return the corresponding value. \fP"
 .in -1c
 .SH "Function Documentation"
 .PP 
@@ -50,6 +54,14 @@ how many characters were actually written (not including the ending \\0), or -1 
 Stringify the cpuset containing a set of objects. \fBReturns:\fP
 .RS 4
 how many characters were actually written (not including the ending \\0). 
+.RE
+.PP
+
+.SS "static __hwloc_inline char* __hwloc_attribute_pure hwloc_obj_get_info_by_name (\fBhwloc_obj_t\fP obj, const char * name)\fC [static]\fP"
+.PP
+Search the given key name in object infos and return the corresponding value. \fBReturns:\fP
+.RS 4
+\fCNULL\fP if no such key exists. 
 .RE
 .PP
 

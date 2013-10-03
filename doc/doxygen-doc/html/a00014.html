@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.7</span>
+   &#160;<span id="projectnumber">1.7.1</span>
    </div>
   </td>
  </tr>
@@ -134,11 +134,14 @@ How do I build hwloc for BlueGene/Q?</h1>
 <p>IBM BlueGene/Q machines run a standard Linux on the I/O node and a custom CNK (<em>Compute Node Kernel</em>) on the compute nodes. To run on the compute node, hwloc must be cross-compiled from the I/O node with the following configuration line: </p>
 <pre class="fragment">./configure --host=powerpc64-bgq-linux --disable-shared --enable-static \
   CPPFLAGS='-I/bgsys/drivers/ppcfloor -I/bgsys/drivers/ppcfloor/spi/include/kernel/cnk/'
-</pre><p>CPPFLAGS may have to be updated if your platform headers are installed in a different directory. </p>
+</pre><p>CPPFLAGS may have to be updated if your platform headers are installed in a different directory.</p>
+<h1><a class="anchor" id="faq_netbsd_bind"></a>
+How to get useful topology information on NetBSD?</h1>
+<p>The NetBSD (and FreeBSD) backend uses x86-specific topology discovery (through the x86 component). This implementation requires CPU binding so as to query topology information from each individual logical processor. This means that hwloc cannot find any useful topology information unless user-level process binding is allowed by the NetBSD kernel. The <code>security.models.extensions.user_set_cpu_affinity</code> sysctl variable must be set to 1 to do so. Otherwise, only the number of logical processors will be detected. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 7 2013 20:30:04 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 21 2013 15:37:20 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

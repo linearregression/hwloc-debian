@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.7</span>
+   &#160;<span id="projectnumber">1.7.1</span>
    </div>
   </td>
  </tr>
@@ -118,7 +118,7 @@ libnuma for memory binding and migration support on Linux (<code>numactl-devel</
 <li>
 libpciaccess (BSD). The relevant development package is usually <code>libpciaccess-devel</code> or <code>libpciaccess-dev</code>.  </li>
 <li>
-libpci, from the pciutils package (GPL). The relevant development package is usually <code>pciutils-devel</code> or <code>libpci-dev</code>. </li>
+libpci, from the pciutils package (GPL). The relevant development package is usually <code>pciutils-devel</code> or <code>libpci-dev</code>.  </li>
 </ol>
 <p class="endli"></p>
 </li>
@@ -132,6 +132,8 @@ the NVIDIA Tesla Development Kit for NVML device discovery.  </li>
 the NV-CONTROL X extension library (NVCtrl) for NVIDIA display discovery.  </li>
 <li>
 libxml2 for full XML import/export support (otherwise, the internal minimalistic parser will only be able to import XML files that were exported by the same hwloc release). See <a class="el" href="a00008.html#xml">Importing and exporting topologies from/to XML files</a> for details. The relevant development package is usually <code>libxml2-devel</code> or <code>libxml2-dev</code>.  </li>
+<li>
+libtool's ltdl library for dynamic plugin loading. The relevant development package is usually <code>libtool-ltdl-devel</code> or <code>libltdl-dev</code>.  </li>
 </ul>
 <p>PCI and XML support may be statically built inside the main hwloc library, or as separate dynamically-loaded plugins (see the <a class="el" href="a00012.html#plugins">Components and plugins</a> section).</p>
 <p>Note that because of the possibility of GPL taint (remember that hwloc is BSD-licensed), hwloc's <code>configure</code> script will prefer <code>libpciaccess</code> to the <code>pciutils</code> package. Indeed, if <code>libpciaccess</code> is not found, hwloc will not use <code>pciutils</code> unless it is specifically requested via the <code>&ndash;enable-libpci</code> flag is provided.</p>
@@ -614,7 +616,7 @@ Further Reading</h1>
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 7 2013 20:30:04 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 21 2013 15:37:20 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

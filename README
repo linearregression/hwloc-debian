@@ -126,6 +126,8 @@ The hwloc core may also benefit from the following development packages:
  exported by the same hwloc release). See Importing and exporting topologies
  from/to XML files for details. The relevant development package is usually
  libxml2-devel or libxml2-dev.
+  * libtool's ltdl library for dynamic plugin loading. The relevant development
+ package is usually libtool-ltdl-devel or libltdl-dev.
 
 PCI and XML support may be statically built inside the main hwloc library, or
 as separate dynamically-loaded plugins (see the Components and plugins
@@ -714,5 +716,5 @@ Make sure to have had a look at those too!
 
 -------------------------------------------------------------------------------
 
-Generated on Sun Apr 7 2013 20:30:04 for Hardware Locality (hwloc) by   doxygen
-1.8.3.1
+Generated on Tue May 21 2013 15:37:20 for Hardware Locality (hwloc) by   
+doxygen 1.8.3.1

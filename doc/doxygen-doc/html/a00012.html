@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.7</span>
+   &#160;<span id="projectnumber">1.7.1</span>
    </div>
   </td>
  </tr>
@@ -64,6 +64,7 @@ Loading components from plugins</h1>
 <p>Components may optionally be built as plugins so that the hwloc core library does not directly depend on their dependencies (for instance the <code>libpci</code> library). Plugin support may be enabled with the <code>&ndash;enable-plugins</code> configure option. All components buildable as plugins will then be built as plugins. The configure option may be given a comma-separated list of component names to specify the exact list of components to build as plugins.</p>
 <p>Plugins are built as independent dynamic libraries that are installed in <code>$libdir/hwloc</code>. All plugins found in this directory are loaded during <code>topology_init()</code>. A specific list of directories (colon-separated) to scan may be specified in the <code>HWLOC_PLUGINS_PATH</code> environment variable.</p>
 <p>Note that loading a plugin just means that the corresponding component is registered to the hwloc core. Components are then only enabled if the topology configuration requests it, as explained in the previous sections.</p>
+<p>Also note that plugins should carefully be enabled and used when embedding hwloc in another project, see <a class="el" href="a00013.html#embed">Embedding hwloc in Other Software</a> for details.</p>
 <h1><a class="anchor" id="plugins_adding"></a>
 Adding new discovery components and plugins</h1>
 <p>The types and functions cited below are declared in the <a class="el" href="a00048_source.html" title="Public interface for building hwloc plugins.">hwloc/plugins.h</a> header. Components are supposed to only use hwloc public headers (<a class="el" href="a00040_source.html" title="The hwloc API.">hwloc.h</a> and anything under the <code>include/hwloc</code> subdirectory) and nothing from the <code>include/private</code> subdirectory in the source tree.</p>
@@ -118,7 +119,7 @@ Existing components and plugins</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 7 2013 20:30:04 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 21 2013 15:37:20 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

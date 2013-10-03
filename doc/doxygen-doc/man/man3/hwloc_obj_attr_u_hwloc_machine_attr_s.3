@@ -1,4 +1,4 @@
-.TH "hwloc_obj_attr_u::hwloc_machine_attr_s" 3 "24 Nov 2009" "Version 0.9.3rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj_attr_u::hwloc_machine_attr_s" 3 "17 Apr 2010" "Version 1.0rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -22,18 +22,6 @@ Machine-specific Object Attributes.
 .RI "char * \fBdmi_board_name\fP"
 .br
 .RI "\fIDMI board model name. \fP"
-.ti -1c
-.RI "unsigned long \fBmemory_kB\fP"
-.br
-.RI "\fISize of memory node. \fP"
-.ti -1c
-.RI "unsigned long \fBhuge_page_free\fP"
-.br
-.RI "\fINumber of available huge pages. \fP"
-.ti -1c
-.RI "unsigned long \fBhuge_page_size_kB\fP"
-.br
-.RI "\fISize of huge pages. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -46,15 +34,6 @@ DMI board model name.
 .SS "char* \fBhwloc_obj_attr_u::hwloc_machine_attr_s::dmi_board_vendor\fP"
 .PP
 DMI board vendor name. 
-.SS "unsigned long \fBhwloc_obj_attr_u::hwloc_machine_attr_s::huge_page_free\fP"
-.PP
-Number of available huge pages. 
-.SS "unsigned long \fBhwloc_obj_attr_u::hwloc_machine_attr_s::huge_page_size_kB\fP"
-.PP
-Size of huge pages. 
-.SS "unsigned long \fBhwloc_obj_attr_u::hwloc_machine_attr_s::memory_kB\fP"
-.PP
-Size of memory node. 
 
 .SH "Author"
 .PP 

@@ -1,4 +1,4 @@
-.TH "Binding" 3 "24 Nov 2009" "Version 0.9.3rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Binding" 3 "17 Apr 2010" "Version 1.0rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -7,7 +7,7 @@ Binding \-
 
 .in +1c
 .ti -1c
-.RI "enum \fBhwloc_cpubind_policy_t\fP { \fBHWLOC_CPUBIND_PROCESS\fP =  (1<<0), \fBHWLOC_CPUBIND_THREAD\fP =  (1<<1), \fBHWLOC_CPUBIND_STRICT\fP =  (1<<2) }"
+.RI "enum \fBhwloc_cpubind_policy_t\fP { \fBHWLOC_CPUBIND_PROCESS\fP, \fBHWLOC_CPUBIND_THREAD\fP, \fBHWLOC_CPUBIND_STRICT\fP }"
 .br
 .RI "\fIProcess/Thread binding policy. \fP"
 .in -1c
@@ -15,17 +15,29 @@ Binding \-
 
 .in +1c
 .ti -1c
-.RI "int \fBhwloc_set_cpubind\fP (\fBhwloc_topology_t\fP topology, const \fBhwloc_cpuset_t\fP set, int policy)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_set_cpubind\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_const_cpuset_t\fP set, int policy)"
 .br
 .RI "\fIBind current process or thread on cpus given in cpuset \fCset\fP. \fP"
 .ti -1c
-.RI "int \fBhwloc_set_proc_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, const \fBhwloc_cpuset_t\fP set, int policy)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_get_cpubind\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_cpuset_t\fP set, int policy)"
+.br
+.RI "\fIGet current process or thread binding. \fP"
+.ti -1c
+.RI "HWLOC_DECLSPEC int \fBhwloc_set_proc_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_const_cpuset_t\fP set, int policy)"
 .br
 .RI "\fIBind a process \fCpid\fP on cpus given in cpuset \fCset\fP. \fP"
 .ti -1c
-.RI "int \fBhwloc_set_thread_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_thread_t tid, const \fBhwloc_cpuset_t\fP set, int policy)"
+.RI "HWLOC_DECLSPEC int \fBhwloc_get_proc_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_cpuset_t\fP set, int policy)"
+.br
+.RI "\fIGet the current binding of process \fCpid\fP. \fP"
+.ti -1c
+.RI "HWLOC_DECLSPEC int \fBhwloc_set_thread_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_thread_t tid, \fBhwloc_const_cpuset_t\fP set, int policy)"
 .br
 .RI "\fIBind a thread \fCtid\fP on cpus given in cpuset \fCset\fP. \fP"
+.ti -1c
+.RI "HWLOC_DECLSPEC int \fBhwloc_get_thread_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_thread_t tid, \fBhwloc_cpuset_t\fP set, int policy)"
+.br
+.RI "\fIGet the current binding of thread \fCtid\fP. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -82,16 +94,53 @@ Request for strict binding from the OS. By default, when the designated CPUs are
 .PP
 \fBNote:\fP
 .RS 4
-Depending on OSes and implementations, strict binding may not be possible (implementation reason) or not allowed (administrative reasons), and the function will fail in that case. 
+Depending on OSes and implementations, strict binding may not be possible (implementation reason) or not allowed (administrative reasons), and the function will fail in that case.
+.RE
+.PP
+When retrieving the binding of a process, this flag checks whether all its threads actually have the same binding. If the flag is not given, the binding of each thread will be accumulated.
+.PP
+\fBNote:\fP
+.RS 4
+This flag is meaningless when retrieving the binding of a thread. 
 .RE
 .PP
 
 .SH "Function Documentation"
 .PP 
-.SS "int hwloc_set_cpubind (\fBhwloc_topology_t\fP topology, const \fBhwloc_cpuset_t\fP set, int policy)"
+.SS "HWLOC_DECLSPEC int hwloc_get_cpubind (\fBhwloc_topology_t\fP topology, \fBhwloc_cpuset_t\fP set, int policy)"
 .PP
-Bind current process or thread on cpus given in cpuset \fCset\fP. 
-.SS "int hwloc_set_proc_cpubind (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, const \fBhwloc_cpuset_t\fP set, int policy)"
+Get current process or thread binding. 
+.SS "HWLOC_DECLSPEC int hwloc_get_proc_cpubind (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_cpuset_t\fP set, int policy)"
+.PP
+Get the current binding of process \fCpid\fP. \fBNote:\fP
+.RS 4
+hwloc_pid_t is pid_t on unix platforms, and HANDLE on native Windows platforms
+.PP
+HWLOC_CPUBIND_THREAD can not be used in \fCpolicy\fP. 
+.RE
+.PP
+
+.SS "HWLOC_DECLSPEC int hwloc_get_thread_cpubind (\fBhwloc_topology_t\fP topology, hwloc_thread_t tid, \fBhwloc_cpuset_t\fP set, int policy)"
+.PP
+Get the current binding of thread \fCtid\fP. \fBNote:\fP
+.RS 4
+hwloc_thread_t is pthread_t on unix platforms, and HANDLE on native Windows platforms
+.PP
+HWLOC_CPUBIND_PROCESS can not be used in \fCpolicy\fP. 
+.RE
+.PP
+
+.SS "HWLOC_DECLSPEC int hwloc_set_cpubind (\fBhwloc_topology_t\fP topology, \fBhwloc_const_cpuset_t\fP set, int policy)"
+.PP
+Bind current process or thread on cpus given in cpuset \fCset\fP. \fBReturns:\fP
+.RS 4
+ENOSYS if the action is not supported 
+.PP
+EXDEV if the binding cannot be enforced 
+.RE
+.PP
+
+.SS "HWLOC_DECLSPEC int hwloc_set_proc_cpubind (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_const_cpuset_t\fP set, int policy)"
 .PP
 Bind a process \fCpid\fP on cpus given in cpuset \fCset\fP. \fBNote:\fP
 .RS 4
@@ -101,7 +150,7 @@ HWLOC_CPUBIND_THREAD can not be used in \fCpolicy\fP.
 .RE
 .PP
 
-.SS "int hwloc_set_thread_cpubind (\fBhwloc_topology_t\fP topology, hwloc_thread_t tid, const \fBhwloc_cpuset_t\fP set, int policy)"
+.SS "HWLOC_DECLSPEC int hwloc_set_thread_cpubind (\fBhwloc_topology_t\fP topology, hwloc_thread_t tid, \fBhwloc_const_cpuset_t\fP set, int policy)"
 .PP
 Bind a thread \fCtid\fP on cpus given in cpuset \fCset\fP. \fBNote:\fP
 .RS 4

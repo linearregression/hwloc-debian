@@ -2,7 +2,7 @@
 
 /* -*- c -*-
  *
- * Copyright © 2009 CNRS, inria., Université Bordeaux 1  All rights reserved.
+ * Copyright © 2009, 2012 CNRS, inria., Université Bordeaux 1  All rights reserved.
  * Copyright © 2009 Cisco Systems, Inc.  All rights reserved.
  * $COPYRIGHT$
  * 
@@ -30,6 +30,9 @@
 /* Define to 1 if you have the `clzl' function. */
 #undef HAVE_CLZL
 
+/* Define to 1 if you have the `cpuset_setaffinity' function. */
+#undef HAVE_CPUSET_SETAFFINITY
+
 /* Define to 1 if we have -lcuda */
 #undef HAVE_CUDA
 
@@ -45,6 +48,10 @@
 /* Define to 1 if you have the declaration of `CTL_HW', and to 0 if you don't.
    */
 #undef HAVE_DECL_CTL_HW
+
+/* Define to 1 if you have the declaration of `fabsf', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FABSF
 
 /* Define to 1 if you have the declaration of `HW_NCPU', and to 0 if you
    don't. */
@@ -81,6 +88,9 @@
 /* Define to 1 if you have the declaration of `_SC_NPROC_ONLN', and to 0 if
    you don't. */
 #undef HAVE_DECL__SC_NPROC_ONLN
+
+/* Define to 1 if you have the <dirent.h> header file. */
+#undef HAVE_DIRENT_H
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
@@ -277,6 +287,9 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
+/* Define to 1 if you have the `uselocale' function. */
+#undef HAVE_USELOCALE
+
 /* Define to 1 if the system has the type `wchar_t'. */
 #undef HAVE_WCHAR_T
 
@@ -288,6 +301,9 @@
 
 /* Define to 1 if you have the <X11/Xutil.h> header file. */
 #undef HAVE_X11_XUTIL_H
+
+/* Define to 1 if you have the <xlocale.h> header file. */
+#undef HAVE_XLOCALE_H
 
 /* Define to 1 on AIX */
 #undef HWLOC_AIX_SYS

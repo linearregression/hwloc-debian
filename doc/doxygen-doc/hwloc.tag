@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='ISO-8859-1' standalone='yes' ?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile>
   <compound kind="page">
     <name>termsanddefs</name>
@@ -9,15 +9,15 @@
     <name>tools</name>
     <title>Command-Line Tools</title>
     <filename>a00002</filename>
-    <docanchor file="a00002">cli_hwloc_ps</docanchor>
-    <docanchor file="a00002">cli_hwloc_assembler_remote</docanchor>
-    <docanchor file="a00002">cli_hwloc_assembler</docanchor>
-    <docanchor file="a00002">cli_hwloc_distances</docanchor>
-    <docanchor file="a00002">cli_hwloc_bind</docanchor>
-    <docanchor file="a00002">cli_hwloc_gather</docanchor>
-    <docanchor file="a00002">cli_hwloc_distrib</docanchor>
     <docanchor file="a00002">cli_lstopo</docanchor>
+    <docanchor file="a00002">cli_hwloc_bind</docanchor>
     <docanchor file="a00002">cli_hwloc_calc</docanchor>
+    <docanchor file="a00002">cli_hwloc_distrib</docanchor>
+    <docanchor file="a00002">cli_hwloc_ps</docanchor>
+    <docanchor file="a00002">cli_hwloc_gather</docanchor>
+    <docanchor file="a00002">cli_hwloc_distances</docanchor>
+    <docanchor file="a00002">cli_hwloc_assembler</docanchor>
+    <docanchor file="a00002">cli_hwloc_assembler_remote</docanchor>
   </compound>
   <compound kind="page">
     <name>envvar</name>
@@ -33,19 +33,19 @@
     <name>iodevices</name>
     <title>I/O Devices</title>
     <filename>a00005</filename>
-    <docanchor file="a00005">iodevices_examples</docanchor>
     <docanchor file="a00005">iodevices_enabling</docanchor>
-    <docanchor file="a00005">iodevices_consult</docanchor>
-    <docanchor file="a00005">iodevices_osdev</docanchor>
     <docanchor file="a00005">iodevices_hierarchy</docanchor>
+    <docanchor file="a00005">iodevices_osdev</docanchor>
+    <docanchor file="a00005">iodevices_consult</docanchor>
+    <docanchor file="a00005">iodevices_examples</docanchor>
   </compound>
   <compound kind="page">
     <name>multinode</name>
     <title>Multi-node Topologies</title>
     <filename>a00006</filename>
-    <docanchor file="a00006">multinode_interface</docanchor>
-    <docanchor file="a00006">multinode_tools</docanchor>
     <docanchor file="a00006">multinode_cpusets</docanchor>
+    <docanchor file="a00006">multinode_tools</docanchor>
+    <docanchor file="a00006">multinode_interface</docanchor>
     <docanchor file="a00006">multinode_example</docanchor>
   </compound>
   <compound kind="page">
@@ -69,21 +69,21 @@
     <name>embed</name>
     <title>Embedding hwloc in Other Software</title>
     <filename>a00010</filename>
-    <docanchor file="a00010">embedding_example</docanchor>
     <docanchor file="a00010">embedding_m4</docanchor>
+    <docanchor file="a00010">embedding_example</docanchor>
   </compound>
   <compound kind="page">
     <name>faq</name>
     <title>Frequently Asked Questions</title>
     <filename>a00011</filename>
-    <docanchor file="a00011">faq_smt</docanchor>
-    <docanchor file="a00011">faq_valgrind</docanchor>
-    <docanchor file="a00011">faq_onedim</docanchor>
-    <docanchor file="a00011">faq_privileged</docanchor>
-    <docanchor file="a00011">faq_upgrade</docanchor>
-    <docanchor file="a00011">faq_asymmetric</docanchor>
     <docanchor file="a00011">faq_xml</docanchor>
+    <docanchor file="a00011">faq_privileged</docanchor>
+    <docanchor file="a00011">faq_onedim</docanchor>
+    <docanchor file="a00011">faq_smt</docanchor>
+    <docanchor file="a00011">faq_asymmetric</docanchor>
     <docanchor file="a00011">faq_annotate</docanchor>
+    <docanchor file="a00011">faq_valgrind</docanchor>
+    <docanchor file="a00011">faq_upgrade</docanchor>
   </compound>
   <compound kind="group">
     <name>hwlocality_api_version</name>
@@ -153,6 +153,13 @@
     <name>hwlocality_types</name>
     <title>Topology Object Types</title>
     <filename>a00041.html</filename>
+    <member kind="typedef">
+      <type>enum hwloc_obj_cache_type_e</type>
+      <name>hwloc_obj_cache_type_t</name>
+      <anchorfile>a00041.html</anchorfile>
+      <anchor>gab6e1e7efedae8b341f3ee14fbe53d66c</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>enum hwloc_obj_bridge_type_e</type>
       <name>hwloc_obj_bridge_type_t</name>
@@ -249,6 +256,30 @@
       <name>HWLOC_OBJ_TYPE_MAX</name>
       <anchorfile>a00041.html</anchorfile>
       <anchor>ggacd37bb612667dc437d66bfb175a8dc55addb5f843e1812445a84e6b2a844b1ebc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>hwloc_obj_cache_type_e</name>
+      <anchorfile>a00041.html</anchorfile>
+      <anchor>ga791c9875c8fe20f3e1e5871e0657e59b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>HWLOC_OBJ_CACHE_UNIFIED</name>
+      <anchorfile>a00041.html</anchorfile>
+      <anchor>gga791c9875c8fe20f3e1e5871e0657e59ba3900b3b2db54941aac249e5a638a2d7a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>HWLOC_OBJ_CACHE_DATA</name>
+      <anchorfile>a00041.html</anchorfile>
+      <anchor>gga791c9875c8fe20f3e1e5871e0657e59bacac60ecad4206f85aeb79bef1604b488</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>HWLOC_OBJ_CACHE_INSTRUCTION</name>
+      <anchorfile>a00041.html</anchorfile>
+      <anchor>gga791c9875c8fe20f3e1e5871e0657e59ba6f98b0d422b38ba90c5f5c79a11b0658</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -417,6 +448,12 @@
       <name>HWLOC_TOPOLOGY_FLAG_WHOLE_IO</name>
       <anchorfile>a00044.html</anchorfile>
       <anchor>ggada025d3ec20b4b420f8038d23d6e7bdea4a41dc181649ef81c2dcd44a54e271b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>HWLOC_TOPOLOGY_FLAG_ICACHES</name>
+      <anchorfile>a00044.html</anchorfile>
+      <anchor>ggada025d3ec20b4b420f8038d23d6e7bdeaae509a0bed4a7067e0116c75c661178d</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -1247,6 +1284,13 @@
     <title>Cache-specific Finding Helpers</title>
     <filename>a00057.html</filename>
     <member kind="function" static="yes">
+      <type>static __hwloc_inline int</type>
+      <name>hwloc_get_cache_type_depth</name>
+      <anchorfile>a00057.html</anchorfile>
+      <anchor>gac3cfbb68829b606e61ab039f142f29a0</anchor>
+      <arglist>(hwloc_topology_t topology, unsigned cachelevel, hwloc_obj_cache_type_t cachetype)</arglist>
+    </member>
+    <member kind="function" static="yes">
       <type>static __hwloc_inline hwloc_obj_t</type>
       <name>hwloc_get_cache_covering_cpuset</name>
       <anchorfile>a00057.html</anchorfile>
@@ -1966,60 +2010,27 @@
     </member>
   </compound>
   <compound kind="group">
-    <name>hwlocality_linux_libnuma_nodemask</name>
-    <title>Helpers for manipulating Linux libnuma nodemask_t</title>
+    <name>hwlocality_cuda</name>
+    <title>CUDA Driver API Specific Functions</title>
     <filename>a00070.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
-      <name>hwloc_cpuset_to_linux_libnuma_nodemask</name>
-      <anchorfile>a00070.html</anchorfile>
-      <anchor>ga36feb81315de87ce11d9a5aa2b4c6e6d</anchor>
-      <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset, nodemask_t *nodemask)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static __hwloc_inline int</type>
-      <name>hwloc_nodeset_to_linux_libnuma_nodemask</name>
-      <anchorfile>a00070.html</anchorfile>
-      <anchor>gafa4e7cc68f0f99724f8d99541d9ab3de</anchor>
-      <arglist>(hwloc_topology_t topology, hwloc_const_nodeset_t nodeset, nodemask_t *nodemask)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static __hwloc_inline int</type>
-      <name>hwloc_cpuset_from_linux_libnuma_nodemask</name>
-      <anchorfile>a00070.html</anchorfile>
-      <anchor>gac24c9e4bb2eab3e23b2039559adc9df8</anchor>
-      <arglist>(hwloc_topology_t topology, hwloc_cpuset_t cpuset, const nodemask_t *nodemask)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static __hwloc_inline int</type>
-      <name>hwloc_nodeset_from_linux_libnuma_nodemask</name>
-      <anchorfile>a00070.html</anchorfile>
-      <anchor>ga22862f485346ae3b2ab7d052f538fc5f</anchor>
-      <arglist>(hwloc_topology_t topology, hwloc_nodeset_t nodeset, const nodemask_t *nodemask)</arglist>
-    </member>
-  </compound>
-  <compound kind="group">
-    <name>hwlocality_cuda</name>
-    <title>CUDA Driver API Specific Functions</title>
-    <filename>a00071.html</filename>
-    <member kind="function" static="yes">
-      <type>static __hwloc_inline int</type>
       <name>hwloc_cuda_get_device_pci_ids</name>
-      <anchorfile>a00071.html</anchorfile>
+      <anchorfile>a00070.html</anchorfile>
       <anchor>gae45c92fbc7ac538cf69fdfcc73994ed9</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, CUdevice cudevice, int *domain, int *bus, int *dev)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cuda_get_device_cpuset</name>
-      <anchorfile>a00071.html</anchorfile>
+      <anchorfile>a00070.html</anchorfile>
       <anchor>gae06cf330d2f0d9949feb52b146b7d136</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, CUdevice cudevice, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline hwloc_obj_t</type>
       <name>hwloc_cuda_get_device_pcidev</name>
-      <anchorfile>a00071.html</anchorfile>
+      <anchorfile>a00070.html</anchorfile>
       <anchor>ga04d1f8bd566a7f0b30d5e498f9228042</anchor>
       <arglist>(hwloc_topology_t topology, CUdevice cudevice)</arglist>
     </member>
@@ -2027,25 +2038,25 @@
   <compound kind="group">
     <name>hwlocality_cudart</name>
     <title>CUDA Runtime API Specific Functions</title>
-    <filename>a00072.html</filename>
+    <filename>a00071.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cudart_get_device_pci_ids</name>
-      <anchorfile>a00072.html</anchorfile>
+      <anchorfile>a00071.html</anchorfile>
       <anchor>ga1cbf127459986c345f873e2752ddf681</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, int device, int *domain, int *bus, int *dev)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_cudart_get_device_cpuset</name>
-      <anchorfile>a00072.html</anchorfile>
+      <anchorfile>a00071.html</anchorfile>
       <anchor>ga2daaf1dd1a9a7f11ccbc6821374120e9</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, int device, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline hwloc_obj_t</type>
       <name>hwloc_cudart_get_device_pcidev</name>
-      <anchorfile>a00072.html</anchorfile>
+      <anchorfile>a00071.html</anchorfile>
       <anchor>gaaff84cc4ee4b27f35b21c33626651da0</anchor>
       <arglist>(hwloc_topology_t topology, int device)</arglist>
     </member>
@@ -2053,30 +2064,37 @@
   <compound kind="group">
     <name>hwlocality_openfabrics</name>
     <title>OpenFabrics-Specific Functions</title>
-    <filename>a00073.html</filename>
+    <filename>a00072.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_ibv_get_device_cpuset</name>
-      <anchorfile>a00073.html</anchorfile>
+      <anchorfile>a00072.html</anchorfile>
       <anchor>gaa8ea979ce3a9b8c70ae80bc5716a0fbe</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, struct ibv_device *ibdev, hwloc_cpuset_t set)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static __hwloc_inline hwloc_obj_t</type>
+      <name>hwloc_ibv_get_device_osdev_by_name</name>
+      <anchorfile>a00072.html</anchorfile>
+      <anchor>gaa6139e8ce1279bd91867b31b9ff4316b</anchor>
+      <arglist>(hwloc_topology_t topology, const char *ibname)</arglist>
     </member>
   </compound>
   <compound kind="group">
     <name>hwlocality_myriexpress</name>
     <title>Myrinet Express-Specific Functions</title>
-    <filename>a00074.html</filename>
+    <filename>a00073.html</filename>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_mx_board_get_device_cpuset</name>
-      <anchorfile>a00074.html</anchorfile>
+      <anchorfile>a00073.html</anchorfile>
       <anchor>ga87f4746d0cad579ce4e86b98088f22a1</anchor>
       <arglist>(hwloc_topology_t topology, unsigned id, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static __hwloc_inline int</type>
       <name>hwloc_mx_endpoint_get_device_cpuset</name>
-      <anchorfile>a00074.html</anchorfile>
+      <anchorfile>a00073.html</anchorfile>
       <anchor>ga2ff7763b9c2c5975f9a2e3d638351535</anchor>
       <arglist>(hwloc_topology_t topology, mx_endpoint_t endpoint, hwloc_cpuset_t set)</arglist>
     </member>
@@ -2398,7 +2416,7 @@
     <member kind="variable">
       <type>struct hwloc_pcidev_attr_s</type>
       <name>pci</name>
-      <anchorfile>a00077.html</anchorfile>
+      <anchorfile>a00076.html</anchorfile>
       <anchor>afbfb960b5aaf2b6e10d8d5d424b227d7</anchor>
       <arglist></arglist>
     </member>
@@ -2419,28 +2437,28 @@
     <member kind="variable">
       <type>struct hwloc_obj_attr_u::hwloc_bridge_attr_s::@1::@2</type>
       <name>pci</name>
-      <anchorfile>a00078.html</anchorfile>
+      <anchorfile>a00077.html</anchorfile>
       <anchor>af93b3f8c762d7a849b968cb3caf58365</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>unsigned short</type>
       <name>domain</name>
-      <anchorfile>a00079.html</anchorfile>
+      <anchorfile>a00078.html</anchorfile>
       <anchor>afcdd4077c7c574e4791eefbdf8fb5d9e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>unsigned char</type>
       <name>secondary_bus</name>
-      <anchorfile>a00079.html</anchorfile>
+      <anchorfile>a00078.html</anchorfile>
       <anchor>a5e2836eb053bf87e3f7430b5470dedca</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>unsigned char</type>
       <name>subordinate_bus</name>
-      <anchorfile>a00079.html</anchorfile>
+      <anchorfile>a00078.html</anchorfile>
       <anchor>aae5989d9a424dd74ff22da89e6ed245b</anchor>
       <arglist></arglist>
     </member>
@@ -2488,6 +2506,13 @@
       <name>associativity</name>
       <anchorfile>a00013.html</anchorfile>
       <anchor>ad06525e474d1e2d1423ed71bb998592d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>hwloc_obj_cache_type_t</type>
+      <name>type</name>
+      <anchorfile>a00013.html</anchorfile>
+      <anchor>ad8edc8ded2b7a70d6abbc874801930f4</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -2889,18 +2914,39 @@
       <arglist></arglist>
     </member>
   </compound>
+  <compound kind="dir">
+    <name>/home/bgoglin/SOFT/hwloc/tmp/v1.5/include/hwloc/</name>
+    <path>/home/bgoglin/SOFT/hwloc/tmp/v1.5/include/hwloc/</path>
+    <filename>dir_5cb306d949c7931a3b6c77517393dd34.html</filename>
+    <file>bitmap.h</file>
+    <file>cuda.h</file>
+    <file>cudart.h</file>
+    <file>glibc-sched.h</file>
+    <file>helper.h</file>
+    <file>linux-libnuma.h</file>
+    <file>linux.h</file>
+    <file>myriexpress.h</file>
+    <file>openfabrics-verbs.h</file>
+  </compound>
+  <compound kind="dir">
+    <name>/home/bgoglin/SOFT/hwloc/tmp/v1.5/include/</name>
+    <path>/home/bgoglin/SOFT/hwloc/tmp/v1.5/include/</path>
+    <filename>dir_d44c64559bbebec7f509842c48db8b23.html</filename>
+    <dir>/home/bgoglin/SOFT/hwloc/tmp/v1.5/include/hwloc/</dir>
+    <file>hwloc.h</file>
+  </compound>
   <compound kind="page">
     <name>index</name>
     <title>Hardware Locality</title>
     <filename>index</filename>
-    <docanchor file="index">cli_examples</docanchor>
-    <docanchor file="index">further_read</docanchor>
     <docanchor file="index">Introduction</docanchor>
     <docanchor file="index">installation</docanchor>
-    <docanchor file="index">interface_example</docanchor>
+    <docanchor file="index">cli_examples</docanchor>
     <docanchor file="index">interface</docanchor>
     <docanchor file="index">portability</docanchor>
-    <docanchor file="index">history</docanchor>
+    <docanchor file="index">interface_example</docanchor>
     <docanchor file="index">bugs</docanchor>
+    <docanchor file="index">history</docanchor>
+    <docanchor file="index">further_read</docanchor>
   </compound>
 </tagfile>

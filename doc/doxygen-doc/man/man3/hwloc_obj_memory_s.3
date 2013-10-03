@@ -1,4 +1,4 @@
-.TH "hwloc_obj_memory_s" 3 "Mon Feb 27 2012" "Version 1.4.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj_memory_s" 3 "Mon Jul 30 2012" "Version 1.5" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -39,14 +39,18 @@ hwloc_obj_memory_s \-
 Object memory\&. 
 .SH "Field Documentation"
 .PP 
-.SS "hwloc_uint64_t \fBhwloc_obj_memory_s::local_memory\fP"
+.SS "hwloc_uint64_t hwloc_obj_memory_s::local_memory"
+
 .PP
 Local memory (in bytes) 
-.SS "struct \fBhwloc_obj_memory_s::hwloc_obj_memory_page_type_s\fP *  \fBhwloc_obj_memory_s::page_types\fP"
-.SS "unsigned \fBhwloc_obj_memory_s::page_types_len\fP"
+.SS "struct \fBhwloc_obj_memory_s::hwloc_obj_memory_page_type_s\fP *  hwloc_obj_memory_s::page_types"
+
+.SS "unsigned hwloc_obj_memory_s::page_types_len"
+
 .PP
 Size of array \fCpage_types\fP\&. 
-.SS "hwloc_uint64_t \fBhwloc_obj_memory_s::total_memory\fP"
+.SS "hwloc_uint64_t hwloc_obj_memory_s::total_memory"
+
 .PP
 Total memory (in bytes) in this object and its children\&. 
 

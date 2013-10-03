@@ -1,4 +1,4 @@
-.TH "Advanced I/O object traversal helpers" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Advanced I/O object traversal helpers" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -45,7 +45,9 @@ Find the hostbridge that covers the given PCI bus\&. This is useful for finding 
 .SS "static inline \fBhwloc_obj_t\fP hwloc_get_next_bridge (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPprev)\fC [static]\fP"
 
 .PP
-Get the next bridge in the system\&. \fBReturns:\fP
+Get the next bridge in the system\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the first bridge if \fCprev\fP is \fCNULL\fP\&. 
 .RE
@@ -54,7 +56,9 @@ the first bridge if \fCprev\fP is \fCNULL\fP\&.
 .SS "static inline \fBhwloc_obj_t\fP hwloc_get_next_osdev (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPprev)\fC [static]\fP"
 
 .PP
-Get the next OS device in the system\&. \fBReturns:\fP
+Get the next OS device in the system\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the first OS device if \fCprev\fP is \fCNULL\fP\&. 
 .RE
@@ -63,7 +67,9 @@ the first OS device if \fCprev\fP is \fCNULL\fP\&.
 .SS "static inline \fBhwloc_obj_t\fP hwloc_get_next_pcidev (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPprev)\fC [static]\fP"
 
 .PP
-Get the next PCI device in the system\&. \fBReturns:\fP
+Get the next PCI device in the system\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the first PCI device if \fCprev\fP is \fCNULL\fP\&. 
 .RE

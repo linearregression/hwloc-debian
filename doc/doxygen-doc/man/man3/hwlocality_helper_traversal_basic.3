@@ -1,4 +1,4 @@
-.TH "Basic Traversal Helpers" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Basic Traversal Helpers" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -66,7 +66,9 @@ Returns the next object of type \fCtype\fP\&. If \fCprev\fP is \fCNULL\fP, retur
 .SS "static inline \fBhwloc_obj_t\fP hwloc_get_pu_obj_by_os_index (\fBhwloc_topology_t\fPtopology, unsignedos_index)\fC [static]\fP"
 
 .PP
-Returns the object of type \fBHWLOC_OBJ_PU\fP with \fCos_index\fP\&. \fBNote:\fP
+Returns the object of type \fBHWLOC_OBJ_PU\fP with \fCos_index\fP\&. 
+.PP
+\fBNote:\fP
 .RS 4
 The \fCos_index\fP field of object should most of the times only be used for pretty-printing purpose\&. Type \fBHWLOC_OBJ_PU\fP is the only case where \fCos_index\fP could actually be useful, when manually binding to processors\&. However, using CPU sets to hide this complexity should often be preferred\&. 
 .RE
@@ -79,7 +81,9 @@ Returns the top-object of the topology-tree\&. Its type is typically \fBHWLOC_OB
 .SS "static inline int hwloc_obj_is_in_subtree (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fPobj, \fBhwloc_obj_t\fPsubtree_root)\fC [static]\fP"
 
 .PP
-Returns true if \fCobj\fP is inside the subtree beginning with \fCsubtree_root\fP\&. \fBNote:\fP
+Returns true if \fCobj\fP is inside the subtree beginning with \fCsubtree_root\fP\&. 
+.PP
+\fBNote:\fP
 .RS 4
 This function assumes that both \fCobj\fP and \fCsubtree_root\fP have a \fCcpuset\fP\&. 
 .RE

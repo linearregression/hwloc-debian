@@ -1,4 +1,4 @@
-.TH "CPU binding" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "CPU binding" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -134,7 +134,9 @@ Get the last physical CPU where the current process or thread ran\&. The operati
 .SS " int hwloc_get_proc_cpubind (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_cpuset_t\fPset, intflags)"
 
 .PP
-Get the current physical binding of process \fCpid\fP\&. \fBNote:\fP
+Get the current physical binding of process \fCpid\fP\&. 
+.PP
+\fBNote:\fP
 .RS 4
 \fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms\&.
 .PP
@@ -160,7 +162,9 @@ As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (p
 .SS " int hwloc_get_thread_cpubind (\fBhwloc_topology_t\fPtopology, hwloc_thread_tthread, \fBhwloc_cpuset_t\fPset, intflags)"
 
 .PP
-Get the current physical binding of thread \fCtid\fP\&. \fBNote:\fP
+Get the current physical binding of thread \fCtid\fP\&. 
+.PP
+\fBNote:\fP
 .RS 4
 \fChwloc_thread_t\fP is \fCpthread_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms\&.
 .PP
@@ -171,7 +175,9 @@ HWLOC_CPUBIND_PROCESS can not be used in \fCflags\fP\&.
 .SS " int hwloc_set_cpubind (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPset, intflags)"
 
 .PP
-Bind current process or thread on cpus given in physical bitmap \fCset\fP\&. \fBReturns:\fP
+Bind current process or thread on cpus given in physical bitmap \fCset\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 -1 with errno set to ENOSYS if the action is not supported 
 .PP
@@ -182,7 +188,9 @@ Bind current process or thread on cpus given in physical bitmap \fCset\fP\&. \fB
 .SS " int hwloc_set_proc_cpubind (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_const_cpuset_t\fPset, intflags)"
 
 .PP
-Bind a process \fCpid\fP on cpus given in physical bitmap \fCset\fP\&. \fBNote:\fP
+Bind a process \fCpid\fP on cpus given in physical bitmap \fCset\fP\&. 
+.PP
+\fBNote:\fP
 .RS 4
 \fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms\&.
 .PP
@@ -193,7 +201,9 @@ HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP\&.
 .SS " int hwloc_set_thread_cpubind (\fBhwloc_topology_t\fPtopology, hwloc_thread_tthread, \fBhwloc_const_cpuset_t\fPset, intflags)"
 
 .PP
-Bind a thread \fCthread\fP on cpus given in physical bitmap \fCset\fP\&. \fBNote:\fP
+Bind a thread \fCthread\fP on cpus given in physical bitmap \fCset\fP\&. 
+.PP
+\fBNote:\fP
 .RS 4
 \fChwloc_thread_t\fP is \fCpthread_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms\&.
 .PP

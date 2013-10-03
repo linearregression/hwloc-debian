@@ -1,4 +1,4 @@
-.TH "Cpuset Helpers" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Cpuset Helpers" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -35,7 +35,9 @@ Cpuset Helpers \-
 .SS "static inline \fBhwloc_const_cpuset_t\fP hwloc_topology_get_allowed_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 
 .PP
-Get allowed CPU set\&. \fBReturns:\fP
+Get allowed CPU set\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the CPU set of allowed logical processors of the system\&. If the topology is the result of a combination of several systems, NULL is returned\&.
 .RE
@@ -49,7 +51,9 @@ The returned cpuset is not newly allocated and should thus not be changed or fre
 .SS "static inline \fBhwloc_const_cpuset_t\fP hwloc_topology_get_complete_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 
 .PP
-Get complete CPU set\&. \fBReturns:\fP
+Get complete CPU set\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the complete CPU set of logical processors of the system\&. If the topology is the result of a combination of several systems, NULL is returned\&.
 .RE
@@ -63,7 +67,9 @@ The returned cpuset is not newly allocated and should thus not be changed or fre
 .SS "static inline \fBhwloc_const_cpuset_t\fP hwloc_topology_get_online_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 
 .PP
-Get online CPU set\&. \fBReturns:\fP
+Get online CPU set\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the CPU set of online logical processors of the system\&. If the topology is the result of a combination of several systems, NULL is returned\&.
 .RE
@@ -77,7 +83,9 @@ The returned cpuset is not newly allocated and should thus not be changed or fre
 .SS "static inline \fBhwloc_const_cpuset_t\fP hwloc_topology_get_topology_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 
 .PP
-Get topology CPU set\&. \fBReturns:\fP
+Get topology CPU set\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 the CPU set of logical processors of the system for which hwloc provides topology information\&. This is equivalent to the cpuset of the system object\&. If the topology is the result of a combination of several systems, NULL is returned\&.
 .RE

@@ -1,4 +1,4 @@
-.TH "Memory binding" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Memory binding" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -68,7 +68,6 @@ Memory binding \-
 .SH "Detailed Description"
 .PP 
 Memory binding can be done three ways:
-.PP
 .IP "\(bu" 2
 explicit memory allocation thanks to hwloc_alloc_membind and friends: the binding will have effect on the memory allocated by these functions\&.
 .IP "\(bu" 2
@@ -185,7 +184,9 @@ The allocated memory should be freed with \fBhwloc_free()\fP\&.
 .SS " void* hwloc_alloc_membind (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
-Allocate some memory on memory nodes near the given physical cpuset \fCcpuset\fP\&. \fBReturns:\fP
+Allocate some memory on memory nodes near the given physical cpuset \fCcpuset\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 NULL with errno set to ENOSYS if the action is not supported and HWLOC_MEMBIND_STRICT is given 
 .PP
@@ -201,7 +202,9 @@ The allocated memory should be freed with \fBhwloc_free()\fP\&.
 .SS " void* hwloc_alloc_membind_nodeset (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
-Allocate some memory on the given physical nodeset \fCnodeset\fP\&. \fBReturns:\fP
+Allocate some memory on the given physical nodeset \fCnodeset\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 NULL with errno set to ENOSYS if the action is not supported and HWLOC_MEMBIND_STRICT is given 
 .PP
@@ -315,7 +318,9 @@ If any other flags are specified, -1 is returned and errno is set to EINVAL\&.
 .SS " int hwloc_set_area_membind (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
-Bind the already-allocated memory identified by (addr, len) to the NUMA node(s) near physical \fCcpuset\fP\&. \fBReturns:\fP
+Bind the already-allocated memory identified by (addr, len) to the NUMA node(s) near physical \fCcpuset\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 -1 with errno set to ENOSYS if the action is not supported 
 .PP
@@ -326,7 +331,9 @@ Bind the already-allocated memory identified by (addr, len) to the NUMA node(s) 
 .SS " int hwloc_set_area_membind_nodeset (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
-Bind the already-allocated memory identified by (addr, len) to the NUMA node(s) in physical \fCnodeset\fP\&. \fBReturns:\fP
+Bind the already-allocated memory identified by (addr, len) to the NUMA node(s) in physical \fCnodeset\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 -1 with errno set to ENOSYS if the action is not supported 
 .PP
@@ -363,7 +370,9 @@ Set the default memory binding policy of the current process or thread to prefer
 .SS " int hwloc_set_proc_membind (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
-Set the default memory binding policy of the specified process to prefer the NUMA node(s) near the specified physical \fCcpuset\fP\&. \fBReturns:\fP
+Set the default memory binding policy of the specified process to prefer the NUMA node(s) near the specified physical \fCcpuset\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 -1 with errno set to ENOSYS if the action is not supported 
 .PP
@@ -379,7 +388,9 @@ Set the default memory binding policy of the specified process to prefer the NUM
 .SS " int hwloc_set_proc_membind_nodeset (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
-Set the default memory binding policy of the specified process to prefer the NUMA node(s) specified by physical \fCnodeset\fP\&. \fBReturns:\fP
+Set the default memory binding policy of the specified process to prefer the NUMA node(s) specified by physical \fCnodeset\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 -1 with errno set to ENOSYS if the action is not supported 
 .PP

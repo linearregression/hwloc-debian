@@ -1,4 +1,4 @@
-.TH "Object/String Conversion" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Object/String Conversion" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -89,7 +89,9 @@ Search the given key name in object infos and return the corresponding value\&. 
 .SS " int hwloc_obj_snprintf (char *restrictstring, size_tsize, \fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPobj, const char *restrictindexprefix, intverbose)"
 
 .PP
-Stringify a given topology object into a human-readable form\&. \fBNote:\fP
+Stringify a given topology object into a human-readable form\&. 
+.PP
+\fBNote:\fP
 .RS 4
 This function is deprecated in favor of \fBhwloc_obj_type_snprintf()\fP and \fBhwloc_obj_attr_snprintf()\fP since it is not very flexible and only prints physical/OS indexes\&.
 .RE
@@ -111,7 +113,9 @@ the number of character that were actually written if not truncating, or that wo
 .SS " \fBhwloc_obj_type_t\fP hwloc_obj_type_of_string (const char *string)"
 
 .PP
-Return an object type from the string\&. \fBReturns:\fP
+Return an object type from the string\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 -1 if unrecognized\&. 
 .RE

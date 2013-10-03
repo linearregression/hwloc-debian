@@ -1,4 +1,4 @@
-.TH "Get Some Topology Information" 3 "Tue May 21 2013" "Version 1.7.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Get Some Topology Information" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -65,7 +65,9 @@ Virtual depth for software device object level\&.
 .SS " \fBhwloc_obj_type_t\fP hwloc_get_depth_type (\fBhwloc_topology_t\fPtopology, unsigneddepth)"
 
 .PP
-Returns the type of objects at depth \fCdepth\fP\&. \fBReturns:\fP
+Returns the type of objects at depth \fCdepth\fP\&. 
+.PP
+\fBReturns:\fP
 .RS 4
 -1 if depth \fCdepth\fP does not exist\&. 
 .RE
@@ -107,7 +109,9 @@ the flags previously set with \fBhwloc_topology_set_flags()\fP\&.
 .SS " int hwloc_topology_is_thissystem (\fBhwloc_topology_t\fP restricttopology)"
 
 .PP
-Does the topology context come from this system? \fBReturns:\fP
+Does the topology context come from this system? 
+.PP
+\fBReturns:\fP
 .RS 4
 1 if this topology context was built using the system running this program\&. 
 .PP

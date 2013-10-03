@@ -312,97 +312,6 @@
       <anchor>ggacd37bb612667dc437d66bfb175a8dc55addb5f843e1812445a84e6b2a844b1ebc</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_SYSTEM</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55a3aa1b842d1fd4207ebce171f95a244ec</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_MACHINE</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55a3f4e83ffc4a259354959ae8a9eaa2a80</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_NODE</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_SOCKET</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55a1ac6e07775ae4324b3fe9dbd72c785ec</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_CACHE</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55a56ee0b7eca88f363b75b34fdde8c9ddc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_CORE</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55ac793958f330bca371aa1535de8aff45f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_PU</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55abca6887e80cb291353b0a0c1da83f661</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_GROUP</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55a5269ef95be72f88465559d35c9b7ad56</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_MISC</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55a19f8a6953fa91efc76bcbcdf2d22de4d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_BRIDGE</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55a6825f10895fea60aca7a6ba9fe273db0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_PCI_DEVICE</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55a5d8117a54df1fbd3606ab19e42cb0ea9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_OS_DEVICE</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55a51e7280240fd9f25589cbbe538bdb075</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_TYPE_MAX</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>ggacd37bb612667dc437d66bfb175a8dc55addb5f843e1812445a84e6b2a844b1ebc</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_obj_cache_type_e</name>
@@ -428,27 +337,6 @@
       <anchor>gga791c9875c8fe20f3e1e5871e0657e59ba6f98b0d422b38ba90c5f5c79a11b0658</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_CACHE_UNIFIED</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga791c9875c8fe20f3e1e5871e0657e59ba3900b3b2db54941aac249e5a638a2d7a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_CACHE_DATA</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga791c9875c8fe20f3e1e5871e0657e59bacac60ecad4206f85aeb79bef1604b488</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_CACHE_INSTRUCTION</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga791c9875c8fe20f3e1e5871e0657e59ba6f98b0d422b38ba90c5f5c79a11b0658</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_obj_bridge_type_e</name>
@@ -463,20 +351,6 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>HWLOC_OBJ_BRIDGE_PCI</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga48a4803c72574191d7ead1c62aaf9860a8f3b4cecf3dab6073d74696d10863c60</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_BRIDGE_HOST</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga48a4803c72574191d7ead1c62aaf9860a2c7660f3864ad2810c1e72aad285e574</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
       <name>HWLOC_OBJ_BRIDGE_PCI</name>
       <anchorfile>a00052.html</anchorfile>
       <anchor>gga48a4803c72574191d7ead1c62aaf9860a8f3b4cecf3dab6073d74696d10863c60</anchor>
@@ -525,48 +399,6 @@
       <anchor>gga64f5d539df299c97ae80ce53fc4b56c0a46f8927e1c3e137eaa86cc8f6861fb83</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_OSDEV_BLOCK</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga64f5d539df299c97ae80ce53fc4b56c0a689b0488c3c0d08d116751c6b9cb8871</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_OSDEV_GPU</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga64f5d539df299c97ae80ce53fc4b56c0aa3a09798ef2836abb236dc3a645ffc90</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_OSDEV_NETWORK</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga64f5d539df299c97ae80ce53fc4b56c0ab715d81155f771573c8682dffc65021b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_OSDEV_OPENFABRICS</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga64f5d539df299c97ae80ce53fc4b56c0a52157d03694fdae82dddd57ca8c973b6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_OSDEV_DMA</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga64f5d539df299c97ae80ce53fc4b56c0a827ad1643360711a8b6c6af671366791</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_OBJ_OSDEV_COPROC</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga64f5d539df299c97ae80ce53fc4b56c0a46f8927e1c3e137eaa86cc8f6861fb83</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_compare_types_e</name>
@@ -575,13 +407,6 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>HWLOC_TYPE_UNORDERED</name>
-      <anchorfile>a00052.html</anchorfile>
-      <anchor>gga46323568968005137c32f6a1cd405b74a2f8297ea36eba46e7596e810a67298fb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
       <name>HWLOC_TYPE_UNORDERED</name>
       <anchorfile>a00052.html</anchorfile>
       <anchor>gga46323568968005137c32f6a1cd405b74a2f8297ea36eba46e7596e810a67298fb</anchor>
@@ -691,48 +516,6 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>HWLOC_TOPOLOGY_FLAG_ICACHES</name>
-      <anchorfile>a00055.html</anchorfile>
-      <anchor>ggada025d3ec20b4b420f8038d23d6e7bdeaae509a0bed4a7067e0116c75c661178d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM</name>
-      <anchorfile>a00055.html</anchorfile>
-      <anchor>ggada025d3ec20b4b420f8038d23d6e7bdea129b4fea1300be22bbaf0bb0958994c8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM</name>
-      <anchorfile>a00055.html</anchorfile>
-      <anchor>ggada025d3ec20b4b420f8038d23d6e7bdea6ecb6abc6a0bb75e81564f8bca85783b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_TOPOLOGY_FLAG_IO_DEVICES</name>
-      <anchorfile>a00055.html</anchorfile>
-      <anchor>ggada025d3ec20b4b420f8038d23d6e7bdea46ae25e8896278840b1800ae9ce4de41</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_TOPOLOGY_FLAG_IO_BRIDGES</name>
-      <anchorfile>a00055.html</anchorfile>
-      <anchor>ggada025d3ec20b4b420f8038d23d6e7bdea426b18c349f15d7046bb391d96fa947c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_TOPOLOGY_FLAG_WHOLE_IO</name>
-      <anchorfile>a00055.html</anchorfile>
-      <anchor>ggada025d3ec20b4b420f8038d23d6e7bdea4a41dc181649ef81c2dcd44a54e271b9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
       <name>HWLOC_TOPOLOGY_FLAG_ICACHES</name>
       <anchorfile>a00055.html</anchorfile>
       <anchor>ggada025d3ec20b4b420f8038d23d6e7bdeaae509a0bed4a7067e0116c75c661178d</anchor>
@@ -906,27 +689,6 @@
       <anchor>gga9d80f08eb25b7ac22f1b998dc8bf521faa95d6985e36ec1e55f68b210297a85cb</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_RESTRICT_FLAG_ADAPT_DISTANCES</name>
-      <anchorfile>a00057.html</anchorfile>
-      <anchor>gga9d80f08eb25b7ac22f1b998dc8bf521fa4d18407f5520793b50b9e892f5bb55d1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_RESTRICT_FLAG_ADAPT_MISC</name>
-      <anchorfile>a00057.html</anchorfile>
-      <anchor>gga9d80f08eb25b7ac22f1b998dc8bf521fa699969227a09bbc1a7de51dc9fb7be4b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_RESTRICT_FLAG_ADAPT_IO</name>
-      <anchorfile>a00057.html</anchorfile>
-      <anchor>gga9d80f08eb25b7ac22f1b998dc8bf521faa95d6985e36ec1e55f68b210297a85cb</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC hwloc_obj_t</type>
       <name>hwloc_topology_insert_misc_object_by_cpuset</name>
@@ -985,41 +747,6 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>HWLOC_TYPE_DEPTH_OS_DEVICE</name>
-      <anchorfile>a00058.html</anchorfile>
-      <anchor>ggaf4e663cf42bbe20756b849c6293ef575afe9a2131073eebbe129d4aa2928d3f46</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_TYPE_DEPTH_UNKNOWN</name>
-      <anchorfile>a00058.html</anchorfile>
-      <anchor>ggaf4e663cf42bbe20756b849c6293ef575a0565ab92ab72cb0cec91e23003294aad</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_TYPE_DEPTH_MULTIPLE</name>
-      <anchorfile>a00058.html</anchorfile>
-      <anchor>ggaf4e663cf42bbe20756b849c6293ef575ae99465995cacde6c210d5fc2e409798c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_TYPE_DEPTH_BRIDGE</name>
-      <anchorfile>a00058.html</anchorfile>
-      <anchor>ggaf4e663cf42bbe20756b849c6293ef575af93b50182973e4a718d9d4db9e253a90</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_TYPE_DEPTH_PCI_DEVICE</name>
-      <anchorfile>a00058.html</anchorfile>
-      <anchor>ggaf4e663cf42bbe20756b849c6293ef575ad8b1516e699b57ce1c8d107fbd2f674c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
       <name>HWLOC_TYPE_DEPTH_OS_DEVICE</name>
       <anchorfile>a00058.html</anchorfile>
       <anchor>ggaf4e663cf42bbe20756b849c6293ef575afe9a2131073eebbe129d4aa2928d3f46</anchor>
@@ -1190,34 +917,6 @@
       <anchor>gga217dc8d373f8958cc93c154ebce1c71ca41ce440443cc3087caed95ab60edcad6</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_CPUBIND_PROCESS</name>
-      <anchorfile>a00061.html</anchorfile>
-      <anchor>gga217dc8d373f8958cc93c154ebce1c71ca2e0dd0128dac6b03408c7dd170477fdc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_CPUBIND_THREAD</name>
-      <anchorfile>a00061.html</anchorfile>
-      <anchor>gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_CPUBIND_STRICT</name>
-      <anchorfile>a00061.html</anchorfile>
-      <anchor>gga217dc8d373f8958cc93c154ebce1c71ca679a7e0f0c7ee06b123565f90d98e7fa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_CPUBIND_NOMEMBIND</name>
-      <anchorfile>a00061.html</anchorfile>
-      <anchor>gga217dc8d373f8958cc93c154ebce1c71ca41ce440443cc3087caed95ab60edcad6</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_set_cpubind</name>
@@ -1328,55 +1027,6 @@
       <anchor>ggac9764f79505775d06407b40f5e4661e8a3185bd869b67817fb2bd5164bf360402</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_DEFAULT</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggac9764f79505775d06407b40f5e4661e8a18675bb80ebc1bce5b652e9de8f3998c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_FIRSTTOUCH</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggac9764f79505775d06407b40f5e4661e8a979c7aa78dd32780858f30f47a72cca0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_BIND</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggac9764f79505775d06407b40f5e4661e8ad811fa4b2a6002c4d63695a408ffde2c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_INTERLEAVE</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggac9764f79505775d06407b40f5e4661e8ae370075e5af016d42310f87ea5af236b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_REPLICATE</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggac9764f79505775d06407b40f5e4661e8afb37480fe5f4236eb7dd4aef26f691e9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_NEXTTOUCH</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggac9764f79505775d06407b40f5e4661e8aecdd4164d647708fbb51a00d98dbb138</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_MIXED</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggac9764f79505775d06407b40f5e4661e8a3185bd869b67817fb2bd5164bf360402</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_membind_flags_t</name>
@@ -1409,41 +1059,6 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>HWLOC_MEMBIND_NOCPUBIND</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggab00475fd98815bf4fb9aaf752030e7d2aad6b9eaf2ee324ca58dc8f58094b9997</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_PROCESS</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggab00475fd98815bf4fb9aaf752030e7d2a1b1b74aef138f64aff214a8cbdfe8eb4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_THREAD</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggab00475fd98815bf4fb9aaf752030e7d2a1dc7dd5cdcd5796893a325a524555298</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_STRICT</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggab00475fd98815bf4fb9aaf752030e7d2a0335311a0ee04166df2888d52b4a42c6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_MEMBIND_MIGRATE</name>
-      <anchorfile>a00062.html</anchorfile>
-      <anchor>ggab00475fd98815bf4fb9aaf752030e7d2aa6e49e54f52827cb143cc869cfd748af</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
       <name>HWLOC_MEMBIND_NOCPUBIND</name>
       <anchorfile>a00062.html</anchorfile>
       <anchor>ggab00475fd98815bf4fb9aaf752030e7d2aad6b9eaf2ee324ca58dc8f58094b9997</anchor>
@@ -2430,27 +2045,6 @@
       <anchor>gga0dceb95fada01e5e4558429912053ca7aaf4d61f8e2c7c28e88cd81bb565695b7</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_DISC_COMPONENT_TYPE_CPU</name>
-      <anchorfile>a00078.html</anchorfile>
-      <anchor>gga0dceb95fada01e5e4558429912053ca7aa09e6a39b61eda5364eada626da88ecc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_DISC_COMPONENT_TYPE_GLOBAL</name>
-      <anchorfile>a00078.html</anchorfile>
-      <anchor>gga0dceb95fada01e5e4558429912053ca7a7d7e7114cca4165eee72efb9b39b3d6d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_DISC_COMPONENT_TYPE_MISC</name>
-      <anchorfile>a00078.html</anchorfile>
-      <anchor>gga0dceb95fada01e5e4558429912053ca7aaf4d61f8e2c7c28e88cd81bb565695b7</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="group">
     <name>hwlocality_disc_backends</name>
@@ -2465,13 +2059,6 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>HWLOC_BACKEND_FLAG_NEED_LEVELS</name>
-      <anchorfile>a00079.html</anchorfile>
-      <anchor>gga21513209613570877b6bfa9898106f2aadc96f2cf3bdd5d41e102dfa1e1976b24</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
       <name>HWLOC_BACKEND_FLAG_NEED_LEVELS</name>
       <anchorfile>a00079.html</anchorfile>
       <anchor>gga21513209613570877b6bfa9898106f2aadc96f2cf3bdd5d41e102dfa1e1976b24</anchor>
@@ -2532,20 +2119,6 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>HWLOC_COMPONENT_TYPE_XML</name>
-      <anchorfile>a00080.html</anchorfile>
-      <anchor>gga397a1bf7d21dd073320ad0045340f463adea00cd839c2141c032e1569fd5592bd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
-      <name>HWLOC_COMPONENT_TYPE_DISC</name>
-      <anchorfile>a00080.html</anchorfile>
-      <anchor>gga397a1bf7d21dd073320ad0045340f463a5d6e561f467fe9795a29e7368b613900</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <type>@</type>
       <name>HWLOC_COMPONENT_TYPE_XML</name>
       <anchorfile>a00080.html</anchorfile>
       <anchor>gga397a1bf7d21dd073320ad0045340f463adea00cd839c2141c032e1569fd5592bd</anchor>

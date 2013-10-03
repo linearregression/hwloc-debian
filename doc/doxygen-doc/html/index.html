@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2.1</span></div>
+   <div id="projectname">Hardware Locality (hwloc)&#160;<span id="projectnumber">1.2.2</span></div>
   </td>
  </tr>
  </tbody>
@@ -327,7 +327,7 @@ Machine (16GB)
 </div><div class="section" id="interface">
 <h2><a class="anchor" id="interface"></a>
 Programming Interface</h2>
-<p>The basic interface is available in <a class="el" href="a00027_source.html" title="The hwloc API.">hwloc.h</a>. It essentially offers low-level routines for advanced programmers that want to manually manipulate objects and follow links between them. Documentation for everything in <a class="el" href="a00027_source.html" title="The hwloc API.">hwloc.h</a> are provided later in this document. Developers should also look at <a class="el" href="a00025_source.html" title="High-level hwloc traversal helpers.">hwloc/helper.h</a> (and also in this document, which provides good higher-level topology traversal examples.</p>
+<p>The basic interface is available in <a class="el" href="a00027_source.html" title="The hwloc API.">hwloc.h</a>. It essentially offers low-level routines for advanced programmers that want to manually manipulate objects and follow links between them. Documentation for everything in <a class="el" href="a00027_source.html" title="The hwloc API.">hwloc.h</a> are provided later in this document. Developers should also look at <a class="el" href="a00025_source.html" title="High-level hwloc traversal helpers.">hwloc/helper.h</a> (and also in this document, which provides good higher-level topology traversal examples).</p>
 <p>To precisely define the vocabulary used by hwloc, a <a class="el" href="a00001.html">Terms and Definitions</a> section is available and should probably be read first.</p>
 <p>Each hwloc object contains a cpuset describing the list of processing units that it contains. These bitmaps may be used for <a class="el" href="a00043.html">CPU binding</a> and <a class="el" href="a00044.html">Memory binding</a>. hwloc offers an extensive bitmap manipulation interface in <a class="el" href="a00021_source.html" title="The bitmap API, for use in hwloc itself.">hwloc/bitmap.h</a>.</p>
 <p>Moreover, hwloc also comes with additional helpers for interoperability with several commonly used environments. See the <a class="el" href="a00005.html">Interoperability With Other Software</a> section for details.</p>
@@ -411,7 +411,7 @@ API Example</h3>
 
     <span class="comment">/* Optionally, get some additional topology information</span>
 <span class="comment">       in case we need the topology depth later. */</span>
-    topodepth = <a class="code" href="a00040.html#ga8c30b0cec55074eb3ed34e4f2a1a9937" title="Get the depth of the hierachical tree of objects.">hwloc_topology_get_depth</a>(topology);
+    topodepth = <a class="code" href="a00040.html#ga8c30b0cec55074eb3ed34e4f2a1a9937" title="Get the depth of the hierarchical tree of objects.">hwloc_topology_get_depth</a>(topology);
 
     <span class="comment">/*****************************************************************</span>
 <span class="comment">     * First example:</span>
@@ -602,7 +602,7 @@ Further Reading</h2>
  
 </div>
  </div></div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Aug 16 2011 19:37:04 for Hardware Locality (hwloc) by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Oct 2 2011 07:16:30 for Hardware Locality (hwloc) by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

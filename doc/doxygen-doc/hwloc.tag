@@ -378,7 +378,7 @@
   </compound>
   <compound kind="group">
     <name>hwlocality_tinker</name>
-    <title>Tinker with topologies.</title>
+    <title>Tinker With Topologies.</title>
     <filename>a00039.html</filename>
     <member kind="enumeration">
       <name>hwloc_restrict_flags_e</name>
@@ -436,7 +436,7 @@
   </compound>
   <compound kind="group">
     <name>hwlocality_information</name>
-    <title>Get some Topology Information</title>
+    <title>Get Some Topology Information</title>
     <filename>a00040.html</filename>
     <member kind="enumeration">
       <name>hwloc_get_type_depth_e</name>

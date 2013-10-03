@@ -1,4 +1,4 @@
-.TH "Topology Object Types" 3 "Mon Jan 24 2011" "Version 1.1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Object Types" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -69,7 +69,7 @@ Group objects. Objects which do not fit in the above but are detected by hwloc a
 Miscellaneous objects. Objects without particular meaning, that can e.g. be added by the application for its own use. 
 .SH "Function Documentation"
 .PP 
-.SS " int hwloc_compare_types (\fBhwloc_obj_type_t\fP type1, \fBhwloc_obj_type_t\fP type2) const"
+.SS " int hwloc_compare_types (\fBhwloc_obj_type_t\fPtype1, \fBhwloc_obj_type_t\fPtype2) const"
 .PP
 Compare the depth of two object types. Types shouldn't be compared as they are, since newer ones may be added in the future. This function returns less than, equal to, or greater than zero respectively if \fCtype1\fP objects usually include \fCtype2\fP objects, are the same as \fCtype2\fP objects, or are included in \fCtype2\fP objects. If the types can not be compared (because neither is usually contained in the other), HWLOC_TYPE_UNORDERED is returned. Object types containing CPUs can always be compared (usually, a system contains machines which contain nodes which contain sockets which contain caches, which contain cores, which contain processors).
 .PP

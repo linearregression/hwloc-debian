@@ -1,4 +1,4 @@
-.TH "Object Type Helpers" 3 "Mon Jan 24 2011" "Version 1.1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Object Type Helpers" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,10 +15,10 @@ Object Type Helpers \-
 .in -1c
 .SH "Function Documentation"
 .PP 
-.SS "static inline int  hwloc_get_type_or_above_depth (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_type_t\fP type)\fC [static]\fP"
+.SS "static inline int  hwloc_get_type_or_above_depth (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_type_t\fPtype)\fC [static]\fP"
 .PP
 Returns the depth of objects of type \fCtype\fP or above. If no object of this type is present on the underlying architecture, the function returns the depth of the first 'present' object typically containing \fCtype\fP. 
-.SS "static inline int  hwloc_get_type_or_below_depth (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_type_t\fP type)\fC [static]\fP"
+.SS "static inline int  hwloc_get_type_or_below_depth (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_type_t\fPtype)\fC [static]\fP"
 .PP
 Returns the depth of objects of type \fCtype\fP or below. If no object of this type is present on the underlying architecture, the function returns the depth of the first 'present' object typically found inside \fCtype\fP. 
 .SH "Author"

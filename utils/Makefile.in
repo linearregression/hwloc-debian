@@ -69,8 +69,8 @@ am__aclocal_m4_deps = $(top_srcdir)/config/hwloc.m4 \
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/include/private/config.h \
-	$(top_builddir)/include/hwloc/config.h
+CONFIG_HEADER = $(top_builddir)/include/private/autogen/config.h \
+	$(top_builddir)/include/hwloc/autogen/config.h
 CONFIG_CLEAN_FILES = test-hwloc-distrib.sh
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(man1dir)" \
@@ -114,7 +114,7 @@ lstopo_DEPENDENCIES = $(LDADD) $(am__DEPENDENCIES_1) \
 lstopo_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(lstopo_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/include/private -I$(top_builddir)/include/hwloc
+DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/include/private/autogen -I$(top_builddir)/include/hwloc/autogen
 depcomp = $(SHELL) $(top_srcdir)/./config/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f

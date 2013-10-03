@@ -16,7 +16,7 @@
 @SET_MAKE@
 
 # Copyright © 2009-2010 INRIA
-# Copyright © 2009-2010 Université Bordeaux 1
+# Copyright © 2009-2011 Université Bordeaux 1
 # Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
@@ -84,8 +84,8 @@ am__aclocal_m4_deps = $(top_srcdir)/config/hwloc.m4 \
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/include/private/config.h \
-	$(top_builddir)/include/hwloc/config.h
+CONFIG_HEADER = $(top_builddir)/include/private/autogen/config.h \
+	$(top_builddir)/include/hwloc/autogen/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 @HWLOC_BUILD_TESTS_TRUE@@HWLOC_HAVE_LINUX_LIBNUMA_TRUE@am__EXEEXT_1 = linux-libnuma$(EXEEXT)
@@ -229,7 +229,10 @@ xmlbuffer_SOURCES = xmlbuffer.c
 xmlbuffer_OBJECTS = xmlbuffer.$(OBJEXT)
 xmlbuffer_LDADD = $(LDADD)
 xmlbuffer_DEPENDENCIES = $(am__append_9)
-DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/include/private -I$(top_builddir)/include/hwloc
+xmlbuffer_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(xmlbuffer_LDFLAGS) $(LDFLAGS) -o $@
+DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/include/private/autogen -I$(top_builddir)/include/hwloc/autogen
 depcomp = $(SHELL) $(top_srcdir)/./config/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
@@ -504,7 +507,7 @@ LDADD = $(am__append_9)
 @HWLOC_BUILD_TESTS_TRUE@myriexpress_LDFLAGS = -lmyriexpress
 @HWLOC_BUILD_TESTS_TRUE@cuda_LDFLAGS = -lcuda
 @HWLOC_BUILD_TESTS_TRUE@cudart_LDFLAGS = -lcuda -lcudart
-@HWLOC_BUILD_TESTS_TRUE@xmlbuffer = -lxml2
+@HWLOC_BUILD_TESTS_TRUE@xmlbuffer_LDFLAGS = $(HWLOC_XML_LIBS)
 @HWLOC_BUILD_TESTS_TRUE@@HWLOC_HAVE_WINDOWS_FALSE@hwloc_bind_LDFLAGS = -lpthread
 all: all-recursive
 
@@ -620,7 +623,7 @@ openfabrics-verbs$(EXEEXT): $(openfabrics_verbs_OBJECTS) $(openfabrics_verbs_DEP
 	$(AM_V_CCLD)$(openfabrics_verbs_LINK) $(openfabrics_verbs_OBJECTS) $(openfabrics_verbs_LDADD) $(LIBS)
 xmlbuffer$(EXEEXT): $(xmlbuffer_OBJECTS) $(xmlbuffer_DEPENDENCIES) 
 	@rm -f xmlbuffer$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(xmlbuffer_OBJECTS) $(xmlbuffer_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(xmlbuffer_LINK) $(xmlbuffer_OBJECTS) $(xmlbuffer_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

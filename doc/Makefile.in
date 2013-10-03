@@ -58,8 +58,8 @@ am__aclocal_m4_deps = $(top_srcdir)/config/hwloc.m4 \
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/include/private/config.h \
-	$(top_builddir)/include/hwloc/config.h
+CONFIG_HEADER = $(top_builddir)/include/private/autogen/config.h \
+	$(top_builddir)/include/hwloc/autogen/config.h
 CONFIG_CLEAN_FILES = doxygen-config.cfg
 CONFIG_CLEAN_VPATH_FILES =
 @HWLOC_BUILD_TESTS_TRUE@am__EXEEXT_1 = hwloc-hello$(EXEEXT)
@@ -68,7 +68,7 @@ hwloc_hello_OBJECTS = hwloc-hello.$(OBJEXT)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
-DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/include/private -I$(top_builddir)/include/hwloc
+DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/include/private/autogen -I$(top_builddir)/include/hwloc/autogen
 depcomp = $(SHELL) $(top_srcdir)/./config/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
@@ -1176,14 +1176,18 @@ uninstall-man: uninstall-man3
 @HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/tools.tex $(DOX_DIR)/latex/a00002.tex
 @HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/envvar.html $(DOX_DIR)/html/a00003.html
 @HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/envvar.tex $(DOX_DIR)/latex/a00003.tex
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/interoperability.html $(DOX_DIR)/html/a00004.html
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/interoperability.tex $(DOX_DIR)/latex/a00004.tex
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/threadsafety.html $(DOX_DIR)/html/a00005.html
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/threadsafety.tex $(DOX_DIR)/latex/a00005.tex
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/embed.html $(DOX_DIR)/html/a00006.html
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/embed.tex $(DOX_DIR)/latex/a00006.tex
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/switchfromplpa.html $(DOX_DIR)/html/a00007.html
-@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/switchfromplpa.tex $(DOX_DIR)/latex/a00007.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/cpu_mem_bind.html $(DOX_DIR)/html/a00004.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/cpu_mem_bind.tex $(DOX_DIR)/latex/a00004.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/interoperability.html $(DOX_DIR)/html/a00005.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/interoperability.tex $(DOX_DIR)/latex/a00005.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/threadsafety.html $(DOX_DIR)/html/a00006.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/threadsafety.tex $(DOX_DIR)/latex/a00006.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/embed.html $(DOX_DIR)/html/a00007.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/embed.tex $(DOX_DIR)/latex/a00007.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/switchfromplpa.html $(DOX_DIR)/html/a00008.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/switchfromplpa.tex $(DOX_DIR)/latex/a00008.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/html/faq.html $(DOX_DIR)/html/a00009.html
+@HWLOC_BUILD_DOXYGEN_TRUE@@HWLOC_DOXYGEN_BROKEN_SHORT_NAMES_TRUE@	-@mv -f $(DOX_DIR)/latex/faq.tex $(DOX_DIR)/latex/a00009.tex
 
 #
 # Rules for building the PDF

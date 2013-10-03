@@ -54,8 +54,8 @@ am__aclocal_m4_deps = $(top_srcdir)/config/hwloc.m4 \
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/include/private/config.h \
-	$(top_builddir)/include/hwloc/config.h
+CONFIG_HEADER = $(top_builddir)/include/private/autogen/config.h \
+	$(top_builddir)/include/hwloc/autogen/config.h
 CONFIG_CLEAN_FILES = topology.c traversal.c topology-synthetic.c \
 	topology-solaris.c topology-aix.c topology-osf.c \
 	topology-windows.c topology-darwin.c topology-freebsd.c \
@@ -79,7 +79,7 @@ AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 @HWLOC_BUILD_TESTS_TRUE@@HWLOC_HAVE_LINUX_TRUE@am_libhwloc_ports_la_rpath =
-DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/include/private -I$(top_builddir)/include/hwloc
+DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/include/private/autogen -I$(top_builddir)/include/hwloc/autogen
 depcomp = $(SHELL) $(top_srcdir)/./config/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f

@@ -1921,10 +1921,10 @@
     <name>hwloc_obj_attr_u::hwloc_cache_attr_s</name>
     <filename>a00010.html</filename>
     <member kind="variable">
-      <type>uint64_t</type>
+      <type>hwloc_uint64_t</type>
       <name>size</name>
       <anchorfile>a00010.html</anchorfile>
-      <anchor>a3c68235220554308f89768f281ad1e62</anchor>
+      <anchor>abe5e788943ed04302976740c829674c0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -1976,17 +1976,17 @@
     <filename>a00016.html</filename>
     <class kind="struct">hwloc_obj_memory_s::hwloc_obj_memory_page_type_s</class>
     <member kind="variable">
-      <type>uint64_t</type>
+      <type>hwloc_uint64_t</type>
       <name>total_memory</name>
       <anchorfile>a00016.html</anchorfile>
-      <anchor>a68c3323d2d0a248d1b7fec7af44bebe3</anchor>
+      <anchor>a8befd0b3f4f8b695cafed04b31f36a44</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>uint64_t</type>
+      <type>hwloc_uint64_t</type>
       <name>local_memory</name>
       <anchorfile>a00016.html</anchorfile>
-      <anchor>a27043a3150660f44ed84916c2d0d7e0e</anchor>
+      <anchor>aace044c7f3fd9dffe50202296bf1dc5a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2008,17 +2008,17 @@
     <name>hwloc_obj_memory_s::hwloc_obj_memory_page_type_s</name>
     <filename>a00015.html</filename>
     <member kind="variable">
-      <type>uint64_t</type>
+      <type>hwloc_uint64_t</type>
       <name>size</name>
       <anchorfile>a00015.html</anchorfile>
-      <anchor>af0619463fb5d10052b7fe3495a66d74b</anchor>
+      <anchor>a3f1d261766352288791512974665ce01</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>uint64_t</type>
+      <type>hwloc_uint64_t</type>
       <name>count</name>
       <anchorfile>a00015.html</anchorfile>
-      <anchor>ab5d01db7b26177a6b5361107cad152c3</anchor>
+      <anchor>aa5b9fa36f1dc47ff3c345fe4dd06b260</anchor>
       <arglist></arglist>
     </member>
   </compound>

@@ -1,4 +1,4 @@
-.TH "Cpuset Helpers" 3 "Mon Jan 24 2011" "Version 1.1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Cpuset Helpers" 3 "Wed Apr 6 2011" "Version 1.1.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,7 +21,7 @@ Cpuset Helpers \-
 .in -1c
 .SH "Function Documentation"
 .PP 
-.SS "static inline \fBhwloc_const_cpuset_t\fP  hwloc_topology_get_allowed_cpuset (\fBhwloc_topology_t\fP topology)\fC [static]\fP"
+.SS "static inline \fBhwloc_const_cpuset_t\fP  hwloc_topology_get_allowed_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 .PP
 Get allowed CPU set. \fBReturns:\fP
 .RS 4
@@ -34,7 +34,7 @@ The returned cpuset is not newly allocated and should thus not be changed or fre
 .RE
 .PP
 
-.SS "static inline \fBhwloc_const_cpuset_t\fP  hwloc_topology_get_complete_cpuset (\fBhwloc_topology_t\fP topology)\fC [static]\fP"
+.SS "static inline \fBhwloc_const_cpuset_t\fP  hwloc_topology_get_complete_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 .PP
 Get complete CPU set. \fBReturns:\fP
 .RS 4
@@ -47,7 +47,7 @@ The returned cpuset is not newly allocated and should thus not be changed or fre
 .RE
 .PP
 
-.SS "static inline \fBhwloc_const_cpuset_t\fP  hwloc_topology_get_online_cpuset (\fBhwloc_topology_t\fP topology)\fC [static]\fP"
+.SS "static inline \fBhwloc_const_cpuset_t\fP  hwloc_topology_get_online_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 .PP
 Get online CPU set. \fBReturns:\fP
 .RS 4
@@ -60,7 +60,7 @@ The returned cpuset is not newly allocated and should thus not be changed or fre
 .RE
 .PP
 
-.SS "static inline \fBhwloc_const_cpuset_t\fP  hwloc_topology_get_topology_cpuset (\fBhwloc_topology_t\fP topology)\fC [static]\fP"
+.SS "static inline \fBhwloc_const_cpuset_t\fP  hwloc_topology_get_topology_cpuset (\fBhwloc_topology_t\fPtopology)\fC [static]\fP"
 .PP
 Get topology CPU set. \fBReturns:\fP
 .RS 4

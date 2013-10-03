@@ -1,8 +1,8 @@
-.TH "Tinker With Topologies." 3 "Wed Oct 12 2011" "Version 1.3" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Tinker with topologies." 3 "Tue Aug 23 2011" "Version 1.3rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Tinker With Topologies. \- 
+Tinker with topologies. \- 
 .SS "Enumerations"
 
 .in +1c
@@ -14,13 +14,10 @@ Tinker With Topologies. \-
 
 .in +1c
 .ti -1c
-.RI " int \fBhwloc_topology_export_xml\fP (\fBhwloc_topology_t\fP topology, const char *xmlpath)"
+.RI " void \fBhwloc_topology_export_xml\fP (\fBhwloc_topology_t\fP topology, const char *xmlpath)"
 .br
 .ti -1c
-.RI " int \fBhwloc_topology_export_xmlbuffer\fP (\fBhwloc_topology_t\fP topology, char **xmlbuffer, int *buflen)"
-.br
-.ti -1c
-.RI " void \fBhwloc_free_xmlbuffer\fP (\fBhwloc_topology_t\fP topology, char *xmlbuffer)"
+.RI " void \fBhwloc_topology_export_xmlbuffer\fP (\fBhwloc_topology_t\fP topology, char **xmlbuffer, int *buflen)"
 .br
 .ti -1c
 .RI " \fBhwloc_obj_t\fP \fBhwloc_topology_insert_misc_object_by_cpuset\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_const_cpuset_t\fP cpuset, const char *name)"
@@ -51,31 +48,14 @@ Move Misc objects to ancestors if their parents are removed during restriction. 
 Move I/O objects to ancestors if their parents are removed during restriction. If this flag is not set, I/O devices and bridges are removed when their parents are removed. 
 .SH "Function Documentation"
 .PP 
-.SS " void hwloc_free_xmlbuffer (\fBhwloc_topology_t\fPtopology, char *xmlbuffer)"
+.SS " void hwloc_topology_export_xml (\fBhwloc_topology_t\fPtopology, const char *xmlpath)"
 .PP
-Free a buffer allocated by \fBhwloc_topology_export_xmlbuffer()\fP 
-.SS " int hwloc_topology_export_xml (\fBhwloc_topology_t\fPtopology, const char *xmlpath)"
+Export the topology into an XML file. This file may be loaded later through \fBhwloc_topology_set_xml()\fP. 
+.SS " void hwloc_topology_export_xmlbuffer (\fBhwloc_topology_t\fPtopology, char **xmlbuffer, int *buflen)"
 .PP
-Export the topology into an XML file. This file may be loaded later through \fBhwloc_topology_set_xml()\fP.
+Export the topology into a newly-allocated XML memory buffer. \fCxmlbuffer\fP is allocated by the callee and should be freed with xmlFree later in the caller.
 .PP
-\fBReturns:\fP
-.RS 4
--1 if a failure occured. 
-.RE
-.PP
-
-.SS " int hwloc_topology_export_xmlbuffer (\fBhwloc_topology_t\fPtopology, char **xmlbuffer, int *buflen)"
-.PP
-Export the topology into a newly-allocated XML memory buffer. \fCxmlbuffer\fP is allocated by the callee and should be freed with \fBhwloc_free_xmlbuffer()\fP later in the caller.
-.PP
-This memory buffer may be loaded later through \fBhwloc_topology_set_xmlbuffer()\fP.
-.PP
-\fBReturns:\fP
-.RS 4
--1 if a failure occured. 
-.RE
-.PP
-
+This memory buffer may be loaded later through \fBhwloc_topology_set_xmlbuffer()\fP. 
 .SS " \fBhwloc_obj_t\fP hwloc_topology_insert_misc_object_by_cpuset (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPcpuset, const char *name)"
 .PP
 Add a MISC object to the topology. A new MISC object will be created and inserted into the topology at the position given by bitmap \fCcpuset\fP. This offers a way to add new intermediate levels to the topology hierarchy.

@@ -1,4 +1,4 @@
-.TH "Configure Topology Detection" 3 "Wed Oct 12 2011" "Version 1.3" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Configure Topology Detection" 3 "Tue Aug 23 2011" "Version 1.3rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -117,7 +117,7 @@ Ignore an object type if it does not bring any structure. Ignore all objects fro
 .PP
 Provide a distance matrix. Provide the matrix of distances between a set of objects of the given type. The set may or may not contain all the existing objects of this type. The objects are specified by their OS/physical index in the \fCos_index\fP array. The \fCdistances\fP matrix follows the same order. The distance from object i to object j in the i*nbobjs+j.
 .PP
-A single latency matrix may be defined for each type. If another distance matrix already exists for the given type, either because the user specified it or because the OS offers it, it will be replaced by the given one. If \fCnbobjs\fP is \fC0\fP, \fCos_index\fP is \fCNULL\fP and \fCdistances\fP is \fCNULL\fP, the existing distance matrix for the given type is removed. 
+If another distance matrix already exists for the given type, either because the user specified it or because the OS offers it, it will be replaced by the given one. If \fCnbobjs\fP is \fC0\fP, \fCos_index\fP is \fCNULL\fP and \fCdistances\fP is \fCNULL\fP, the existing distance matrix for the given type is removed. 
 .SS " int hwloc_topology_set_flags (\fBhwloc_topology_t\fPtopology, unsigned longflags)"
 .PP
 Set OR'ed flags to non-yet-loaded topology. Set a OR'ed set of \fBhwloc_topology_flags_e\fP onto a topology that was not yet loaded. 
@@ -125,11 +125,9 @@ Set OR'ed flags to non-yet-loaded topology. Set a OR'ed set of \fBhwloc_topology
 .PP
 Change the file-system root path when building the topology from sysfs/procfs. On Linux system, use sysfs and procfs files as if they were mounted on the given \fCfsroot_path\fP instead of the main file-system root. Setting the environment variable HWLOC_FSROOT may also result in this behavior. Not using the main file-system root causes \fBhwloc_topology_is_thissystem()\fP to return 0.
 .PP
-Note that this function does not actually load topology information; it just tells hwloc where to load it from. You'll still need to invoke \fBhwloc_topology_load()\fP to actually load the topology information.
-.PP
 \fBNote:\fP
 .RS 4
-For convenience, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system. 
+For conveniency, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system. 
 .RE
 .PP
 
@@ -147,15 +145,13 @@ hwloc_pid_t is pid_t on unix platforms, and HANDLE on native Windows platforms
 
 .SS " int hwloc_topology_set_synthetic (\fBhwloc_topology_t\fP restricttopology, const char *restrictdescription)"
 .PP
-Enable synthetic topology. Gather topology information from the given \fCdescription\fP, a space-separated string of numbers describing the arity of each level. Each number may be prefixed with a type and a colon to enforce the type of a level. If only some level types are enforced, hwloc will try to choose the other types according to usual topologies, but it may fail and you may have to specify more level types manually.
+Enable synthetic topology. Gather topology information from the given \fCdescription\fP which should be a space-separated string of numbers describing the arity of each level. Each number may be prefixed with a type and a colon to enforce the type of a level. If only some level types are enforced, hwloc will try to choose the other types according to usual topologies, but it may fail and you may have to specify more level types manually.
 .PP
 If \fCdescription\fP was properly parsed and describes a valid topology configuration, this function returns 0. Otherwise -1 is returned and errno is set to EINVAL.
 .PP
-Note that this function does not actually load topology information; it just tells hwloc where to load it from. You'll still need to invoke \fBhwloc_topology_load()\fP to actually load the topology information.
-.PP
 \fBNote:\fP
 .RS 4
-For convenience, this backend provides empty binding hooks which just return success. 
+For conveniency, this backend provides empty binding hooks which just return success. 
 .RE
 .PP
 
@@ -163,19 +159,15 @@ For convenience, this backend provides empty binding hooks which just return suc
 .PP
 Enable XML-file based topology. Gather topology information from the XML file given at \fCxmlpath\fP. Setting the environment variable HWLOC_XMLFILE may also result in this behavior. This file may have been generated earlier with lstopo file.xml.
 .PP
-Note that this function does not actually load topology information; it just tells hwloc where to load it from. You'll still need to invoke \fBhwloc_topology_load()\fP to actually load the topology information.
-.PP
 \fBNote:\fP
 .RS 4
-For convenience, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system. 
+For conveniency, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system. 
 .RE
 .PP
 
 .SS " int hwloc_topology_set_xmlbuffer (\fBhwloc_topology_t\fP restricttopology, const char *restrictbuffer, intsize)"
 .PP
-Enable XML based topology using a memory buffer (instead of a file, as with \fBhwloc_topology_set_xml()\fP). Gather topology information from the XML memory buffer given at \fCbuffer\fP and of length \fCsize\fP. This buffer may have been filled earlier with \fBhwloc_topology_export_xmlbuffer()\fP.
-.PP
-Note that this function does not actually load topology information; it just tells hwloc where to load it from. You'll still need to invoke \fBhwloc_topology_load()\fP to actually load the topology information. 
+Enable XML based topology using a memory buffer instead of a file. Gather topology information from the XML memory buffer given at \fCbuffer\fP and of length \fClength\fP. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Hardware Locality (hwloc) from the source code.

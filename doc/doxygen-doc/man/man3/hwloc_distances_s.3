@@ -1,4 +1,4 @@
-.TH "hwloc_distances_s" 3 "Wed Oct 12 2011" "Version 1.3" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_distances_s" 3 "Tue Aug 23 2011" "Version 1.3rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -36,9 +36,9 @@ Distances between objects.
 
 One object may contain a distance structure describing distances between all its descendants at a given relative depth. If the containing object is the root object of the topology, then the distances are available for all objects in the machine.
 .PP
-If the \fClatency\fP pointer is not \fCNULL\fP, the pointed array contains memory latencies (non-zero values), as defined by the ACPI SLIT specification.
+The distance may be a memory latency, as defined by the ACPI SLIT specification. If so, the \fClatency\fP pointer will not be \fCNULL\fP and the pointed array will contain non-zero values.
 .PP
-In the future, some other types of distances may be considered. In these cases, \fClatency\fP may be \fCNULL\fP. 
+In the future, some other types of distances may be considered. In these cases, \fClatency\fP will be \fCNULL\fP. 
 .SH "Field Documentation"
 .PP 
 .SS "float* \fBhwloc_distances_s::latency\fP"

@@ -412,9 +412,6 @@
 /* Define to 1 if you have a library providing the termcap interface */
 #undef HWLOC_HAVE_LIBTERMCAP
 
-/* Define to 1 if you have the `libxml2' library. */
-#undef HWLOC_HAVE_LIBXML2
-
 /* Define to 1 if mbind is available. */
 #undef HWLOC_HAVE_MBIND
 
@@ -447,6 +444,9 @@
 
 /* Define to 1 if X11 libraries are available. */
 #undef HWLOC_HAVE_X11
+
+/* Define to 1 if you have the `xml' library. */
+#undef HWLOC_HAVE_XML
 
 /* Define to 1 if the _syscall3 macro works */
 #undef HWLOC_HAVE__SYSCALL3

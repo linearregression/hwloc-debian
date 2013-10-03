@@ -15,8 +15,8 @@ Build-Conflicts: autoconf2.13
 Standards-Version: 3.9.4
 Section: libs
 Homepage: http://www.open-mpi.org/projects/hwloc/
-Vcs-Svn: http://svn.open-mpi.org/svn/hwloc/debian
-Vcs-Browser: http://svn.open-mpi.org/svn/hwloc/debian
+Vcs-Git: http://github.com/open-mpi/hwloc-debian.git
+Vcs-Browser: http://github.com/open-mpi/hwloc-debian
 
 Package: hwloc
 Section: admin

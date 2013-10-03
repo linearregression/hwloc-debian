@@ -805,8 +805,8 @@
       <type>HWLOC_DECLSPEC int</type>
       <name>hwloc_get_thread_cpubind</name>
       <anchorfile>a00048.html</anchorfile>
-      <anchor>ga58c49328c4213c9fbf8d80d5188d4c1e</anchor>
-      <arglist>(hwloc_topology_t topology, hwloc_thread_t tid, hwloc_cpuset_t set, int flags)</arglist>
+      <anchor>ga089cecfdb9a50e5c5cd1b6ff17352d42</anchor>
+      <arglist>(hwloc_topology_t topology, hwloc_thread_t thread, hwloc_cpuset_t set, int flags)</arglist>
     </member>
     <member kind="function">
       <type>HWLOC_DECLSPEC int</type>
@@ -1418,59 +1418,59 @@
     <title>Advanced I/O object traversal helpers</title>
     <filename>a00062.html</filename>
     <member kind="function" static="yes">
-      <type>static __inline hwloc_obj_t</type>
+      <type>static __hwloc_inline hwloc_obj_t</type>
       <name>hwloc_get_non_io_ancestor_obj</name>
       <anchorfile>a00062.html</anchorfile>
-      <anchor>gad7ecce015a75d8edafb4669fba702859</anchor>
+      <anchor>ga3603275746a8792e54415d79763aa9e9</anchor>
       <arglist>(hwloc_topology_t topology __hwloc_attribute_unused, hwloc_obj_t ioobj)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static __inline hwloc_obj_t</type>
+      <type>static __hwloc_inline hwloc_obj_t</type>
       <name>hwloc_get_next_pcidev</name>
       <anchorfile>a00062.html</anchorfile>
-      <anchor>gab17568d759c3a99abe12e3edd4731172</anchor>
+      <anchor>gad6e1ed122ef3b6e098538d75acd5e3f6</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t prev)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static __inline hwloc_obj_t</type>
+      <type>static __hwloc_inline hwloc_obj_t</type>
       <name>hwloc_get_pcidev_by_busid</name>
       <anchorfile>a00062.html</anchorfile>
-      <anchor>ga080ae4c731eb1276e8a7cdaad0b8db16</anchor>
+      <anchor>ga546e1d690c63fb24177f3013ed78ceb1</anchor>
       <arglist>(hwloc_topology_t topology, unsigned domain, unsigned bus, unsigned dev, unsigned func)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static __inline hwloc_obj_t</type>
+      <type>static __hwloc_inline hwloc_obj_t</type>
       <name>hwloc_get_pcidev_by_busidstring</name>
       <anchorfile>a00062.html</anchorfile>
-      <anchor>gaafa3ac0b038c73d533dd5446e71f7d48</anchor>
+      <anchor>ga9d5643f2e337fe1b98e7cce5c1ecb74e</anchor>
       <arglist>(hwloc_topology_t topology, const char *busid)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static __inline hwloc_obj_t</type>
+      <type>static __hwloc_inline hwloc_obj_t</type>
       <name>hwloc_get_next_osdev</name>
       <anchorfile>a00062.html</anchorfile>
-      <anchor>ga04b37de10aacb8a2aa48c8c27d7ba1d9</anchor>
+      <anchor>ga73a5bc6265642e6001f7a10812ab886d</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t prev)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static __inline hwloc_obj_t</type>
+      <type>static __hwloc_inline hwloc_obj_t</type>
       <name>hwloc_get_next_bridge</name>
       <anchorfile>a00062.html</anchorfile>
-      <anchor>gafa52d147ce3062344ca2a3f02670fd4c</anchor>
+      <anchor>ga2bd3f856d0fc3c6c02642c17d763b823</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t prev)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static __inline int</type>
+      <type>static __hwloc_inline int</type>
       <name>hwloc_bridge_covers_pcibus</name>
       <anchorfile>a00062.html</anchorfile>
-      <anchor>gae83076026dd1a60b1db99fe8c3811697</anchor>
+      <anchor>gaef22d6bf5cb0b7f13a863780126a8cb7</anchor>
       <arglist>(hwloc_obj_t bridge, unsigned domain, unsigned bus)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static __inline hwloc_obj_t</type>
+      <type>static __hwloc_inline hwloc_obj_t</type>
       <name>hwloc_get_hostbridge_by_pcibus</name>
       <anchorfile>a00062.html</anchorfile>
-      <anchor>ga5004b66c2c3a0e390accec96324bd5e9</anchor>
+      <anchor>ga81d4f68afbd68d94eb70d4f5c603eff5</anchor>
       <arglist>(hwloc_topology_t topology, unsigned domain, unsigned bus)</arglist>
     </member>
   </compound>

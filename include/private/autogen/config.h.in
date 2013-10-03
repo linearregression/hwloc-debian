@@ -289,7 +289,7 @@
 /* Define to 1 on AIX */
 #undef HWLOC_AIX_SYS
 
-/* Whether C compiler supports -fvisibility */
+/* Whether C compiler supports symbol visibility or not */
 #undef HWLOC_C_HAVE_VISIBILITY
 
 /* Define to 1 on Darwin */
@@ -421,7 +421,8 @@
 /* Define to 1 if migrate_pages is available. */
 #undef HWLOC_HAVE_MIGRATE_PAGES
 
-/* Define to 1 if glibc provides the old prototype of sched_setaffinity() */
+/* Define to 1 if glibc provides the old prototype (without length) of
+   sched_setaffinity() */
 #undef HWLOC_HAVE_OLD_SCHED_SETAFFINITY
 
 /* Define to 1 if struct pci_dev has a `device_class' field. */
@@ -435,6 +436,9 @@
 
 /* `Define to 1 if you have pthread_getthrds_np' */
 #undef HWLOC_HAVE_PTHREAD_GETTHRDS_NP
+
+/* Define to 1 if glibc provides a prototype of sched_setaffinity() */
+#undef HWLOC_HAVE_SCHED_SETAFFINITY
 
 /* Define to 1 if set_mempolicy is available. */
 #undef HWLOC_HAVE_SET_MEMPOLICY

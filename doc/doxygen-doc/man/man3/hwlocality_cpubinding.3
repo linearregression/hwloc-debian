@@ -1,4 +1,4 @@
-.TH "CPU binding" 3 "Wed Oct 12 2011" "Version 1.3" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "CPU binding" 3 "Tue Dec 20 2011" "Version 1.3.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -29,7 +29,7 @@ CPU binding \-
 .RI " int \fBhwloc_set_thread_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_thread_t thread, \fBhwloc_const_cpuset_t\fP set, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_get_thread_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_thread_t tid, \fBhwloc_cpuset_t\fP set, int flags)"
+.RI " int \fBhwloc_get_thread_cpubind\fP (\fBhwloc_topology_t\fP topology, hwloc_thread_t thread, \fBhwloc_cpuset_t\fP set, int flags)"
 .br
 .ti -1c
 .RI " int \fBhwloc_get_last_cpu_location\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_cpuset_t\fP set, int flags)"
@@ -130,7 +130,7 @@ Get the last CPU where the current process or thread ran. The operating system m
 .PP
 Get the current binding of process \fCpid\fP. \fBNote:\fP
 .RS 4
-hwloc_pid_t is pid_t on unix platforms, and HANDLE on native Windows platforms
+\fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms.
 .PP
 HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP.
 .PP
@@ -144,17 +144,19 @@ Get the last CPU where a process ran. The operating system may move some tasks f
 .PP
 \fBNote:\fP
 .RS 4
+\fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms.
+.PP
 HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP.
 .PP
 As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID), the binding for that specific thread is returned. 
 .RE
 .PP
 
-.SS " int hwloc_get_thread_cpubind (\fBhwloc_topology_t\fPtopology, hwloc_thread_ttid, \fBhwloc_cpuset_t\fPset, intflags)"
+.SS " int hwloc_get_thread_cpubind (\fBhwloc_topology_t\fPtopology, hwloc_thread_tthread, \fBhwloc_cpuset_t\fPset, intflags)"
 .PP
 Get the current binding of thread \fCtid\fP. \fBNote:\fP
 .RS 4
-hwloc_thread_t is pthread_t on unix platforms, and HANDLE on native Windows platforms
+\fChwloc_thread_t\fP is \fCpthread_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms.
 .PP
 HWLOC_CPUBIND_PROCESS can not be used in \fCflags\fP. 
 .RE
@@ -174,7 +176,7 @@ Bind current process or thread on cpus given in bitmap \fCset\fP. \fBReturns:\fP
 .PP
 Bind a process \fCpid\fP on cpus given in bitmap \fCset\fP. \fBNote:\fP
 .RS 4
-hwloc_pid_t is pid_t on unix platforms, and HANDLE on native Windows platforms
+\fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms.
 .PP
 HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP. 
 .RE
@@ -184,7 +186,7 @@ HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP.
 .PP
 Bind a thread \fCthread\fP on cpus given in bitmap \fCset\fP. \fBNote:\fP
 .RS 4
-hwloc_thread_t is pthread_t on unix platforms, and HANDLE on native Windows platforms
+\fChwloc_thread_t\fP is \fCpthread_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms.
 .PP
 HWLOC_CPUBIND_PROCESS can not be used in \fCflags\fP. 
 .RE

@@ -1,4 +1,4 @@
-.TH "hwloc_obj_memory_s" 3 "Thu Dec 16 2010" "Version 1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj_memory_s" 3 "Mon Jan 24 2011" "Version 1.1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -25,19 +25,15 @@ Object memory.
 .ti -1c
 .RI "uint64_t \fBtotal_memory\fP"
 .br
-.RI "\fITotal memory (in bytes) in this object and its children. \fP"
 .ti -1c
 .RI "uint64_t \fBlocal_memory\fP"
 .br
-.RI "\fILocal memory (in bytes). \fP"
 .ti -1c
 .RI "unsigned \fBpage_types_len\fP"
 .br
-.RI "\fISize of array \fCpage_types\fP. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj_memory_s::hwloc_obj_memory_page_type_s\fP * \fBpage_types\fP"
 .br
-.RI "\fIArray of local memory page types, \fCNULL\fP if no local memory and \fCpage_types\fP is 0. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -46,10 +42,8 @@ Object memory.
 .PP 
 .SS "uint64_t \fBhwloc_obj_memory_s::local_memory\fP"
 .PP
-Local memory (in bytes). 
+Local memory (in bytes) 
 .SS "struct \fBhwloc_obj_memory_s::hwloc_obj_memory_page_type_s\fP *  \fBhwloc_obj_memory_s::page_types\fP"
-.PP
-Array of local memory page types, \fCNULL\fP if no local memory and \fCpage_types\fP is 0. The array is sorted by increasing \fCsize\fP fields. It contains \fCpage_types_len\fP slots. 
 .SS "unsigned \fBhwloc_obj_memory_s::page_types_len\fP"
 .PP
 Size of array \fCpage_types\fP. 

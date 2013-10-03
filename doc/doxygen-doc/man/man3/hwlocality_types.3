@@ -1,4 +1,4 @@
-.TH "Topology Object Types" 3 "Thu Dec 16 2010" "Version 1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Object Types" 3 "Mon Jan 24 2011" "Version 1.1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,7 +9,6 @@ Topology Object Types \-
 .ti -1c
 .RI "enum \fBhwloc_obj_type_t\fP { \fBHWLOC_OBJ_SYSTEM\fP, \fBHWLOC_OBJ_MACHINE\fP, \fBHWLOC_OBJ_NODE\fP, \fBHWLOC_OBJ_SOCKET\fP, \fBHWLOC_OBJ_CACHE\fP, \fBHWLOC_OBJ_CORE\fP, \fBHWLOC_OBJ_PU\fP, \fBHWLOC_OBJ_GROUP\fP, \fBHWLOC_OBJ_MISC\fP }"
 .br
-.RI "\fIType of topology object. \fP"
 .ti -1c
 .RI "enum \fBhwloc_compare_types_e\fP { \fBHWLOC_TYPE_UNORDERED\fP }"
 .br
@@ -18,9 +17,8 @@ Topology Object Types \-
 
 .in +1c
 .ti -1c
-.RI "HWLOC_DECLSPEC int \fBhwloc_compare_types\fP (\fBhwloc_obj_type_t\fP type1, \fBhwloc_obj_type_t\fP type2) __hwloc_attribute_const"
+.RI " int \fBhwloc_compare_types\fP (\fBhwloc_obj_type_t\fP type1, \fBhwloc_obj_type_t\fP type2) "
 .br
-.RI "\fICompare the depth of two object types. \fP"
 .in -1c
 .SH "Enumeration Type Documentation"
 .PP 
@@ -65,13 +63,13 @@ Core. A computation unit (may be shared by several logical processors).
 Processing Unit, or (Logical) Processor. An execution unit (may share a core with some other logical processors, e.g. in the case of an SMT core). Objects of this kind are always reported and can thus be used as fallback when others are not. 
 .TP
 \fB\fIHWLOC_OBJ_GROUP \fP\fP
-Group objects. Objects which do not fit in the above but are detected by hwloc and are useful to take into account for affinity. For instance, some OSes expose their arbitrary processors aggregation this way. And hwloc may insert such objects to group NUMA nodes according to their distances. These objects are ignored when they do not bring any structure. 
+Group objects. Objects which do not fit in the above but are detected by hwloc and are useful to take into account for affinity. For instance, some operating systems expose their arbitrary processors aggregation this way. And hwloc may insert such objects to group NUMA nodes according to their distances. These objects are ignored when they do not bring any structure. 
 .TP
 \fB\fIHWLOC_OBJ_MISC \fP\fP
 Miscellaneous objects. Objects without particular meaning, that can e.g. be added by the application for its own use. 
 .SH "Function Documentation"
 .PP 
-.SS "HWLOC_DECLSPEC int hwloc_compare_types (\fBhwloc_obj_type_t\fP type1, \fBhwloc_obj_type_t\fP type2) const"
+.SS " int hwloc_compare_types (\fBhwloc_obj_type_t\fP type1, \fBhwloc_obj_type_t\fP type2) const"
 .PP
 Compare the depth of two object types. Types shouldn't be compared as they are, since newer ones may be added in the future. This function returns less than, equal to, or greater than zero respectively if \fCtype1\fP objects usually include \fCtype2\fP objects, are the same as \fCtype2\fP objects, or are included in \fCtype2\fP objects. If the types can not be compared (because neither is usually contained in the other), HWLOC_TYPE_UNORDERED is returned. Object types containing CPUs can always be compared (usually, a system contains machines which contain nodes which contain sockets which contain caches, which contain cores, which contain processors).
 .PP

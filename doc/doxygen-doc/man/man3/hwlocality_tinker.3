@@ -1,0 +1,58 @@
+.TH "Tinker with topologies." 3 "Mon Jan 24 2011" "Version 1.1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Tinker with topologies. \- 
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI " void \fBhwloc_topology_export_xml\fP (\fBhwloc_topology_t\fP topology, const char *xmlpath)"
+.br
+.ti -1c
+.RI " void \fBhwloc_topology_export_xmlbuffer\fP (\fBhwloc_topology_t\fP topology, char **xmlbuffer, int *buflen)"
+.br
+.ti -1c
+.RI " \fBhwloc_obj_t\fP \fBhwloc_topology_insert_misc_object_by_cpuset\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_const_cpuset_t\fP cpuset, const char *name)"
+.br
+.ti -1c
+.RI " \fBhwloc_obj_t\fP \fBhwloc_topology_insert_misc_object_by_parent\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fP parent, const char *name)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS " void hwloc_topology_export_xml (\fBhwloc_topology_t\fP topology, const char * xmlpath)"
+.PP
+Export the topology into an XML file. This file may be loaded later through \fBhwloc_topology_set_xml()\fP. 
+.SS " void hwloc_topology_export_xmlbuffer (\fBhwloc_topology_t\fP topology, char ** xmlbuffer, int * buflen)"
+.PP
+Export the topology into a newly-allocated XML memory buffer. \fCxmlbuffer\fP is allocated by the callee and should be freed with xmlFree later in the caller.
+.PP
+This memory buffer may be loaded later through \fBhwloc_topology_set_xmlbuffer()\fP. 
+.SS " \fBhwloc_obj_t\fP hwloc_topology_insert_misc_object_by_cpuset (\fBhwloc_topology_t\fP topology, \fBhwloc_const_cpuset_t\fP cpuset, const char * name)"
+.PP
+Add a MISC object to the topology. A new MISC object will be created and inserted into the topology at the position given by bitmap \fCcpuset\fP.
+.PP
+cpuset and name will be copied.
+.PP
+\fBReturns:\fP
+.RS 4
+the newly-created object 
+.RE
+.PP
+
+.SS " \fBhwloc_obj_t\fP hwloc_topology_insert_misc_object_by_parent (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fP parent, const char * name)"
+.PP
+Add a MISC object to the topology. A new MISC object will be created and inserted into the topology at the position given by parent.
+.PP
+name will be copied.
+.PP
+\fBReturns:\fP
+.RS 4
+the newly-created object 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Hardware Locality (hwloc) from the source code.

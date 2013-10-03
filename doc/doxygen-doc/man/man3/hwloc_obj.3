@@ -1,4 +1,4 @@
-.TH "hwloc_obj" 3 "Thu Dec 16 2010" "Version 1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj" 3 "Mon Jan 24 2011" "Version 1.1.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,121 +17,93 @@ Structure of a topology object.
 .ti -1c
 .RI "\fBhwloc_obj_type_t\fP \fBtype\fP"
 .br
-.RI "\fIType of object. \fP"
 .ti -1c
 .RI "unsigned \fBos_index\fP"
 .br
-.RI "\fIOS-provided physical index number. \fP"
 .ti -1c
 .RI "char * \fBname\fP"
 .br
-.RI "\fIObject description if any. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj_memory_s\fP \fBmemory\fP"
 .br
-.RI "\fIMemory attributes. \fP"
 .ti -1c
 .RI "union \fBhwloc_obj_attr_u\fP * \fBattr\fP"
 .br
-.RI "\fIObject type-specific Attributes, may be \fCNULL\fP if no attribute value was found. \fP"
 .ti -1c
 .RI "unsigned \fBdepth\fP"
 .br
-.RI "\fIVertical index in the hierarchy. \fP"
 .ti -1c
 .RI "unsigned \fBlogical_index\fP"
 .br
-.RI "\fIHorizontal index in the whole list of similar objects, could be a 'cousin_rank' since it's the rank within the 'cousin' list below. \fP"
 .ti -1c
 .RI "signed \fBos_level\fP"
 .br
-.RI "\fIOS-provided physical level, -1 if unknown or meaningless. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj\fP * \fBnext_cousin\fP"
 .br
-.RI "\fINext object of same type. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj\fP * \fBprev_cousin\fP"
 .br
-.RI "\fIPrevious object of same type. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj\fP * \fBparent\fP"
 .br
-.RI "\fIParent, \fCNULL\fP if root (system object). \fP"
 .ti -1c
 .RI "unsigned \fBsibling_rank\fP"
 .br
-.RI "\fIIndex in parent's \fCchildren\fP[] array. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj\fP * \fBnext_sibling\fP"
 .br
-.RI "\fINext object below the same parent. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj\fP * \fBprev_sibling\fP"
 .br
-.RI "\fIPrevious object below the same parent. \fP"
 .ti -1c
 .RI "unsigned \fBarity\fP"
 .br
-.RI "\fINumber of children. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj\fP ** \fBchildren\fP"
 .br
-.RI "\fIChildren, \fCchildren\fP[0 .. arity -1]. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj\fP * \fBfirst_child\fP"
 .br
-.RI "\fIFirst child. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj\fP * \fBlast_child\fP"
 .br
-.RI "\fILast child. \fP"
 .ti -1c
 .RI "void * \fBuserdata\fP"
 .br
-.RI "\fIApplication-given private data pointer, initialized to \fCNULL\fP, use it as you wish. \fP"
 .ti -1c
 .RI "\fBhwloc_cpuset_t\fP \fBcpuset\fP"
 .br
-.RI "\fICPUs covered by this object. \fP"
 .ti -1c
 .RI "\fBhwloc_cpuset_t\fP \fBcomplete_cpuset\fP"
 .br
-.RI "\fIThe complete CPU set of logical processors of this object,. \fP"
 .ti -1c
 .RI "\fBhwloc_cpuset_t\fP \fBonline_cpuset\fP"
 .br
-.RI "\fIThe CPU set of online logical processors. \fP"
 .ti -1c
 .RI "\fBhwloc_cpuset_t\fP \fBallowed_cpuset\fP"
 .br
-.RI "\fIThe CPU set of allowed logical processors. \fP"
 .ti -1c
 .RI "\fBhwloc_nodeset_t\fP \fBnodeset\fP"
 .br
-.RI "\fINUMA nodes covered by this object or containing this object. \fP"
 .ti -1c
 .RI "\fBhwloc_nodeset_t\fP \fBcomplete_nodeset\fP"
 .br
-.RI "\fIThe complete NUMA node set of this object,. \fP"
 .ti -1c
 .RI "\fBhwloc_nodeset_t\fP \fBallowed_nodeset\fP"
 .br
-.RI "\fIThe set of allowed NUMA memory nodes. \fP"
 .ti -1c
 .RI "struct \fBhwloc_obj_info_s\fP * \fBinfos\fP"
 .br
-.RI "\fIArray of stringified info type=name. \fP"
 .ti -1c
 .RI "unsigned \fBinfos_count\fP"
 .br
-.RI "\fISize of infos array. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
 Structure of a topology object. 
 
-Applications mustn't modify any field except userdata . 
+Applications must not modify any field except \fBhwloc_obj.userdata\fP. 
 .SH "Field Documentation"
 .PP 
 .SS "\fBhwloc_cpuset_t\fP \fBhwloc_obj::allowed_cpuset\fP"
@@ -263,7 +235,7 @@ OS-provided physical index number.
 OS-provided physical level, -1 if unknown or meaningless. 
 .SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::parent\fP"
 .PP
-Parent, \fCNULL\fP if root (system object). 
+Parent, \fCNULL\fP if root (system object) 
 .SS "struct \fBhwloc_obj\fP* \fBhwloc_obj::prev_cousin\fP"
 .PP
 Previous object of same type. 

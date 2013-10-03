@@ -1,4 +1,4 @@
-.TH "Tinker With Topologies." 3 "Mon Dec 3 2012" "Version 1.6" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Tinker With Topologies." 3 "Thu Jan 17 2013" "Version 1.6.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -93,7 +93,7 @@ Restrict the topology to the given CPU set\&. Topology \fCtopology\fP is modifie
 .PP
 \fBNote:\fP
 .RS 4
-This call may not be reverted by restricting back to a larger cpuset\&. Once dropped during restriction, objects may not be brought back, except by reloading the entire topology with \fBhwloc_topology_load()\fP\&.
+This call may not be reverted by restricting back to a larger cpuset\&. Once dropped during restriction, objects may not be brought back, except by loading another topology with \fBhwloc_topology_load()\fP\&.
 .RE
 .PP
 \fBReturns:\fP

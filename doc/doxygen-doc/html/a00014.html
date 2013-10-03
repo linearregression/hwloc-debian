@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.6</span>
+   &#160;<span id="projectnumber">1.6.1</span>
    </div>
   </td>
  </tr>
@@ -98,7 +98,7 @@ What happens if my topology is asymmetric?</h1>
 <p>Moreover, it is important to understand that a same parent object may have children of different types (and therefore, different depths). <b>These children are therefore siblings (because they have the same parent), but they are <em>not</em> cousins (because they do not belong to the same horizontal levels).</b></p>
 <h1><a class="anchor" id="faq_annotate"></a>
 How do I annotate the topology with private notes?</h1>
-<p>Each hwloc object contains a <code>userdata</code> field that may be used by applications to store private pointers. This field is only valid during the lifetime of these container object and topology. It becomes invalid as soon the topology is reloaded or destroyed, or as soon as the object disappears, for instance when restricting the topology. The userdata field is not exported/imported to/from XML by default since hwloc does not know what it contains. This behavior may be changed by specifying application-specific callbacks with <code><a class="el" href="a00048.html#gafd31ee85660ea15497e16cdcf9717f5c" title="Set the application-specific callback for exporting userdata.">hwloc_topology_set_userdata_export_callback()</a></code> and <code><a class="el" href="a00048.html#ga7a47eecb5807f52c9a6e9bd2e2b6e5c9" title="Set the application-specific callback for importing userdata.">hwloc_topology_set_userdata_import_callback()</a></code>.</p>
+<p>Each hwloc object contains a <code>userdata</code> field that may be used by applications to store private pointers. This field is only valid during the lifetime of these container object and topology. It becomes invalid as soon the topology is destroyed, or as soon as the object disappears, for instance when restricting the topology. The userdata field is not exported/imported to/from XML by default since hwloc does not know what it contains. This behavior may be changed by specifying application-specific callbacks with <code><a class="el" href="a00048.html#gafd31ee85660ea15497e16cdcf9717f5c" title="Set the application-specific callback for exporting userdata.">hwloc_topology_set_userdata_export_callback()</a></code> and <code><a class="el" href="a00048.html#ga7a47eecb5807f52c9a6e9bd2e2b6e5c9" title="Set the application-specific callback for importing userdata.">hwloc_topology_set_userdata_import_callback()</a></code>.</p>
 <p>Each object may also contain some <em>info</em> attributes (key name and value) that are setup by hwloc during discovery and that may be extended by the user with <code><a class="el" href="a00052.html#gaba3afe636940872772ed6dfaf0b3552e" title="Add the given info name and value pair to the given object.">hwloc_obj_add_info()</a></code> (see also <a class="el" href="a00007.html#attributes">Object Attributes</a>). Contrary to the <code>userdata</code> field which is unique, multiple info attributes may exist for each object, even with the same name. These attributes are always exported to XML. However only character strings may be used as key names and values.</p>
 <p>It is also possible to insert Misc objects with custom names anywhere in the topology (<code><a class="el" href="a00049.html#ga017a9ba16d554326c6e3812d545d7230" title="Add a MISC object to the topology.">hwloc_topology_insert_misc_object_by_cpuset()</a></code>) or as a leaf of the topology (<code><a class="el" href="a00049.html#gadacd7a3d21220fbb30c3256d8b22a294" title="Add a MISC object as a leaf of the topology.">hwloc_topology_insert_misc_object_by_parent()</a></code>).</p>
 <h1><a class="anchor" id="faq_valgrind"></a>
@@ -124,7 +124,7 @@ How do I handle API upgrades?</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 3 2012 03:22:49 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 17 2013 22:35:28 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

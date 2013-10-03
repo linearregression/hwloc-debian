@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.6</span>
+   &#160;<span id="projectnumber">1.6.1</span>
    </div>
   </td>
  </tr>
@@ -202,7 +202,7 @@ Functions</h2></td></tr>
 <p>Restrict the topology to the given CPU set. </p>
 <p>Topology <code>topology</code> is modified so as to remove all objects that are not included (or partially included) in the CPU set <code>cpuset</code>. All objects CPU and node sets are restricted accordingly.</p>
 <p><code>flags</code> is a OR'ed set of <a class="el" href="a00049.html#ga9d80f08eb25b7ac22f1b998dc8bf521f" title="Flags to be given to hwloc_topology_restrict().">hwloc_restrict_flags_e</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>This call may not be reverted by restricting back to a larger cpuset. Once dropped during restriction, objects may not be brought back, except by reloading the entire topology with <a class="el" href="a00046.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This call may not be reverted by restricting back to a larger cpuset. Once dropped during restriction, objects may not be brought back, except by loading another topology with <a class="el" href="a00046.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success.</dd>
 <dd>
 -1 with errno set to EINVAL if the input cpuset is invalid. The topology is not modified in this case.</dd>
@@ -214,7 +214,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 3 2012 03:22:49 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 17 2013 22:35:28 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

@@ -101,6 +101,7 @@
     <docanchor file="a00012">plugins_select</docanchor>
     <docanchor file="a00012">plugins_config</docanchor>
     <docanchor file="a00012">plugins_adding</docanchor>
+    <docanchor file="a00012">plugins_list</docanchor>
   </compound>
   <compound kind="page">
     <name>page_embed</name>

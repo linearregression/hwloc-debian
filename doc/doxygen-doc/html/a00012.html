@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.6</span>
+   &#160;<span id="projectnumber">1.6.1</span>
    </div>
   </td>
  </tr>
@@ -67,11 +67,38 @@ Building components as plugins</h1>
 Adding new discovery components and plugins</h1>
 <p>Each new discovery component requires a new <code>hwloc_component</code> structure to be exported to the hwloc core with name <code>hwloc_&lt;name&gt;_component</code>. The configure script should then be modified to add <code>&lt;name&gt;</code> to the <code>hwloc_components</code> variable so that the component is actually available at runtime.</p>
 <p>If the new component may be built as a plugin, the configure script should also define <code>hwloc_&lt;name&gt;_component_maybeplugin=1</code>. If the configure scripts decides to enable the component as a plugin, the variable <code>hwloc_&lt;name&gt;_component</code> will be set to <code>plugin</code>. The build system may then use this variable to actually change the way the component is built.</p>
-<p>The component structure contains a data field that points to an <code>hwloc_disc_component</code> which defines an <code>instantiate</code> callback. This function is invoked when this component is actually used by a topology. It creates a <code>backend</code> structure that usually contains a <code>discover</code> and/or <code>notify_new_object</code> callback taking care of the actual topology discovery. </p>
+<p>The component structure contains a data field that points to an <code>hwloc_disc_component</code> which defines an <code>instantiate</code> callback. This function is invoked when this component is actually used by a topology. It creates a <code>backend</code> structure that usually contains a <code>discover</code> and/or <code>notify_new_object</code> callback taking care of the actual topology discovery.</p>
+<h1><a class="anchor" id="plugins_list"></a>
+Existing components and plugins</h1>
+<p>All components distributed within hwloc are listed below. The list of actually available components may be listed at running with the <code>HWLOC_COMPONENTS_VERBOSE</code> environment variable (see <a class="el" href="a00003.html#envvar">Environment Variables</a>).</p>
+<dl>
+<dt>aix, darwin, freebsd, hpux, linux, netbsd, osf, solaris, windows </dt>
+<dd>Each officially supported operating system has its own native component, which is statically built when supported, and which is used by default.  </dd>
+<dt>x86 </dt>
+<dd>The x86 architecture (either 32 or 64 bits) has its own component that may complete or replace the previously-found CPU information. It is statically built when supported.  </dd>
+<dt>no_os </dt>
+<dd>A basic component that just tries to detect the number of processing units in the system. It mostly serves on operating systems that are not natively supported. It is always statically built.  </dd>
+<dt>libpci </dt>
+<dd>PCI object discovery uses the external pciutils library (aka libpci), see <a class="el" href="a00005.html#iodevices">I/O Devices</a>. <b>It may be built as a plugin</b>.  </dd>
+<dt>synthetic </dt>
+<dd>Synthetic topology support (see <a class="el" href="a00009.html#synthetic">Synthetic Topologies</a>) is always built statically.  </dd>
+<dt>custom </dt>
+<dd>Custom topology support (see <a class="el" href="a00006.html#multinode">Multi-node Topologies</a>) is always built statically.  </dd>
+<dt>xml </dt>
+<dd>XML topology import (see <a class="el" href="a00008.html#xml">Importing and exporting topologies from/to XML files</a>) is always built statically. It internally uses one of the XML backends (see <a class="el" href="a00008.html#xml_backends">libxml2 and minimalistic XML backends</a>). <ul>
+<li>
+<b>xml_nolibxml</b> is a basic and hwloc-specific XML import/export. It is always statically built.  </li>
+<li>
+<b>xml_libxml</b> relies on the external libxml2 library for provinding a feature-complete XML import/export. <b>It may be built as a plugin</b>.   </li>
+</ul>
+</dd>
+<dt>fake </dt>
+<dd>A dummy plugin that does nothing but is used for debugging plugin support.  </dd>
+</dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 3 2012 03:22:49 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 17 2013 22:35:28 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

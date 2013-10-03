@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.6</span>
+   &#160;<span id="projectnumber">1.6.1</span>
    </div>
   </td>
  </tr>
@@ -55,15 +55,14 @@
 <p class="enddd"></p>
 </dd>
 <dt>Locating topologies  </dt>
-<dd><p class="startdd"><code>hwloc_topology_ignore*</code>, <code>hwloc_topology_set*</code> (see <a class="el" href="a00047.html">Configure Topology Detection</a>) do not modify the topology directly, but they do modify internal structures describing the behavior of the next invocation of <code><a class="el" href="a00046.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a></code>. Hence, all of these functions should not be used concurrently.</p>
-<p>Note that these functions do not modify the current topology until it is actually reloaded; it is possible to use them while other threads are only read the current topology. </p>
+<dd><p class="startdd"><code>hwloc_topology_ignore*</code>, <code>hwloc_topology_set*</code> (see <a class="el" href="a00047.html">Configure Topology Detection</a>) do not modify the topology directly, but they do modify internal structures describing the behavior of the upcoming invocation of <code><a class="el" href="a00046.html#ga91e2e6427b95fb7339c99dbbef996e71" title="Build the actual topology.">hwloc_topology_load()</a></code>. Hence, all of these functions should not be used concurrently. </p>
 <p class="enddd"></p>
 </dd>
 </dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 3 2012 03:22:49 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 17 2013 22:35:28 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

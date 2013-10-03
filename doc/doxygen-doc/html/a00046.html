@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.6</span>
+   &#160;<span id="projectnumber">1.6.1</span>
    </div>
   </td>
  </tr>
@@ -156,7 +156,9 @@ The input topology should have been previously loaded with <a class="el" href="a
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on error.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>On failure, the topology is reinitialized. It should be either destroyed with <a class="el" href="a00046.html#ga6040925d3ee4bbb2647f2a321aca5f4b" title="Terminate and free a topology context.">hwloc_topology_destroy()</a> or configured and loaded again.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>On failure, the topology is reinitialized. It should be either destroyed with <a class="el" href="a00046.html#ga6040925d3ee4bbb2647f2a321aca5f4b" title="Terminate and free a topology context.">hwloc_topology_destroy()</a> or configured and loaded again.</dd>
+<dd>
+This function may be called only once per topology.</dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="a00047.html">Configure Topology Detection</a> </dd></dl>
 
 </div>
@@ -164,7 +166,7 @@ The input topology should have been previously loaded with <a class="el" href="a
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 3 2012 03:22:49 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 17 2013 22:35:28 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

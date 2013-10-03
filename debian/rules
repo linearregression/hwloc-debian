@@ -28,7 +28,7 @@ config.status: configure
 	./configure $(CROSS) $(confflags)
 
 
-build: build-stamp debian/libhwloc5.links
+build: build-stamp
 build-stamp: config.status
 	dh_testdir
 
@@ -36,9 +36,6 @@ build-stamp: config.status
 	-$(MAKE) check
 
 	touch $@
-
-debian/libhwloc5.links: debian/libhwloc5.links.in
-	sed -e 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' < $< > $@
 
 clean: 
 	dh_testdir
@@ -63,22 +60,7 @@ install: build
 	mkdir -p $(CURDIR)/debian/tmp/usr/include/$(DEB_HOST_MULTIARCH)/hwloc/autogen
 	mv $(CURDIR)/debian/tmp/usr/include/hwloc/autogen/config.h $(CURDIR)/debian/tmp/usr/include/$(DEB_HOST_MULTIARCH)/hwloc/autogen/
 
-binary-indep: export DH_OPTIONS=-i
-binary-indep: install
-	dh_testdir
-	dh_testroot
-	dh_install
-	dh_installdocs
-	dh_installchangelogs 
-	dh_installexamples
-	dh_installman
-	dh_link
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
+binary-indep:
 
 binary-arch: export DH_OPTIONS=-s
 binary-arch: install

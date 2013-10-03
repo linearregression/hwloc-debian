@@ -1,4 +1,4 @@
-hwloc (1.7.2-1) unstable; urgency=low
+hwloc-contrib (1.7.2-2) unstable; urgency=low
 
   * New upstream release.
   * Add ocl-icd-opencl-dev and opencl-headers build-dependencies to build opencl

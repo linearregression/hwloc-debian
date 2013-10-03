@@ -86,12 +86,14 @@ CONFIG_CLEAN_VPATH_FILES =
 glibc_sched_SOURCES = glibc-sched.c
 glibc_sched_OBJECTS = glibc-sched.$(OBJEXT)
 glibc_sched_LDADD = $(LDADD)
+glibc_sched_DEPENDENCIES = $(am__append_4)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 hwloc_bind_SOURCES = hwloc_bind.c
 hwloc_bind_OBJECTS = hwloc_bind.$(OBJEXT)
 hwloc_bind_LDADD = $(LDADD)
+hwloc_bind_DEPENDENCIES = $(am__append_4)
 hwloc_bind_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(hwloc_bind_LDFLAGS) $(LDFLAGS) -o $@
@@ -100,73 +102,91 @@ hwloc_cpuset_first_last_weight_SOURCES =  \
 hwloc_cpuset_first_last_weight_OBJECTS =  \
 	hwloc_cpuset_first_last_weight.$(OBJEXT)
 hwloc_cpuset_first_last_weight_LDADD = $(LDADD)
+hwloc_cpuset_first_last_weight_DEPENDENCIES = $(am__append_4)
 hwloc_cpuset_singlify_SOURCES = hwloc_cpuset_singlify.c
 hwloc_cpuset_singlify_OBJECTS = hwloc_cpuset_singlify.$(OBJEXT)
 hwloc_cpuset_singlify_LDADD = $(LDADD)
+hwloc_cpuset_singlify_DEPENDENCIES = $(am__append_4)
 hwloc_cpuset_string_SOURCES = hwloc_cpuset_string.c
 hwloc_cpuset_string_OBJECTS = hwloc_cpuset_string.$(OBJEXT)
 hwloc_cpuset_string_LDADD = $(LDADD)
+hwloc_cpuset_string_DEPENDENCIES = $(am__append_4)
 hwloc_get_cache_covering_cpuset_SOURCES =  \
 	hwloc_get_cache_covering_cpuset.c
 hwloc_get_cache_covering_cpuset_OBJECTS =  \
 	hwloc_get_cache_covering_cpuset.$(OBJEXT)
 hwloc_get_cache_covering_cpuset_LDADD = $(LDADD)
+hwloc_get_cache_covering_cpuset_DEPENDENCIES = $(am__append_4)
 hwloc_get_closest_objs_SOURCES = hwloc_get_closest_objs.c
 hwloc_get_closest_objs_OBJECTS = hwloc_get_closest_objs.$(OBJEXT)
 hwloc_get_closest_objs_LDADD = $(LDADD)
+hwloc_get_closest_objs_DEPENDENCIES = $(am__append_4)
 hwloc_get_largest_objs_inside_cpuset_SOURCES =  \
 	hwloc_get_largest_objs_inside_cpuset.c
 hwloc_get_largest_objs_inside_cpuset_OBJECTS =  \
 	hwloc_get_largest_objs_inside_cpuset.$(OBJEXT)
 hwloc_get_largest_objs_inside_cpuset_LDADD = $(LDADD)
+hwloc_get_largest_objs_inside_cpuset_DEPENDENCIES = $(am__append_4)
 hwloc_get_next_obj_covering_cpuset_SOURCES =  \
 	hwloc_get_next_obj_covering_cpuset.c
 hwloc_get_next_obj_covering_cpuset_OBJECTS =  \
 	hwloc_get_next_obj_covering_cpuset.$(OBJEXT)
 hwloc_get_next_obj_covering_cpuset_LDADD = $(LDADD)
+hwloc_get_next_obj_covering_cpuset_DEPENDENCIES = $(am__append_4)
 hwloc_get_obj_below_array_by_type_SOURCES =  \
 	hwloc_get_obj_below_array_by_type.c
 hwloc_get_obj_below_array_by_type_OBJECTS =  \
 	hwloc_get_obj_below_array_by_type.$(OBJEXT)
 hwloc_get_obj_below_array_by_type_LDADD = $(LDADD)
+hwloc_get_obj_below_array_by_type_DEPENDENCIES = $(am__append_4)
 hwloc_get_obj_covering_cpuset_SOURCES =  \
 	hwloc_get_obj_covering_cpuset.c
 hwloc_get_obj_covering_cpuset_OBJECTS =  \
 	hwloc_get_obj_covering_cpuset.$(OBJEXT)
 hwloc_get_obj_covering_cpuset_LDADD = $(LDADD)
+hwloc_get_obj_covering_cpuset_DEPENDENCIES = $(am__append_4)
 hwloc_get_obj_inside_cpuset_SOURCES = hwloc_get_obj_inside_cpuset.c
 hwloc_get_obj_inside_cpuset_OBJECTS =  \
 	hwloc_get_obj_inside_cpuset.$(OBJEXT)
 hwloc_get_obj_inside_cpuset_LDADD = $(LDADD)
+hwloc_get_obj_inside_cpuset_DEPENDENCIES = $(am__append_4)
 hwloc_get_shared_cache_covering_obj_SOURCES =  \
 	hwloc_get_shared_cache_covering_obj.c
 hwloc_get_shared_cache_covering_obj_OBJECTS =  \
 	hwloc_get_shared_cache_covering_obj.$(OBJEXT)
 hwloc_get_shared_cache_covering_obj_LDADD = $(LDADD)
+hwloc_get_shared_cache_covering_obj_DEPENDENCIES = $(am__append_4)
 hwloc_insert_misc_SOURCES = hwloc_insert_misc.c
 hwloc_insert_misc_OBJECTS = hwloc_insert_misc.$(OBJEXT)
 hwloc_insert_misc_LDADD = $(LDADD)
+hwloc_insert_misc_DEPENDENCIES = $(am__append_4)
 hwloc_is_thissystem_SOURCES = hwloc_is_thissystem.c
 hwloc_is_thissystem_OBJECTS = hwloc_is_thissystem.$(OBJEXT)
 hwloc_is_thissystem_LDADD = $(LDADD)
+hwloc_is_thissystem_DEPENDENCIES = $(am__append_4)
 hwloc_object_userdata_SOURCES = hwloc_object_userdata.c
 hwloc_object_userdata_OBJECTS = hwloc_object_userdata.$(OBJEXT)
 hwloc_object_userdata_LDADD = $(LDADD)
+hwloc_object_userdata_DEPENDENCIES = $(am__append_4)
 hwloc_synthetic_SOURCES = hwloc_synthetic.c
 hwloc_synthetic_OBJECTS = hwloc_synthetic.$(OBJEXT)
 hwloc_synthetic_LDADD = $(LDADD)
+hwloc_synthetic_DEPENDENCIES = $(am__append_4)
 hwloc_type_depth_SOURCES = hwloc_type_depth.c
 hwloc_type_depth_OBJECTS = hwloc_type_depth.$(OBJEXT)
 hwloc_type_depth_LDADD = $(LDADD)
+hwloc_type_depth_DEPENDENCIES = $(am__append_4)
 linux_libnuma_SOURCES = linux-libnuma.c
 linux_libnuma_OBJECTS = linux-libnuma.$(OBJEXT)
 linux_libnuma_LDADD = $(LDADD)
+linux_libnuma_DEPENDENCIES = $(am__append_4)
 linux_libnuma_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(linux_libnuma_LDFLAGS) $(LDFLAGS) -o $@
 openfabrics_verbs_SOURCES = openfabrics-verbs.c
 openfabrics_verbs_OBJECTS = openfabrics-verbs.$(OBJEXT)
 openfabrics_verbs_LDADD = $(LDADD)
+openfabrics_verbs_DEPENDENCIES = $(am__append_4)
 openfabrics_verbs_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(AM_CFLAGS) $(CFLAGS) $(openfabrics_verbs_LDFLAGS) $(LDFLAGS) \
@@ -302,10 +322,12 @@ HWLOC_DIFF_U = @HWLOC_DIFF_U@
 HWLOC_EMBEDDED_CFLAGS = @HWLOC_EMBEDDED_CFLAGS@
 HWLOC_EMBEDDED_CPPFLAGS = @HWLOC_EMBEDDED_CPPFLAGS@
 HWLOC_EMBEDDED_LDADD = @HWLOC_EMBEDDED_LDADD@
+HWLOC_EMBEDDED_LIBS = @HWLOC_EMBEDDED_LIBS@
 HWLOC_HAVE_XML = @HWLOC_HAVE_XML@
 HWLOC_KERRIGHED_CFLAGS = @HWLOC_KERRIGHED_CFLAGS@
 HWLOC_KERRIGHED_LIBS = @HWLOC_KERRIGHED_LIBS@
 HWLOC_LDFLAGS = @HWLOC_LDFLAGS@
+HWLOC_LIBS = @HWLOC_LIBS@
 HWLOC_MS_LIB = @HWLOC_MS_LIB@
 HWLOC_PKG_CONFIG = @HWLOC_PKG_CONFIG@
 HWLOC_RELEASE_DATE = @HWLOC_RELEASE_DATE@
@@ -327,7 +349,7 @@ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
-LIBS = $(am__append_4)
+LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
@@ -425,6 +447,7 @@ AM_CFLAGS = $(HWLOC_CFLAGS)
 AM_CPPFLAGS = $(HWLOC_CPPFLAGS)
 AM_LDFLAGS = $(HWLOC_LDFLAGS)
 SUBDIRS = linux ports xml
+LDADD = $(am__append_4)
 @HWLOC_BUILD_TESTS_TRUE@TESTS = $(check_PROGRAMS)
 @HWLOC_BUILD_STANDALONE_FALSE@@HWLOC_BUILD_TESTS_TRUE@hwloc_lib = libhwloc_embedded.la
 

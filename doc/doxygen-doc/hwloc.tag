@@ -4,11 +4,12 @@
     <name>index</name>
     <title>Hardware Locality</title>
     <filename>index</filename>
+    <docanchor file="index">cli_examples</docanchor>
     <docanchor file="index">Introduction</docanchor>
     <docanchor file="index">installation</docanchor>
-    <docanchor file="index">examples</docanchor>
     <docanchor file="index">interface_example</docanchor>
     <docanchor file="index">interface</docanchor>
+    <docanchor file="index">portability</docanchor>
     <docanchor file="index">history</docanchor>
     <docanchor file="index">bugs</docanchor>
   </compound>

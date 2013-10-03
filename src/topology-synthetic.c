@@ -26,6 +26,7 @@ hwloc_backend_synthetic_init(struct hwloc_topology *topology, const char *descri
   int cache_depth = 0, group_depth = 0;
   int nb_machine_levels = 0, nb_node_levels = 0;
   int nb_pu_levels = 0;
+  int nb_pu = 1;
 
   assert(topology->backend_type == HWLOC_BACKEND_NONE);
 
@@ -56,6 +57,8 @@ hwloc_backend_synthetic_init(struct hwloc_topology *topology, const char *descri
 	type = HWLOC_OBJ_MISC;
       else if (!hwloc_namecoloncmp(pos, "group", 2))
 	type = HWLOC_OBJ_GROUP;
+      else
+        fprintf(stderr, "Unknown object type `%s'\n", pos);
 
       next_pos = strchr(pos, ':');
       if (!next_pos) {
@@ -76,6 +79,12 @@ hwloc_backend_synthetic_init(struct hwloc_topology *topology, const char *descri
     }
     if (item > UINT_MAX) {
       fprintf(stderr,"Too big arity, max %u\n", UINT_MAX);
+      return -1;
+    }
+
+    nb_pu *= item;
+    if (nb_pu > HWLOC_NBMAXCPUS) {
+      fprintf(stderr, "To many PUs, max %d\n", HWLOC_NBMAXCPUS);
       return -1;
     }
 

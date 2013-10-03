@@ -1,4 +1,4 @@
-.TH "Object/String Conversion" 3 "17 Apr 2010" "Version 1.0rc1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Object/String Conversion" 3 "17 May 2010" "Version 1.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -41,7 +41,7 @@ Only the major attributes are printed in non-verbose mode.
 .PP
 \fBReturns:\fP
 .RS 4
-how many characters were actually written (not including the ending \\0). 
+how many characters were actually written (not including the ending \\0), or -1 on error. 
 .RE
 .PP
 
@@ -68,7 +68,7 @@ If \fCverbose\fP is set, a longer description is used. Otherwise a short descrip
 .PP
 \fBReturns:\fP
 .RS 4
-how many characters were actually written (not including the ending \\0). 
+how many characters were actually written (not including the ending \\0), or -1 on error. 
 .RE
 .PP
 
@@ -86,7 +86,7 @@ Stringify the type of a given topology object into a human-readable form. It dif
 .PP
 \fBReturns:\fP
 .RS 4
-how many characters were actually written (not including the ending \\0). 
+how many characters were actually written (not including the ending \\0), or -1 on error. 
 .RE
 .PP
 

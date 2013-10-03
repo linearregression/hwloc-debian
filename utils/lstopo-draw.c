@@ -84,7 +84,7 @@ static int prefer_ratio(float ratio1, float ratio2) {
 static void* null_start(void *output, int width __hwloc_attribute_unused, int height __hwloc_attribute_unused) { return output; }
 static void null_declare_color(void *output __hwloc_attribute_unused, int r __hwloc_attribute_unused, int g __hwloc_attribute_unused, int b __hwloc_attribute_unused) { }
 static void null_box(void *output __hwloc_attribute_unused, int r __hwloc_attribute_unused, int g __hwloc_attribute_unused, int b __hwloc_attribute_unused, unsigned depth __hwloc_attribute_unused, unsigned x __hwloc_attribute_unused, unsigned width __hwloc_attribute_unused, unsigned y __hwloc_attribute_unused, unsigned height __hwloc_attribute_unused) { }
-static void null_line(void *output __hwloc_attribute_unused, int r __hwloc_attribute_unused, int g __hwloc_attribute_unused, int b __hwloc_attribute_unused, unsigned depth __hwloc_attribute_unused, unsigned x1 __hwloc_attribute_unused, unsigned y1 __hwloc_attribute_unused, unsigned x2 __hwloc_attribute_unused, unsigned y2 __hwloc_attribute_unused) { }
+static void null_line(void *output __hwloc_attribute_unused, int r __hwloc_attribute_unused, int g __hwloc_attribute_unused, int b __hwloc_attribute_unused, unsigned depth __hwloc_attribute_unused, unsigned x1 __hwloc_attribute_unused, unsigned y1_arg __hwloc_attribute_unused, unsigned x2 __hwloc_attribute_unused, unsigned y2 __hwloc_attribute_unused) { }
 static void null_text(void *output __hwloc_attribute_unused, int r __hwloc_attribute_unused, int g __hwloc_attribute_unused, int b __hwloc_attribute_unused, int size __hwloc_attribute_unused, unsigned depth __hwloc_attribute_unused, unsigned x __hwloc_attribute_unused, unsigned y __hwloc_attribute_unused, const char *text __hwloc_attribute_unused) { }
 
 static struct draw_methods null_draw_methods = {
@@ -333,17 +333,17 @@ prefer_vert(hwloc_topology_t topology, int logical, hwloc_obj_t level, void *out
 static int
 lstopo_obj_snprintf(char *text, size_t textlen, hwloc_obj_t obj, int logical)
 {
-  unsigned index = logical ? obj->logical_index : obj->os_index;
+  unsigned idx = logical ? obj->logical_index : obj->os_index;
   const char *indexprefix = logical ? " #" : " p#";
   char typestr[32];
   char indexstr[32]= "";
   char attrstr[256];
-  size_t attrlen;
+  int attrlen;
   hwloc_obj_type_snprintf(typestr, sizeof(typestr), obj, 0);
-  if (index != (unsigned)-1 && obj->depth != 0)
-    snprintf(indexstr, sizeof(indexstr), "%s%u", indexprefix, index);
+  if (idx != (unsigned)-1 && obj->depth != 0)
+    snprintf(indexstr, sizeof(indexstr), "%s%u", indexprefix, idx);
   attrlen = hwloc_obj_attr_snprintf(attrstr, sizeof(attrstr), obj, " ", 0);
-  if (attrlen)
+  if (attrlen > 0)
     return snprintf(text, textlen, "%s%s (%s)", typestr, indexstr, attrstr);
   else
     return snprintf(text, textlen, "%s%s", typestr, indexstr);
@@ -365,7 +365,7 @@ pu_draw(hwloc_topology_t topology, struct draw_methods *methods, int logical, hw
       methods->box(output, FORBIDDEN_R_COLOR, FORBIDDEN_G_COLOR, FORBIDDEN_B_COLOR, depth, x, *retwidth, y, *retheight);
     else {
       hwloc_cpuset_t bind = hwloc_cpuset_alloc();
-      if (pid > 0)
+      if (pid != (hwloc_pid_t) -1 && pid != 0)
         hwloc_get_proc_cpubind(topology, pid, bind, 0);
       else if (pid == 0)
         hwloc_get_cpubind(topology, bind, 0);
@@ -398,12 +398,12 @@ cache_draw(hwloc_topology_t topology, struct draw_methods *methods, int logical,
   unsigned myheight = gridsize + (fontsize ? (fontsize + gridsize) : 0) + gridsize, totheight;
   unsigned mywidth = 0, totwidth;
   unsigned textwidth = fontsize ? ((logical ? level->logical_index : level->os_index) == (unsigned) -1 ? 7*fontsize : 9*fontsize) : 0;
+  /* Do not separate objects when in L1 (SMT) */
   unsigned separator = level->attr->cache.depth > 1 ? gridsize : 0;
 
   DYNA_CHECK();
 
-  /* Do not separate objects when in L1 (SMT) */
-  RECURSE_HORIZ(level, &null_draw_methods, separator, 0);
+  RECURSE_RECT(level, &null_draw_methods, separator, 0);
 
   methods->box(output, CACHE_R_COLOR, CACHE_G_COLOR, CACHE_B_COLOR, depth, x, totwidth, y, myheight - gridsize);
 
@@ -414,7 +414,7 @@ cache_draw(hwloc_topology_t topology, struct draw_methods *methods, int logical,
     methods->text(output, 0, 0, 0, fontsize, depth-1, x + gridsize, y + gridsize, text);
   }
 
-  RECURSE_HORIZ(level, methods, separator, 0);
+  RECURSE_RECT(level, methods, separator, 0);
 
   DYNA_SAVE();
 }
@@ -428,7 +428,7 @@ core_draw(hwloc_topology_t topology, struct draw_methods *methods, int logical, 
 
   DYNA_CHECK();
 
-  RECURSE_HORIZ(level, &null_draw_methods, 0, gridsize);
+  RECURSE_RECT(level, &null_draw_methods, 0, gridsize);
 
   methods->box(output, CORE_R_COLOR, CORE_G_COLOR, CORE_B_COLOR, depth, x, totwidth, y, totheight);
 
@@ -438,7 +438,7 @@ core_draw(hwloc_topology_t topology, struct draw_methods *methods, int logical, 
     methods->text(output, 0, 0, 0, fontsize, depth-1, x + gridsize, y + gridsize, text);
   }
 
-  RECURSE_HORIZ(level, methods, 0, gridsize);
+  RECURSE_RECT(level, methods, 0, gridsize);
 
   DYNA_SAVE();
 }
@@ -485,7 +485,7 @@ node_draw(hwloc_topology_t topology, struct draw_methods *methods, int logical, 
   DYNA_CHECK();
 
   /* Compute the size needed by sublevels */
-  RECURSE_HORIZ(level, &null_draw_methods, gridsize, gridsize);
+  RECURSE_RECT(level, &null_draw_methods, gridsize, gridsize);
 
   /* Draw the epoxy box */
   methods->box(output, NODE_R_COLOR, NODE_G_COLOR, NODE_B_COLOR, depth, x, totwidth, y, totheight);
@@ -500,7 +500,7 @@ node_draw(hwloc_topology_t topology, struct draw_methods *methods, int logical, 
   }
 
   /* Restart, now really drawing sublevels */
-  RECURSE_HORIZ(level, methods, gridsize, gridsize);
+  RECURSE_RECT(level, methods, gridsize, gridsize);
 
   /* Save result for dynamic programming */
   DYNA_SAVE();
@@ -706,18 +706,18 @@ getmax_box(void *output, int r __hwloc_attribute_unused, int g __hwloc_attribute
 }
 
 static void
-getmax_line(void *output, int r __hwloc_attribute_unused, int g __hwloc_attribute_unused, int b __hwloc_attribute_unused, unsigned depth __hwloc_attribute_unused, unsigned x1, unsigned y1, unsigned x2, unsigned y2)
+getmax_line(void *output, int r __hwloc_attribute_unused, int g __hwloc_attribute_unused, int b __hwloc_attribute_unused, unsigned depth __hwloc_attribute_unused, unsigned x1_arg, unsigned y1_arg, unsigned x2_arg, unsigned y2_arg)
 {
   struct coords *coords = output;
 
-  if (x1 > coords->x)
-    coords->x = x1;
-  if (x2 > coords->x)
-    coords->x = x2;
-  if (y1 > coords->y)
-    coords->y = y1;
-  if (y2 > coords->y)
-    coords->y = y2;
+  if (x1_arg > coords->x)
+    coords->x = x1_arg;
+  if (x2_arg > coords->x)
+    coords->x = x2_arg;
+  if (y1_arg > coords->y)
+    coords->y = y1_arg;
+  if (y2_arg > coords->y)
+    coords->y = y2_arg;
 }
 
 static struct draw_methods getmax_draw_methods = {

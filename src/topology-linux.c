@@ -319,13 +319,24 @@ hwloc_linux_get_proc_tids(DIR *taskdir, unsigned *nr_tidsp, pid_t ** tidsp)
     max_tids = sb.st_nlink;
 
   tids = malloc(max_tids*sizeof(pid_t));
+  if (!tids) {
+    errno = ENOMEM;
+    return -1;
+  }
 
   rewinddir(taskdir);
 
   while ((dirent = readdir(taskdir)) != NULL) {
     if (nr_tids == max_tids) {
+      pid_t *newtids;
       max_tids += 8;
-      tids = realloc(tids, max_tids*sizeof(pid_t));
+      newtids = realloc(tids, max_tids*sizeof(pid_t));
+      if (!newtids) {
+        free(tids);
+        errno = ENOMEM;
+        return -1;
+      }
+      tids = newtids;
     }
     if (!strcmp(dirent->d_name, ".") || !strcmp(dirent->d_name, ".."))
       continue;
@@ -338,17 +349,17 @@ hwloc_linux_get_proc_tids(DIR *taskdir, unsigned *nr_tidsp, pid_t ** tidsp)
 }
 
 /* Callbacks for binding each process sub-tid */
-typedef int (*hwloc_linux_foreach_proc_tid_cb_t)(hwloc_topology_t topology, pid_t tid, void *data, int index, int policy);
+typedef int (*hwloc_linux_foreach_proc_tid_cb_t)(hwloc_topology_t topology, pid_t tid, void *data, int idx, int policy);
 
 static int
-hwloc_linux_foreach_proc_tid_set_cpubind_cb(hwloc_topology_t topology, pid_t tid, void *data, int index __hwloc_attribute_unused, int policy __hwloc_attribute_unused)
+hwloc_linux_foreach_proc_tid_set_cpubind_cb(hwloc_topology_t topology, pid_t tid, void *data, int idx __hwloc_attribute_unused, int policy __hwloc_attribute_unused)
 {
   hwloc_cpuset_t cpuset = data;
   return hwloc_linux_set_tid_cpubind(topology, tid, cpuset);
 }
 
 static int
-hwloc_linux_foreach_proc_tid_get_cpubind_cb(hwloc_topology_t topology, pid_t tid, void *data, int index, int policy)
+hwloc_linux_foreach_proc_tid_get_cpubind_cb(hwloc_topology_t topology, pid_t tid, void *data, int idx, int policy)
 {
   hwloc_cpuset_t *cpusets = data;
   hwloc_cpuset_t cpuset = cpusets[0];
@@ -358,12 +369,12 @@ hwloc_linux_foreach_proc_tid_get_cpubind_cb(hwloc_topology_t topology, pid_t tid
     return -1;
 
   /* reset the cpuset on first iteration */
-  if (!index)
+  if (!idx)
     hwloc_cpuset_zero(cpuset);
 
   if (policy & HWLOC_CPUBIND_STRICT) {
     /* if STRICT, we want all threads to have the same binding */
-    if (!index) {
+    if (!idx) {
       /* this is the first thread, copy its binding */
       hwloc_cpuset_copy(cpuset, tidset);
     } else if (!hwloc_cpuset_isequal(cpuset, tidset)) {
@@ -495,7 +506,7 @@ static int
 hwloc_linux_set_thisthread_cpubind(hwloc_topology_t topology, hwloc_const_cpuset_t hwloc_set, int policy __hwloc_attribute_unused)
 {
   if (topology->pid) {
-    errno = -ENOSYS;
+    errno = ENOSYS;
     return -1;
   }
   return hwloc_linux_set_tid_cpubind(topology, 0, hwloc_set);
@@ -505,7 +516,7 @@ static int
 hwloc_linux_get_thisthread_cpubind(hwloc_topology_t topology, hwloc_cpuset_t hwloc_set, int policy __hwloc_attribute_unused)
 {
   if (topology->pid) {
-    errno = -ENOSYS;
+    errno = ENOSYS;
     return -1;
   }
   return hwloc_linux_get_tid_cpubind(topology, 0, hwloc_set);
@@ -520,7 +531,7 @@ hwloc_linux_set_thread_cpubind(hwloc_topology_t topology, pthread_t tid, hwloc_c
   int err;
 
   if (topology->pid) {
-    errno = -ENOSYS;
+    errno = ENOSYS;
     return -1;
   }
 
@@ -587,7 +598,7 @@ hwloc_linux_get_thread_cpubind(hwloc_topology_t topology, pthread_t tid, hwloc_c
   int err;
 
   if (topology->pid) {
-    errno = -ENOSYS;
+    errno = ENOSYS;
     return -1;
   }
 

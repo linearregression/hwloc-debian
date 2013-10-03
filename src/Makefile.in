@@ -357,6 +357,7 @@ sources = topology.c traversal.c topology-synthetic.c bind.c cpuset.c \
 	$(am__append_15)
 ldflags = $(am__append_5) $(am__append_7) $(am__append_9) \
 	$(am__append_13) $(am__append_14)
+@HWLOC_HAVE_WINDOWS_TRUE@LC_MESSAGES = C
 
 # Installable library
 libhwloc_la_SOURCES = $(sources)
@@ -732,6 +733,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-xmlDATA
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-xmlDATA
 
+@HWLOC_HAVE_WINDOWS_TRUE@export LC_MESSAGES
 
 @HWLOC_HAVE_MS_LIB_TRUE@@HWLOC_HAVE_WINDOWS_TRUE@.libs/libhwloc.lib: libhwloc.la dolib
 @HWLOC_HAVE_MS_LIB_TRUE@@HWLOC_HAVE_WINDOWS_TRUE@	./dolib "$(HWLOC_MS_LIB)" X86 .libs/libhwloc.def libhwloc-$(HWLOC_SOVERSION) .libs/libhwloc.lib

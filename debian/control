@@ -12,7 +12,7 @@ Build-Depends: debhelper (>= 7), autotools-dev, help2man, cdbs, libltdl-dev,
   hardening-wrapper
 Build-Depends-Indep: doxygen-latex, transfig
 Build-Conflicts: autoconf2.13
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Section: libs
 Homepage: http://www.open-mpi.org/projects/hwloc/
 Vcs-Git: http://github.com/open-mpi/hwloc-debian.git

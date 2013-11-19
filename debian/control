@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 7), autotools-dev, cdbs, libltdl-dev,
   hardening-wrapper
 Build-Conflicts: autoconf2.13
 Standards-Version: 3.9.5
-Section: contrib/misc
+Section: contrib/admin
 Homepage: http://www.open-mpi.org/projects/hwloc/
 Vcs-Git: http://github.com/open-mpi/hwloc-debian.git
 Vcs-Browser: http://github.com/open-mpi/hwloc-debian

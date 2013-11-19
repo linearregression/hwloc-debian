@@ -1,4 +1,4 @@
-.TH "CPU binding" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "CPU binding" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -51,7 +51,8 @@ The most portable version that should be preferred over the others, whenever pos
 .PP
 .PP
 .nf
-hwloc_set_cpubind(topology, set, 0),
+* hwloc_set_cpubind(topology, set, 0),
+* 
 .fi
 .PP
 .PP
@@ -59,7 +60,8 @@ as it just binds the current program, assuming it is single-threaded, or
 .PP
 .PP
 .nf
-hwloc_set_cpubind(topology, set, HWLOC_CPUBIND_THREAD),
+* hwloc_set_cpubind(topology, set, HWLOC_CPUBIND_THREAD),
+* 
 .fi
 .PP
 .PP

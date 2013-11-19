@@ -49,7 +49,7 @@ hwloc supports the following operating systems:
 <ul>
 <li>Linux (including old kernels not having sysfs topology
 information, with knowledge of cpusets, offline CPUs, ScaleMP vSMP,
-and Kerrighed support)</li>
+NumaScale NumaConnect, and Kerrighed support)</li>
 <li>Solaris</li>
 <li>AIX</li>
 <li>Darwin / OS X</li>
@@ -65,7 +65,7 @@ Since it uses standard Operating System information, hwloc's support is mostly
 independant from the processor type (x86, powerpc, ...) and just relies on the
 Operating System support. The only exception to this is kFreeBSD, which does
 not support topology information, and hwloc thus uses an x86-only CPUID-based
-backend (which can be used for other OSes too, see the \ref plugins "Components and plugins" section).
+backend (which can be used for other OSes too, see the \ref plugins section).
 
 To check whether hwloc works on a particular machine, just try to build it
 and run <tt>lstopo</tt> or <tt>lstopo-no-graphics</tt>. If some things do not look right
@@ -122,8 +122,8 @@ Nightly development snapshots are available on the web site.
 Additionally, the code can be directly checked out of Subversion:
 
 \verbatim
-shell$ svn checkout http://svn.open-mpi.org/svn/hwloc/trunk hwloc-trunk
-shell$ cd hwloc-trunk
+shell$ git clone https://github.com/open-mpi/hwloc.git
+shell$ cd hwloc
 shell$ ./autogen.sh
 \endverbatim
 
@@ -150,7 +150,7 @@ The hwloc core may also benefit from the following development packages:
 <li>libnuma for memory binding and migration support on Linux
     (<tt>numactl-devel</tt> or <tt>libnuma-dev</tt> package).
 </li>
-<li>hwloc can use one of two different libraries for I/O device
+<li>hwloc can use one of two different libraries for full I/O device
 discovery:
 <ol>
 <li>libpciaccess (BSD).  The relevant development package is usually
@@ -158,6 +158,8 @@ discovery:
 <li>libpci, from the pciutils package (GPL). The relevant development
 package is usually <tt>pciutils-devel</tt> or <tt>libpci-dev</tt>.  </li>
 </ol>
+On Linux, PCI discovery may still be performed
+even if none of the above libraries can be used.
 </li>
 
 <li>the AMD OpenCL implementation for OpenCL device discovery.
@@ -171,7 +173,7 @@ package is usually <tt>pciutils-devel</tt> or <tt>libpci-dev</tt>.  </li>
 <li>libxml2 for full XML import/export support (otherwise, the
     internal minimalistic parser will only be able to import
     XML files that were exported by the same hwloc release).
-    See \ref xml "Importing and exporting topologies from/to XML files" for details.
+    See \ref xml for details.
     The relevant development package is usually <tt>libxml2-devel</tt>
     or <tt>libxml2-dev</tt>.
 </li>
@@ -183,7 +185,7 @@ package is usually <tt>pciutils-devel</tt> or <tt>libpci-dev</tt>.  </li>
 
 PCI and XML support may be statically built inside the main hwloc
 library, or as separate dynamically-loaded plugins (see the
-\ref plugins "Components and plugins" section).
+\ref plugins section).
 
 Note that because of the possibility of GPL taint (remember that hwloc
 is BSD-licensed), hwloc's <tt>configure</tt> script will prefer
@@ -430,14 +432,15 @@ And the same output in XML (line breaks added, only PU #0 shown):
 
 \section interface Programming Interface
 
-The basic interface is available in hwloc.h.  It essentially offers
-low-level routines for advanced programmers that want to manually
-manipulate objects and follow links between them.  Documentation for
-everything in hwloc.h are provided later in this document.  Developers
-should also look at hwloc/helper.h (and also in this document, which
-provides good higher-level topology traversal examples).
+The basic interface is available in hwloc.h.
+Some higher-level functions are available in hwloc/helper.h to reduce
+the need to manually manipulate objects and follow links between them.
+Documentation for all these is provided later in this document.
+Developers may also want to look at hwloc/inlines.h which contains the
+actual inline code of some hwloc.h routines, and at this document,
+which provides good higher-level topology traversal examples.
 
-To precisely define the vocabulary used by hwloc, a \ref termsanddefs "Terms and Definitions"
+To precisely define the vocabulary used by hwloc, a \ref termsanddefs
 section is available and should probably be read first.  
 
 Each hwloc object contains a cpuset describing the list of processing
@@ -448,7 +451,7 @@ bitmap manipulation interface in hwloc/bitmap.h.
 
 Moreover, hwloc also comes with additional helpers for
 interoperability with several commonly used environments.
-See the \ref interoperability "Interoperability With Other Software" section for details.
+See the \ref interoperability section for details.
 
 The complete API documentation is available in a full set of HTML
 pages, man pages, and self-contained PDF files (formatted for both
@@ -591,7 +594,7 @@ shell$
 Questions should be sent to the devel mailing
 list (http://www.open-mpi.org/community/lists/hwloc.php).
 Bug reports should be reported in the tracker
-(https://svn.open-mpi.org/trac/hwloc/).
+(https://git.open-mpi.org/trac/hwloc/).
 
 If hwloc discovers an incorrect topology for your machine, the very
 first thing you should check is to ensure that you have the most
@@ -637,20 +640,20 @@ in favor of hwloc, which is distributed as an Open MPI sub-project.
 The documentation chapters include
 
 <ul>
-<li> \ref termsanddefs "Terms and Definitions"
-<li> \ref tools "Command-Line Tools"
-<li> \ref envvar "Environment Variables"
-<li> \ref cpu_mem_bind "CPU and Memory Binding Overview"
-<li> \ref iodevices "I/O Devices"
-<li> \ref multinode "Multi-node Topologies"
-<li> \ref attributes "Object Attributes"
-<li> \ref xml "Importing and exporting topologies from/to XML files"
-<li> \ref synthetic "Synthetic Topologies"
-<li> \ref interoperability "Interoperability With Other Software"
-<li> \ref threadsafety "Thread Safety"
-<li> \ref plugins "Components and plugins"
-<li> \ref embed "Embedding hwloc in Other Software"
-<li> \ref faq "Frequently Asked Questions"
+<li> \ref termsanddefs 
+<li> \ref tools
+<li> \ref envvar
+<li> \ref cpu_mem_bind
+<li> \ref iodevices
+<li> \ref multinode
+<li> \ref attributes
+<li> \ref xml
+<li> \ref synthetic
+<li> \ref interoperability
+<li> \ref threadsafety
+<li> \ref plugins
+<li> \ref embed
+<li> \ref faq
 </ul>
 
 Make sure to have had a look at those too!
@@ -661,8 +664,7 @@ Make sure to have had a look at those too!
 
 
 
-\page page_termsanddefs Terms and Definitions
-\anchor termsanddefs
+\page termsanddefs Terms and Definitions 
 
 <dl>
 
@@ -793,8 +795,7 @@ computed linearly by hwloc -- is not the same as the OS index.
 See also \ref faq_asymmetric for more details.
 
 
-\page page_tools Command-Line Tools 
-\anchor tools
+\page tools Command-Line Tools 
 
 hwloc comes with an extensive C programming interface and several
 command line utilities. Each of them is fully documented in its own
@@ -895,13 +896,26 @@ information (see \ref attributes_info for details).
 It reads an input topology from a XML file and outputs
 the annotated topology as another XML file.
 
+\section cli_hwloc_diffpatch hwloc-diff and hwloc-patch
+
+hwloc-diff computes the difference between two topologies
+and outputs it to another XML file.
+hwloc-patch reads such a difference file and applies to
+another topology.
+
+\section cli_hwloc_compressdir hwloc-compress-dir
+
+hwloc-compress-dir compresses an entire directory of XML
+files by using hwloc-diff to save the differences between
+topologies instead of entire topologies.
+
 \section cli_hwloc_assembler hwloc-assembler
 
 hwloc-assembler combines several XML topology files into a single
 multi-node XML topology.
 It may then be used later as input with hwloc_topology_set_xml()
 or with the HWLOC_XMLFILE environment variable.
-See \ref multinode "Multi-node Topologies" for details.
+See \ref multinode for details.
 
 \section cli_hwloc_assembler_remote hwloc-assembler-remote
 
@@ -913,8 +927,7 @@ assembling them with hwloc-assembler.
 
 
 
-\page page_envvar Environment Variables
-\anchor envvar
+\page envvar Environment Variables
 
 The behavior of the hwloc library and tools may be tuned thanks to the
 following environment variables.
@@ -929,19 +942,19 @@ following environment variables.
   return success.  To have hwloc still actually call OS-specific hooks,
   HWLOC_THISSYSTEM should be set 1 in the environment too, to assert that
   the loaded file is really the underlying system.
-  See also \ref xml "Importing and exporting topologies from/to XML files".
+  See also \ref xml.
   </dd>
 
 <dt>HWLOC_XML_VERBOSE=1</dt>
 <dt>HWLOC_SYNTHETIC_VERBOSE=1</dt>
   <dd>enables verbose messages in the XML or synthetic topology backends.
-  hwloc XML backends (see \ref xml "Importing and exporting topologies from/to XML files") can emit some error messages to
+  hwloc XML backends (see \ref xml) can emit some error messages to
   the error output stream.
   Enabling these verbose messages within hwloc can be useful for
   understanding failures to parse input XML topologies.
   Similarly, enabling verbose messages in the synthetic topology
   backend can help understand why the description string is invalid.
-  See also \ref synthetic "Synthetic Topologies".
+  See also \ref synthetic.
   </dd>
 
 <dt>HWLOC_FSROOT=/path/to/linux/filesystem-root/</dt>
@@ -1077,7 +1090,7 @@ following environment variables.
   This variable does not take precedence over the application
   selecting components with functions such as
   hwloc_topology_set_xml().
-  See \ref plugins "Components and plugins" for details.
+  See \ref plugins for details.
   </dd>
 
 <dt>HWLOC_COMPONENTS_VERBOSE=1</dt>
@@ -1118,8 +1131,7 @@ following environment variables.
 
 
 
-\page page_cpu_mem_bind CPU and Memory Binding Overview
-\anchor cpu_mem_bind
+\page cpu_mem_bind CPU and Memory Binding Overview
 
 Some operating systems do not systematically provide separate
 functions for CPU and memory binding.  This means that CPU binding
@@ -1177,8 +1189,7 @@ hwloc's API functions regarding CPU and memory binding, respectively.
 
 
 
-\page page_iodevices I/O Devices
-\anchor iodevices
+\page iodevices I/O Devices
 
 hwloc usually manipulates processing units and memory but it can also
 discover I/O devices and report their locality as well.
@@ -1194,11 +1205,15 @@ to hwloc_topology_set_flags() before loading the topology.
 
 Note that I/O discovery requires significant help from the operating system.
 The pciaccess library (the development package is usually <tt>libpciaccess-devel</tt>
-or <tt>libpciaccess-dev</tt>) is needed to detect PCI devices and bridges
+or <tt>libpciaccess-dev</tt>) is needed to fully detect PCI devices and bridges
 (libpci/pciutils may be used instead if a GPL dependency is acceptable),
 and the actual locality of these devices is only currently detected
 on Linux. Also, some operating systems require privileges for probing PCI
 devices, see \ref faq_privileged for details.
+
+On Linux, PCI discovery may still be performed even
+if neither <tt>libpciaccess</tt> nor <tt>pciutils</tt> can be used.
+But it misses PCI device names.
 
 \section iodevices_hierarchy I/O object hierarchy
 
@@ -1306,7 +1321,7 @@ hwloc cannot place any OS object inside PCI objects.
 Note that some PCI devices may contain multiple software devices
 (see the example below).
 
-See also \ref interoperability "Interoperability With Other Software" for managing these devices without
+See also \ref interoperability for managing these devices without
 considering them as hwloc objects.
 
 \section iodevices_consult Consulting I/O devices and binding
@@ -1407,8 +1422,7 @@ Machine (24GB)
 
 
 
-\page page_multinode Multi-node Topologies
-\anchor multinode
+\page multinode Multi-node Topologies
 
 hwloc is usually used for consulting and manipulating single machine
 topologies. This includes large systems as long as a single instance of
@@ -1490,7 +1504,7 @@ the HWLOC_XMLFILE environment variable.
 
 The hwloc-assembler and hwloc-assembler-remote utilities
 offer the ability to combine XML topologies or remote
-nodes' topologies (see \ref tools "Command-Line Tools").
+nodes' topologies (see \ref tools).
 
 \section multinode_interface Assembling topologies with the programming interface
 
@@ -1573,8 +1587,7 @@ hwloc_topology_load(global);
 
 
 
-\page page_attributes Object attributes
-\anchor attributes
+\page attributes Object attributes
 
 \section attributes_normal Normal attributes
 
@@ -1654,8 +1667,18 @@ object instead.
 <dt>NVIDIAUUID, NVIDIASerial (NVML GPU OS devices)</dt>
 <dd>The UUID and Serial of NVIDIA GPUs.
 </dd>
-<dt>MICFamily, MICSKU, MICSerialNumber, MICActiveCores, MICMemorySize</dt>
-<dd>The family, SKU (model), serial number,
+<dt>MICSerialNumber</dt>
+<dd>
+ The serial number of an Intel Xeon Phi (MIC) coprocessor.
+ When running hwloc on the host, each hwloc OS device object that
+ corresponds to a Xeon Phi gets such an attribute.
+ When running hwloc inside a Xeon Phi, the root object of the topology
+ gets this attribute.
+ It enables easy identification of devices and topologies when multiples
+ nodes and MICs are involved.
+</dd>
+<dt>MICFamily, MICSKU, MICActiveCores, MICMemorySize</dt>
+<dd>The family, SKU (model),
  number of active cores, and memory size (in kB)
  of an Intel Xeon Phi (MIC) coprocessor.
 </dd>
@@ -1677,11 +1700,20 @@ and GID #1 of port #3.
 </dd>
 </dl>
 
+Here is a non-exhaustive list of user-provided info attributes
+that have a special meaning:
+<dl>
+<dt>lstopoStyle</dt>
+<dd>Enforces the style of an object (background and text colors)
+ in the graphical output of lstopo.
+ See CUSTOM COLORS in the lstopo(1) manpage for details.
+</dd>
+</dl>
 
 
 
-\page page_xml Importing and exporting topologies from/to XML files
-\anchor xml
+
+\page xml Importing and exporting topologies from/to XML files
 
 hwloc offers the ability to export topologies to XML files and reload
 them later. This is for instance useful for loading topologies faster
@@ -1702,6 +1734,8 @@ topology may not correspond to the physical machine that loads it.
 This behavior may be reverted by asserting that loaded file really
 matches the underlying system with the HWLOC_THISSYSTEM environment
 variable or the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM topology flag.
+
+\note hwloc also offers the ability to export/import \ref hwlocality_diff.
 
 \note XML topology files are not localized. They use a dot as a
 decimal separator. Therefore any exported topology can be
@@ -1756,8 +1790,7 @@ and hwloc_topology_load() to handle all these errors.
 
 
 
-\page page_synthetic Synthetic topologies
-\anchor synthetic
+\page synthetic Synthetic topologies
 
 hwloc may load fake or remote topologies so as to consult them
 without having the underlying hardware available.
@@ -1852,8 +1885,7 @@ when using ::hwloc_topology_set_synthetic() manually).
 
 
 
-\page page_interoperability Interoperability With Other Software
-\anchor interoperability
+\page interoperability Interoperability With Other Software
 
 Although hwloc offers its own portable interface, it still may have to
 interoperate with specific or non-portable libraries that manipulate
@@ -1977,8 +2009,7 @@ enabled for the current topology.
 
 
 
-\page page_threadsafety Thread Safety
-\anchor threadsafety
+\page threadsafety Thread Safety
 
 Like most libraries that mainly fill data structures, hwloc is not
 thread safe but rather reentrant: all state is held in a
@@ -2038,8 +2069,7 @@ For reference, \ref hwloc_topology_t modification operations include
 
 
 
-\page page_plugins Components and plugins
-\anchor plugins
+\page plugins Components and plugins
 
 hwloc is organized in components that are responsible for discovering
 objects.
@@ -2160,7 +2190,7 @@ Components are then only enabled if the topology configuration
 requests it, as explained in the previous sections.
 
 Also note that plugins should carefully be enabled and used when
-embedding hwloc in another project, see \ref embed "Embedding hwloc in Other Software" for details.
+embedding hwloc in another project, see \ref embed for details.
 
 \section plugins_adding Adding new discovery components and plugins
 
@@ -2218,7 +2248,7 @@ they contain are registered to the hwloc core.
 All components distributed within hwloc are listed below.
 The list of actually available components may be listed
 at running with the <tt>HWLOC_COMPONENTS_VERBOSE</tt>
-environment variable (see \ref envvar "Environment Variables").
+environment variable (see \ref envvar).
 
 <dl>
 
@@ -2250,8 +2280,14 @@ environment variable (see \ref envvar "Environment Variables").
 <dd>
  PCI object discovery uses the external pciaccess library (aka libpciaccess),
  or optionally the pciutils library (libpci),
- see \ref iodevices "I/O Devices".
+ see \ref iodevices.
  <b>It may be built as a plugin</b>.
+</dd>
+<dt>linuxpci</dt>
+<dd>
+ This component can probe PCI devices on Linux without the help of external
+ libraries such as libpciaccess. Its priority is lower than the pci component
+ because it misses device names.
 </dd>
 <dt>opencl</dt>
 <dd>
@@ -2288,15 +2324,15 @@ environment variable (see \ref envvar "Environment Variables").
 </dd>
 <dt>synthetic</dt>
 <dd>
- Synthetic topology support (see \ref synthetic "Synthetic Topologies") is always built statically.
+ Synthetic topology support (see \ref synthetic) is always built statically.
 </dd>
 <dt>custom</dt>
 <dd>
- Custom topology support (see \ref multinode "Multi-node Topologies") is always built statically.
+ Custom topology support (see \ref multinode) is always built statically.
 </dd>
 <dt>xml</dt>
 <dd>
- XML topology import (see \ref xml "Importing and exporting topologies from/to XML files") is always built statically.
+ XML topology import (see \ref xml) is always built statically.
  It internally uses one of the XML backends (see \ref xml_backends).
  <ul>
  <li><b>xml_nolibxml</b> is a basic and hwloc-specific XML import/export.
@@ -2316,8 +2352,7 @@ environment variable (see \ref envvar "Environment Variables").
 
 
 
-\page page_embed Embedding hwloc in Other Software
-\anchor embed
+\page embed Embedding hwloc in Other Software
 
 It can be desirable to include hwloc in a larger software package (be
 sure to check out the LICENSE file) so that users don't have to
@@ -2496,8 +2531,7 @@ than any system-provided copy of hwloc.
 
 
 
-\page page_faq Frequently Asked Questions
-\anchor faq
+\page faq Frequently Asked Questions
 
 \section faq_xml I do not want hwloc to rediscover my enormous machine topology every time I rerun a process
 
@@ -2520,7 +2554,21 @@ files or calling multiple functions of the operating system.
 It is also possible to manipulate such XML files with the C programming
 interface, and the import/export may also be directed to memory buffer
 (that may for instance be transmitted between applications through a socket).
-See also \ref xml "Importing and exporting topologies from/to XML files".
+See also \ref xml.
+
+
+\section faq_diff How to avoid memory waste when manipulating multiple similar topologies?
+
+hwloc does not share information between topologies.
+If multiple similar topologies are loaded in memory, for instance
+the topologies of different identical nodes of a cluster,
+lots of information will be duplicated.
+
+hwloc/diff.h (see also \ref hwlocality_diff) offers the ability to
+compute topology differences, apply or unapply them, or export/import
+to/from XML.
+However this feature is limited to basic differences such as attribute changes.
+It does not support complex modifications such as adding or removing some objects.
 
 
 \section faq_slow_lstopo Why is lstopo slow?
@@ -2565,7 +2613,7 @@ and the entire PCI discovery on FreeBSD requires access to the
 To workaround this limitation, it is recommended to export the
 topology as a XML file generated by the administrator (with the
 lstopo program) and make it available to all users
-(see \ref xml "Importing and exporting topologies from/to XML files").
+(see \ref xml).
 It will offer all discovery information to any application without
 requiring any privileged access anymore.
 Only the necessary hardware characteristics will be exported, no
@@ -2705,7 +2753,7 @@ and <tt>hwloc_topology_set_userdata_import_callback()</tt>.
 Each object may also contain some <em>info</em> attributes
 (key name and value) that are setup by hwloc during discovery
 and that may be extended by the user with
-<tt>hwloc_obj_add_info()</tt> (see also \ref attributes "Object Attributes").
+<tt>hwloc_obj_add_info()</tt> (see also \ref attributes).
 Contrary to the <tt>userdata</tt> field which is unique, multiple info
 attributes may exist for each object, even with the same name.
 These attributes are always exported to XML.

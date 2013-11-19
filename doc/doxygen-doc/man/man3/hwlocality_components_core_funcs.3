@@ -1,8 +1,8 @@
-.TH "Core functions to be used by components" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Components and Plugins: Core functions to be used by components" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Core functions to be used by components \- 
+Components and Plugins: Core functions to be used by components \- 
 .SS "Typedefs"
 
 .in +1c
@@ -33,6 +33,24 @@ Core functions to be used by components \-
 .br
 \fBhwloc_obj\fP * \fBhwloc_alloc_setup_object\fP (\fBhwloc_obj_type_t\fP type, signed os_index)"
 .br
+.ti -1c
+.RI " int \fBhwloc_fill_object_sets\fP (\fBhwloc_obj_t\fP obj)"
+.br
+.ti -1c
+.RI " int \fBhwloc_insert_pci_device_list\fP (struct \fBhwloc_backend\fP *backend, struct \fBhwloc_obj\fP *first_obj)"
+.br
+.ti -1c
+.RI " unsigned \fBhwloc_pci_find_cap\fP (const unsigned char *config, unsigned cap)"
+.br
+.ti -1c
+.RI " int \fBhwloc_pci_find_linkspeed\fP (const unsigned char *config, unsigned offset, float *linkspeed)"
+.br
+.ti -1c
+.RI " int \fBhwloc_pci_prepare_bridge\fP (\fBhwloc_obj_t\fP obj, const unsigned char *config)"
+.br
+.ti -1c
+.RI "static inline int \fBhwloc_plugin_check_namespace\fP (const char *pluginname , const char *symbol )"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -53,6 +71,10 @@ Add an object to the topology and specify which error callback to use\&. Aside f
 
 .PP
 Allocate and initialize an object of the given type and physical index\&. 
+.SS " int hwloc_fill_object_sets (\fBhwloc_obj_t\fPobj)"
+
+.PP
+Setup object cpusets/nodesets by OR'ing its children\&. Used when adding an object late in the topology, after propagating sets up and down\&. The caller should use this after inserting by cpuset (which means the cpusets is already OK)\&. Typical case: PCI backend adding a hostbridge parent\&. 
 .SS " int hwloc_hide_errors (void)"
 
 .PP
@@ -79,6 +101,35 @@ Insert an object somewhere in the topology\&. It is added as the last child of t
 The given object may have children\&.
 .PP
 Remember to call topology_connect() afterwards to fix handy pointers\&. 
+.SS " int hwloc_insert_pci_device_list (struct \fBhwloc_backend\fP *backend, struct \fBhwloc_obj\fP *first_obj)"
+
+.PP
+Insert a list of PCI devices and bridges in the backend topology\&. Insert a list of objects (either PCI device or bridges) starting at first_obj (linked by next_sibling in the topology, and ending with NULL)\&. Objects are placed under the right bridges, and the remaining upstream bridges are then inserted in the topology by calling the get_obj_cpuset() callback to find their locality\&. 
+.SS " unsigned hwloc_pci_find_cap (const unsigned char *config, unsignedcap)"
+
+.PP
+Return the offset of the given capability in the PCI config space buffer\&. This function requires a 256-bytes config space\&. Unknown/unavailable bytes should be set to 0xff\&. 
+.SS " int hwloc_pci_find_linkspeed (const unsigned char *config, unsignedoffset, float *linkspeed)"
+
+.PP
+Fill linkspeed by reading the PCI config space where PCI_CAP_ID_EXP is at position offset\&. Needs 20 bytes of EXP capability block starting at offset in the config space for registers up to link status\&. 
+.SS " int hwloc_pci_prepare_bridge (\fBhwloc_obj_t\fPobj, const unsigned char *config)"
+
+.PP
+Modify the PCI device object into a bridge and fill its attribute if a bridge is found in the PCI config space\&. This function requires 64 bytes of common configuration header at the beginning of config\&. 
+.SS "static inline int hwloc_plugin_check_namespace (const char *pluginname, const char *symbol)\fC [static]\fP"
+
+.PP
+Make sure that plugins can lookup core symbols\&. This is a sanity check to avoid lazy-lookup failures when libhwloc is loaded within a plugin, and later tries to load its own plugins\&. This may fail (and abort the program) if libhwloc symbols are in a private namespace\&.
+.PP
+Plugins should call this function as an early sanity check to avoid later crashes if lazy symbol resolution is used by the upper layer that loaded hwloc (e\&.g\&. OpenCL implementations using dlopen with RTLD_LAZY)\&.
+.PP
+\fBNote:\fP
+.RS 4
+The build system must define HWLOC_INSIDE_PLUGIN if and only if building the caller as a plugin\&. 
+.RE
+.PP
+
 .SS " void hwloc_report_os_error (const char *msg, intline)"
 
 .PP

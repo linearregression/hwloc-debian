@@ -1,8 +1,8 @@
-.TH "OpenCL Specific Functions" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Interoperability with OpenCL" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-OpenCL Specific Functions \- 
+Interoperability with OpenCL \- 
 .SS "Functions"
 
 .in +1c
@@ -18,7 +18,9 @@ OpenCL Specific Functions \-
 .in -1c
 .SH "Detailed Description"
 .PP 
-
+This interface offers ways to retrieve topology information about OpenCL devices\&.
+.PP
+Only the AMD OpenCL interface currently offers useful locality information about its devices\&. 
 .SH "Function Documentation"
 .PP 
 .SS "static inline int hwloc_opencl_get_device_cpuset (\fBhwloc_topology_t\fP topology, cl_device_id device, \fBhwloc_cpuset_t\fPset)\fC [static]\fP"

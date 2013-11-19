@@ -1,8 +1,8 @@
-.TH "Helpers for manipulating glibc sched affinity" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Interoperability with glibc sched affinity" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Helpers for manipulating glibc sched affinity \- 
+Interoperability with glibc sched affinity \- 
 .SS "Functions"
 
 .in +1c
@@ -15,6 +15,13 @@ Helpers for manipulating glibc sched affinity \-
 .in -1c
 .SH "Detailed Description"
 .PP 
+This interface offers ways to convert between hwloc cpusets and glibc cpusets such as those manipulated by sched_getaffinity() or pthread_attr_setaffinity_np()\&.
+.PP
+\fBNote:\fP
+.RS 4
+Topology \fCtopology\fP must match the current machine\&. 
+.RE
+.PP
 
 .SH "Function Documentation"
 .PP 

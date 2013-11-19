@@ -1,4 +1,4 @@
-.TH "Building Custom Topologies" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Building Custom Topologies" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -27,7 +27,16 @@ Insert a new group object inside a custom topology\&. An object with type \fBHWL
 .PP
 The custom topology \fCnewtopology\fP must have been prepared with \fBhwloc_topology_set_custom()\fP and not loaded with \fBhwloc_topology_load()\fP yet\&.
 .PP
-\fCparent\fP may be either the root of \fCtopology\fP or an object that was added earlier through \fBhwloc_custom_insert_group_object_by_parent()\fP\&. 
+\fCparent\fP may be either the root of \fCtopology\fP or an object that was added earlier through \fBhwloc_custom_insert_group_object_by_parent()\fP\&.
+.PP
+\fBNote:\fP
+.RS 4
+The cpuset and nodeset of the new group object are NULL because these sets are meaningless when assembling multiple topologies\&.
+.PP
+The cpuset and nodeset of the \fCparent\fP object are not modified\&. 
+.RE
+.PP
+
 .SS " int hwloc_custom_insert_topology (\fBhwloc_topology_t\fPnewtopology, \fBhwloc_obj_t\fPnewparent, \fBhwloc_topology_t\fPoldtopology, \fBhwloc_obj_t\fPoldroot)"
 
 .PP
@@ -37,7 +46,14 @@ If \fColdroot\fP is not \fCNULL\fP, duplicate \fColdroot\fP and all its children
 .PP
 The custom topology \fCnewtopology\fP must have been prepared with \fBhwloc_topology_set_custom()\fP and not loaded with \fBhwloc_topology_load()\fP yet\&.
 .PP
-\fCnewparent\fP may be either the root of \fCnewtopology\fP or an object that was added through \fBhwloc_custom_insert_group_object_by_parent()\fP\&. 
+\fCnewparent\fP may be either the root of \fCnewtopology\fP or an object that was added through \fBhwloc_custom_insert_group_object_by_parent()\fP\&.
+.PP
+\fBNote:\fP
+.RS 4
+The cpuset and nodeset of the \fCnewparent\fP object are not modified based on the contents of \fColdtopology\fP\&. 
+.RE
+.PP
+
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Hardware Locality (hwloc) from the source code\&.

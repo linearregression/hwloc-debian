@@ -1,8 +1,8 @@
-.TH "Tinker With Topologies." 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Modifying a loaded Topology" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Tinker With Topologies. \- 
+Modifying a loaded Topology \- 
 .SS "Enumerations"
 
 .in +1c
@@ -21,6 +21,9 @@ Tinker With Topologies. \-
 .br
 .ti -1c
 .RI " int \fBhwloc_topology_restrict\fP (\fBhwloc_topology_t\fP restrict topology, \fBhwloc_const_cpuset_t\fP cpuset, unsigned long flags)"
+.br
+.ti -1c
+.RI " int \fBhwloc_topology_dup\fP (\fBhwloc_topology_t\fP *newtopology, \fBhwloc_topology_t\fP oldtopology)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -46,6 +49,12 @@ Move Misc objects to ancestors if their parents are removed during restriction\&
 Move I/O objects to ancestors if their parents are removed during restriction\&. If this flag is not set, I/O devices and bridges are removed when their parents are removed\&. 
 .SH "Function Documentation"
 .PP 
+.SS " int hwloc_topology_dup (\fBhwloc_topology_t\fP *newtopology, \fBhwloc_topology_t\fPoldtopology)"
+
+.PP
+Duplicate a topology\&. The entire topology structure as well as its objects are duplicated into a new one\&.
+.PP
+This is useful for keeping a backup while modifying a topology\&. 
 .SS " \fBhwloc_obj_t\fP hwloc_topology_insert_misc_object_by_cpuset (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPcpuset, const char *name)"
 
 .PP

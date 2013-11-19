@@ -1,4 +1,4 @@
-.TH "Memory binding" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Memory binding" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -62,12 +62,19 @@ Memory binding \-
 .RI " void * \fBhwloc_alloc_membind\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP policy, int flags) "
 .br
 .ti -1c
+.RI "static inline void * \fBhwloc_alloc_membind_policy_nodeset\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags) "
+.br
+.ti -1c
+.RI "static inline void * \fBhwloc_alloc_membind_policy\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_cpuset_t\fP set, \fBhwloc_membind_policy_t\fP policy, int flags) "
+.br
+.ti -1c
 .RI " int \fBhwloc_free\fP (\fBhwloc_topology_t\fP topology, void *addr, size_t len)"
 .br
 .in -1c
 .SH "Detailed Description"
 .PP 
 Memory binding can be done three ways:
+.PP
 .IP "\(bu" 2
 explicit memory allocation thanks to hwloc_alloc_membind and friends: the binding will have effect on the memory allocated by these functions\&.
 .IP "\(bu" 2
@@ -85,14 +92,15 @@ The most portable form that should be preferred over the others whenever possibl
 .PP
 .PP
 .nf
-hwloc_alloc_membind_policy(topology, size, set, 
-                           HWLOC_MEMBIND_DEFAULT, 0);
+* hwloc_alloc_membind_policy(topology, size, set, 
+*                            HWLOC_MEMBIND_DEFAULT, 0);
+* 
 .fi
 .PP
 .PP
 This will allocate some memory hopefully bound to the specified set\&. To do so, hwloc will possibly have to change the current memory binding policy in order to actually get the memory bound, if the OS does not provide any other way to simply allocate bound memory without changing the policy for all allocations\&. That is the difference with \fBhwloc_alloc_membind()\fP, which will never change the current memory binding policy\&. Note that since HWLOC_MEMBIND_STRICT was not specified, failures to bind will not be reported -- generally, only memory allocation failures will be reported (e\&.g\&., even a plain malloc() would have failed with ENOMEM)\&.
 .PP
-Each hwloc memory binding function is available in two forms: one that takes a CPU set argument and another that takes a NUMA memory node set argument (see \fBObject sets (hwloc_cpuset_t and hwloc_nodeset_t)\fP and \fBThe bitmap API\fP for a discussion of CPU sets and NUMA memory node sets)\&. The names of the latter form end with _nodeset\&. It is also possible to convert between CPU set and node set using \fBhwloc_cpuset_to_nodeset()\fP or \fBhwloc_cpuset_from_nodeset()\fP\&.
+Each hwloc memory binding function is available in two forms: one that takes a CPU set argument and another that takes a NUMA memory node set argument (see \fBObject Sets (hwloc_cpuset_t and hwloc_nodeset_t)\fP and \fBThe bitmap API\fP for a discussion of CPU sets and NUMA memory node sets)\&. The names of the latter form end with _nodeset\&. It is also possible to convert between CPU set and node set using \fBhwloc_cpuset_to_nodeset()\fP or \fBhwloc_cpuset_from_nodeset()\fP\&.
 .PP
 \fBNote:\fP
 .RS 4
@@ -217,6 +225,14 @@ The allocated memory should be freed with \fBhwloc_free()\fP\&.
 .RE
 .PP
 
+.SS "static inline void* hwloc_alloc_membind_policy (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_cpuset_t\fPset, \fBhwloc_membind_policy_t\fPpolicy, intflags)\fC [static]\fP"
+
+.PP
+Allocate some memory on the memory nodes near given cpuset \fCcpuset\fP\&. This is similar to hwloc_alloc_membind_policy_nodeset, but for a given cpuset\&. 
+.SS "static inline void* hwloc_alloc_membind_policy_nodeset (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)\fC [static]\fP"
+
+.PP
+Allocate some memory on the given nodeset \fCnodeset\fP\&. This is similar to hwloc_alloc_membind except that it is allowed to change the current memory binding policy, thus providing more binding support, at the expense of changing the current state\&. 
 .SS " int hwloc_free (\fBhwloc_topology_t\fPtopology, void *addr, size_tlen)"
 
 .PP

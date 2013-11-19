@@ -1,8 +1,8 @@
-.TH "Configure Topology Detection" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Detection Configuration and Query" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Configure Topology Detection \- 
+Topology Detection Configuration and Query \- 
 .SS "Data Structures"
 
 .in +1c
@@ -42,6 +42,9 @@ Configure Topology Detection \-
 .RI " int \fBhwloc_topology_set_flags\fP (\fBhwloc_topology_t\fP topology, unsigned long flags)"
 .br
 .ti -1c
+.RI " unsigned long \fBhwloc_topology_get_flags\fP (\fBhwloc_topology_t\fP topology)"
+.br
+.ti -1c
 .RI " int \fBhwloc_topology_set_pid\fP (\fBhwloc_topology_t\fP restrict topology, hwloc_pid_t pid)"
 .br
 .ti -1c
@@ -63,6 +66,9 @@ Configure Topology Detection \-
 .RI " int \fBhwloc_topology_set_distance_matrix\fP (\fBhwloc_topology_t\fP restrict topology, \fBhwloc_obj_type_t\fP type, unsigned nbobjs, unsigned *os_index, float *distances)"
 .br
 .ti -1c
+.RI " int \fBhwloc_topology_is_thissystem\fP (\fBhwloc_topology_t\fP restrict topology) "
+.br
+.ti -1c
 .RI " struct 
 .br
 \fBhwloc_topology_support\fP * \fBhwloc_topology_get_support\fP (\fBhwloc_topology_t\fP restrict topology)"
@@ -70,7 +76,7 @@ Configure Topology Detection \-
 .in -1c
 .SH "Detailed Description"
 .PP 
-These functions can optionally be called between \fBhwloc_topology_init()\fP and \fBhwloc_topology_load()\fP to configure how the detection should be performed, e\&.g\&. to ignore some objects types, define a synthetic topology, etc\&.
+Several functions can optionally be called between \fBhwloc_topology_init()\fP and \fBhwloc_topology_load()\fP to configure how the detection should be performed, e\&.g\&. to ignore some objects types, define a synthetic topology, etc\&.
 .PP
 If none of them is called, the default is to detect all the objects of the machine that the caller is allowed to access\&.
 .PP
@@ -108,6 +114,17 @@ Detect the whole PCI hierarchy\&. This flag enables detection of all I/O devices
 Detect instruction caches\&. This flag enables detection of Instruction caches, instead of only Data and Unified caches\&. 
 .SH "Function Documentation"
 .PP 
+.SS " unsigned long hwloc_topology_get_flags (\fBhwloc_topology_t\fPtopology)"
+
+.PP
+Get OR'ed flags of a topology\&. Get the OR'ed set of \fBhwloc_topology_flags_e\fP of a topology\&.
+.PP
+\fBReturns:\fP
+.RS 4
+the flags previously set with \fBhwloc_topology_set_flags()\fP\&. 
+.RE
+.PP
+
 .SS " struct \fBhwloc_topology_support\fP* hwloc_topology_get_support (\fBhwloc_topology_t\fP restricttopology)"
 
 .PP
@@ -124,6 +141,19 @@ Ignore an object type\&. Ignore all objects from the given type\&. The bottom-le
 
 .PP
 Ignore an object type if it does not bring any structure\&. Ignore all objects from the given type as long as they do not bring any structure: Each ignored object should have a single children or be the only child of its parent\&. The bottom-level type HWLOC_OBJ_PU may not be ignored\&. I/O objects may not be ignored, topology flags should be used to configure their discovery instead\&. 
+.SS " int hwloc_topology_is_thissystem (\fBhwloc_topology_t\fP restricttopology)"
+
+.PP
+Does the topology context come from this system? 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if this topology context was built using the system running this program\&. 
+.PP
+0 instead (for instance if using another file-system root, a XML topology file, or a synthetic topology)\&. 
+.RE
+.PP
+
 .SS " int hwloc_topology_set_custom (\fBhwloc_topology_t\fPtopology)"
 
 .PP
@@ -132,6 +162,8 @@ Prepare the topology for custom assembly\&. The topology then contains a single 
 \fBNote:\fP
 .RS 4
 If nothing is inserted in the topology, \fBhwloc_topology_load()\fP will fail with errno set to EINVAL\&.
+.PP
+The cpuset and nodeset of the root object are NULL because these sets are meaningless when assembling multiple topologies\&.
 .PP
 On success, the custom component replaces the previously enabled component (if any), but the topology is not actually modified until \fBhwloc_topology_load()\fP\&. 
 .RE
@@ -196,7 +228,7 @@ Change which pid the topology is viewed from\&. On some systems, processes may h
 .SS " int hwloc_topology_set_synthetic (\fBhwloc_topology_t\fP restricttopology, const char *restrictdescription)"
 
 .PP
-Enable synthetic topology\&. Gather topology information from the given \fCdescription\fP, a space-separated string of numbers describing the arity of each level\&. Each number may be prefixed with a type and a colon to enforce the type of a level\&. If only some level types are enforced, hwloc will try to choose the other types according to usual topologies, but it may fail and you may have to specify more level types manually\&. See also the \fBsynthetic\fP\&.
+Enable synthetic topology\&. Gather topology information from the given \fCdescription\fP, a space-separated string of numbers describing the arity of each level\&. Each number may be prefixed with a type and a colon to enforce the type of a level\&. If only some level types are enforced, hwloc will try to choose the other types according to usual topologies, but it may fail and you may have to specify more level types manually\&. See also the \fBSynthetic topologies\fP\&.
 .PP
 If \fCdescription\fP was properly parsed and describes a valid topology configuration, this function returns 0\&. Otherwise -1 is returned and errno is set to EINVAL\&.
 .PP

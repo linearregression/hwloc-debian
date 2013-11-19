@@ -1,8 +1,8 @@
-.TH "OpenGL display specific functions" 3 "Tue Sep 3 2013" "Version 1.7.2" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Interoperability with OpenGL displays" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-OpenGL display specific functions \- 
+Interoperability with OpenGL displays \- 
 .SS "Functions"
 
 .in +1c
@@ -18,7 +18,9 @@ OpenGL display specific functions \-
 .in -1c
 .SH "Detailed Description"
 .PP 
-
+This interface offers ways to retrieve topology information about OpenGL displays\&.
+.PP
+Only the NVIDIA display locality information is currently available, using the NV-CONTROL X11 extension and the NVCtrl library\&. 
 .SH "Function Documentation"
 .PP 
 .SS "static inline int hwloc_gl_get_display_by_osdev (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fPosdev, unsigned *port, unsigned *device)\fC [static]\fP"

@@ -17,15 +17,15 @@ reverted:
          hwloc/bitmap.h \
 +        hwloc/cpuset.h \
          hwloc/helper.h \
-         hwloc/myriexpress.h \
-         hwloc/openfabrics-verbs.h \
+         hwloc/inlines.h \
+         hwloc/diff.h \
 --- /dev/null
 +++ b/include/hwloc/cpuset.h
 @@ -0,0 +1,75 @@
 +/*
 + * Copyright © 2009 CNRS
 + * Copyright © 2009-2010 inria.  All rights reserved.
-+ * Copyright © 2009-2010 Université Bordeaux 1
++ * Copyright © 2009-2010, 2013 Université Bordeaux 1
 + * Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.
 + * See COPYING in top-level directory.
 + */
@@ -278,15 +278,15 @@ reverted:
  	"$(DESTDIR)$(include_hwloc_autogendir)"
 -am__include_hwloc_HEADERS_DIST = hwloc/bitmap.h hwloc/helper.h \
 +am__include_hwloc_HEADERS_DIST = hwloc/bitmap.h hwloc/cpuset.h hwloc/helper.h \
- 	hwloc/myriexpress.h hwloc/openfabrics-verbs.h hwloc/opencl.h \
- 	hwloc/cuda.h hwloc/cudart.h hwloc/nvml.h hwloc/plugins.h \
- 	hwloc/gl.h hwloc/intel-mic.h hwloc/rename.h hwloc/linux.h \
+ 	hwloc/inlines.h hwloc/diff.h hwloc/myriexpress.h \
+ 	hwloc/openfabrics-verbs.h hwloc/opencl.h hwloc/cuda.h \
+ 	hwloc/cudart.h hwloc/nvml.h hwloc/plugins.h hwloc/gl.h \
 @@ -378,7 +378,7 @@ top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
  @HWLOC_BUILD_STANDALONE_TRUE@include_HEADERS = hwloc.h
  @HWLOC_BUILD_STANDALONE_TRUE@include_hwlocdir = $(includedir)/hwloc
 -@HWLOC_BUILD_STANDALONE_TRUE@include_hwloc_HEADERS = hwloc/bitmap.h \
 +@HWLOC_BUILD_STANDALONE_TRUE@include_hwloc_HEADERS = hwloc/bitmap.h hwloc/cpuset.h \
- @HWLOC_BUILD_STANDALONE_TRUE@	hwloc/helper.h \
- @HWLOC_BUILD_STANDALONE_TRUE@	hwloc/myriexpress.h \
+ @HWLOC_BUILD_STANDALONE_TRUE@	hwloc/helper.h hwloc/inlines.h \
+ @HWLOC_BUILD_STANDALONE_TRUE@	hwloc/diff.h hwloc/myriexpress.h \
  @HWLOC_BUILD_STANDALONE_TRUE@	hwloc/openfabrics-verbs.h \

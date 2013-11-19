@@ -9,11 +9,11 @@ Build-Depends: debhelper (>= 7), autotools-dev, cdbs, libltdl-dev,
   dpkg-dev (>= 1.16),
   hardening-wrapper
 Build-Conflicts: autoconf2.13
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Section: contrib/misc
 Homepage: http://www.open-mpi.org/projects/hwloc/
-Vcs-Svn: http://svn.open-mpi.org/svn/hwloc/debian/contrib
-Vcs-Browser: http://svn.open-mpi.org/svn/hwloc/debian/contrib
+Vcs-Git: http://github.com/open-mpi/hwloc-debian.git
+Vcs-Browser: http://github.com/open-mpi/hwloc-debian
 
 Package: libhwloc-contrib-plugins
 Architecture: any

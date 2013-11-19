@@ -1,4 +1,12 @@
-hwloc-contrib (1.7.2-2) unstable; urgency=low
+hwloc-contrib (1.8-1) unstable; urgency=low
+
+  * New upstream release.
+  * control: Update debian packaging VCS URL.
+  * Bump Standards-Version to 3.9.5 (no changes).
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 19 Nov 2013 13:59:51 +0100
+
+hwloc (1.7.2-1) unstable; urgency=low
 
   * New upstream release.
   * Add ocl-icd-opencl-dev and opencl-headers build-dependencies to build opencl

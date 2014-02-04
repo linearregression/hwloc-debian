@@ -141,7 +141,6 @@ $(DOX_TAG): $(BUILT_SOURCES) $(dox_inputs) $(PREBUILT_IMAGES)
 	$(DOXYGEN) $(DOX_CONFIG)
 	-$(RENAME_SED) \
 		$(DOX_DIR)/html/*.html $(DOX_DIR)/latex/*.tex $(DOX_DIR)/man/man3/*.3
-	-$(SED_I) -e 's@\\hyperlink{a[0-9]\{5\}_source}{@\\textbf{@g' $(DOX_DIR)/latex/*.tex
 	@echo "Work-around spurious leading _ in doxygen filenames..."
 	-(cd $(DOX_DIR)/man/man3 ; \
 	for i in _hwloc* ; do \

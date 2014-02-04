@@ -1,4 +1,4 @@
-.TH "Memory binding" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Memory binding" 3 "Tue Feb 4 2014" "Version 1.8.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -92,9 +92,8 @@ The most portable form that should be preferred over the others whenever possibl
 .PP
 .PP
 .nf
-* hwloc_alloc_membind_policy(topology, size, set, 
-*                            HWLOC_MEMBIND_DEFAULT, 0);
-* 
+hwloc_alloc_membind_policy(topology, size, set, 
+                           HWLOC_MEMBIND_DEFAULT, 0);
 .fi
 .PP
 .PP

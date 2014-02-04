@@ -17,6 +17,19 @@ bug fixes (and other actions) for each version of hwloc since version
 in v0.9.1).
 
 
+Version 1.8.1
+-------------
+* Fix the cpuid code on Windows 64bits so that the x86 backend gets
+  enabled as expected and can populate CPU information.
+  Thanks to Robin Scher for reporting the problem.
+* Add CPUVendor/CPUModelNumber/CPUFamilyNumber attributes when running
+  on x86 architecture. Thanks to Ralph Castain for the suggestion.
+* Work around buggy BIOS reporting duplicate NUMA nodes on Linux.
+  Thanks to Jeff Becker for reporting the problem and testing the patch.
+* Add a name to the lstopo graphical window. Thanks to Michael Prokop
+  for reporting the issue.
+
+
 Version 1.8.0
 -------------
 * New components
@@ -330,7 +343,7 @@ Version 1.5.0
     - Packagers splitting lstopo and lstopo-no-graphics into different
       packages are advised to use the alternatives system so that lstopo
       points to the best available binary.
-  + Instruction caches are enabled in lstopo by default. User --no-icaches
+  + Instruction caches are enabled in lstopo by default. Use --no-icaches
     to disable them.
   + Add -t/--threads to show threads in hwloc-ps.
 * Removal of obsolete components
@@ -398,7 +411,7 @@ Version 1.4.1
 * Fix helpers converting from Linux libnuma to hwloc (hwloc/linux-libnuma.h)
   in case of out-of-order NUMA node ids.
 * Fix some overzealous assertions in the distance grouping code.
-* Workaround BIOS reporting empty I/O locality in cuda and openfabrics
+* Workaround BIOS reporting empty I/O locality in CUDA and OpenFabrics
   helpers on Linux. Thanks to Albert Solernou for reporting the problem.
 * Install a valgrind suppressions file hwloc-valgrind.supp (see the FAQ).
 * Fix memory binding documentation. Thanks to Karl Napf for reporting the

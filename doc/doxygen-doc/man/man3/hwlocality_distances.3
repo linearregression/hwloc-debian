@@ -1,4 +1,4 @@
-.TH "Manipulating Distances" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Manipulating Distances" 3 "Tue Feb 4 2014" "Version 1.8.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -7,19 +7,19 @@ Manipulating Distances \-
 
 .in +1c
 .ti -1c
-.RI "static inline struct 
+.RI "static inline const 
 .br
-\fBhwloc_distances_s\fP * \fBhwloc_get_whole_distance_matrix_by_depth\fP (\fBhwloc_topology_t\fP topology, unsigned depth)"
-.br
-.ti -1c
-.RI "static inline struct 
-.br
-\fBhwloc_distances_s\fP * \fBhwloc_get_whole_distance_matrix_by_type\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_type_t\fP type)"
+struct \fBhwloc_distances_s\fP * \fBhwloc_get_whole_distance_matrix_by_depth\fP (\fBhwloc_topology_t\fP topology, unsigned depth)"
 .br
 .ti -1c
-.RI "static inline struct 
+.RI "static inline const 
 .br
-\fBhwloc_distances_s\fP * \fBhwloc_get_distance_matrix_covering_obj_by_depth\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fP obj, unsigned depth, unsigned *firstp)"
+struct \fBhwloc_distances_s\fP * \fBhwloc_get_whole_distance_matrix_by_type\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_type_t\fP type)"
+.br
+.ti -1c
+.RI "static inline const 
+.br
+struct \fBhwloc_distances_s\fP * \fBhwloc_get_distance_matrix_covering_obj_by_depth\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fP obj, unsigned depth, unsigned *firstp)"
 .br
 .ti -1c
 .RI "static inline int \fBhwloc_get_latency\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fP obj1, \fBhwloc_obj_t\fP obj2, float *latency, float *reverse_latency)"
@@ -30,7 +30,7 @@ Manipulating Distances \-
 
 .SH "Function Documentation"
 .PP 
-.SS "static inline struct \fBhwloc_distances_s\fP* hwloc_get_distance_matrix_covering_obj_by_depth (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPobj, unsigneddepth, unsigned *firstp)\fC [static]\fP"
+.SS "static inline const struct \fBhwloc_distances_s\fP* hwloc_get_distance_matrix_covering_obj_by_depth (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_t\fPobj, unsigneddepth, unsigned *firstp)\fC [static]\fP"
 
 .PP
 Get distances for the given depth and covering some objects\&. Return a distance matrix that describes depth \fCdepth\fP and covers at least object \fCobj\fP and all its children\&.
@@ -53,7 +53,7 @@ Get the latency in both directions between two objects\&. Look at ancestor objec
 .RE
 .PP
 
-.SS "static inline struct \fBhwloc_distances_s\fP* hwloc_get_whole_distance_matrix_by_depth (\fBhwloc_topology_t\fPtopology, unsigneddepth)\fC [static]\fP"
+.SS "static inline const struct \fBhwloc_distances_s\fP* hwloc_get_whole_distance_matrix_by_depth (\fBhwloc_topology_t\fPtopology, unsigneddepth)\fC [static]\fP"
 
 .PP
 Get the distances between all objects at the given depth\&. 
@@ -78,7 +78,7 @@ The returned structure belongs to the hwloc library\&. The caller should not mod
 .RE
 .PP
 
-.SS "static inline struct \fBhwloc_distances_s\fP* hwloc_get_whole_distance_matrix_by_type (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_type_t\fPtype)\fC [static]\fP"
+.SS "static inline const struct \fBhwloc_distances_s\fP* hwloc_get_whole_distance_matrix_by_type (\fBhwloc_topology_t\fPtopology, \fBhwloc_obj_type_t\fPtype)\fC [static]\fP"
 
 .PP
 Get the distances between all objects of a given type\&. 

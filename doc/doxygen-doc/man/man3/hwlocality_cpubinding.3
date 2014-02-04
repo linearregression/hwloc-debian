@@ -1,4 +1,4 @@
-.TH "CPU binding" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "CPU binding" 3 "Tue Feb 4 2014" "Version 1.8.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -51,8 +51,7 @@ The most portable version that should be preferred over the others, whenever pos
 .PP
 .PP
 .nf
-* hwloc_set_cpubind(topology, set, 0),
-* 
+hwloc_set_cpubind(topology, set, 0),
 .fi
 .PP
 .PP
@@ -60,8 +59,7 @@ as it just binds the current program, assuming it is single-threaded, or
 .PP
 .PP
 .nf
-* hwloc_set_cpubind(topology, set, HWLOC_CPUBIND_THREAD),
-* 
+hwloc_set_cpubind(topology, set, HWLOC_CPUBIND_THREAD),
 .fi
 .PP
 .PP
@@ -142,9 +140,9 @@ Get the current physical binding of process \fCpid\fP\&.
 .RS 4
 \fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms\&.
 .PP
-HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP\&.
+As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID) and HWLOC_CPUBIND_THREAD is passed in flags, the binding for that specific thread is returned\&.
 .PP
-As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID), the binding for that specific thread is returned\&. 
+On non-Linux systems, HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP\&. 
 .RE
 .PP
 
@@ -157,7 +155,9 @@ Get the last physical CPU where a process ran\&. The operating system may move s
 .RS 4
 \fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms\&.
 .PP
-As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID) and HWLOC_CPUBIND_THREAD is passed in flags, the binding for that specific thread is returned\&. 
+As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID) and HWLOC_CPUBIND_THREAD is passed in flags, the last CPU location of that specific thread is returned\&.
+.PP
+On non-Linux systems, HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP\&. 
 .RE
 .PP
 
@@ -196,7 +196,9 @@ Bind a process \fCpid\fP on cpus given in physical bitmap \fCset\fP\&.
 .RS 4
 \fChwloc_pid_t\fP is \fCpid_t\fP on Unix platforms, and \fCHANDLE\fP on native Windows platforms\&.
 .PP
-HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP\&. 
+As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID) and HWLOC_CPUBIND_THREAD is passed in flags, the binding is applied to that specific thread\&.
+.PP
+On non-Linux systems, HWLOC_CPUBIND_THREAD can not be used in \fCflags\fP\&. 
 .RE
 .PP
 

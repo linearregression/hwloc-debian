@@ -1,4 +1,4 @@
-.TH "Topology Detection Configuration and Query" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Detection Configuration and Query" 3 "Tue Feb 4 2014" "Version 1.8.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -69,7 +69,7 @@ Topology Detection Configuration and Query \-
 .RI " int \fBhwloc_topology_is_thissystem\fP (\fBhwloc_topology_t\fP restrict topology) "
 .br
 .ti -1c
-.RI " struct 
+.RI " const struct 
 .br
 \fBhwloc_topology_support\fP * \fBhwloc_topology_get_support\fP (\fBhwloc_topology_t\fP restrict topology)"
 .br
@@ -125,7 +125,7 @@ the flags previously set with \fBhwloc_topology_set_flags()\fP\&.
 .RE
 .PP
 
-.SS " struct \fBhwloc_topology_support\fP* hwloc_topology_get_support (\fBhwloc_topology_t\fP restricttopology)"
+.SS " const struct \fBhwloc_topology_support\fP* hwloc_topology_get_support (\fBhwloc_topology_t\fP restricttopology)"
 
 .PP
 Retrieve the topology support\&. 

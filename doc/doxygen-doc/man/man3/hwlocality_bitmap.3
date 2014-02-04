@@ -1,4 +1,4 @@
-.TH "The bitmap API" 3 "Mon Nov 18 2013" "Version 1.8" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "The bitmap API" 3 "Tue Feb 4 2014" "Version 1.8.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -20,7 +20,9 @@ The bitmap API \-
 .RI "typedef struct hwloc_bitmap_s * \fBhwloc_bitmap_t\fP"
 .br
 .ti -1c
-.RI "typedef struct hwloc_bitmap_s * \fBhwloc_const_bitmap_t\fP"
+.RI "typedef const struct 
+.br
+hwloc_bitmap_s * \fBhwloc_const_bitmap_t\fP"
 .br
 .in -1c
 .SS "Functions"
@@ -195,7 +197,7 @@ The assert prevents the loop from being infinite if the bitmap is infinite\&.
 
 .PP
 Set of bits represented as an opaque pointer to an internal bitmap\&. 
-.SS "typedef struct hwloc_bitmap_s* \fBhwloc_const_bitmap_t\fP"
+.SS "typedef const struct hwloc_bitmap_s* \fBhwloc_const_bitmap_t\fP"
 
 .PP
 a non-modifiable \fBhwloc_bitmap_t\fP 

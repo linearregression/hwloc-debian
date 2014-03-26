@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.8.1</span>
+   &#160;<span id="projectnumber">1.9</span>
    </div>
   </td>
  </tr>
@@ -104,8 +104,8 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gabd7da4f4ea12b420b8ecbde458b27805"><td class="memItemLeft" align="right" valign="top"> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#gabd7da4f4ea12b420b8ecbde458b27805">hwloc_compare_types</a> (<a class="el" href="a00074.html#gacd37bb612667dc437d66bfb175a8dc55">hwloc_obj_type_t</a> type1, <a class="el" href="a00074.html#gacd37bb612667dc437d66bfb175a8dc55">hwloc_obj_type_t</a> type2) </td></tr>
-<tr class="separator:gabd7da4f4ea12b420b8ecbde458b27805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1820ea0dfd8e9dca28f9ea7624df5ae2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html#ga1820ea0dfd8e9dca28f9ea7624df5ae2">hwloc_compare_types</a> (<a class="el" href="a00074.html#gacd37bb612667dc437d66bfb175a8dc55">hwloc_obj_type_t</a> type1, <a class="el" href="a00074.html#gacd37bb612667dc437d66bfb175a8dc55">hwloc_obj_type_t</a> type2)</td></tr>
+<tr class="separator:ga1820ea0dfd8e9dca28f9ea7624df5ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -261,7 +261,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Type of topology object. </p>
-<dl class="section note"><dt>Note</dt><dd>Do not rely on the ordering or completeness of the values as new ones may be defined in the future! If you need to compare types, use <a class="el" href="a00074.html#gabd7da4f4ea12b420b8ecbde458b27805" title="Compare the depth of two object types. ">hwloc_compare_types()</a> instead. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Do not rely on the ordering or completeness of the values as new ones may be defined in the future! If you need to compare types, use <a class="el" href="a00074.html#ga1820ea0dfd8e9dca28f9ea7624df5ae2" title="Compare the depth of two object types. ">hwloc_compare_types()</a> instead. </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ggacd37bb612667dc437d66bfb175a8dc55a3aa1b842d1fd4207ebce171f95a244ec"></a>HWLOC_OBJ_SYSTEM</em>&#160;</td><td class="fielddoc">
 <p>Whole system (may be a cluster of machines). The whole system that is accessible to hwloc. That may comprise several machines in SSI systems like Kerrighed. </p>
@@ -293,13 +293,13 @@ Functions</h2></td></tr>
 <p>Miscellaneous objects. Objects without particular meaning, that can e.g. be added by the application for its own use. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ggacd37bb612667dc437d66bfb175a8dc55a6825f10895fea60aca7a6ba9fe273db0"></a>HWLOC_OBJ_BRIDGE</em>&#160;</td><td class="fielddoc">
-<p>Bridge. Any bridge that connects the host or an I/O bus, to another I/O bus. Bridge objects have neither CPU sets nor node sets. They are not added to the topology unless I/O discovery is enabled with <a class="el" href="a00077.html#ga6d11e53db143ac39c32cdb3912b71f99" title="Set OR&#39;ed flags to non-yet-loaded topology. ">hwloc_topology_set_flags()</a>. </p>
+<p>Bridge. Any bridge that connects the host or an I/O bus, to another I/O bus. Bridge objects have neither CPU sets nor node sets. They are not added to the topology unless I/O discovery is enabled with <a class="el" href="a00077.html#gaaeed4df656979e5f16befea9d29b814b" title="Set OR&#39;ed flags to non-yet-loaded topology. ">hwloc_topology_set_flags()</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ggacd37bb612667dc437d66bfb175a8dc55a5d8117a54df1fbd3606ab19e42cb0ea9"></a>HWLOC_OBJ_PCI_DEVICE</em>&#160;</td><td class="fielddoc">
-<p>PCI device. These objects have neither CPU sets nor node sets. They are not added to the topology unless I/O discovery is enabled with <a class="el" href="a00077.html#ga6d11e53db143ac39c32cdb3912b71f99" title="Set OR&#39;ed flags to non-yet-loaded topology. ">hwloc_topology_set_flags()</a>. </p>
+<p>PCI device. These objects have neither CPU sets nor node sets. They are not added to the topology unless I/O discovery is enabled with <a class="el" href="a00077.html#gaaeed4df656979e5f16befea9d29b814b" title="Set OR&#39;ed flags to non-yet-loaded topology. ">hwloc_topology_set_flags()</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ggacd37bb612667dc437d66bfb175a8dc55a51e7280240fd9f25589cbbe538bdb075"></a>HWLOC_OBJ_OS_DEVICE</em>&#160;</td><td class="fielddoc">
-<p>Operating system device. These objects have neither CPU sets nor node sets. They are not added to the topology unless I/O discovery is enabled with <a class="el" href="a00077.html#ga6d11e53db143ac39c32cdb3912b71f99" title="Set OR&#39;ed flags to non-yet-loaded topology. ">hwloc_topology_set_flags()</a>. </p>
+<p>Operating system device. These objects have neither CPU sets nor node sets. They are not added to the topology unless I/O discovery is enabled with <a class="el" href="a00077.html#gaaeed4df656979e5f16befea9d29b814b" title="Set OR&#39;ed flags to non-yet-loaded topology. ">hwloc_topology_set_flags()</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ggacd37bb612667dc437d66bfb175a8dc55addb5f843e1812445a84e6b2a844b1ebc"></a>HWLOC_OBJ_TYPE_MAX</em>&#160;</td><td class="fielddoc">
 <p>Sentinel value </p>
@@ -309,12 +309,12 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="gabd7da4f4ea12b420b8ecbde458b27805"></a>
+<a class="anchor" id="ga1820ea0dfd8e9dca28f9ea7624df5ae2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"> int hwloc_compare_types </td>
+          <td class="memname">int hwloc_compare_types </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="a00074.html#gacd37bb612667dc437d66bfb175a8dc55">hwloc_obj_type_t</a>&#160;</td>
           <td class="paramname"><em>type1</em>, </td>
@@ -328,7 +328,7 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> const</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -344,7 +344,7 @@ This does not mean that the actual topology will respect that order: e.g. as of 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 4 2014 13:13:18 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 26 2014 11:09:47 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

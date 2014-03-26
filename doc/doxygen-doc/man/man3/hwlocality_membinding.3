@@ -1,4 +1,4 @@
-.TH "Memory binding" 3 "Tue Feb 4 2014" "Version 1.8.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Memory binding" 3 "Wed Mar 26 2014" "Version 1.9" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,58 +17,58 @@ Memory binding \-
 
 .in +1c
 .ti -1c
-.RI " int \fBhwloc_set_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags)"
+.RI "int \fBhwloc_set_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_set_membind\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_const_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP policy, int flags)"
+.RI "int \fBhwloc_set_membind\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_const_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_get_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
+.RI "int \fBhwloc_get_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_get_membind\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
+.RI "int \fBhwloc_get_membind\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_set_proc_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags)"
+.RI "int \fBhwloc_set_proc_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_set_proc_membind\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_const_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP policy, int flags)"
+.RI "int \fBhwloc_set_proc_membind\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_const_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_get_proc_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
+.RI "int \fBhwloc_get_proc_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_get_proc_membind\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
+.RI "int \fBhwloc_get_proc_membind\fP (\fBhwloc_topology_t\fP topology, hwloc_pid_t pid, \fBhwloc_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_set_area_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, const void *addr, size_t len, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags)"
+.RI "int \fBhwloc_set_area_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, const void *addr, size_t len, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_set_area_membind\fP (\fBhwloc_topology_t\fP topology, const void *addr, size_t len, \fBhwloc_const_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP policy, int flags)"
+.RI "int \fBhwloc_set_area_membind\fP (\fBhwloc_topology_t\fP topology, const void *addr, size_t len, \fBhwloc_const_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_get_area_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, const void *addr, size_t len, \fBhwloc_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
+.RI "int \fBhwloc_get_area_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, const void *addr, size_t len, \fBhwloc_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_get_area_membind\fP (\fBhwloc_topology_t\fP topology, const void *addr, size_t len, \fBhwloc_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
+.RI "int \fBhwloc_get_area_membind\fP (\fBhwloc_topology_t\fP topology, const void *addr, size_t len, \fBhwloc_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP *policy, int flags)"
 .br
 .ti -1c
-.RI " void * \fBhwloc_alloc\fP (\fBhwloc_topology_t\fP topology, size_t len)"
+.RI "void * \fBhwloc_alloc\fP (\fBhwloc_topology_t\fP topology, size_t len)"
 .br
 .ti -1c
-.RI " void * \fBhwloc_alloc_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags) "
+.RI "void * \fBhwloc_alloc_membind_nodeset\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags)"
 .br
 .ti -1c
-.RI " void * \fBhwloc_alloc_membind\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP policy, int flags) "
+.RI "void * \fBhwloc_alloc_membind\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_cpuset_t\fP cpuset, \fBhwloc_membind_policy_t\fP policy, int flags)"
 .br
 .ti -1c
-.RI "static inline void * \fBhwloc_alloc_membind_policy_nodeset\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags) "
+.RI "static void * \fBhwloc_alloc_membind_policy_nodeset\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags)"
 .br
 .ti -1c
-.RI "static inline void * \fBhwloc_alloc_membind_policy\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_cpuset_t\fP set, \fBhwloc_membind_policy_t\fP policy, int flags) "
+.RI "static void * \fBhwloc_alloc_membind_policy\fP (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_cpuset_t\fP set, \fBhwloc_membind_policy_t\fP policy, int flags)"
 .br
 .ti -1c
-.RI " int \fBhwloc_free\fP (\fBhwloc_topology_t\fP topology, void *addr, size_t len)"
+.RI "int \fBhwloc_free\fP (\fBhwloc_topology_t\fP topology, void *addr, size_t len)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -177,7 +177,7 @@ For each page bound with this policy, by next time it is touched (and next time 
 Returned by hwloc_get_membind*() functions when multiple threads or parts of a memory area have differing memory binding policies\&. 
 .SH "Function Documentation"
 .PP 
-.SS " void* hwloc_alloc (\fBhwloc_topology_t\fPtopology, size_tlen)"
+.SS "void* hwloc_alloc (\fBhwloc_topology_t\fPtopology, size_tlen)"
 
 .PP
 Allocate some memory\&. This is equivalent to malloc(), except that it tries to allocate page-aligned memory from the OS\&.
@@ -188,7 +188,7 @@ The allocated memory should be freed with \fBhwloc_free()\fP\&.
 .RE
 .PP
 
-.SS " void* hwloc_alloc_membind (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
+.SS "void* hwloc_alloc_membind (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
 Allocate some memory on memory nodes near the given physical cpuset \fCcpuset\fP\&. 
@@ -206,7 +206,7 @@ The allocated memory should be freed with \fBhwloc_free()\fP\&.
 .RE
 .PP
 
-.SS " void* hwloc_alloc_membind_nodeset (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
+.SS "void* hwloc_alloc_membind_nodeset (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
 Allocate some memory on the given physical nodeset \fCnodeset\fP\&. 
@@ -224,19 +224,19 @@ The allocated memory should be freed with \fBhwloc_free()\fP\&.
 .RE
 .PP
 
-.SS "static inline void* hwloc_alloc_membind_policy (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_cpuset_t\fPset, \fBhwloc_membind_policy_t\fPpolicy, intflags)\fC [static]\fP"
+.SS "static void* hwloc_alloc_membind_policy (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_cpuset_t\fPset, \fBhwloc_membind_policy_t\fPpolicy, intflags)\fC [inline]\fP, \fC [static]\fP"
 
 .PP
 Allocate some memory on the memory nodes near given cpuset \fCcpuset\fP\&. This is similar to hwloc_alloc_membind_policy_nodeset, but for a given cpuset\&. 
-.SS "static inline void* hwloc_alloc_membind_policy_nodeset (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)\fC [static]\fP"
+.SS "static void* hwloc_alloc_membind_policy_nodeset (\fBhwloc_topology_t\fPtopology, size_tlen, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)\fC [inline]\fP, \fC [static]\fP"
 
 .PP
 Allocate some memory on the given nodeset \fCnodeset\fP\&. This is similar to hwloc_alloc_membind except that it is allowed to change the current memory binding policy, thus providing more binding support, at the expense of changing the current state\&. 
-.SS " int hwloc_free (\fBhwloc_topology_t\fPtopology, void *addr, size_tlen)"
+.SS "int hwloc_free (\fBhwloc_topology_t\fPtopology, void *addr, size_tlen)"
 
 .PP
 Free memory that was previously allocated by \fBhwloc_alloc()\fP or \fBhwloc_alloc_membind()\fP\&. 
-.SS " int hwloc_get_area_membind (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
+.SS "int hwloc_get_area_membind (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
 
 .PP
 Query the CPUs near the physical NUMA node(s) and binding policy of the memory identified by (\fCaddr\fP, \fClen\fP )\&. This function has two output parameters: \fCcpuset\fP and \fCpolicy\fP\&. The values returned in these parameters depend on both the \fCflags\fP passed in and the memory binding policies and nodesets of the pages in the address range\&.
@@ -246,7 +246,7 @@ If HWLOC_MEMBIND_STRICT is specified, the target pages are first checked to see 
 If HWLOC_MEMBIND_STRICT is not specified, the union of all NUMA node(s) containing pages in the address range is calculated\&. \fCcpuset\fP is then set to the CPUs near the NUMA node(s) in this union\&. If all pages in the target have the same policy, it is returned in \fCpolicy\fP\&. Otherwise, \fCpolicy\fP is set to HWLOC_MEMBIND_MIXED\&.
 .PP
 If any other flags are specified, -1 is returned and errno is set to EINVAL\&. 
-.SS " int hwloc_get_area_membind_nodeset (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
+.SS "int hwloc_get_area_membind_nodeset (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
 
 .PP
 Query the physical NUMA node(s) and binding policy of the memory identified by (\fCaddr\fP, \fClen\fP )\&. This function has two output parameters: \fCnodeset\fP and \fCpolicy\fP\&. The values returned in these parameters depend on both the \fCflags\fP passed in and the memory binding policies and nodesets of the pages in the address range\&.
@@ -256,7 +256,7 @@ If HWLOC_MEMBIND_STRICT is specified, the target pages are first checked to see 
 If HWLOC_MEMBIND_STRICT is not specified, \fCnodeset\fP is set to the union of all NUMA node(s) containing pages in the address range\&. If all pages in the target have the same policy, it is returned in \fCpolicy\fP\&. Otherwise, \fCpolicy\fP is set to HWLOC_MEMBIND_MIXED\&.
 .PP
 If any other flags are specified, -1 is returned and errno is set to EINVAL\&. 
-.SS " int hwloc_get_membind (\fBhwloc_topology_t\fPtopology, \fBhwloc_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
+.SS "int hwloc_get_membind (\fBhwloc_topology_t\fPtopology, \fBhwloc_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
 
 .PP
 Query the default memory binding policy and physical locality of the current process or thread (the locality is returned in \fCcpuset\fP as CPUs near the locality's actual NUMA node(s))\&. This function has two output parameters: \fCcpuset\fP and \fCpolicy\fP\&. The values returned in these parameters depend on both the \fCflags\fP passed in and the current memory binding policies and nodesets in the queried target\&.
@@ -272,7 +272,7 @@ Otherwise, if HWLOC_MEMBIND_PROCESS is specified (and HWLOC_MEMBIND_STRICT is \f
 In the HWLOC_MEMBIND_THREAD case (or when neither HWLOC_MEMBIND_PROCESS or HWLOC_MEMBIND_THREAD is specified), there is only one nodeset and policy\&. The policy is returned in \fCpolicy\fP; \fCcpuset\fP is set to the union of CPUs near the NUMA node(s) in the \fCnodeset\fP\&.
 .PP
 If any other flags are specified, -1 is returned and errno is set to EINVAL\&. 
-.SS " int hwloc_get_membind_nodeset (\fBhwloc_topology_t\fPtopology, \fBhwloc_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
+.SS "int hwloc_get_membind_nodeset (\fBhwloc_topology_t\fPtopology, \fBhwloc_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
 
 .PP
 Query the default memory binding policy and physical locality of the current process or thread\&. This function has two output parameters: \fCnodeset\fP and \fCpolicy\fP\&. The values returned in these parameters depend on both the \fCflags\fP passed in and the current memory binding policies and nodesets in the queried target\&.
@@ -288,7 +288,7 @@ Otherwise, if HWLOC_MEMBIND_PROCESS is specified (and HWLOC_MEMBIND_STRICT is \f
 In the HWLOC_MEMBIND_THREAD case (or when neither HWLOC_MEMBIND_PROCESS or HWLOC_MEMBIND_THREAD is specified), there is only one nodeset and policy; they are returned in \fCnodeset\fP and \fCpolicy\fP, respectively\&.
 .PP
 If any other flags are specified, -1 is returned and errno is set to EINVAL\&. 
-.SS " int hwloc_get_proc_membind (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
+.SS "int hwloc_get_proc_membind (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
 
 .PP
 Query the default memory binding policy and physical locality of the specified process (the locality is returned in \fCcpuset\fP as CPUs near the locality's actual NUMA node(s))\&. This function has two output parameters: \fCcpuset\fP and \fCpolicy\fP\&. The values returned in these parameters depend on both the \fCflags\fP passed in and the current memory binding policies and nodesets in the queried target\&.
@@ -309,7 +309,7 @@ If any other flags are specified, -1 is returned and errno is set to EINVAL\&.
 .RE
 .PP
 
-.SS " int hwloc_get_proc_membind_nodeset (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
+.SS "int hwloc_get_proc_membind_nodeset (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fP *policy, intflags)"
 
 .PP
 Query the default memory binding policy and physical locality of the specified process\&. This function has two output parameters: \fCnodeset\fP and \fCpolicy\fP\&. The values returned in these parameters depend on both the \fCflags\fP passed in and the current memory binding policies and nodesets in the queried target\&.
@@ -330,7 +330,7 @@ If any other flags are specified, -1 is returned and errno is set to EINVAL\&.
 .RE
 .PP
 
-.SS " int hwloc_set_area_membind (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
+.SS "int hwloc_set_area_membind (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
 Bind the already-allocated memory identified by (addr, len) to the NUMA node(s) near physical \fCcpuset\fP\&. 
@@ -343,7 +343,7 @@ Bind the already-allocated memory identified by (addr, len) to the NUMA node(s) 
 .RE
 .PP
 
-.SS " int hwloc_set_area_membind_nodeset (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
+.SS "int hwloc_set_area_membind_nodeset (\fBhwloc_topology_t\fPtopology, const void *addr, size_tlen, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
 Bind the already-allocated memory identified by (addr, len) to the NUMA node(s) in physical \fCnodeset\fP\&. 
@@ -356,7 +356,7 @@ Bind the already-allocated memory identified by (addr, len) to the NUMA node(s) 
 .RE
 .PP
 
-.SS " int hwloc_set_membind (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
+.SS "int hwloc_set_membind (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
 Set the default memory binding policy of the current process or thread to prefer the NUMA node(s) near the specified physical \fCcpuset\fP\&. If neither HWLOC_MEMBIND_PROCESS nor HWLOC_MEMBIND_THREAD is specified, the current process is assumed to be single-threaded\&. This is the most portable form as it permits hwloc to use either process-based OS functions or thread-based OS functions, depending on which are available\&.
@@ -369,7 +369,7 @@ Set the default memory binding policy of the current process or thread to prefer
 .RE
 .PP
 
-.SS " int hwloc_set_membind_nodeset (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
+.SS "int hwloc_set_membind_nodeset (\fBhwloc_topology_t\fPtopology, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
 Set the default memory binding policy of the current process or thread to prefer the NUMA node(s) specified by physical \fCnodeset\fP\&. If neither HWLOC_MEMBIND_PROCESS nor HWLOC_MEMBIND_THREAD is specified, the current process is assumed to be single-threaded\&. This is the most portable form as it permits hwloc to use either process-based OS functions or thread-based OS functions, depending on which are available\&.
@@ -382,7 +382,7 @@ Set the default memory binding policy of the current process or thread to prefer
 .RE
 .PP
 
-.SS " int hwloc_set_proc_membind (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
+.SS "int hwloc_set_proc_membind (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_const_cpuset_t\fPcpuset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
 Set the default memory binding policy of the specified process to prefer the NUMA node(s) near the specified physical \fCcpuset\fP\&. 
@@ -400,7 +400,7 @@ Set the default memory binding policy of the specified process to prefer the NUM
 .RE
 .PP
 
-.SS " int hwloc_set_proc_membind_nodeset (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
+.SS "int hwloc_set_proc_membind_nodeset (\fBhwloc_topology_t\fPtopology, hwloc_pid_tpid, \fBhwloc_const_nodeset_t\fPnodeset, \fBhwloc_membind_policy_t\fPpolicy, intflags)"
 
 .PP
 Set the default memory binding policy of the specified process to prefer the NUMA node(s) specified by physical \fCnodeset\fP\&. 

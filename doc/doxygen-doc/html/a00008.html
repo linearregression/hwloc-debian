@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.8.1</span>
+   &#160;<span id="projectnumber">1.9</span>
    </div>
   </td>
  </tr>
@@ -49,16 +49,16 @@
 <li>
 functions that set/get the current memory binding policies (if supported): hwloc_set/get_membind_*() and hwloc_set/get_proc_membind() </li>
 <li>
-functions that allocate memory bound to specific node set without changing the current memory binding policy (if supported): <a class="el" href="a00081.html#ga221a7edc5d436300374fa16463f607e5" title="Allocate some memory on memory nodes near the given physical cpuset cpuset. ">hwloc_alloc_membind()</a> and <a class="el" href="a00081.html#gaeaa00714a9c4319bda0a74ca6f8720e8" title="Allocate some memory on the given physical nodeset nodeset. ">hwloc_alloc_membind_nodeset()</a>. </li>
+functions that allocate memory bound to specific node set without changing the current memory binding policy (if supported): <a class="el" href="a00081.html#ga1058b0b9216bc6fd9c3734ea9dca1e54" title="Allocate some memory on memory nodes near the given physical cpuset cpuset. ">hwloc_alloc_membind()</a> and <a class="el" href="a00081.html#ga0ff3076f7f3633637699b809bcceceb1" title="Allocate some memory on the given physical nodeset nodeset. ">hwloc_alloc_membind_nodeset()</a>. </li>
 <li>
-helpers which, if needed, change the current memory binding policy of the process in order to obtain memory binding: <a class="el" href="a00081.html#ga85b4fa11293bad77fa2d9dbdc857f7c6" title="Allocate some memory on the memory nodes near given cpuset cpuset. ">hwloc_alloc_membind_policy()</a> and <a class="el" href="a00081.html#gaf80743696c7510d98b7b8d2cbf35d26e" title="Allocate some memory on the given nodeset nodeset. ">hwloc_alloc_membind_policy_nodeset()</a> </li>
+helpers which, if needed, change the current memory binding policy of the process in order to obtain memory binding: <a class="el" href="a00081.html#ga4f7240065719cf923eb0cc078afcdcc2" title="Allocate some memory on the memory nodes near given cpuset cpuset. ">hwloc_alloc_membind_policy()</a> and <a class="el" href="a00081.html#ga7d473e80f11d774421688e36e9926136" title="Allocate some memory on the given nodeset nodeset. ">hwloc_alloc_membind_policy_nodeset()</a> </li>
 </ul>
 <p>An application can thus use the two first sets of functions if it wants to manage separately the global process binding policy and directed allocation, or use the third set of functions if it does not care about the process memory binding policy.</p>
 <p>See <a class="el" href="a00080.html">CPU binding</a> and <a class="el" href="a00081.html">Memory binding</a> for hwloc's API functions regarding CPU and memory binding, respectively. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 4 2014 13:13:18 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 26 2014 11:09:47 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

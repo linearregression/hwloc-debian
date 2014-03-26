@@ -1,4 +1,4 @@
-.TH "Object Types" 3 "Tue Feb 4 2014" "Version 1.8.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Object Types" 3 "Wed Mar 26 2014" "Version 1.9" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -41,7 +41,7 @@ Object Types \-
 
 .in +1c
 .ti -1c
-.RI " int \fBhwloc_compare_types\fP (\fBhwloc_obj_type_t\fP type1, \fBhwloc_obj_type_t\fP type2) "
+.RI "int \fBhwloc_compare_types\fP (\fBhwloc_obj_type_t\fP type1, \fBhwloc_obj_type_t\fP type2)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -180,7 +180,7 @@ Operating system device\&. These objects have neither CPU sets nor node sets\&. 
 Sentinel value 
 .SH "Function Documentation"
 .PP 
-.SS " int hwloc_compare_types (\fBhwloc_obj_type_t\fPtype1, \fBhwloc_obj_type_t\fPtype2) const"
+.SS "int hwloc_compare_types (\fBhwloc_obj_type_t\fPtype1, \fBhwloc_obj_type_t\fPtype2)"
 
 .PP
 Compare the depth of two object types\&. Types shouldn't be compared as they are, since newer ones may be added in the future\&. This function returns less than, equal to, or greater than zero respectively if \fCtype1\fP objects usually include \fCtype2\fP objects, are the same as \fCtype2\fP objects, or are included in \fCtype2\fP objects\&. If the types can not be compared (because neither is usually contained in the other), HWLOC_TYPE_UNORDERED is returned\&. Object types containing CPUs can always be compared (usually, a system contains machines which contain nodes which contain sockets which contain caches, which contain cores, which contain processors)\&.

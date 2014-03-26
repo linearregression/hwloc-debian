@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.8.1</span>
+   &#160;<span id="projectnumber">1.9</span>
    </div>
   </td>
  </tr>
@@ -400,7 +400,7 @@ API Example</h2>
 <div class="line">    <a class="code" href="a00036.html">hwloc_obj_t</a> obj;</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/* Allocate and initialize topology object. */</span></div>
-<div class="line">    <a class="code" href="a00076.html#ga5c2d6f476af87005c7bd0811d4548b9f">hwloc_topology_init</a>(&amp;topology);</div>
+<div class="line">    <a class="code" href="a00076.html#ga03fd4a16d8b9ee1ffc32b25fd2f6bdfa">hwloc_topology_init</a>(&amp;topology);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/* ... Optionally, put detection configuration here to ignore</span></div>
 <div class="line"><span class="comment">       some objects types, define a synthetic topology, etc....  </span></div>
@@ -410,11 +410,11 @@ API Example</h2>
 <div class="line"><span class="comment">       Detection. */</span></div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/* Perform the topology detection. */</span></div>
-<div class="line">    <a class="code" href="a00076.html#ga91e2e6427b95fb7339c99dbbef996e71">hwloc_topology_load</a>(topology);</div>
+<div class="line">    <a class="code" href="a00076.html#gabdf58d87ad77f6615fccdfe0535ff826">hwloc_topology_load</a>(topology);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/* Optionally, get some additional topology information</span></div>
 <div class="line"><span class="comment">       in case we need the topology depth later. */</span></div>
-<div class="line">    topodepth = <a class="code" href="a00078.html#ga8c30b0cec55074eb3ed34e4f2a1a9937">hwloc_topology_get_depth</a>(topology);</div>
+<div class="line">    topodepth = <a class="code" href="a00078.html#gafa4f8dbc4c2e74c0da8019446353eed1">hwloc_topology_get_depth</a>(topology);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/*****************************************************************</span></div>
 <div class="line"><span class="comment">     * First example:</span></div>
@@ -423,10 +423,10 @@ API Example</h2>
 <div class="line"><span class="comment">     *****************************************************************/</span></div>
 <div class="line">    <span class="keywordflow">for</span> (depth = 0; depth &lt; topodepth; depth++) {</div>
 <div class="line">        printf(<span class="stringliteral">&quot;*** Objects at level %d\n&quot;</span>, depth);</div>
-<div class="line">        <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="a00078.html#ga20cfe2456f4cfdd789c9aca6d2fdd69f">hwloc_get_nbobjs_by_depth</a>(topology, depth); </div>
+<div class="line">        <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="a00078.html#gab17065e3d53455973844568d9f21c72c">hwloc_get_nbobjs_by_depth</a>(topology, depth); </div>
 <div class="line">             i++) {</div>
 <div class="line">            hwloc_obj_snprintf(<span class="keywordtype">string</span>, <span class="keyword">sizeof</span>(<span class="keywordtype">string</span>), topology,</div>
-<div class="line">                       <a class="code" href="a00078.html#gaedd78240b0c1108355586a268ec5a697">hwloc_get_obj_by_depth</a>(topology, depth, i),</div>
+<div class="line">                       <a class="code" href="a00078.html#gabf8a98ad085460a4982cc7b74c344b71">hwloc_get_obj_by_depth</a>(topology, depth, i),</div>
 <div class="line">                       <span class="stringliteral">&quot;#&quot;</span>, 0);</div>
 <div class="line">            printf(<span class="stringliteral">&quot;Index %u: %s\n&quot;</span>, i, <span class="keywordtype">string</span>);</div>
 <div class="line">        }</div>
@@ -437,18 +437,18 @@ API Example</h2>
 <div class="line"><span class="comment">     * Walk the topology with a tree style.</span></div>
 <div class="line"><span class="comment">     *****************************************************************/</span></div>
 <div class="line">    printf(<span class="stringliteral">&quot;*** Printing overall tree\n&quot;</span>);</div>
-<div class="line">    print_children(topology, <a class="code" href="a00078.html#gadbf58f6e187efbdb3cd9a8e30311b7d7">hwloc_get_root_obj</a>(topology), 0);</div>
+<div class="line">    print_children(topology, <a class="code" href="a00078.html#ga2d4b12fc187dfc53b35f2fa21d21044d">hwloc_get_root_obj</a>(topology), 0);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/*****************************************************************</span></div>
 <div class="line"><span class="comment">     * Third example:</span></div>
 <div class="line"><span class="comment">     * Print the number of sockets.</span></div>
 <div class="line"><span class="comment">     *****************************************************************/</span></div>
-<div class="line">    depth = <a class="code" href="a00078.html#gaea7c64dd59467f5201ba87712710b14d">hwloc_get_type_depth</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55a1ac6e07775ae4324b3fe9dbd72c785ec">HWLOC_OBJ_SOCKET</a>);</div>
+<div class="line">    depth = <a class="code" href="a00078.html#ga8bec782e21be313750da70cf7428b374">hwloc_get_type_depth</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55a1ac6e07775ae4324b3fe9dbd72c785ec">HWLOC_OBJ_SOCKET</a>);</div>
 <div class="line">    <span class="keywordflow">if</span> (depth == <a class="code" href="a00078.html#ggaf4e663cf42bbe20756b849c6293ef575a0565ab92ab72cb0cec91e23003294aad">HWLOC_TYPE_DEPTH_UNKNOWN</a>) {</div>
 <div class="line">        printf(<span class="stringliteral">&quot;*** The number of sockets is unknown\n&quot;</span>);</div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
 <div class="line">        printf(<span class="stringliteral">&quot;*** %u socket(s)\n&quot;</span>, </div>
-<div class="line">               <a class="code" href="a00078.html#ga20cfe2456f4cfdd789c9aca6d2fdd69f">hwloc_get_nbobjs_by_depth</a>(topology, depth));</div>
+<div class="line">               <a class="code" href="a00078.html#gab17065e3d53455973844568d9f21c72c">hwloc_get_nbobjs_by_depth</a>(topology, depth));</div>
 <div class="line">    }</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/*****************************************************************</span></div>
@@ -458,7 +458,7 @@ API Example</h2>
 <div class="line"><span class="comment">     *****************************************************************/</span></div>
 <div class="line">    levels = 0;</div>
 <div class="line">    size = 0;</div>
-<div class="line">    <span class="keywordflow">for</span> (obj = <a class="code" href="a00078.html#ga9be4a03488cdd0fb431e4aa1cbdea895">hwloc_get_obj_by_type</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55abca6887e80cb291353b0a0c1da83f661">HWLOC_OBJ_PU</a>, 0);</div>
+<div class="line">    <span class="keywordflow">for</span> (obj = <a class="code" href="a00078.html#ga6f414dd80a2b943967a0ac92da3181a2">hwloc_get_obj_by_type</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55abca6887e80cb291353b0a0c1da83f661">HWLOC_OBJ_PU</a>, 0);</div>
 <div class="line">         obj;</div>
 <div class="line">         obj = obj-&gt;<a class="code" href="a00036.html#adc494f6aed939992be1c55cca5822900">parent</a>)</div>
 <div class="line">      <span class="keywordflow">if</span> (obj-&gt;<a class="code" href="a00036.html#acc4f0803f244867e68fe0036800be5de">type</a> == <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55a56ee0b7eca88f363b75b34fdde8c9ddc">HWLOC_OBJ_CACHE</a>) {</div>
@@ -475,30 +475,30 @@ API Example</h2>
 <div class="line"><span class="comment">     * First find out where cores are, or else smaller sets of CPUs if</span></div>
 <div class="line"><span class="comment">     * the OS doesn&#39;t have the notion of a &quot;core&quot;.</span></div>
 <div class="line"><span class="comment">     *****************************************************************/</span></div>
-<div class="line">    depth = <a class="code" href="a00078.html#ga081be77905201e9f42318e9974456b45">hwloc_get_type_or_below_depth</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55ac793958f330bca371aa1535de8aff45f">HWLOC_OBJ_CORE</a>);</div>
+<div class="line">    depth = <a class="code" href="a00078.html#ga8125328e69eba709c33ea8055c12589b">hwloc_get_type_or_below_depth</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55ac793958f330bca371aa1535de8aff45f">HWLOC_OBJ_CORE</a>);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/* Get last core. */</span></div>
-<div class="line">    obj = <a class="code" href="a00078.html#gaedd78240b0c1108355586a268ec5a697">hwloc_get_obj_by_depth</a>(topology, depth,</div>
-<div class="line">                   <a class="code" href="a00078.html#ga20cfe2456f4cfdd789c9aca6d2fdd69f">hwloc_get_nbobjs_by_depth</a>(topology, depth) - 1);</div>
+<div class="line">    obj = <a class="code" href="a00078.html#gabf8a98ad085460a4982cc7b74c344b71">hwloc_get_obj_by_depth</a>(topology, depth,</div>
+<div class="line">                   <a class="code" href="a00078.html#gab17065e3d53455973844568d9f21c72c">hwloc_get_nbobjs_by_depth</a>(topology, depth) - 1);</div>
 <div class="line">    <span class="keywordflow">if</span> (obj) {</div>
 <div class="line">        <span class="comment">/* Get a copy of its cpuset that we may modify. */</span></div>
-<div class="line">        cpuset = <a class="code" href="a00095.html#gaaa4ed76211cd3694dfbea2109fc440be">hwloc_bitmap_dup</a>(obj-&gt;<a class="code" href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">cpuset</a>);</div>
+<div class="line">        cpuset = <a class="code" href="a00095.html#gae679434c1a5f41d3560a8a7e2c1b0dee">hwloc_bitmap_dup</a>(obj-&gt;<a class="code" href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">cpuset</a>);</div>
 <div class="line"></div>
 <div class="line">        <span class="comment">/* Get only one logical processor (in case the core is</span></div>
 <div class="line"><span class="comment">           SMT/hyperthreaded). */</span></div>
-<div class="line">        <a class="code" href="a00095.html#ga4630aa1b7e08eac5b41be126194e84a1">hwloc_bitmap_singlify</a>(cpuset);</div>
+<div class="line">        <a class="code" href="a00095.html#ga36d802130aa5d96bc1b5a90d2f0f3765">hwloc_bitmap_singlify</a>(cpuset);</div>
 <div class="line"></div>
 <div class="line">        <span class="comment">/* And try to bind ourself there. */</span></div>
-<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="a00080.html#gaf4cc194d5c0d38004a21b9f03522a7e3">hwloc_set_cpubind</a>(topology, cpuset, 0)) {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="a00080.html#ga80bc07473a8edf840cae17bd7ec21d48">hwloc_set_cpubind</a>(topology, cpuset, 0)) {</div>
 <div class="line">            <span class="keywordtype">char</span> *str;</div>
 <div class="line">            <span class="keywordtype">int</span> error = errno;</div>
-<div class="line">            <a class="code" href="a00095.html#gad3cf87ceb58aa91656756bbb58057320">hwloc_bitmap_asprintf</a>(&amp;str, obj-&gt;<a class="code" href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">cpuset</a>);</div>
+<div class="line">            <a class="code" href="a00095.html#ga0fece972134fdecf2da9bc7a11dd827e">hwloc_bitmap_asprintf</a>(&amp;str, obj-&gt;<a class="code" href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">cpuset</a>);</div>
 <div class="line">            printf(<span class="stringliteral">&quot;Couldn&#39;t bind to cpuset %s: %s\n&quot;</span>, str, strerror(error));</div>
 <div class="line">            free(str);</div>
 <div class="line">        }</div>
 <div class="line"></div>
 <div class="line">        <span class="comment">/* Free our cpuset copy */</span></div>
-<div class="line">        <a class="code" href="a00095.html#ga8e7035fe555ef96921bfb98e08519bc7">hwloc_bitmap_free</a>(cpuset);</div>
+<div class="line">        <a class="code" href="a00095.html#ga156130d85b3a0674d6e0e6770fe68fbe">hwloc_bitmap_free</a>(cpuset);</div>
 <div class="line">    }</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/*****************************************************************</span></div>
@@ -507,24 +507,24 @@ API Example</h2>
 <div class="line"><span class="comment">     * memory to the last NUMA node.</span></div>
 <div class="line"><span class="comment">     *****************************************************************/</span></div>
 <div class="line">    <span class="comment">/* Get last node. */</span></div>
-<div class="line">    n = <a class="code" href="a00078.html#gaba821f84ef64282d14577066e6d6547e">hwloc_get_nbobjs_by_type</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd">HWLOC_OBJ_NODE</a>);</div>
+<div class="line">    n = <a class="code" href="a00078.html#ga789a3f65aedff644be64a18526a03065">hwloc_get_nbobjs_by_type</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd">HWLOC_OBJ_NODE</a>);</div>
 <div class="line">    <span class="keywordflow">if</span> (n) {</div>
 <div class="line">        <span class="keywordtype">void</span> *m;</div>
 <div class="line">        size = 1024*1024;</div>
 <div class="line"></div>
-<div class="line">        obj = <a class="code" href="a00078.html#ga9be4a03488cdd0fb431e4aa1cbdea895">hwloc_get_obj_by_type</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd">HWLOC_OBJ_NODE</a>, n - 1);</div>
-<div class="line">        m = <a class="code" href="a00081.html#gaeaa00714a9c4319bda0a74ca6f8720e8">hwloc_alloc_membind_nodeset</a>(topology, size, obj-&gt;<a class="code" href="a00036.html#a08f0d0e16c619a6e653526cbee4ffea3">nodeset</a>,</div>
+<div class="line">        obj = <a class="code" href="a00078.html#ga6f414dd80a2b943967a0ac92da3181a2">hwloc_get_obj_by_type</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd">HWLOC_OBJ_NODE</a>, n - 1);</div>
+<div class="line">        m = <a class="code" href="a00081.html#ga0ff3076f7f3633637699b809bcceceb1">hwloc_alloc_membind_nodeset</a>(topology, size, obj-&gt;<a class="code" href="a00036.html#a08f0d0e16c619a6e653526cbee4ffea3">nodeset</a>,</div>
 <div class="line">                <a class="code" href="a00081.html#ggac9764f79505775d06407b40f5e4661e8a18675bb80ebc1bce5b652e9de8f3998c">HWLOC_MEMBIND_DEFAULT</a>, 0);</div>
-<div class="line">        <a class="code" href="a00081.html#ga986d9b4cc76da592c4b937c6cb7d9d56">hwloc_free</a>(topology, m, size);</div>
+<div class="line">        <a class="code" href="a00081.html#ga32dbd4f54e9e4a7179f2dde37ffe6ad7">hwloc_free</a>(topology, m, size);</div>
 <div class="line"></div>
 <div class="line">        m = malloc(size);</div>
-<div class="line">        <a class="code" href="a00081.html#gade5e2c28ea8475a479bf2b1df36c6ccd">hwloc_set_area_membind_nodeset</a>(topology, m, size, obj-&gt;<a class="code" href="a00036.html#a08f0d0e16c619a6e653526cbee4ffea3">nodeset</a>,</div>
+<div class="line">        <a class="code" href="a00081.html#ga7f11bd709ac0cb93af613e2dd84165ad">hwloc_set_area_membind_nodeset</a>(topology, m, size, obj-&gt;<a class="code" href="a00036.html#a08f0d0e16c619a6e653526cbee4ffea3">nodeset</a>,</div>
 <div class="line">                <a class="code" href="a00081.html#ggac9764f79505775d06407b40f5e4661e8a18675bb80ebc1bce5b652e9de8f3998c">HWLOC_MEMBIND_DEFAULT</a>, 0);</div>
 <div class="line">        free(m);</div>
 <div class="line">    }</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/* Destroy topology object. */</span></div>
-<div class="line">    <a class="code" href="a00076.html#ga6040925d3ee4bbb2647f2a321aca5f4b">hwloc_topology_destroy</a>(topology);</div>
+<div class="line">    <a class="code" href="a00076.html#ga9f34a640b6fd28d23699d4d084667b15">hwloc_topology_destroy</a>(topology);</div>
 <div class="line"></div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
@@ -569,7 +569,7 @@ shell$
 Questions and Bugs</h1>
 <p>Questions should be sent to the devel mailing list (<a href="http://www.open-mpi.org/community/lists/hwloc.php">http://www.open-mpi.org/community/lists/hwloc.php</a>). Bug reports should be reported in the tracker (<a href="https://git.open-mpi.org/trac/hwloc/">https://git.open-mpi.org/trac/hwloc/</a>).</p>
 <p>If hwloc discovers an incorrect topology for your machine, the very first thing you should check is to ensure that you have the most recent updates installed for your operating system. Indeed, most of hwloc topology discovery relies on hardware information retrieved through the operation system (e.g., via the /sys virtual filesystem of the Linux kernel). If upgrading your OS or Linux kernel does not solve your problem, you may also want to ensure that you are running the most recent version of the BIOS for your machine.</p>
-<p>If those things fail, contact us on the mailing list for additional help. Please attach the output of lstopo after having given the <code>&ndash;enable-debug</code> option to ./configure and rebuilt completely, to get debugging output. Also attach the <code>/proc</code> + <code>/sys</code> tarball generated by the installed script <code>hwloc-gather-topology.sh</code> when submitting problems about Linux, or send the output of <code>kstat cpu_info</code> in the Solaris case, or the output of <code>sysctl hw</code> in the Darwin or BSD cases.</p>
+<p>If those things fail, contact us on the mailing list for additional help. Please attach the output of lstopo after having given the <code>&ndash;enable-debug</code> option to ./configure and rebuilt completely, to get debugging output. Also attach the <code>/proc</code> + <code>/sys</code> tarball generated by the installed script <code>hwloc-gather-topology</code> when submitting problems about Linux, or send the output of <code>kstat cpu_info</code> in the Solaris case, or the output of <code>sysctl hw</code> in the Darwin or BSD cases.</p>
  
 </div><div class="section" id="credits">
  <h1><a class="anchor" id="history"></a>
@@ -617,7 +617,7 @@ Further Reading</h1>
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 4 2014 13:13:18 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 26 2014 11:09:48 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

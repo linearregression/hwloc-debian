@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.8.1</span>
+   &#160;<span id="projectnumber">1.9</span>
    </div>
   </td>
  </tr>
@@ -65,13 +65,13 @@
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">static</span> inline <span class="keywordtype">int</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="a00112.html#ga87f4746d0cad579ce4e86b98088f22a1">   50</a></span>&#160;<a class="code" href="a00112.html#ga87f4746d0cad579ce4e86b98088f22a1">hwloc_mx_board_get_device_cpuset</a>(<a class="code" href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">static</span> __hwloc_inline <span class="keywordtype">int</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="a00113.html#ga868dfb8232333858e1e159c62ff9b682">   50</a></span>&#160;<a class="code" href="a00113.html#ga868dfb8232333858e1e159c62ff9b682">hwloc_mx_board_get_device_cpuset</a>(<a class="code" href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology,</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                                 <span class="keywordtype">unsigned</span> <span class="keywordtype">id</span>, <a class="code" href="a00073.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a> set)</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  uint32_t in, out;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keywordflow">if</span> (!<a class="code" href="a00077.html#ga0d109e33fc7990f62f665d336e5e5111">hwloc_topology_is_thissystem</a>(topology)) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keywordflow">if</span> (!<a class="code" href="a00077.html#ga68ffdcfd9175cdf40709801092f18017">hwloc_topology_is_thissystem</a>(topology)) {</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    errno = EINVAL;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  }</div>
@@ -84,21 +84,21 @@
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keywordflow">if</span> (out != (uint32_t) -1) {</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="a00036.html">hwloc_obj_t</a> obj = NULL;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">while</span> ((obj = <a class="code" href="a00078.html#ga5f08ceb69375341e73563cfe2e77534e">hwloc_get_next_obj_by_type</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd">HWLOC_OBJ_NODE</a>, obj)) != NULL)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">while</span> ((obj = <a class="code" href="a00078.html#ga759e88eaf5a230ad283e9d4c42486735">hwloc_get_next_obj_by_type</a>(topology, <a class="code" href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd">HWLOC_OBJ_NODE</a>, obj)) != NULL)</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <span class="keywordflow">if</span> (obj-&gt;<a class="code" href="a00036.html#a61a7a80a68eaccbaaa28269e678c81a9">os_index</a> == out) {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="a00095.html#gab14743355fa03b36cef521cbcd2fbf64">hwloc_bitmap_copy</a>(set, obj-&gt;<a class="code" href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">cpuset</a>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="a00095.html#ga036068a22d1aa5cb9ff1df348b525ff3">hwloc_bitmap_copy</a>(set, obj-&gt;<a class="code" href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">cpuset</a>);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">goto</span> out;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      }</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  }</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="comment">/* fallback to the full topology cpuset */</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <a class="code" href="a00095.html#gab14743355fa03b36cef521cbcd2fbf64">hwloc_bitmap_copy</a>(set, <a class="code" href="a00091.html#ga418ebb39eaf1eac8f9cf4047cf59a534">hwloc_topology_get_complete_cpuset</a>(topology));</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <a class="code" href="a00095.html#ga036068a22d1aa5cb9ff1df348b525ff3">hwloc_bitmap_copy</a>(set, <a class="code" href="a00091.html#ga69fbad44c685e46d80ecf51a714ba9ce">hwloc_topology_get_complete_cpuset</a>(topology));</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; out:</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">static</span> inline <span class="keywordtype">int</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="a00112.html#ga2ff7763b9c2c5975f9a2e3d638351535">   94</a></span>&#160;<a class="code" href="a00112.html#ga2ff7763b9c2c5975f9a2e3d638351535">hwloc_mx_endpoint_get_device_cpuset</a>(<a class="code" href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology,</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">static</span> __hwloc_inline <span class="keywordtype">int</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="a00113.html#ga1d01f76cdd4a408ad01f105deeef3bba">   94</a></span>&#160;<a class="code" href="a00113.html#ga1d01f76cdd4a408ad01f105deeef3bba">hwloc_mx_endpoint_get_device_cpuset</a>(<a class="code" href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology,</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                                    mx_endpoint_t endpoint, <a class="code" href="a00073.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a> set)</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  uint64_t nid;</div>
@@ -120,7 +120,7 @@
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  }</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="a00112.html#ga87f4746d0cad579ce4e86b98088f22a1">hwloc_mx_board_get_device_cpuset</a>(topology, nindex, set);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="a00113.html#ga868dfb8232333858e1e159c62ff9b682">hwloc_mx_board_get_device_cpuset</a>(topology, nindex, set);</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
@@ -129,22 +129,22 @@
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HWLOC_MYRIEXPRESS_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00077_html_ga0d109e33fc7990f62f665d336e5e5111"><div class="ttname"><a href="a00077.html#ga0d109e33fc7990f62f665d336e5e5111">hwloc_topology_is_thissystem</a></div><div class="ttdeci"> int hwloc_topology_is_thissystem(hwloc_topology_t restrict topology) </div><div class="ttdoc">Does the topology context come from this system? </div></div>
-<div class="ttc" id="a00091_html_ga418ebb39eaf1eac8f9cf4047cf59a534"><div class="ttname"><a href="a00091.html#ga418ebb39eaf1eac8f9cf4047cf59a534">hwloc_topology_get_complete_cpuset</a></div><div class="ttdeci">static inline hwloc_const_cpuset_t hwloc_topology_get_complete_cpuset(hwloc_topology_t topology) </div><div class="ttdoc">Get complete CPU set. </div><div class="ttdef"><b>Definition:</b> helper.h:726</div></div>
-<div class="ttc" id="a00112_html_ga87f4746d0cad579ce4e86b98088f22a1"><div class="ttname"><a href="a00112.html#ga87f4746d0cad579ce4e86b98088f22a1">hwloc_mx_board_get_device_cpuset</a></div><div class="ttdeci">static inline int hwloc_mx_board_get_device_cpuset(hwloc_topology_t topology, unsigned id, hwloc_cpuset_t set)</div><div class="ttdoc">Get the CPU set of logical processors that are physically close the MX board id. </div><div class="ttdef"><b>Definition:</b> myriexpress.h:50</div></div>
-<div class="ttc" id="a00112_html_ga2ff7763b9c2c5975f9a2e3d638351535"><div class="ttname"><a href="a00112.html#ga2ff7763b9c2c5975f9a2e3d638351535">hwloc_mx_endpoint_get_device_cpuset</a></div><div class="ttdeci">static inline int hwloc_mx_endpoint_get_device_cpuset(hwloc_topology_t topology, mx_endpoint_t endpoint, hwloc_cpuset_t set)</div><div class="ttdoc">Get the CPU set of logical processors that are physically close the MX endpoint endpoint. </div><div class="ttdef"><b>Definition:</b> myriexpress.h:94</div></div>
-<div class="ttc" id="a00078_html_ga5f08ceb69375341e73563cfe2e77534e"><div class="ttname"><a href="a00078.html#ga5f08ceb69375341e73563cfe2e77534e">hwloc_get_next_obj_by_type</a></div><div class="ttdeci">static inline hwloc_obj_t hwloc_get_next_obj_by_type(hwloc_topology_t topology, hwloc_obj_type_t type, hwloc_obj_t prev)</div><div class="ttdoc">Returns the next object of type type. </div></div>
+<div class="ttc" id="a00113_html_ga868dfb8232333858e1e159c62ff9b682"><div class="ttname"><a href="a00113.html#ga868dfb8232333858e1e159c62ff9b682">hwloc_mx_board_get_device_cpuset</a></div><div class="ttdeci">static int hwloc_mx_board_get_device_cpuset(hwloc_topology_t topology, unsigned id, hwloc_cpuset_t set)</div><div class="ttdoc">Get the CPU set of logical processors that are physically close the MX board id. </div><div class="ttdef"><b>Definition:</b> myriexpress.h:50</div></div>
+<div class="ttc" id="a00095_html_ga036068a22d1aa5cb9ff1df348b525ff3"><div class="ttname"><a href="a00095.html#ga036068a22d1aa5cb9ff1df348b525ff3">hwloc_bitmap_copy</a></div><div class="ttdeci">void hwloc_bitmap_copy(hwloc_bitmap_t dst, hwloc_const_bitmap_t src)</div><div class="ttdoc">Copy the contents of bitmap src into the already allocated bitmap dst. </div></div>
+<div class="ttc" id="a00077_html_ga68ffdcfd9175cdf40709801092f18017"><div class="ttname"><a href="a00077.html#ga68ffdcfd9175cdf40709801092f18017">hwloc_topology_is_thissystem</a></div><div class="ttdeci">int hwloc_topology_is_thissystem(hwloc_topology_t restrict topology)</div><div class="ttdoc">Does the topology context come from this system? </div></div>
+<div class="ttc" id="a00078_html_ga759e88eaf5a230ad283e9d4c42486735"><div class="ttname"><a href="a00078.html#ga759e88eaf5a230ad283e9d4c42486735">hwloc_get_next_obj_by_type</a></div><div class="ttdeci">static hwloc_obj_t hwloc_get_next_obj_by_type(hwloc_topology_t topology, hwloc_obj_type_t type, hwloc_obj_t prev)</div><div class="ttdoc">Returns the next object of type type. </div></div>
 <div class="ttc" id="a00036_html_a67925e0f2c47f50408fbdb9bddd0790f"><div class="ttname"><a href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">hwloc_obj::cpuset</a></div><div class="ttdeci">hwloc_cpuset_t cpuset</div><div class="ttdoc">CPUs covered by this object. </div><div class="ttdef"><b>Definition:</b> hwloc.h:375</div></div>
 <div class="ttc" id="a00074_html_ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd"><div class="ttname"><a href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd">HWLOC_OBJ_NODE</a></div><div class="ttdoc">NUMA node. A set of processors around memory which the processors can directly access. </div><div class="ttdef"><b>Definition:</b> hwloc.h:172</div></div>
-<div class="ttc" id="a00095_html_gab14743355fa03b36cef521cbcd2fbf64"><div class="ttname"><a href="a00095.html#gab14743355fa03b36cef521cbcd2fbf64">hwloc_bitmap_copy</a></div><div class="ttdeci"> void hwloc_bitmap_copy(hwloc_bitmap_t dst, hwloc_const_bitmap_t src)</div><div class="ttdoc">Copy the contents of bitmap src into the already allocated bitmap dst. </div></div>
 <div class="ttc" id="a00036_html_a61a7a80a68eaccbaaa28269e678c81a9"><div class="ttname"><a href="a00036.html#a61a7a80a68eaccbaaa28269e678c81a9">hwloc_obj::os_index</a></div><div class="ttdeci">unsigned os_index</div><div class="ttdoc">OS-provided physical index number. </div><div class="ttdef"><b>Definition:</b> hwloc.h:334</div></div>
 <div class="ttc" id="a00073_html_ga4bbf39b68b6f568fb92739e7c0ea7801"><div class="ttname"><a href="a00073.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a></div><div class="ttdeci">hwloc_bitmap_t hwloc_cpuset_t</div><div class="ttdoc">A CPU set is a bitmap whose bits are set according to CPU physical OS indexes. </div><div class="ttdef"><b>Definition:</b> hwloc.h:116</div></div>
+<div class="ttc" id="a00091_html_ga69fbad44c685e46d80ecf51a714ba9ce"><div class="ttname"><a href="a00091.html#ga69fbad44c685e46d80ecf51a714ba9ce">hwloc_topology_get_complete_cpuset</a></div><div class="ttdeci">static hwloc_const_cpuset_t hwloc_topology_get_complete_cpuset(hwloc_topology_t topology)</div><div class="ttdoc">Get complete CPU set. </div><div class="ttdef"><b>Definition:</b> helper.h:741</div></div>
 <div class="ttc" id="a00076_html_ga9d1e76ee15a7dee158b786c30b6a6e38"><div class="ttname"><a href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a></div><div class="ttdeci">struct hwloc_topology * hwloc_topology_t</div><div class="ttdoc">Topology context. </div><div class="ttdef"><b>Definition:</b> hwloc.h:577</div></div>
+<div class="ttc" id="a00113_html_ga1d01f76cdd4a408ad01f105deeef3bba"><div class="ttname"><a href="a00113.html#ga1d01f76cdd4a408ad01f105deeef3bba">hwloc_mx_endpoint_get_device_cpuset</a></div><div class="ttdeci">static int hwloc_mx_endpoint_get_device_cpuset(hwloc_topology_t topology, mx_endpoint_t endpoint, hwloc_cpuset_t set)</div><div class="ttdoc">Get the CPU set of logical processors that are physically close the MX endpoint endpoint. </div><div class="ttdef"><b>Definition:</b> myriexpress.h:94</div></div>
 <div class="ttc" id="a00036_html"><div class="ttname"><a href="a00036.html">hwloc_obj</a></div><div class="ttdoc">Structure of a topology object. </div><div class="ttdef"><b>Definition:</b> hwloc.h:331</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 4 2014 13:13:18 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 26 2014 11:09:47 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

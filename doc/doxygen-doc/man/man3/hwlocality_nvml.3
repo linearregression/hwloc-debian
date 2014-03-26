@@ -1,4 +1,4 @@
-.TH "Interoperability with the NVIDIA Management Library" 3 "Tue Feb 4 2014" "Version 1.8.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Interoperability with the NVIDIA Management Library" 3 "Wed Mar 26 2014" "Version 1.9" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -7,13 +7,13 @@ Interoperability with the NVIDIA Management Library \-
 
 .in +1c
 .ti -1c
-.RI "static inline int \fBhwloc_nvml_get_device_cpuset\fP (\fBhwloc_topology_t\fP topology , nvmlDevice_t device, \fBhwloc_cpuset_t\fP set)"
+.RI "static int \fBhwloc_nvml_get_device_cpuset\fP (\fBhwloc_topology_t\fP topology, nvmlDevice_t device, \fBhwloc_cpuset_t\fP set)"
 .br
 .ti -1c
-.RI "static inline \fBhwloc_obj_t\fP \fBhwloc_nvml_get_device_osdev_by_index\fP (\fBhwloc_topology_t\fP topology, unsigned idx)"
+.RI "static \fBhwloc_obj_t\fP \fBhwloc_nvml_get_device_osdev_by_index\fP (\fBhwloc_topology_t\fP topology, unsigned idx)"
 .br
 .ti -1c
-.RI "static inline \fBhwloc_obj_t\fP \fBhwloc_nvml_get_device_osdev\fP (\fBhwloc_topology_t\fP topology, nvmlDevice_t device)"
+.RI "static \fBhwloc_obj_t\fP \fBhwloc_nvml_get_device_osdev\fP (\fBhwloc_topology_t\fP topology, nvmlDevice_t device)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -21,7 +21,7 @@ Interoperability with the NVIDIA Management Library \-
 This interface offers ways to retrieve topology information about devices managed by the NVIDIA Management Library (NVML)\&. 
 .SH "Function Documentation"
 .PP 
-.SS "static inline int hwloc_nvml_get_device_cpuset (\fBhwloc_topology_t\fP topology, nvmlDevice_tdevice, \fBhwloc_cpuset_t\fPset)\fC [static]\fP"
+.SS "static int hwloc_nvml_get_device_cpuset (\fBhwloc_topology_t\fPtopology, nvmlDevice_tdevice, \fBhwloc_cpuset_t\fPset)\fC [inline]\fP, \fC [static]\fP"
 
 .PP
 Get the CPU set of logical processors that are physically close to NVML device \fCdevice\fP\&. Return the CPU set describing the locality of the NVML device \fCdevice\fP\&.
@@ -31,7 +31,7 @@ Topology \fCtopology\fP and device \fCdevice\fP must match the local machine\&. 
 The function only returns the locality of the device\&. If more information about the device is needed, OS objects should be used instead, see \fBhwloc_nvml_get_device_osdev()\fP and \fBhwloc_nvml_get_device_osdev_by_index()\fP\&.
 .PP
 This function is currently only implemented in a meaningful way for Linux; other systems will simply get a full cpuset\&. 
-.SS "static inline \fBhwloc_obj_t\fP hwloc_nvml_get_device_osdev (\fBhwloc_topology_t\fPtopology, nvmlDevice_tdevice)\fC [static]\fP"
+.SS "static \fBhwloc_obj_t\fP hwloc_nvml_get_device_osdev (\fBhwloc_topology_t\fPtopology, nvmlDevice_tdevice)\fC [inline]\fP, \fC [static]\fP"
 
 .PP
 Get the hwloc OS device object corresponding to NVML device \fCdevice\fP\&. Return the hwloc OS device object that describes the given NVML device \fCdevice\fP\&. Return NULL if there is none\&.
@@ -44,7 +44,7 @@ The corresponding hwloc PCI device may be found by looking at the result parent 
 .RE
 .PP
 
-.SS "static inline \fBhwloc_obj_t\fP hwloc_nvml_get_device_osdev_by_index (\fBhwloc_topology_t\fPtopology, unsignedidx)\fC [static]\fP"
+.SS "static \fBhwloc_obj_t\fP hwloc_nvml_get_device_osdev_by_index (\fBhwloc_topology_t\fPtopology, unsignedidx)\fC [inline]\fP, \fC [static]\fP"
 
 .PP
 Get the hwloc OS device object corresponding to the NVML device whose index is \fCidx\fP\&. Return the OS device object describing the NVML device whose index is \fCidx\fP\&. Returns NULL if there is none\&.

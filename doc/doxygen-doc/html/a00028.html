@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.8.1</span>
+   &#160;<span id="projectnumber">1.9</span>
    </div>
   </td>
  </tr>
@@ -109,9 +109,9 @@ What happens if my topology is asymmetric?</h1>
 <p>Moreover, it is important to understand that a same parent object may have children of different types (and therefore, different depths). <b>These children are therefore siblings (because they have the same parent), but they are <em>not</em> cousins (because they do not belong to the same horizontal levels).</b></p>
 <h1><a class="anchor" id="faq_annotate"></a>
 How do I annotate the topology with private notes?</h1>
-<p>Each hwloc object contains a <code>userdata</code> field that may be used by applications to store private pointers. This field is only valid during the lifetime of these container object and topology. It becomes invalid as soon the topology is destroyed, or as soon as the object disappears, for instance when restricting the topology. The userdata field is not exported/imported to/from XML by default since hwloc does not know what it contains. This behavior may be changed by specifying application-specific callbacks with <code><a class="el" href="a00084.html#gafd31ee85660ea15497e16cdcf9717f5c" title="Set the application-specific callback for exporting userdata. ">hwloc_topology_set_userdata_export_callback()</a></code> and <code><a class="el" href="a00084.html#ga7a47eecb5807f52c9a6e9bd2e2b6e5c9" title="Set the application-specific callback for importing userdata. ">hwloc_topology_set_userdata_import_callback()</a></code>.</p>
-<p>Each object may also contain some <em>info</em> attributes (key name and value) that are setup by hwloc during discovery and that may be extended by the user with <code><a class="el" href="a00079.html#gaba3afe636940872772ed6dfaf0b3552e" title="Add the given info name and value pair to the given object. ">hwloc_obj_add_info()</a></code> (see also <a class="el" href="a00014.html">Object attributes</a>). Contrary to the <code>userdata</code> field which is unique, multiple info attributes may exist for each object, even with the same name. These attributes are always exported to XML. However only character strings may be used as key names and values.</p>
-<p>It is also possible to insert Misc objects with custom names anywhere in the topology (<code><a class="el" href="a00082.html#ga017a9ba16d554326c6e3812d545d7230" title="Add a MISC object to the topology. ">hwloc_topology_insert_misc_object_by_cpuset()</a></code>) or as a leaf of the topology (<code><a class="el" href="a00082.html#gadacd7a3d21220fbb30c3256d8b22a294" title="Add a MISC object as a leaf of the topology. ">hwloc_topology_insert_misc_object_by_parent()</a></code>).</p>
+<p>Each hwloc object contains a <code>userdata</code> field that may be used by applications to store private pointers. This field is only valid during the lifetime of these container object and topology. It becomes invalid as soon the topology is destroyed, or as soon as the object disappears, for instance when restricting the topology. The userdata field is not exported/imported to/from XML by default since hwloc does not know what it contains. This behavior may be changed by specifying application-specific callbacks with <code><a class="el" href="a00084.html#ga9d6ff0f7a8dd45be9aa8575ef31978cc" title="Set the application-specific callback for exporting userdata. ">hwloc_topology_set_userdata_export_callback()</a></code> and <code><a class="el" href="a00084.html#ga5ac6917ea7289955fb1ffda4353af9b0" title="Set the application-specific callback for importing userdata. ">hwloc_topology_set_userdata_import_callback()</a></code>.</p>
+<p>Each object may also contain some <em>info</em> attributes (key name and value) that are setup by hwloc during discovery and that may be extended by the user with <code><a class="el" href="a00079.html#ga7e90c5398a9d77df31d7d45faf0f316b" title="Add the given info name and value pair to the given object. ">hwloc_obj_add_info()</a></code> (see also <a class="el" href="a00014.html">Object attributes</a>). Contrary to the <code>userdata</code> field which is unique, multiple info attributes may exist for each object, even with the same name. These attributes are always exported to XML. However only character strings may be used as key names and values.</p>
+<p>It is also possible to insert Misc objects with custom names anywhere in the topology (<code><a class="el" href="a00082.html#ga77c753751f3b90fac14117523fe604df" title="Add a MISC object to the topology. ">hwloc_topology_insert_misc_object_by_cpuset()</a></code>) or as a leaf of the topology (<code><a class="el" href="a00082.html#ga1472cdf93327dfff4b5b2aedfde29cf3" title="Add a MISC object as a leaf of the topology. ">hwloc_topology_insert_misc_object_by_parent()</a></code>).</p>
 <h1><a class="anchor" id="faq_valgrind"></a>
 Why does Valgrind complain about hwloc memory leaks?</h1>
 <p>If you are debugging your application with Valgrind, you want to avoid memory leak reports that are caused by hwloc and not by your program.</p>
@@ -144,7 +144,7 @@ How to get useful topology information on NetBSD?</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 4 2014 13:13:18 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 26 2014 11:09:47 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

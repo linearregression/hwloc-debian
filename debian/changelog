@@ -1,3 +1,10 @@
+hwloc (1.9-3) unstable; urgency=medium
+
+  * Use [!hurd-i386] instead of [!hurd-any], the latter doesn't seem to be
+    working.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 02 May 2014 02:26:51 +0200
+
 hwloc (1.9-2) unstable; urgency=medium
 
   * Do not depend on opencl-icd on hurd.

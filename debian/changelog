@@ -3,6 +3,8 @@ hwloc (1.9-4) UNRELEASED; urgency=medium
   * Also ship lstopo-no-graphics in the hwloc package, to fix
     hwloc-gather-topology, and possibly other scripts that people might be
     using. Closes: #748927.
+  * Drop autotools-dev and help2man build-dependencies, now unused.
+  * Add --enable-doxygen to really build the documentation.
 
  -- Samuel Thibault <sthibault@debian.org>  Thu, 22 May 2014 13:18:53 +0200
 

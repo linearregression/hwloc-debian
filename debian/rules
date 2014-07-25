@@ -20,7 +20,7 @@ endif
 confflags=--prefix=/usr --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --enable-static CFLAGS="$(CFLAGS)" --enable-plugins --enable-doxygen
 
 configure: configure.ac config/hwloc.m4
-	autoconf
+	dh_autoreconf
 
 config.status: configure
 	dh_testdir
@@ -43,6 +43,7 @@ debian/libhwloc5.links: debian/libhwloc5.links.in
 clean: 
 	dh_testdir
 	dh_testroot
+	dh_autoreconf_clean
 	rm -f build-stamp
 	rm -f debian/libhwloc5.links
 

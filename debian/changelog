@@ -1,6 +1,9 @@
 hwloc (1.9-5) UNRELEASED; urgency=medium
 
   * Use dh_autoreconf. Closes: #755824.
+  * patches/desktop: Upstream patch to add desktop file for menu integration.
+    Closes: #758252.
+  * hwloc.install: Add desktop file.
 
  -- Samuel Thibault <sthibault@debian.org>  Fri, 25 Jul 2014 13:04:04 +0200
 

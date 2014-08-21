@@ -1,10 +1,42 @@
-hwloc-contrib (1.9-1) unstable; urgency=medium
+hwloc-contrib (1.9-5) unstable; urgency=medium
 
-  * New ustream release.
+  * Use dh_autoreconf. Closes: #755824.
+  * patches/desktop: Upstream patch to add desktop file for menu integration.
+    Closes: #758252.
+  * hwloc.install: Add desktop file.
 
- -- Samuel Thibault <sthibault@debian.org>  Wed, 26 Mar 2014 12:45:28 +0100
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 21 Aug 2014 23:50:44 +0200
 
-hwloc-contrib (1.8.1-1) unstable; urgency=medium
+hwloc (1.9-4) unstable; urgency=medium
+
+  * Also ship lstopo-no-graphics in the hwloc package, to fix
+    hwloc-gather-topology, and possibly other scripts that people might be
+    using. Closes: #748927.
+  * Drop autotools-dev and help2man build-dependencies, now unused.
+  * Add --enable-doxygen to really build the documentation.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 11 Jul 2014 10:11:54 +0200
+
+hwloc (1.9-3) unstable; urgency=medium
+
+  * Use [!hurd-i386] instead of [!hurd-any], the latter doesn't seem to be
+    working.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 02 May 2014 02:26:51 +0200
+
+hwloc (1.9-2) unstable; urgency=medium
+
+  * Do not depend on opencl-icd on hurd.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 01 May 2014 21:35:19 +0200
+
+hwloc (1.9-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 26 Mar 2014 12:36:58 +0100
+
+hwloc (1.8.1-1) unstable; urgency=medium
 
   * New upstream release. Closes: #737607.
 

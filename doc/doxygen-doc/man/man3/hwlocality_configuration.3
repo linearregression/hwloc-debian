@@ -1,4 +1,4 @@
-.TH "Topology Detection Configuration and Query" 3 "Wed Mar 26 2014" "Version 1.9" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Detection Configuration and Query" 3 "Mon Aug 25 2014" "Version 1.9.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -256,7 +256,7 @@ Note that this function does not actually load topology information; it just tel
 .PP
 \fBNote:\fP
 .RS 4
-See also \fBhwloc_topology_set_userdata_import_callback()\fP for importing application-specific userdata\&.
+See also \fBhwloc_topology_set_userdata_import_callback()\fP for importing application-specific object userdata\&.
 .PP
 For convenience, this backend provides empty binding hooks which just return success\&. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system\&.
 .PP
@@ -278,7 +278,7 @@ Note that this function does not actually load topology information; it just tel
 .PP
 \fBNote:\fP
 .RS 4
-See also \fBhwloc_topology_set_userdata_import_callback()\fP for importing application-specific userdata\&.
+See also \fBhwloc_topology_set_userdata_import_callback()\fP for importing application-specific object userdata\&.
 .PP
 For convenience, this backend provides empty binding hooks which just return success\&. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system\&.
 .PP

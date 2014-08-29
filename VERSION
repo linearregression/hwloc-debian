@@ -13,7 +13,7 @@ snapshot_version=gitclone
 
 major=1
 minor=9
-release=0
+release=1
 
 # greek is used for alpha or beta release tags.  If it is non-empty,
 # it will be appended to the version number.  It does not have to be
@@ -26,7 +26,7 @@ greek=
 
 # The date when this release was created
 
-date="Mar 26, 2014"
+date="Aug 25, 2014"
 
 # The shared library version of hwloc's public library.  This version
 # is maintained in accordance with the "Library Interface Versions"
@@ -39,4 +39,4 @@ date="Mar 26, 2014"
 # 2. Version numbers are described in the Libtool current:revision:age
 # format.
 
-libhwloc_so_version=10:0:5
+libhwloc_so_version=10:1:5

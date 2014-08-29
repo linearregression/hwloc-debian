@@ -1,4 +1,4 @@
-.TH "Exporting Topologies to XML" 3 "Wed Mar 26 2014" "Version 1.9" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Exporting Topologies to XML" 3 "Mon Aug 25 2014" "Version 1.9.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -69,7 +69,7 @@ Export the topology into an XML file\&. This file may be loaded later through \f
 .PP
 \fBNote:\fP
 .RS 4
-See also \fBhwloc_topology_set_userdata_export_callback()\fP for exporting application-specific userdata\&.
+See also \fBhwloc_topology_set_userdata_export_callback()\fP for exporting application-specific object userdata\&.
 .PP
 Only printable characters may be exported to XML string attributes\&. Any other character, especially any non-ASCII character, will be silently dropped\&.
 .PP
@@ -91,7 +91,7 @@ This memory buffer may be loaded later through \fBhwloc_topology_set_xmlbuffer()
 .PP
 \fBNote:\fP
 .RS 4
-See also \fBhwloc_topology_set_userdata_export_callback()\fP for exporting application-specific userdata\&.
+See also \fBhwloc_topology_set_userdata_export_callback()\fP for exporting application-specific object userdata\&.
 .PP
 Only printable characters may be exported to XML string attributes\&. Any other character, especially any non-ASCII character, will be silently dropped\&. 
 .RE
@@ -100,7 +100,7 @@ Only printable characters may be exported to XML string attributes\&. Any other 
 .SS "void hwloc_topology_set_userdata_export_callback (\fBhwloc_topology_t\fPtopology, void(*)(void *reserved, \fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fP obj)export_cb)"
 
 .PP
-Set the application-specific callback for exporting userdata\&. The object userdata pointer is not exported to XML by default because hwloc does not know what it contains\&.
+Set the application-specific callback for exporting object userdata\&. The object userdata pointer is not exported to XML by default because hwloc does not know what it contains\&.
 .PP
 This function lets applications set \fCexport_cb\fP to a callback function that converts this opaque userdata into an exportable string\&.
 .PP

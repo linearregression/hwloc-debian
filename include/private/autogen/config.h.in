@@ -451,6 +451,9 @@
 /* Define to 1 if function `flsl' is declared by system headers */
 #undef HWLOC_HAVE_DECL_FLSL
 
+/* Define to 1 if function `strncasecmp' is declared by system headers */
+#undef HWLOC_HAVE_DECL_STRNCASECMP
+
 /* Define to 1 if you have the `ffs' function. */
 #undef HWLOC_HAVE_FFS
 
@@ -671,9 +674,6 @@
 
 /* Define this to the process ID type */
 #undef hwloc_pid_t
-
-/* Define this to either strncasecmp or strncmp */
-#undef hwloc_strncasecmp
 
 /* Define this to the thread ID type */
 #undef hwloc_thread_t

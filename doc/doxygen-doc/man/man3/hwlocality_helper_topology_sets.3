@@ -1,4 +1,4 @@
-.TH "CPU and node sets of entire topologies" 3 "Wed Mar 26 2014" "Version 1.9" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "CPU and node sets of entire topologies" 3 "Mon Aug 25 2014" "Version 1.9.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -45,7 +45,7 @@ the CPU set of allowed logical processors of the system\&. If the topology is th
 .PP
 \fBNote:\fP
 .RS 4
-The returned cpuset is not newly allocated and should thus not be changed or freed, hwloc_cpuset_dup must be used to obtain a local copy\&. 
+The returned cpuset is not newly allocated and should thus not be changed or freed, \fBhwloc_bitmap_dup()\fP must be used to obtain a local copy\&. 
 .RE
 .PP
 
@@ -61,7 +61,7 @@ the node set of allowed memory of the system\&. If the topology is the result of
 .PP
 \fBNote:\fP
 .RS 4
-The returned nodeset is not newly allocated and should thus not be changed or freed, hwloc_nodeset_dup must be used to obtain a local copy\&. 
+The returned nodeset is not newly allocated and should thus not be changed or freed, \fBhwloc_bitmap_dup()\fP must be used to obtain a local copy\&. 
 .RE
 .PP
 
@@ -77,7 +77,7 @@ the complete CPU set of logical processors of the system\&. If the topology is t
 .PP
 \fBNote:\fP
 .RS 4
-The returned cpuset is not newly allocated and should thus not be changed or freed; hwloc_cpuset_dup must be used to obtain a local copy\&. 
+The returned cpuset is not newly allocated and should thus not be changed or freed; \fBhwloc_bitmap_dup()\fP must be used to obtain a local copy\&. 
 .RE
 .PP
 
@@ -93,7 +93,7 @@ the complete node set of memory of the system\&. If the topology is the result o
 .PP
 \fBNote:\fP
 .RS 4
-The returned nodeset is not newly allocated and should thus not be changed or freed; hwloc_nodeset_dup must be used to obtain a local copy\&. 
+The returned nodeset is not newly allocated and should thus not be changed or freed; \fBhwloc_bitmap_dup()\fP must be used to obtain a local copy\&. 
 .RE
 .PP
 
@@ -109,7 +109,7 @@ the CPU set of online logical processors of the system\&. If the topology is the
 .PP
 \fBNote:\fP
 .RS 4
-The returned cpuset is not newly allocated and should thus not be changed or freed; hwloc_cpuset_dup must be used to obtain a local copy\&. 
+The returned cpuset is not newly allocated and should thus not be changed or freed; \fBhwloc_bitmap_dup()\fP must be used to obtain a local copy\&. 
 .RE
 .PP
 
@@ -125,7 +125,7 @@ the CPU set of logical processors of the system for which hwloc provides topolog
 .PP
 \fBNote:\fP
 .RS 4
-The returned cpuset is not newly allocated and should thus not be changed or freed; hwloc_cpuset_dup must be used to obtain a local copy\&. 
+The returned cpuset is not newly allocated and should thus not be changed or freed; \fBhwloc_bitmap_dup()\fP must be used to obtain a local copy\&. 
 .RE
 .PP
 
@@ -141,7 +141,7 @@ the node set of memory of the system for which hwloc provides topology informati
 .PP
 \fBNote:\fP
 .RS 4
-The returned nodeset is not newly allocated and should thus not be changed or freed; hwloc_nodeset_dup must be used to obtain a local copy\&. 
+The returned nodeset is not newly allocated and should thus not be changed or freed; \fBhwloc_bitmap_dup()\fP must be used to obtain a local copy\&. 
 .RE
 .PP
 

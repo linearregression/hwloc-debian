@@ -2,7 +2,7 @@
  * Copyright © 2009 CNRS
  * Copyright © 2009-2014 Inria.  All rights reserved.
  * Copyright © 2009-2013 Université Bordeaux 1
- * Copyright © 2009-2011 Cisco Systems, Inc.  All rights reserved.
+ * Copyright © 2009-2014 Cisco Systems, Inc.  All rights reserved.
  * Copyright © 2010 IBM
  * See COPYING in top-level directory.
  */
@@ -2489,7 +2489,7 @@ try_add_cache_from_device_tree_cpu(struct hwloc_topology *topology,
 				      d_cache_line_size, d_cache_size, d_cache_sets, cpuset);
 }
 
-/* 
+/*
  * Discovers L1/L2/L3 cache information on IBM PowerPC systems for old kernels (RHEL5.*)
  * which provide NUMA nodes information without any details
  */
@@ -2498,18 +2498,27 @@ look_powerpc_device_tree(struct hwloc_topology *topology,
 			 struct hwloc_linux_backend_data_s *data)
 {
   device_tree_cpus_t cpus;
-  const char ofroot[] = "/proc/device-tree/cpus";
+  const char *ofroot;
+  size_t ofrootlen;
   unsigned int i;
   int root_fd = data->root_fd;
-  DIR *dt = hwloc_opendir(ofroot, root_fd);
+  DIR *dt;
   struct dirent *dirent;
+
+  ofroot = "/sys/firmware/devicetree/base/cpus";
+  ofrootlen = 34;
+  dt = hwloc_opendir(ofroot, root_fd);
+  if (NULL == dt) {
+    ofroot = "/proc/device-tree/cpus";
+    ofrootlen = 22;
+    dt = hwloc_opendir(ofroot, root_fd);
+    if (NULL == dt)
+      return;
+  }
 
   cpus.n = 0;
   cpus.p = NULL;
   cpus.allocated = 0;
-
-  if (NULL == dt)
-    return;
 
   while (NULL != (dirent = readdir(dt))) {
     struct stat statbuf;
@@ -2522,7 +2531,7 @@ look_powerpc_device_tree(struct hwloc_topology *topology,
     if ('.' == dirent->d_name[0])
       continue;
 
-    len = sizeof(ofroot) + 1 + strlen(dirent->d_name) + 1;
+    len = ofrootlen + 1 + strlen(dirent->d_name) + 1;
     cpu = malloc(len);
     if (NULL == cpu) {
       continue;
@@ -2622,7 +2631,7 @@ cont:
       char *cpu;
       unsigned len;
 
-      len = sizeof(ofroot) + 1 + strlen(cpus.p[i].name) + 1;
+      len = ofrootlen + 1 + strlen(cpus.p[i].name) + 1;
       cpu = malloc(len);
       if (NULL == cpu) {
           return;
@@ -4559,7 +4568,7 @@ hwloc_linux_component_instantiate(struct hwloc_disc_component *component,
   struct hwloc_backend *backend;
   struct hwloc_linux_backend_data_s *data;
   const char * fsroot_path = _data1;
-  int root = -1;
+  int flags, root = -1;
 
   backend = hwloc_backend_alloc(component);
   if (!backend)
@@ -4592,6 +4601,16 @@ hwloc_linux_component_instantiate(struct hwloc_disc_component *component,
     data->is_real_fsroot = 0;
   }
 
+  /* Since this fd stays open after hwloc returns, mark it as
+     close-on-exec so that children don't inherit it.  Stevens says
+     that we should GETFD before we SETFD, so we do. */
+  flags = fcntl(root, F_GETFD, 0);
+  if (-1 == flags ||
+      -1 == fcntl(root, F_SETFD, FD_CLOEXEC | flags)) {
+      close(root);
+      root = -1;
+      goto out_with_data;
+  }
 #else
   if (strcmp(fsroot_path, "/")) {
     errno = ENOSYS;

@@ -16,7 +16,7 @@
 
 # Copyright © 2009-2014 Inria.  All rights reserved.
 # Copyright © 2009      Université Bordeaux 1
-# Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.
+# Copyright © 2009-2014 Cisco Systems, Inc.  All rights reserved.
 # See COPYING in top-level directory.
 
 VPATH = @srcdir@
@@ -461,10 +461,10 @@ DIST_SUBDIRS = $(SUBDIRS)
 
 #
 # "make distcheck" requires that tarballs are able to be able to "make
-# dist", so we have to include config/distscript.csh.
+# dist", so we have to include config/distscript.sh.
 #
 EXTRA_DIST = README VERSION COPYING AUTHORS \
-	config/hwloc_get_version.sh config/distscript.csh \
+	config/hwloc_get_version.sh config/distscript.sh \
 	$(am__append_2)
 all: all-recursive
 
@@ -1015,7 +1015,7 @@ uninstall-am: uninstall-dist_pkgdataDATA uninstall-local \
 
 
 @HWLOC_BUILD_STANDALONE_TRUE@dist-hook:
-@HWLOC_BUILD_STANDALONE_TRUE@	csh "$(top_srcdir)/config/distscript.csh" "$(top_srcdir)" "$(distdir)" "$(HWLOC_VERSION)"
+@HWLOC_BUILD_STANDALONE_TRUE@	sh "$(top_srcdir)/config/distscript.sh" "$(top_srcdir)" "$(distdir)" "$(HWLOC_VERSION)"
 
 #
 # Build the documenation and top-level README file

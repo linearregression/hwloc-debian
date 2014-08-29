@@ -2538,6 +2538,7 @@ uninstall-man: uninstall-man3
 @HWLOC_BUILD_DOXYGEN_TRUE@$(DOX_TAG): $(BUILT_SOURCES) $(dox_inputs) $(PREBUILT_IMAGES)
 @HWLOC_BUILD_DOXYGEN_TRUE@	rm -fr $(DOX_DIR)
 @HWLOC_BUILD_DOXYGEN_TRUE@	$(DOXYGEN) $(DOX_CONFIG)
+@HWLOC_BUILD_DOXYGEN_TRUE@	-$(SED_I) -e 's@\\hyperlink{a[0-9]\{5\}_source}{@\\textbf{@g' $(DOX_DIR)/latex/*.tex
 @HWLOC_BUILD_DOXYGEN_TRUE@	@echo "Work-around spurious leading _ in doxygen filenames..."
 @HWLOC_BUILD_DOXYGEN_TRUE@	-(cd $(DOX_DIR)/man/man3 ; \
 @HWLOC_BUILD_DOXYGEN_TRUE@	for i in _hwloc* ; do \

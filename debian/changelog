@@ -1,4 +1,10 @@
-hwloc-contrib (1.9-5) unstable; urgency=medium
+hwloc-contrib (1.9.1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 29 Aug 2014 14:50:07 +0200
+
+hwloc (1.9-5) unstable; urgency=medium
 
   * Use dh_autoreconf. Closes: #755824.
   * patches/desktop: Upstream patch to add desktop file for menu integration.

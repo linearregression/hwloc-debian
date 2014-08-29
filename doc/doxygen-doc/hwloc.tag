@@ -427,8 +427,14 @@
     <title>Object Structure and Attributes</title>
     <filename>a00075.html</filename>
     <class kind="struct">hwloc_obj_memory_s</class>
+    <class kind="struct">hwloc_obj_memory_s::hwloc_obj_memory_page_type_s</class>
     <class kind="struct">hwloc_obj</class>
     <class kind="union">hwloc_obj_attr_u</class>
+    <class kind="struct">hwloc_obj_attr_u::hwloc_cache_attr_s</class>
+    <class kind="struct">hwloc_obj_attr_u::hwloc_group_attr_s</class>
+    <class kind="struct">hwloc_obj_attr_u::hwloc_pcidev_attr_s</class>
+    <class kind="struct">hwloc_obj_attr_u::hwloc_bridge_attr_s</class>
+    <class kind="struct">hwloc_obj_attr_u::hwloc_osdev_attr_s</class>
     <class kind="struct">hwloc_distances_s</class>
     <class kind="struct">hwloc_obj_info_s</class>
     <member kind="typedef">
@@ -2039,7 +2045,13 @@
     <title>Topology differences</title>
     <filename>a00096.html</filename>
     <class kind="union">hwloc_topology_diff_obj_attr_u</class>
+    <class kind="struct">hwloc_topology_diff_obj_attr_u::hwloc_topology_diff_obj_attr_generic_s</class>
+    <class kind="struct">hwloc_topology_diff_obj_attr_u::hwloc_topology_diff_obj_attr_uint64_s</class>
+    <class kind="struct">hwloc_topology_diff_obj_attr_u::hwloc_topology_diff_obj_attr_string_s</class>
     <class kind="union">hwloc_topology_diff_u</class>
+    <class kind="struct">hwloc_topology_diff_u::hwloc_topology_diff_generic_s</class>
+    <class kind="struct">hwloc_topology_diff_u::hwloc_topology_diff_obj_attr_s</class>
+    <class kind="struct">hwloc_topology_diff_u::hwloc_topology_diff_too_complex_s</class>
     <member kind="typedef">
       <type>enum hwloc_topology_diff_obj_attr_type_e</type>
       <name>hwloc_topology_diff_obj_attr_type_t</name>

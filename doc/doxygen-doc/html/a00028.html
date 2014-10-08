@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.9.1</span>
+   &#160;<span id="projectnumber">1.10.0</span>
    </div>
   </td>
  </tr>
@@ -46,10 +46,15 @@ I do not want hwloc to rediscover my enormous machine topology every time I reru
 <p>Although the topology discovery is not expensive on common machines, its overhead may become significant when multiple processes repeat the discovery on large machines (for instance when starting one process per core in a parallel application). The machine topology usually does not vary much, except if some cores are stopped/restarted or if the administrator restrictions are modified. Thus rediscovering the whole topology again and again may look useless.</p>
 <p>For this purpose, hwloc offers XML import/export features. It lets you save the discovered topology to a file (for instance with the lstopo program) and reload it later by setting the HWLOC_XMLFILE environment variable. The HWLOC_THISSYSTEM environment variable should also be set to 1 to assert that loaded file is really the underlying system.</p>
 <p>Loading a XML topology is usually much faster than querying multiple files or calling multiple functions of the operating system. It is also possible to manipulate such XML files with the C programming interface, and the import/export may also be directed to memory buffer (that may for instance be transmitted between applications through a socket). See also <a class="el" href="a00016.html">Importing and exporting topologies from/to XML files</a>.</p>
+<h1><a class="anchor" id="faq_multitopo"></a>
+How many topologies may I use in my program?</h1>
+<p>hwloc lets you manipulate multiple topologies at the same time. However these topologies consume memory and system resources (for instance file descriptors) until they are destroyed. It is therefore discouraged to open the same topology multiple times.</p>
+<p>Sharing a single topology between threads is easy (see <a class="el" href="a00022.html">Thread Safety</a>) since the vast majority of accesses are read-only.</p>
+<p>If multiple topologies of different (but similar) nodes are needed in your program, have a look at <a class="el" href="a00028.html#faq_diff">How to avoid memory waste when manipulating multiple similar topologies?</a>.</p>
 <h1><a class="anchor" id="faq_diff"></a>
 How to avoid memory waste when manipulating multiple similar topologies?</h1>
 <p>hwloc does not share information between topologies. If multiple similar topologies are loaded in memory, for instance the topologies of different identical nodes of a cluster, lots of information will be duplicated.</p>
-<p><a class="el" href="a00058_source.html" title="Topology differences. ">hwloc/diff.h</a> (see also <a class="el" href="a00096.html">Topology differences</a>) offers the ability to compute topology differences, apply or unapply them, or export/import to/from XML. However this feature is limited to basic differences such as attribute changes. It does not support complex modifications such as adding or removing some objects.</p>
+<p><a class="el" href="a00058_source.html" title="Topology differences. ">hwloc/diff.h</a> (see also <a class="el" href="a00097.html">Topology differences</a>) offers the ability to compute topology differences, apply or unapply them, or export/import to/from XML. However this feature is limited to basic differences such as attribute changes. It does not support complex modifications such as adding or removing some objects.</p>
 <h1><a class="anchor" id="faq_slow_lstopo"></a>
 Why is lstopo slow?</h1>
 <p>lstopo enables most hwloc discovery flags by default so that the output topology is as precise as possible (while hwloc disables many of them by default). This includes I/O device discovery through PCI libraries as well as external libraries such as NVML. To speed up lstopo, you may disable such features with command-line options such as <code>&ndash;no-io</code>.</p>
@@ -57,6 +62,20 @@ Why is lstopo slow?</h1>
 <p>When AMD GPU discovery is enabled with OpenCL and hwloc is used remotely over ssh, some spurious round-trips on the network may significantly increase the discovery time. Forcing the <code>DISPLAY</code> environment variable to the remote X server display (usually <code>:0</code>) instead of only setting the <code>COMPUTE</code> variable may avoid this.</p>
 <p>Also remember that these components may be disabled at build-time with configure flags such as <code>&ndash;disable-opencl</code>, <code>&ndash;disable-cuda</code> or <code>&ndash;disable-nvml</code>, and at runtime with the environment variable <code>HWLOC_COMPONENTS=-opencl,cuda,nvml</code>.</p>
 <p>If loading topologies is slow because the machine contains tons of processors, one should also consider using XML (see <a class="el" href="a00028.html#faq_xml">I do not want hwloc to rediscover my enormous machine topology every time I rerun a process</a>).</p>
+<h1><a class="anchor" id="faq_os_error"></a>
+What should I do when hwloc reports "operating system" warnings?</h1>
+<p>When the operating system reports invalid locality information (because of either software or hardware bugs), hwloc may fail to insert some objects in the topology because they cannot fit in the already built tree of resources. If so, hwloc will report a warning like the following. The object causing this error is ignored, the discovery continues but the resulting topology will miss some object and may be asymmetric (see also <a class="el" href="a00028.html#faq_asymmetric">What happens if my topology is asymmetric?</a>).</p>
+<pre class="fragment">****************************************************************************
+* hwloc has encountered what looks like an error from the operating system.
+*
+* L3 (cpuset 0x000003f0) intersects with NUMANode (P#0 cpuset 0x0000003f) without inclusion!
+* Error occurred in topology.c line 940
+*
+* Please report this error message to the hwloc user's mailing list,
+* along with the output from the hwloc-gather-topology script.
+****************************************************************************
+</pre><p>As explained in the message, reporting this issue to the hwloc developers (by sending the tarball that is generated by the hwloc-gather-topology script on this platform) is a good way to make sure that this is a software (operating system) or hardware bug (BIOS, etc).</p>
+<p>These errors are common on large AMD platforms because several BIOS releases fail to properly report L3 caches. In the above example, the hardware reports a L3 cache that is shared by 2 cores in the first NUMA node and 4 cores in the second NUMA node. That's wrong, it should actually be shared by all 6 cores in a single NUMA node. The resulting topology will miss some L3 caches. If your application not care about cache sharing, or if you do not plan to request cache-aware binding in your process launcher, you may likely ignore this error. The warning may be hidden by setting HWLOC_HIDE_ERRORS=1 in your environment.</p>
 <h1><a class="anchor" id="faq_privileged"></a>
 Does hwloc require privileged access?</h1>
 <p>hwloc discovers the topology by querying the operating system. Some minor features may require privileged access to the operation system. For instance PCI link speed discovery on Linux is reserved to root, and the entire PCI discovery on FreeBSD requires access to the /dev/pci special file.</p>
@@ -107,6 +126,7 @@ How do I annotate the topology with private notes?</h1>
 <p>Each hwloc object contains a <code>userdata</code> field that may be used by applications to store private pointers. This field is only valid during the lifetime of these container object and topology. It becomes invalid as soon the topology is destroyed, or as soon as the object disappears, for instance when restricting the topology. The userdata field is not exported/imported to/from XML by default since hwloc does not know what it contains. This behavior may be changed by specifying application-specific callbacks with <code><a class="el" href="a00084.html#ga9d6ff0f7a8dd45be9aa8575ef31978cc" title="Set the application-specific callback for exporting object userdata. ">hwloc_topology_set_userdata_export_callback()</a></code> and <code><a class="el" href="a00084.html#ga5ac6917ea7289955fb1ffda4353af9b0" title="Set the application-specific callback for importing userdata. ">hwloc_topology_set_userdata_import_callback()</a></code>.</p>
 <p>Each object may also contain some <em>info</em> attributes (key name and value) that are setup by hwloc during discovery and that may be extended by the user with <code><a class="el" href="a00079.html#ga7e90c5398a9d77df31d7d45faf0f316b" title="Add the given info name and value pair to the given object. ">hwloc_obj_add_info()</a></code> (see also <a class="el" href="a00014.html">Object attributes</a>). Contrary to the <code>userdata</code> field which is unique, multiple info attributes may exist for each object, even with the same name. These attributes are always exported to XML. However only character strings may be used as key names and values.</p>
 <p>It is also possible to insert Misc objects with custom names anywhere in the topology (<code><a class="el" href="a00082.html#ga77c753751f3b90fac14117523fe604df" title="Add a MISC object to the topology. ">hwloc_topology_insert_misc_object_by_cpuset()</a></code>) or as a leaf of the topology (<code><a class="el" href="a00082.html#ga1472cdf93327dfff4b5b2aedfde29cf3" title="Add a MISC object as a leaf of the topology. ">hwloc_topology_insert_misc_object_by_parent()</a></code>).</p>
+<p>There is also a topology-specific userdata pointer that can be used to recognize different topologies by storing a custom pointer. It may be manipulated with <code><a class="el" href="a00077.html#ga2cc7b7b155cba58dda203e54f1637b9c" title="Set the topology-specific userdata pointer. ">hwloc_topology_set_userdata()</a></code> and <code><a class="el" href="a00077.html#ga91f992f8d6c4905b2d3c4f43e509c2a3" title="Retrieve the topology-specific userdata pointer. ">hwloc_topology_get_userdata()</a></code>.</p>
 <h1><a class="anchor" id="faq_valgrind"></a>
 Why does Valgrind complain about hwloc memory leaks?</h1>
 <p>If you are debugging your application with Valgrind, you want to avoid memory leak reports that are caused by hwloc and not by your program.</p>
@@ -135,7 +155,7 @@ How to get useful topology information on NetBSD?</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 25 2014 09:41:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 7 2014 11:56:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

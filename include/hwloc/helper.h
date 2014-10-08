@@ -543,11 +543,12 @@ hwloc_get_shared_cache_covering_obj (hwloc_topology_t topology __hwloc_attribute
 
 /** \brief Returns the object of type ::HWLOC_OBJ_PU with \p os_index.
  *
- * \note The \p os_index field of object should most of the times only be
- * used for pretty-printing purpose. Type ::HWLOC_OBJ_PU is the only case
- * where \p os_index could actually be useful, when manually binding to
- * processors.
- * However, using CPU sets to hide this complexity should often be preferred.
+ * This function is useful for converting a CPU set into the PU
+ * objects it contains.
+ * When retrieving the current binding (e.g. with hwloc_get_cpubind()),
+ * one may iterate over the bits of the resulting CPU set with
+ * hwloc_bitmap_foreach_begin(), and find the corresponding PUs
+ * with this function.
  */
 static __hwloc_inline hwloc_obj_t
 hwloc_get_pu_obj_by_os_index(hwloc_topology_t topology, unsigned os_index) __hwloc_attribute_pure;
@@ -556,6 +557,27 @@ hwloc_get_pu_obj_by_os_index(hwloc_topology_t topology, unsigned os_index)
 {
   hwloc_obj_t obj = NULL;
   while ((obj = hwloc_get_next_obj_by_type(topology, HWLOC_OBJ_PU, obj)) != NULL)
+    if (obj->os_index == os_index)
+      return obj;
+  return NULL;
+}
+
+/** \brief Returns the object of type ::HWLOC_OBJ_NODE with \p os_index.
+ *
+ * This function is useful for converting a nodeset into the NUMA node
+ * objects it contains.
+ * When retrieving the current binding (e.g. with hwloc_get_membind_nodeset()),
+ * one may iterate over the bits of the resulting nodeset with
+ * hwloc_bitmap_foreach_begin(), and find the corresponding NUMA nodes
+ * with this function.
+ */
+static __hwloc_inline hwloc_obj_t
+hwloc_get_numanode_obj_by_os_index(hwloc_topology_t topology, unsigned os_index) __hwloc_attribute_pure;
+static __hwloc_inline hwloc_obj_t
+hwloc_get_numanode_obj_by_os_index(hwloc_topology_t topology, unsigned os_index)
+{
+  hwloc_obj_t obj = NULL;
+  while ((obj = hwloc_get_next_obj_by_type(topology, HWLOC_OBJ_NODE, obj)) != NULL)
     if (obj->os_index == os_index)
       return obj;
   return NULL;
@@ -685,6 +707,7 @@ hwloc_distrib(hwloc_topology_t topology,
 {
   unsigned i;
   unsigned tot_weight;
+  unsigned given, givenweight;
   hwloc_cpuset_t *cpusetp = set;
 
   if (flags & ~HWLOC_DISTRIB_FLAG_REVERSE) {
@@ -697,23 +720,41 @@ hwloc_distrib(hwloc_topology_t topology,
     if (roots[i]->cpuset)
       tot_weight += hwloc_bitmap_weight(roots[i]->cpuset);
 
-  for (i = 0; i < n_roots && tot_weight; i++) {
-    /* Give to roots[] a portion proportional to its weight */
+  for (i = 0, given = 0, givenweight = 0; i < n_roots; i++) {
+    unsigned chunk, weight;
     hwloc_obj_t root = roots[flags & HWLOC_DISTRIB_FLAG_REVERSE ? n_roots-1-i : i];
-    unsigned weight = root->cpuset ? hwloc_bitmap_weight(root->cpuset) : 0;
-    unsigned chunk = (n * weight + tot_weight-1) / tot_weight;
-    if (!root->arity || chunk == 1 || root->depth >= until) {
-      /* Got to the bottom, we can't split any more, put everything there.  */
-      unsigned j;
-      for (j=0; j<n; j++)
-	cpusetp[j] = hwloc_bitmap_dup(root->cpuset);
+    hwloc_cpuset_t cpuset = root->cpuset;
+    if (!cpuset)
+      continue;
+    weight = hwloc_bitmap_weight(cpuset);
+    if (!weight)
+      continue;
+    /* Give to root a chunk proportional to its weight.
+     * If previous chunks got rounded-up, we may get a bit less. */
+    chunk = (( (givenweight+weight) * n  + tot_weight-1) / tot_weight)
+          - ((  givenweight         * n  + tot_weight-1) / tot_weight);
+    if (!root->arity || chunk <= 1 || root->depth >= until) {
+      /* We can't split any more, put everything there.  */
+      if (chunk) {
+	/* Fill cpusets with ours */
+	unsigned j;
+	for (j=0; j < chunk; j++)
+	  cpusetp[j] = hwloc_bitmap_dup(cpuset);
+      } else {
+	/* We got no chunk, just merge our cpuset to a previous one
+	 * (the first chunk cannot be empty)
+	 * so that this root doesn't get ignored.
+	 */
+	assert(given);
+	hwloc_bitmap_or(cpusetp[-1], cpusetp[-1], cpuset);
+      }
     } else {
       /* Still more to distribute, recurse into children */
       hwloc_distrib(topology, root->children, root->arity, cpusetp, chunk, until, flags);
     }
     cpusetp += chunk;
-    tot_weight -= weight;
-    n -= chunk;
+    given += chunk;
+    givenweight += weight;
   }
 
   return 0;

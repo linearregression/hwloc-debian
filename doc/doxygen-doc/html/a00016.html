@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.9.1</span>
+   &#160;<span id="projectnumber">1.10.0</span>
    </div>
   </td>
  </tr>
@@ -46,9 +46,11 @@
 <p>XML topologies may then be reloaded later with <a class="el" href="a00077.html#ga879439b7ee99407ee911b3ac64e9a25e" title="Enable XML-file based topology. ">hwloc_topology_set_xml()</a> and <a class="el" href="a00077.html#ga2745616b65595e1c1e579ecc7e461fa8" title="Enable XML based topology using a memory buffer (instead of a file, as with hwloc_topology_set_xml())...">hwloc_topology_set_xmlbuffer()</a>. The XMLFILE environment variable also tells hwloc to load the topology from the given XML file.</p>
 <dl class="section note"><dt>Note</dt><dd>Loading XML topologies disables binding because the loaded topology may not correspond to the physical machine that loads it. This behavior may be reverted by asserting that loaded file really matches the underlying system with the HWLOC_THISSYSTEM environment variable or the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM topology flag.</dd>
 <dd>
-hwloc also offers the ability to export/import <a class="el" href="a00096.html">Topology differences</a>.</dd>
+hwloc also offers the ability to export/import <a class="el" href="a00097.html">Topology differences</a>.</dd>
 <dd>
-XML topology files are not localized. They use a dot as a decimal separator. Therefore any exported topology can be reloaded on any other machine without requiring to change the locale.</dd></dl>
+XML topology files are not localized. They use a dot as a decimal separator. Therefore any exported topology can be reloaded on any other machine without requiring to change the locale.</dd>
+<dd>
+XML exports contain all details about the platform. It means that two very similar nodes still have different XML exports (e.g. some serial numbers or MAC addresses are different). If a less precise exporting/importing is required, one may want to look at <a class="el" href="a00018.html">Synthetic topologies</a> instead.</dd></dl>
 <h1><a class="anchor" id="xml_backends"></a>
 libxml2 and minimalistic XML backends</h1>
 <p>hwloc offers two backends for importing/exporting XML.</p>
@@ -63,7 +65,7 @@ XML import error management</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 25 2014 09:41:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 7 2014 11:56:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

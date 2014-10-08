@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.9.1</span>
+   &#160;<span id="projectnumber">1.10.0</span>
    </div>
   </td>
  </tr>
@@ -429,7 +429,7 @@ Functions</h2></td></tr>
 <p>Returns the depth of objects of type <code>type</code>. </p>
 <p>If no object of this type is present on the underlying architecture, or if the OS doesn't provide this kind of information, the function returns HWLOC_TYPE_DEPTH_UNKNOWN.</p>
 <p>If type is absent but a similar type is acceptable, see also <a class="el" href="a00078.html#ga8125328e69eba709c33ea8055c12589b" title="Returns the depth of objects of type type or below. ">hwloc_get_type_or_below_depth()</a> and <a class="el" href="a00078.html#ga8a9ee573b7d2190272095d10712a7cca" title="Returns the depth of objects of type type or above. ">hwloc_get_type_or_above_depth()</a>.</p>
-<p>If some objects of the given type exist in different levels, for instance L1 and L2 caches, or L1i and L1d caches, the function returns HWLOC_TYPE_DEPTH_MULTIPLE. See <a class="el" href="a00088.html#gad108a09ce400222fe45545257d575489" title="Find the depth of cache objects matching cache depth and type. ">hwloc_get_cache_type_depth()</a> in <a class="el" href="a00061_source.html" title="High-level hwloc traversal helpers. ">hwloc/helper.h</a> to better handle this case.</p>
+<p>If some objects of the given type exist in different levels, for instance L1 and L2 caches, or L1i and L1d caches, the function returns HWLOC_TYPE_DEPTH_MULTIPLE. See <a class="el" href="a00089.html#gad108a09ce400222fe45545257d575489" title="Find the depth of cache objects matching cache depth and type. ">hwloc_get_cache_type_depth()</a> in <a class="el" href="a00061_source.html" title="High-level hwloc traversal helpers. ">hwloc/helper.h</a> to better handle this case.</p>
 <p>If an I/O object type is given, the function returns a virtual value because I/O objects are stored in special levels that are not CPU-related. This virtual depth may be passed to other hwloc functions such as <a class="el" href="a00078.html#gabf8a98ad085460a4982cc7b74c344b71" title="Returns the topology object at logical index idx from depth depth. ">hwloc_get_obj_by_depth()</a> but it should not be considered as an actual depth by the application. In particular, it should not be compared with any other object depth or with the entire topology depth. </p>
 
 </div>
@@ -532,7 +532,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 25 2014 09:41:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 7 2014 11:56:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

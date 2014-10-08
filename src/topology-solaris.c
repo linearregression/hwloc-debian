@@ -1,6 +1,6 @@
 /*
  * Copyright © 2009 CNRS
- * Copyright © 2009-2012 Inria.  All rights reserved.
+ * Copyright © 2009-2014 Inria.  All rights reserved.
  * Copyright © 2009-2011 Université Bordeaux 1
  * Copyright © 2011 Cisco Systems, Inc.  All rights reserved.
  * Copyright © 2011      Oracle and/or its affiliates.  All rights reserved.
@@ -304,7 +304,7 @@ hwloc_solaris_get_thisthread_membind(hwloc_topology_t topology, hwloc_nodeset_t 
 #endif /* HAVE_LIBLGRP */
 
 
-#ifdef MADV_ACCESS_LWP 
+#ifdef MADV_ACCESS_LWP
 static int
 hwloc_solaris_set_area_membind(hwloc_topology_t topology, const void *addr, size_t len, hwloc_const_nodeset_t nodeset, hwloc_membind_policy_t policy, int flags __hwloc_attribute_unused)
 {
@@ -763,7 +763,7 @@ hwloc_set_solaris_hooks(struct hwloc_binding_hooks *hooks,
   hooks->get_thisproc_membind = hwloc_solaris_get_thisproc_membind;
   hooks->get_thisthread_membind = hwloc_solaris_get_thisthread_membind;
 #endif /* HAVE_LIBLGRP */
-#ifdef MADV_ACCESS_LWP 
+#ifdef MADV_ACCESS_LWP
   hooks->set_area_membind = hwloc_solaris_set_area_membind;
   support->membind->firsttouch_membind = 1;
   support->membind->bind_membind = 1;
@@ -797,6 +797,7 @@ static struct hwloc_disc_component hwloc_solaris_disc_component = {
 
 const struct hwloc_component hwloc_solaris_component = {
   HWLOC_COMPONENT_ABI,
+  NULL, NULL,
   HWLOC_COMPONENT_TYPE_DISC,
   0,
   &hwloc_solaris_disc_component

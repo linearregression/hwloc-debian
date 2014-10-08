@@ -108,8 +108,10 @@
     <title>Frequently Asked Questions</title>
     <filename>a00028</filename>
     <docanchor file="a00028" title="I do not want hwloc to rediscover my enormous machine topology every time I rerun a process">faq_xml</docanchor>
+    <docanchor file="a00028" title="How many topologies may I use in my program?">faq_multitopo</docanchor>
     <docanchor file="a00028" title="How to avoid memory waste when manipulating multiple similar topologies?">faq_diff</docanchor>
     <docanchor file="a00028" title="Why is lstopo slow?">faq_slow_lstopo</docanchor>
+    <docanchor file="a00028" title="What should I do when hwloc reports &quot;operating system&quot; warnings?">faq_os_error</docanchor>
     <docanchor file="a00028" title="Does hwloc require privileged access?">faq_privileged</docanchor>
     <docanchor file="a00028" title="hwloc only has a one-dimensional view of the architecture, it ignores distances">faq_onedim</docanchor>
     <docanchor file="a00028" title="How may I ignore symmetric multithreading, hyper-threading, ... ?">faq_smt</docanchor>
@@ -639,6 +641,20 @@
       <anchorfile>a00077.html</anchorfile>
       <anchor>gab8c76173c4a8ce1a9a9366012b1388e6</anchor>
       <arglist>(hwloc_topology_t restrict topology)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>hwloc_topology_set_userdata</name>
+      <anchorfile>a00077.html</anchorfile>
+      <anchor>ga2cc7b7b155cba58dda203e54f1637b9c</anchor>
+      <arglist>(hwloc_topology_t topology, const void *userdata)</arglist>
+    </member>
+    <member kind="function">
+      <type>void *</type>
+      <name>hwloc_topology_get_userdata</name>
+      <anchorfile>a00077.html</anchorfile>
+      <anchor>ga91f992f8d6c4905b2d3c4f43e509c2a3</anchor>
+      <arglist>(hwloc_topology_t topology)</arglist>
     </member>
   </compound>
   <compound kind="group">
@@ -1286,69 +1302,102 @@
     </member>
   </compound>
   <compound kind="group">
+    <name>hwlocality_syntheticexport</name>
+    <title>Exporting Topologies to Synthetic</title>
+    <filename>a00085.html</filename>
+    <member kind="enumeration">
+      <type></type>
+      <name>hwloc_topology_export_synthetic_flags_e</name>
+      <anchorfile>a00085.html</anchorfile>
+      <anchor>ga7ac6f97cc40bd50c40285084f869ba63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <type>@</type>
+      <name>HWLOC_TOPOLOGY_EXPORT_SYNTHETIC_FLAG_NO_EXTENDED_TYPES</name>
+      <anchorfile>a00085.html</anchorfile>
+      <anchor>gga7ac6f97cc40bd50c40285084f869ba63a3b3bd4ba2ef9990810865e561034ccc9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <type>@</type>
+      <name>HWLOC_TOPOLOGY_EXPORT_SYNTHETIC_FLAG_NO_ATTRS</name>
+      <anchorfile>a00085.html</anchorfile>
+      <anchor>gga7ac6f97cc40bd50c40285084f869ba63aaa2702ffba050bab079b3041aec737d4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>hwloc_topology_export_synthetic</name>
+      <anchorfile>a00085.html</anchorfile>
+      <anchor>ga24b7864a1c588309c4749f621f03b4c7</anchor>
+      <arglist>(hwloc_topology_t topology, char *buffer, size_t buflen, unsigned long flags)</arglist>
+    </member>
+  </compound>
+  <compound kind="group">
     <name>hwlocality_helper_find_inside</name>
     <title>Finding Objects inside a CPU set</title>
-    <filename>a00085.html</filename>
+    <filename>a00086.html</filename>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_first_largest_obj_inside_cpuset</name>
-      <anchorfile>a00085.html</anchorfile>
+      <anchorfile>a00086.html</anchorfile>
       <anchor>ga547325a4193dbc215d07c23097519d79</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_get_largest_objs_inside_cpuset</name>
-      <anchorfile>a00085.html</anchorfile>
+      <anchorfile>a00086.html</anchorfile>
       <anchor>ga34ca563fa3a6a4e05268f36a87668511</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, hwloc_obj_t *restrict objs, int max)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_next_obj_inside_cpuset_by_depth</name>
-      <anchorfile>a00085.html</anchorfile>
+      <anchorfile>a00086.html</anchorfile>
       <anchor>ga468b8bef96f9677d6fe04a0d81044c85</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, unsigned depth, hwloc_obj_t prev)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_next_obj_inside_cpuset_by_type</name>
-      <anchorfile>a00085.html</anchorfile>
+      <anchorfile>a00086.html</anchorfile>
       <anchor>gafe859176cf9233f215fea0e87cef47e7</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, hwloc_obj_type_t type, hwloc_obj_t prev)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_obj_inside_cpuset_by_depth</name>
-      <anchorfile>a00085.html</anchorfile>
+      <anchorfile>a00086.html</anchorfile>
       <anchor>ga9442c310da87de6d09d3a4b8399ec14f</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, unsigned depth, unsigned idx)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_obj_inside_cpuset_by_type</name>
-      <anchorfile>a00085.html</anchorfile>
+      <anchorfile>a00086.html</anchorfile>
       <anchor>ga2edf924e5a0cca9cb22f65cc77c6ddb5</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, hwloc_obj_type_t type, unsigned idx)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static unsigned</type>
       <name>hwloc_get_nbobjs_inside_cpuset_by_depth</name>
-      <anchorfile>a00085.html</anchorfile>
+      <anchorfile>a00086.html</anchorfile>
       <anchor>ga8874c24e73ba2b04c76ec8b9e54f49f8</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, unsigned depth)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_get_nbobjs_inside_cpuset_by_type</name>
-      <anchorfile>a00085.html</anchorfile>
+      <anchorfile>a00086.html</anchorfile>
       <anchor>ga133c40415de008518608f8bff52a5ab9</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, hwloc_obj_type_t type)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_get_obj_index_inside_cpuset</name>
-      <anchorfile>a00085.html</anchorfile>
+      <anchorfile>a00086.html</anchorfile>
       <anchor>ga4c3a20d61e9beb06c667b21688c772c5</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, hwloc_obj_t obj)</arglist>
     </member>
@@ -1356,32 +1405,32 @@
   <compound kind="group">
     <name>hwlocality_helper_find_covering</name>
     <title>Finding Objects covering at least CPU set</title>
-    <filename>a00086.html</filename>
+    <filename>a00087.html</filename>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_child_covering_cpuset</name>
-      <anchorfile>a00086.html</anchorfile>
+      <anchorfile>a00087.html</anchorfile>
       <anchor>ga0e66aa2dc6b2527cfd10723af646c9d7</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, hwloc_obj_t parent)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_obj_covering_cpuset</name>
-      <anchorfile>a00086.html</anchorfile>
+      <anchorfile>a00087.html</anchorfile>
       <anchor>ga41acdcdbb8b95d70ecf6c572a3f67dca</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_next_obj_covering_cpuset_by_depth</name>
-      <anchorfile>a00086.html</anchorfile>
+      <anchorfile>a00087.html</anchorfile>
       <anchor>gaeea0d93522c85c3ef0acfbb00733a69c</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, unsigned depth, hwloc_obj_t prev)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_next_obj_covering_cpuset_by_type</name>
-      <anchorfile>a00086.html</anchorfile>
+      <anchorfile>a00087.html</anchorfile>
       <anchor>ga91cfae08b092e7966002e15d1e987213</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set, hwloc_obj_type_t type, hwloc_obj_t prev)</arglist>
     </member>
@@ -1389,39 +1438,39 @@
   <compound kind="group">
     <name>hwlocality_helper_ancestors</name>
     <title>Looking at Ancestor and Child Objects</title>
-    <filename>a00087.html</filename>
+    <filename>a00088.html</filename>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_ancestor_obj_by_depth</name>
-      <anchorfile>a00087.html</anchorfile>
+      <anchorfile>a00088.html</anchorfile>
       <anchor>gaa367c98dea402386c040a47a2f414f86</anchor>
       <arglist>(hwloc_topology_t topology, unsigned depth, hwloc_obj_t obj)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_ancestor_obj_by_type</name>
-      <anchorfile>a00087.html</anchorfile>
+      <anchorfile>a00088.html</anchorfile>
       <anchor>ga70f0c7583291da707c15ae4daa850f41</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_type_t type, hwloc_obj_t obj)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_common_ancestor_obj</name>
-      <anchorfile>a00087.html</anchorfile>
+      <anchorfile>a00088.html</anchorfile>
       <anchor>gab1fa883021928b5c476911c4102e9be3</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t obj1, hwloc_obj_t obj2)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_obj_is_in_subtree</name>
-      <anchorfile>a00087.html</anchorfile>
+      <anchorfile>a00088.html</anchorfile>
       <anchor>ga408cf74f5bf9ed497911a320c7f8cc56</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t obj, hwloc_obj_t subtree_root)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_next_child</name>
-      <anchorfile>a00087.html</anchorfile>
+      <anchorfile>a00088.html</anchorfile>
       <anchor>ga12d8565a3436c565e791ed02a0353621</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t parent, hwloc_obj_t prev)</arglist>
     </member>
@@ -1429,25 +1478,25 @@
   <compound kind="group">
     <name>hwlocality_helper_find_cache</name>
     <title>Looking at Cache Objects</title>
-    <filename>a00088.html</filename>
+    <filename>a00089.html</filename>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_get_cache_type_depth</name>
-      <anchorfile>a00088.html</anchorfile>
+      <anchorfile>a00089.html</anchorfile>
       <anchor>gad108a09ce400222fe45545257d575489</anchor>
       <arglist>(hwloc_topology_t topology, unsigned cachelevel, hwloc_obj_cache_type_t cachetype)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_cache_covering_cpuset</name>
-      <anchorfile>a00088.html</anchorfile>
+      <anchorfile>a00089.html</anchorfile>
       <anchor>gac4cd480a5deaa4ada047fdd11ae4c070</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_shared_cache_covering_obj</name>
-      <anchorfile>a00088.html</anchorfile>
+      <anchorfile>a00089.html</anchorfile>
       <anchor>ga36f48c32837c7a70b424706e213dcd71</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t obj)</arglist>
     </member>
@@ -1455,32 +1504,39 @@
   <compound kind="group">
     <name>hwlocality_helper_find_misc</name>
     <title>Finding objects, miscellaneous helpers</title>
-    <filename>a00089.html</filename>
+    <filename>a00090.html</filename>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_pu_obj_by_os_index</name>
-      <anchorfile>a00089.html</anchorfile>
+      <anchorfile>a00090.html</anchorfile>
       <anchor>ga751c238a4931db5cc0ca3181b7dd7479</anchor>
+      <arglist>(hwloc_topology_t topology, unsigned os_index)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static hwloc_obj_t</type>
+      <name>hwloc_get_numanode_obj_by_os_index</name>
+      <anchorfile>a00090.html</anchorfile>
+      <anchor>gab89d9ed9edfaa3dd526fb6ee1a1618ea</anchor>
       <arglist>(hwloc_topology_t topology, unsigned os_index)</arglist>
     </member>
     <member kind="function">
       <type>unsigned</type>
       <name>hwloc_get_closest_objs</name>
-      <anchorfile>a00089.html</anchorfile>
+      <anchorfile>a00090.html</anchorfile>
       <anchor>ga2cd22a34360643f7f5bad09576dec205</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t src, hwloc_obj_t *restrict objs, unsigned max)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_obj_below_by_type</name>
-      <anchorfile>a00089.html</anchorfile>
+      <anchorfile>a00090.html</anchorfile>
       <anchor>ga7a0c1046851f7a88bd52f5a1d4ba0a97</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_type_t type1, unsigned idx1, hwloc_obj_type_t type2, unsigned idx2)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_obj_below_array_by_type</name>
-      <anchorfile>a00089.html</anchorfile>
+      <anchorfile>a00090.html</anchorfile>
       <anchor>gacb51295ff3fbd3a96f990f20c6492b1d</anchor>
       <arglist>(hwloc_topology_t topology, int nr, hwloc_obj_type_t *typev, unsigned *idxv)</arglist>
     </member>
@@ -1488,25 +1544,25 @@
   <compound kind="group">
     <name>hwlocality_helper_distribute</name>
     <title>Distributing items over a topology</title>
-    <filename>a00090.html</filename>
+    <filename>a00091.html</filename>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_distrib_flags_e</name>
-      <anchorfile>a00090.html</anchorfile>
+      <anchorfile>a00091.html</anchorfile>
       <anchor>ga8b835295a52b6768a5e6c8abb1f9c54d</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_DISTRIB_FLAG_REVERSE</name>
-      <anchorfile>a00090.html</anchorfile>
+      <anchorfile>a00091.html</anchorfile>
       <anchor>gga8b835295a52b6768a5e6c8abb1f9c54da2ca08404bfbebe9ed5f34c3d7635425a</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_distrib</name>
-      <anchorfile>a00090.html</anchorfile>
+      <anchorfile>a00091.html</anchorfile>
       <anchor>ga2e3db06f766509ae2004ee4c8bbf5204</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t *roots, unsigned n_roots, hwloc_cpuset_t *set, unsigned n, unsigned until, unsigned long flags)</arglist>
     </member>
@@ -1514,53 +1570,53 @@
   <compound kind="group">
     <name>hwlocality_helper_topology_sets</name>
     <title>CPU and node sets of entire topologies</title>
-    <filename>a00091.html</filename>
+    <filename>a00092.html</filename>
     <member kind="function" static="yes">
       <type>static hwloc_const_cpuset_t</type>
       <name>hwloc_topology_get_complete_cpuset</name>
-      <anchorfile>a00091.html</anchorfile>
+      <anchorfile>a00092.html</anchorfile>
       <anchor>ga69fbad44c685e46d80ecf51a714ba9ce</anchor>
       <arglist>(hwloc_topology_t topology)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_const_cpuset_t</type>
       <name>hwloc_topology_get_topology_cpuset</name>
-      <anchorfile>a00091.html</anchorfile>
+      <anchorfile>a00092.html</anchorfile>
       <anchor>ga5c3ddcb2d19bc0b58042c9fc974f0fa5</anchor>
       <arglist>(hwloc_topology_t topology)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_const_cpuset_t</type>
       <name>hwloc_topology_get_online_cpuset</name>
-      <anchorfile>a00091.html</anchorfile>
+      <anchorfile>a00092.html</anchorfile>
       <anchor>gacec35bb7656c1944c514044ca4ce9c6f</anchor>
       <arglist>(hwloc_topology_t topology)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_const_cpuset_t</type>
       <name>hwloc_topology_get_allowed_cpuset</name>
-      <anchorfile>a00091.html</anchorfile>
+      <anchorfile>a00092.html</anchorfile>
       <anchor>ga8cb598b3bce8d67cbdfc1f29caad28f6</anchor>
       <arglist>(hwloc_topology_t topology)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_const_nodeset_t</type>
       <name>hwloc_topology_get_complete_nodeset</name>
-      <anchorfile>a00091.html</anchorfile>
+      <anchorfile>a00092.html</anchorfile>
       <anchor>ga22002d6fc14a25a3947c42cba0a70134</anchor>
       <arglist>(hwloc_topology_t topology)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_const_nodeset_t</type>
       <name>hwloc_topology_get_topology_nodeset</name>
-      <anchorfile>a00091.html</anchorfile>
+      <anchorfile>a00092.html</anchorfile>
       <anchor>ga2f1cb5bc87dabb252b691c5c15555d21</anchor>
       <arglist>(hwloc_topology_t topology)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_const_nodeset_t</type>
       <name>hwloc_topology_get_allowed_nodeset</name>
-      <anchorfile>a00091.html</anchorfile>
+      <anchorfile>a00092.html</anchorfile>
       <anchor>ga706182498ac92528e274e9b8d944273d</anchor>
       <arglist>(hwloc_topology_t topology)</arglist>
     </member>
@@ -1568,32 +1624,32 @@
   <compound kind="group">
     <name>hwlocality_helper_nodeset_convert</name>
     <title>Converting between CPU sets and node sets</title>
-    <filename>a00092.html</filename>
+    <filename>a00093.html</filename>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>hwloc_cpuset_to_nodeset</name>
-      <anchorfile>a00092.html</anchorfile>
+      <anchorfile>a00093.html</anchorfile>
       <anchor>ga8fbd641f284673a3e884e8e556044eba</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t _cpuset, hwloc_nodeset_t nodeset)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>hwloc_cpuset_to_nodeset_strict</name>
-      <anchorfile>a00092.html</anchorfile>
+      <anchorfile>a00093.html</anchorfile>
       <anchor>ga014490779e7012ffec2b5ccee020c0ae</anchor>
       <arglist>(struct hwloc_topology *topology, hwloc_const_cpuset_t _cpuset, hwloc_nodeset_t nodeset)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>hwloc_cpuset_from_nodeset</name>
-      <anchorfile>a00092.html</anchorfile>
+      <anchorfile>a00093.html</anchorfile>
       <anchor>ga2ed57313ce5bf85f3ac156932ecf639d</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_cpuset_t _cpuset, hwloc_const_nodeset_t nodeset)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>hwloc_cpuset_from_nodeset_strict</name>
-      <anchorfile>a00092.html</anchorfile>
+      <anchorfile>a00093.html</anchorfile>
       <anchor>gacde800e58b8cdb746706b371ca4b97e0</anchor>
       <arglist>(struct hwloc_topology *topology, hwloc_cpuset_t _cpuset, hwloc_const_nodeset_t nodeset)</arglist>
     </member>
@@ -1601,32 +1657,32 @@
   <compound kind="group">
     <name>hwlocality_distances</name>
     <title>Manipulating Distances</title>
-    <filename>a00093.html</filename>
+    <filename>a00094.html</filename>
     <member kind="function" static="yes">
       <type>static const struct hwloc_distances_s *</type>
       <name>hwloc_get_whole_distance_matrix_by_depth</name>
-      <anchorfile>a00093.html</anchorfile>
+      <anchorfile>a00094.html</anchorfile>
       <anchor>ga07219dc0fd6e4553a658eaa73f038c42</anchor>
       <arglist>(hwloc_topology_t topology, unsigned depth)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static const struct hwloc_distances_s *</type>
       <name>hwloc_get_whole_distance_matrix_by_type</name>
-      <anchorfile>a00093.html</anchorfile>
+      <anchorfile>a00094.html</anchorfile>
       <anchor>ga64529254be72b3c4343b25926c84b12f</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_type_t type)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static const struct hwloc_distances_s *</type>
       <name>hwloc_get_distance_matrix_covering_obj_by_depth</name>
-      <anchorfile>a00093.html</anchorfile>
+      <anchorfile>a00094.html</anchorfile>
       <anchor>ga2d159b21a49964cc629dde03cbf05702</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t obj, unsigned depth, unsigned *firstp)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_get_latency</name>
-      <anchorfile>a00093.html</anchorfile>
+      <anchorfile>a00094.html</anchorfile>
       <anchor>ga79ed880a55f9d03b4ae58ef5116812d7</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t obj1, hwloc_obj_t obj2, float *latency, float *reverse_latency)</arglist>
     </member>
@@ -1634,60 +1690,60 @@
   <compound kind="group">
     <name>hwlocality_advanced_io</name>
     <title>Finding I/O objects</title>
-    <filename>a00094.html</filename>
+    <filename>a00095.html</filename>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_non_io_ancestor_obj</name>
-      <anchorfile>a00094.html</anchorfile>
+      <anchorfile>a00095.html</anchorfile>
       <anchor>gaf139bb61375178e90cc3f1835b452ab6</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t ioobj)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_next_pcidev</name>
-      <anchorfile>a00094.html</anchorfile>
+      <anchorfile>a00095.html</anchorfile>
       <anchor>ga66470dabce9db19a57c5940a909d0baa</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t prev)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_pcidev_by_busid</name>
-      <anchorfile>a00094.html</anchorfile>
+      <anchorfile>a00095.html</anchorfile>
       <anchor>gacdbaf0db98872e224b7883a84bfb0455</anchor>
       <arglist>(hwloc_topology_t topology, unsigned domain, unsigned bus, unsigned dev, unsigned func)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_pcidev_by_busidstring</name>
-      <anchorfile>a00094.html</anchorfile>
+      <anchorfile>a00095.html</anchorfile>
       <anchor>ga23a978469353134b3104b846fe2efceb</anchor>
       <arglist>(hwloc_topology_t topology, const char *busid)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_next_osdev</name>
-      <anchorfile>a00094.html</anchorfile>
+      <anchorfile>a00095.html</anchorfile>
       <anchor>ga8b4584c8949e2c5f1c97ba7fe92b8145</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t prev)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_next_bridge</name>
-      <anchorfile>a00094.html</anchorfile>
+      <anchorfile>a00095.html</anchorfile>
       <anchor>ga9dba22a3f4f701f2a46780ba9a0bbbe7</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t prev)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_bridge_covers_pcibus</name>
-      <anchorfile>a00094.html</anchorfile>
+      <anchorfile>a00095.html</anchorfile>
       <anchor>ga0d92a9462a3d317f29ecb4442a307fb1</anchor>
       <arglist>(hwloc_obj_t bridge, unsigned domain, unsigned bus)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_get_hostbridge_by_pcibus</name>
-      <anchorfile>a00094.html</anchorfile>
+      <anchorfile>a00095.html</anchorfile>
       <anchor>ga06442aedfd6414798ed66a68e4e90e44</anchor>
       <arglist>(hwloc_topology_t topology, unsigned domain, unsigned bus)</arglist>
     </member>
@@ -1695,347 +1751,347 @@
   <compound kind="group">
     <name>hwlocality_bitmap</name>
     <title>The bitmap API</title>
-    <filename>a00095.html</filename>
+    <filename>a00096.html</filename>
     <member kind="define">
       <type>#define</type>
       <name>hwloc_bitmap_foreach_begin</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga3f6861045a8029ade373510ffa727d2a</anchor>
       <arglist>(id, bitmap)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>hwloc_bitmap_foreach_end</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gafcf3246db406218d4e155735b3fa6528</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="typedef">
       <type>struct hwloc_bitmap_s *</type>
       <name>hwloc_bitmap_t</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gaa3c2bf4c776d603dcebbb61b0c923d84</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>const struct hwloc_bitmap_s *</type>
       <name>hwloc_const_bitmap_t</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gae991a108af01d408be2776c5b2c467b2</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>hwloc_bitmap_t</type>
       <name>hwloc_bitmap_alloc</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gadece3d1eb5199fc2fb99bc7dcf1ccc05</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function">
       <type>hwloc_bitmap_t</type>
       <name>hwloc_bitmap_alloc_full</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga02853b4a224970587b9d7a0e20d857c0</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_free</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga156130d85b3a0674d6e0e6770fe68fbe</anchor>
       <arglist>(hwloc_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>hwloc_bitmap_t</type>
       <name>hwloc_bitmap_dup</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gae679434c1a5f41d3560a8a7e2c1b0dee</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_copy</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga036068a22d1aa5cb9ff1df348b525ff3</anchor>
       <arglist>(hwloc_bitmap_t dst, hwloc_const_bitmap_t src)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_snprintf</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga9511644657030a021dce9941e3cda583</anchor>
       <arglist>(char *restrict buf, size_t buflen, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_asprintf</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga0fece972134fdecf2da9bc7a11dd827e</anchor>
       <arglist>(char **strp, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_sscanf</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga064a85c643a364b60acbfa0f3663fc18</anchor>
       <arglist>(hwloc_bitmap_t bitmap, const char *restrict string)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_list_snprintf</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga3d06e6447edeb61e56a9ad83f31f0a37</anchor>
       <arglist>(char *restrict buf, size_t buflen, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_list_asprintf</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga39c0f1b02053de66d205c9f8260b3665</anchor>
       <arglist>(char **strp, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_list_sscanf</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gaf9314311d482c621e17c6a53a9fe993e</anchor>
       <arglist>(hwloc_bitmap_t bitmap, const char *restrict string)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_taskset_snprintf</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga5beb68a987fe48e5c5edef06ab260e14</anchor>
       <arglist>(char *restrict buf, size_t buflen, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_taskset_asprintf</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga391312513f17c985d871f18367c59512</anchor>
       <arglist>(char **strp, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_taskset_sscanf</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga4f23db5041240e03e348752f8bd6ec2d</anchor>
       <arglist>(hwloc_bitmap_t bitmap, const char *restrict string)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_zero</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gaa97c5217613c8cae9862287170ea2132</anchor>
       <arglist>(hwloc_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_fill</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga07b2de8786b3cdb22f21d9dd42588275</anchor>
       <arglist>(hwloc_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_only</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga037032ba6aaf49c2e6836e2dbb7855c4</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned id)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_allbut</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga3b944660dcfcb8d655883742b3ea86a7</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned id)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_from_ulong</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gaba53aebd49962acea4e3e0ff160172e3</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned long mask)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_from_ith_ulong</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga6066e095e6f23302f0a1ca7284d0b651</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned i, unsigned long mask)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_set</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga55480e96ab47941bfebb9aed676526a2</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned id)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_set_range</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga7a1d8530b282397f56b0d82b17e6d13d</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned begin, int end)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_set_ith_ulong</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gab16b6f6383b51f9c314abe15478ff6ff</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned i, unsigned long mask)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_clr</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gabddf36d47882c0a4f1e2b3c76cac877c</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned id)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_clr_range</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga207ae23381d7b37fb97fd1f906c9c5ba</anchor>
       <arglist>(hwloc_bitmap_t bitmap, unsigned begin, int end)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_singlify</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga36d802130aa5d96bc1b5a90d2f0f3765</anchor>
       <arglist>(hwloc_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>unsigned long</type>
       <name>hwloc_bitmap_to_ulong</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gab6a6bae22a33ec6adfc169a953c13e6c</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>unsigned long</type>
       <name>hwloc_bitmap_to_ith_ulong</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gac92e6404f648d6b99d2c626b05b2ffa4</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap, unsigned i)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_isset</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga11340dd487f110bb84f0a6e4ae90bd06</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap, unsigned id)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_iszero</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga5b64be28f5a7176ed8ad0d6a90bdf108</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_isfull</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga5fdcb8c19c336511c37076d649e74af4</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_first</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga3ec1ced43afadf8c0a7197320bc016ed</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_next</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gaab7240b4b644693b775dad17b44ffd68</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap, int prev)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_last</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga3d9b08b060a59bbab5a4ea6d0a1ed7a6</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_weight</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga0200466842c0e1f5da75e84dde460b10</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_or</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga1281994d6cc3b5079224190ca820ad93</anchor>
       <arglist>(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_and</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga4a3e12ab9e20cfec66a3dc2db16806be</anchor>
       <arglist>(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_andnot</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga091e9039ce7b6fe927260cd1b08d25c4</anchor>
       <arglist>(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_xor</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gaf462ead487d1891e37f4443a397d3c42</anchor>
       <arglist>(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_bitmap_not</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga8cd2c26d71510138b22a12db41419742</anchor>
       <arglist>(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_intersects</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gaefa070f9232857ba5a57297ea9a08ea2</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_isincluded</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga0526e03db81956fb02acc8260b66d6a4</anchor>
       <arglist>(hwloc_const_bitmap_t sub_bitmap, hwloc_const_bitmap_t super_bitmap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_isequal</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga32376b1405e57472b73c3aa53bb39663</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_compare_first</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>gaa39cda1510ab721b5c012c76ead72365</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_bitmap_compare</name>
-      <anchorfile>a00095.html</anchorfile>
+      <anchorfile>a00096.html</anchorfile>
       <anchor>ga14cdbc0ef0a705e84999bd48a2e649f3</anchor>
       <arglist>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</arglist>
     </member>
@@ -2043,7 +2099,7 @@
   <compound kind="group">
     <name>hwlocality_diff</name>
     <title>Topology differences</title>
-    <filename>a00096.html</filename>
+    <filename>a00097.html</filename>
     <class kind="union">hwloc_topology_diff_obj_attr_u</class>
     <class kind="struct">hwloc_topology_diff_obj_attr_u::hwloc_topology_diff_obj_attr_generic_s</class>
     <class kind="struct">hwloc_topology_diff_obj_attr_u::hwloc_topology_diff_obj_attr_uint64_s</class>
@@ -2055,133 +2111,133 @@
     <member kind="typedef">
       <type>enum hwloc_topology_diff_obj_attr_type_e</type>
       <name>hwloc_topology_diff_obj_attr_type_t</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>ga5f2dd099de2cacdc0d0d4858154b971a</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>enum hwloc_topology_diff_type_e</type>
       <name>hwloc_topology_diff_type_t</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>ga4b86adb00c8b2d09ebc4ef8f3bfd92b2</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>union hwloc_topology_diff_u *</type>
       <name>hwloc_topology_diff_t</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>ga2cf1b17332fe5d95f2198f6340cfd288</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_topology_diff_obj_attr_type_e</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>ga86f044210b0a9e9fa83acbdbbf7e05fd</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_TOPOLOGY_DIFF_OBJ_ATTR_SIZE</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>gga86f044210b0a9e9fa83acbdbbf7e05fdabc7f0c7ed0b6864e902f4b70f2c7bc94</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_TOPOLOGY_DIFF_OBJ_ATTR_NAME</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>gga86f044210b0a9e9fa83acbdbbf7e05fda94a8f37c51d62d15ac6192665dd49310</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_TOPOLOGY_DIFF_OBJ_ATTR_INFO</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>gga86f044210b0a9e9fa83acbdbbf7e05fda63430bf932434bc456282f636d39c2c2</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_topology_diff_type_e</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>ga38b28b7423b85a3321e6d0062d5f83d0</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_TOPOLOGY_DIFF_OBJ_ATTR</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>gga38b28b7423b85a3321e6d0062d5f83d0accbcaee230f79989debb284c8626f0c0</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_TOPOLOGY_DIFF_TOO_COMPLEX</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>gga38b28b7423b85a3321e6d0062d5f83d0a3dc01fdeff355efe3fb2516bb454a147</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_topology_diff_apply_flags_e</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>gada4c1273ce020afaf02b649496f7edf5</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_TOPOLOGY_DIFF_APPLY_REVERSE</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>ggada4c1273ce020afaf02b649496f7edf5a821a160512d67ea0dd05dab873d2fc54</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_topology_diff_build</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>ga8a1754f69fbb31364ea3ea2c39827c9f</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_topology_t newtopology, unsigned long flags, hwloc_topology_diff_t *diff)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_topology_diff_apply</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>gae7b350d7e7478a4c6047b08aa6544f40</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_topology_diff_t diff, unsigned long flags)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_topology_diff_destroy</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>gab531db0e4ca3e590d48358c90f59c197</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_topology_diff_t diff)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_topology_diff_load_xml</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>gae82a885a377aff78936c5f175b5980f8</anchor>
       <arglist>(hwloc_topology_t topology, const char *xmlpath, hwloc_topology_diff_t *diff, char **refname)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_topology_diff_export_xml</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>gacceb7e97b5689d0405db618bb5541012</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_topology_diff_t diff, const char *refname, const char *xmlpath)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_topology_diff_load_xmlbuffer</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>ga09afc24f1c9860465ec352c4ac518dd4</anchor>
       <arglist>(hwloc_topology_t topology, const char *xmlbuffer, int buflen, hwloc_topology_diff_t *diff, char **refname)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_topology_diff_export_xmlbuffer</name>
-      <anchorfile>a00096.html</anchorfile>
+      <anchorfile>a00097.html</anchorfile>
       <anchor>ga88e72855746c81e2341580fa8d619a51</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_topology_diff_t diff, const char *refname, char **xmlbuffer, int *buflen)</arglist>
     </member>
@@ -2189,40 +2245,40 @@
   <compound kind="group">
     <name>hwlocality_disc_components</name>
     <title>Components and Plugins: Discovery components</title>
-    <filename>a00097.html</filename>
+    <filename>a00098.html</filename>
     <class kind="struct">hwloc_disc_component</class>
     <member kind="typedef">
       <type>enum hwloc_disc_component_type_e</type>
       <name>hwloc_disc_component_type_t</name>
-      <anchorfile>a00097.html</anchorfile>
+      <anchorfile>a00098.html</anchorfile>
       <anchor>ga5c6112c1a7497e5f481b9634059d47b1</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_disc_component_type_e</name>
-      <anchorfile>a00097.html</anchorfile>
+      <anchorfile>a00098.html</anchorfile>
       <anchor>ga0dceb95fada01e5e4558429912053ca7</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_DISC_COMPONENT_TYPE_CPU</name>
-      <anchorfile>a00097.html</anchorfile>
+      <anchorfile>a00098.html</anchorfile>
       <anchor>gga0dceb95fada01e5e4558429912053ca7aa09e6a39b61eda5364eada626da88ecc</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_DISC_COMPONENT_TYPE_GLOBAL</name>
-      <anchorfile>a00097.html</anchorfile>
+      <anchorfile>a00098.html</anchorfile>
       <anchor>gga0dceb95fada01e5e4558429912053ca7a7d7e7114cca4165eee72efb9b39b3d6d</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_DISC_COMPONENT_TYPE_MISC</name>
-      <anchorfile>a00097.html</anchorfile>
+      <anchorfile>a00098.html</anchorfile>
       <anchor>gga0dceb95fada01e5e4558429912053ca7aaf4d61f8e2c7c28e88cd81bb565695b7</anchor>
       <arglist></arglist>
     </member>
@@ -2230,47 +2286,47 @@
   <compound kind="group">
     <name>hwlocality_disc_backends</name>
     <title>Components and Plugins: Discovery backends</title>
-    <filename>a00098.html</filename>
+    <filename>a00099.html</filename>
     <class kind="struct">hwloc_backend</class>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_backend_flag_e</name>
-      <anchorfile>a00098.html</anchorfile>
+      <anchorfile>a00099.html</anchorfile>
       <anchor>ga21513209613570877b6bfa9898106f2a</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_BACKEND_FLAG_NEED_LEVELS</name>
-      <anchorfile>a00098.html</anchorfile>
+      <anchorfile>a00099.html</anchorfile>
       <anchor>gga21513209613570877b6bfa9898106f2aadc96f2cf3bdd5d41e102dfa1e1976b24</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>struct hwloc_backend *</type>
       <name>hwloc_backend_alloc</name>
-      <anchorfile>a00098.html</anchorfile>
+      <anchorfile>a00099.html</anchorfile>
       <anchor>ga330a0b581de4817d0cf1e7401db22436</anchor>
       <arglist>(struct hwloc_disc_component *component)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_backend_enable</name>
-      <anchorfile>a00098.html</anchorfile>
+      <anchorfile>a00099.html</anchorfile>
       <anchor>gaa4edf46c5d88eef53b3b8f572d88b9c5</anchor>
       <arglist>(struct hwloc_topology *topology, struct hwloc_backend *backend)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_backends_get_obj_cpuset</name>
-      <anchorfile>a00098.html</anchorfile>
+      <anchorfile>a00099.html</anchorfile>
       <anchor>ga505a5470745bf0b601f4d25a69601411</anchor>
       <arglist>(struct hwloc_backend *caller, struct hwloc_obj *obj, hwloc_bitmap_t cpuset)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_backends_notify_new_object</name>
-      <anchorfile>a00098.html</anchorfile>
+      <anchorfile>a00099.html</anchorfile>
       <anchor>gad8ac8bba9ab6b9af423baba0c8337c6b</anchor>
       <arglist>(struct hwloc_backend *caller, struct hwloc_obj *obj)</arglist>
     </member>
@@ -2278,33 +2334,33 @@
   <compound kind="group">
     <name>hwlocality_generic_components</name>
     <title>Components and Plugins: Generic components</title>
-    <filename>a00099.html</filename>
+    <filename>a00100.html</filename>
     <class kind="struct">hwloc_component</class>
     <member kind="typedef">
       <type>enum hwloc_component_type_e</type>
       <name>hwloc_component_type_t</name>
-      <anchorfile>a00099.html</anchorfile>
+      <anchorfile>a00100.html</anchorfile>
       <anchor>ga0aebfa65317af10bb18d7d35f6dc05b8</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
       <type></type>
       <name>hwloc_component_type_e</name>
-      <anchorfile>a00099.html</anchorfile>
+      <anchorfile>a00100.html</anchorfile>
       <anchor>ga397a1bf7d21dd073320ad0045340f463</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_COMPONENT_TYPE_DISC</name>
-      <anchorfile>a00099.html</anchorfile>
+      <anchorfile>a00100.html</anchorfile>
       <anchor>gga397a1bf7d21dd073320ad0045340f463a5d6e561f467fe9795a29e7368b613900</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
       <name>HWLOC_COMPONENT_TYPE_XML</name>
-      <anchorfile>a00099.html</anchorfile>
+      <anchorfile>a00100.html</anchorfile>
       <anchor>gga397a1bf7d21dd073320ad0045340f463adea00cd839c2141c032e1569fd5592bd</anchor>
       <arglist></arglist>
     </member>
@@ -2312,67 +2368,67 @@
   <compound kind="group">
     <name>hwlocality_components_core_funcs</name>
     <title>Components and Plugins: Core functions to be used by components</title>
-    <filename>a00100.html</filename>
+    <filename>a00101.html</filename>
     <member kind="typedef">
       <type>void(*</type>
       <name>hwloc_report_error_t</name>
-      <anchorfile>a00100.html</anchorfile>
+      <anchorfile>a00101.html</anchorfile>
       <anchor>gac2286a3c84a2417f72400bd65bccb99e</anchor>
       <arglist>)(const char *msg, int line)</arglist>
     </member>
     <member kind="function">
       <type>struct hwloc_obj *</type>
       <name>hwloc_insert_object_by_cpuset</name>
-      <anchorfile>a00100.html</anchorfile>
+      <anchorfile>a00101.html</anchorfile>
       <anchor>gafd853fd67e12c32916201d8303ef39d2</anchor>
       <arglist>(struct hwloc_topology *topology, hwloc_obj_t obj)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_report_os_error</name>
-      <anchorfile>a00100.html</anchorfile>
+      <anchorfile>a00101.html</anchorfile>
       <anchor>ga3ae154590328522a864f4a7fb453b562</anchor>
       <arglist>(const char *msg, int line)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_hide_errors</name>
-      <anchorfile>a00100.html</anchorfile>
+      <anchorfile>a00101.html</anchorfile>
       <anchor>gab527c1e0f243f057d31a724794ad9f88</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function">
       <type>struct hwloc_obj *</type>
       <name>hwloc__insert_object_by_cpuset</name>
-      <anchorfile>a00100.html</anchorfile>
+      <anchorfile>a00101.html</anchorfile>
       <anchor>ga56d4e5fec377bf09f136b4e8e280e30f</anchor>
       <arglist>(struct hwloc_topology *topology, hwloc_obj_t obj, hwloc_report_error_t report_error)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>hwloc_insert_object_by_parent</name>
-      <anchorfile>a00100.html</anchorfile>
+      <anchorfile>a00101.html</anchorfile>
       <anchor>ga0ef97debde503b56367689b07bb3e901</anchor>
       <arglist>(struct hwloc_topology *topology, hwloc_obj_t parent, hwloc_obj_t obj)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static struct hwloc_obj *</type>
       <name>hwloc_alloc_setup_object</name>
-      <anchorfile>a00100.html</anchorfile>
+      <anchorfile>a00101.html</anchorfile>
       <anchor>ga64d210fcfd7e517095319420bf40ed0a</anchor>
       <arglist>(hwloc_obj_type_t type, signed os_index)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_fill_object_sets</name>
-      <anchorfile>a00100.html</anchorfile>
+      <anchorfile>a00101.html</anchorfile>
       <anchor>gabb240e5b856a34963078ccec9a785ac1</anchor>
       <arglist>(hwloc_obj_t obj)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_plugin_check_namespace</name>
-      <anchorfile>a00100.html</anchorfile>
+      <anchorfile>a00101.html</anchorfile>
       <anchor>gac2eaed287bb215cf0bd33014e9e1d374</anchor>
       <arglist>(const char *pluginname, const char *symbol)</arglist>
     </member>
@@ -2380,32 +2436,32 @@
   <compound kind="group">
     <name>hwlocality_components_pci_funcs</name>
     <title>Components and Plugins: PCI functions to be used by components</title>
-    <filename>a00101.html</filename>
+    <filename>a00102.html</filename>
     <member kind="function">
       <type>int</type>
       <name>hwloc_insert_pci_device_list</name>
-      <anchorfile>a00101.html</anchorfile>
+      <anchorfile>a00102.html</anchorfile>
       <anchor>ga2ea3e9c02eabd8c5768745c8a99d7fed</anchor>
       <arglist>(struct hwloc_backend *backend, struct hwloc_obj *first_obj)</arglist>
     </member>
     <member kind="function">
       <type>unsigned</type>
       <name>hwloc_pci_find_cap</name>
-      <anchorfile>a00101.html</anchorfile>
+      <anchorfile>a00102.html</anchorfile>
       <anchor>ga4bed8bd79337d4bc84b884a6ccd14f16</anchor>
       <arglist>(const unsigned char *config, unsigned cap)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_pci_find_linkspeed</name>
-      <anchorfile>a00101.html</anchorfile>
+      <anchorfile>a00102.html</anchorfile>
       <anchor>ga749e75eeea108be0608fcba7c113f736</anchor>
       <arglist>(const unsigned char *config, unsigned offset, float *linkspeed)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_pci_prepare_bridge</name>
-      <anchorfile>a00101.html</anchorfile>
+      <anchorfile>a00102.html</anchorfile>
       <anchor>ga80fa1e3d882b5c2225dd6dd01e098ad0</anchor>
       <arglist>(hwloc_obj_t obj, const unsigned char *config)</arglist>
     </member>
@@ -2413,32 +2469,32 @@
   <compound kind="group">
     <name>hwlocality_linux</name>
     <title>Linux-specific helpers</title>
-    <filename>a00102.html</filename>
+    <filename>a00103.html</filename>
     <member kind="function">
       <type>int</type>
       <name>hwloc_linux_parse_cpumap_file</name>
-      <anchorfile>a00102.html</anchorfile>
+      <anchorfile>a00103.html</anchorfile>
       <anchor>gaa5a608236c3c0757b0b79818f1d429fb</anchor>
       <arglist>(FILE *file, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_linux_set_tid_cpubind</name>
-      <anchorfile>a00102.html</anchorfile>
+      <anchorfile>a00103.html</anchorfile>
       <anchor>ga630e699c56b5f3d2e534b475944c216e</anchor>
       <arglist>(hwloc_topology_t topology, pid_t tid, hwloc_const_cpuset_t set)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_linux_get_tid_cpubind</name>
-      <anchorfile>a00102.html</anchorfile>
+      <anchorfile>a00103.html</anchorfile>
       <anchor>gaddcb985cb56337a4d6693cee72e7bf94</anchor>
       <arglist>(hwloc_topology_t topology, pid_t tid, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>hwloc_linux_get_tid_last_cpu_location</name>
-      <anchorfile>a00102.html</anchorfile>
+      <anchorfile>a00103.html</anchorfile>
       <anchor>gacc7945c2d06c6db1e58f8fd953009134</anchor>
       <arglist>(hwloc_topology_t topology, pid_t tid, hwloc_bitmap_t set)</arglist>
     </member>
@@ -2446,32 +2502,32 @@
   <compound kind="group">
     <name>hwlocality_linux_libnuma_ulongs</name>
     <title>Interoperability with Linux libnuma unsigned long masks</title>
-    <filename>a00103.html</filename>
+    <filename>a00104.html</filename>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_cpuset_to_linux_libnuma_ulongs</name>
-      <anchorfile>a00103.html</anchorfile>
+      <anchorfile>a00104.html</anchorfile>
       <anchor>gae577962390f84b0b12f503314ab0f972</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset, unsigned long *mask, unsigned long *maxnode)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_nodeset_to_linux_libnuma_ulongs</name>
-      <anchorfile>a00103.html</anchorfile>
+      <anchorfile>a00104.html</anchorfile>
       <anchor>ga585ccf818d2f217f4e53f9c6506c3128</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_nodeset_t nodeset, unsigned long *mask, unsigned long *maxnode)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_cpuset_from_linux_libnuma_ulongs</name>
-      <anchorfile>a00103.html</anchorfile>
+      <anchorfile>a00104.html</anchorfile>
       <anchor>ga0e9d051e068940f722f6fdc61814149d</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_cpuset_t cpuset, const unsigned long *mask, unsigned long maxnode)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_nodeset_from_linux_libnuma_ulongs</name>
-      <anchorfile>a00103.html</anchorfile>
+      <anchorfile>a00104.html</anchorfile>
       <anchor>gad8491c672eb2594cc5e7b0a026867192</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_nodeset_t nodeset, const unsigned long *mask, unsigned long maxnode)</arglist>
     </member>
@@ -2479,32 +2535,32 @@
   <compound kind="group">
     <name>hwlocality_linux_libnuma_bitmask</name>
     <title>Interoperability with Linux libnuma bitmask</title>
-    <filename>a00104.html</filename>
+    <filename>a00105.html</filename>
     <member kind="function" static="yes">
       <type>static struct bitmask *</type>
       <name>hwloc_cpuset_to_linux_libnuma_bitmask</name>
-      <anchorfile>a00104.html</anchorfile>
+      <anchorfile>a00105.html</anchorfile>
       <anchor>gad8769b4544c0aeef154fc8223144e343</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t cpuset)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static struct bitmask *</type>
       <name>hwloc_nodeset_to_linux_libnuma_bitmask</name>
-      <anchorfile>a00104.html</anchorfile>
+      <anchorfile>a00105.html</anchorfile>
       <anchor>gadfaa14c1bec76965ac2e05f0c3f3473b</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_nodeset_t nodeset)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_cpuset_from_linux_libnuma_bitmask</name>
-      <anchorfile>a00104.html</anchorfile>
+      <anchorfile>a00105.html</anchorfile>
       <anchor>ga37c8421110b1842414809019098794ef</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_cpuset_t cpuset, const struct bitmask *bitmask)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_nodeset_from_linux_libnuma_bitmask</name>
-      <anchorfile>a00104.html</anchorfile>
+      <anchorfile>a00105.html</anchorfile>
       <anchor>gaaca6bff3086aad5bdbd2f4c5f0ad14cc</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_nodeset_t nodeset, const struct bitmask *bitmask)</arglist>
     </member>
@@ -2512,18 +2568,18 @@
   <compound kind="group">
     <name>hwlocality_glibc_sched</name>
     <title>Interoperability with glibc sched affinity</title>
-    <filename>a00105.html</filename>
+    <filename>a00106.html</filename>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_cpuset_to_glibc_sched_affinity</name>
-      <anchorfile>a00105.html</anchorfile>
+      <anchorfile>a00106.html</anchorfile>
       <anchor>ga88699a0c86c66a9b7baa3468cd9d24c3</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_const_cpuset_t hwlocset, cpu_set_t *schedset, size_t schedsetsize)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_cpuset_from_glibc_sched_affinity</name>
-      <anchorfile>a00105.html</anchorfile>
+      <anchorfile>a00106.html</anchorfile>
       <anchor>ga8ec807ec17de57fa77aa5cfd6c8e4bfb</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_cpuset_t hwlocset, const cpu_set_t *schedset, size_t schedsetsize)</arglist>
     </member>
@@ -2531,25 +2587,25 @@
   <compound kind="group">
     <name>hwlocality_opencl</name>
     <title>Interoperability with OpenCL</title>
-    <filename>a00106.html</filename>
+    <filename>a00107.html</filename>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_opencl_get_device_cpuset</name>
-      <anchorfile>a00106.html</anchorfile>
+      <anchorfile>a00107.html</anchorfile>
       <anchor>gacc32737d4648d16b0d292438f210ec90</anchor>
       <arglist>(hwloc_topology_t topology, cl_device_id device, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_opencl_get_device_osdev_by_index</name>
-      <anchorfile>a00106.html</anchorfile>
+      <anchorfile>a00107.html</anchorfile>
       <anchor>gae39352d124cb330eb37b84b418ed6cc5</anchor>
       <arglist>(hwloc_topology_t topology, unsigned platform_index, unsigned device_index)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_opencl_get_device_osdev</name>
-      <anchorfile>a00106.html</anchorfile>
+      <anchorfile>a00107.html</anchorfile>
       <anchor>gadabfa6516aa12e5d8f79b9b4dd9f3cf8</anchor>
       <arglist>(hwloc_topology_t topology, cl_device_id device)</arglist>
     </member>
@@ -2557,39 +2613,39 @@
   <compound kind="group">
     <name>hwlocality_cuda</name>
     <title>Interoperability with the CUDA Driver API</title>
-    <filename>a00107.html</filename>
+    <filename>a00108.html</filename>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_cuda_get_device_pci_ids</name>
-      <anchorfile>a00107.html</anchorfile>
+      <anchorfile>a00108.html</anchorfile>
       <anchor>ga1084285e8ff8b7df91c28917637481c6</anchor>
       <arglist>(hwloc_topology_t topology, CUdevice cudevice, int *domain, int *bus, int *dev)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_cuda_get_device_cpuset</name>
-      <anchorfile>a00107.html</anchorfile>
+      <anchorfile>a00108.html</anchorfile>
       <anchor>gaec41c6b4dc3361156beb7dea2a74f5a3</anchor>
       <arglist>(hwloc_topology_t topology, CUdevice cudevice, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_cuda_get_device_pcidev</name>
-      <anchorfile>a00107.html</anchorfile>
+      <anchorfile>a00108.html</anchorfile>
       <anchor>ga11fed607fa404e29e8da010f3ec128e4</anchor>
       <arglist>(hwloc_topology_t topology, CUdevice cudevice)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_cuda_get_device_osdev</name>
-      <anchorfile>a00107.html</anchorfile>
+      <anchorfile>a00108.html</anchorfile>
       <anchor>ga252cb72175f1a2d682f883a0add80a66</anchor>
       <arglist>(hwloc_topology_t topology, CUdevice cudevice)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_cuda_get_device_osdev_by_index</name>
-      <anchorfile>a00107.html</anchorfile>
+      <anchorfile>a00108.html</anchorfile>
       <anchor>ga12ee892994ed037e8f64bbffda02cf2e</anchor>
       <arglist>(hwloc_topology_t topology, unsigned idx)</arglist>
     </member>
@@ -2597,32 +2653,32 @@
   <compound kind="group">
     <name>hwlocality_cudart</name>
     <title>Interoperability with the CUDA Runtime API</title>
-    <filename>a00108.html</filename>
+    <filename>a00109.html</filename>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_cudart_get_device_pci_ids</name>
-      <anchorfile>a00108.html</anchorfile>
+      <anchorfile>a00109.html</anchorfile>
       <anchor>gad8b701d9a34923e34bd58defd4c1e704</anchor>
       <arglist>(hwloc_topology_t topology, int idx, int *domain, int *bus, int *dev)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_cudart_get_device_cpuset</name>
-      <anchorfile>a00108.html</anchorfile>
+      <anchorfile>a00109.html</anchorfile>
       <anchor>ga187ca00c6e12800a25151ce331620980</anchor>
       <arglist>(hwloc_topology_t topology, int idx, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_cudart_get_device_pcidev</name>
-      <anchorfile>a00108.html</anchorfile>
+      <anchorfile>a00109.html</anchorfile>
       <anchor>gaeda4e6efbb36b518b2c286434ad23bb2</anchor>
       <arglist>(hwloc_topology_t topology, int idx)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_cudart_get_device_osdev_by_index</name>
-      <anchorfile>a00108.html</anchorfile>
+      <anchorfile>a00109.html</anchorfile>
       <anchor>gac0f3eeaf7712919f298097b1a21307b0</anchor>
       <arglist>(hwloc_topology_t topology, unsigned idx)</arglist>
     </member>
@@ -2630,25 +2686,25 @@
   <compound kind="group">
     <name>hwlocality_nvml</name>
     <title>Interoperability with the NVIDIA Management Library</title>
-    <filename>a00109.html</filename>
+    <filename>a00110.html</filename>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_nvml_get_device_cpuset</name>
-      <anchorfile>a00109.html</anchorfile>
+      <anchorfile>a00110.html</anchorfile>
       <anchor>ga26cf0036d09ec4d7cb692380fac9659d</anchor>
       <arglist>(hwloc_topology_t topology, nvmlDevice_t device, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_nvml_get_device_osdev_by_index</name>
-      <anchorfile>a00109.html</anchorfile>
+      <anchorfile>a00110.html</anchorfile>
       <anchor>gacd50fd0e2766ee05bc13234b46714756</anchor>
       <arglist>(hwloc_topology_t topology, unsigned idx)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_nvml_get_device_osdev</name>
-      <anchorfile>a00109.html</anchorfile>
+      <anchorfile>a00110.html</anchorfile>
       <anchor>gaf176159b5760a191871eff23f5a69ee9</anchor>
       <arglist>(hwloc_topology_t topology, nvmlDevice_t device)</arglist>
     </member>
@@ -2656,25 +2712,25 @@
   <compound kind="group">
     <name>hwlocality_gl</name>
     <title>Interoperability with OpenGL displays</title>
-    <filename>a00110.html</filename>
+    <filename>a00111.html</filename>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_gl_get_display_osdev_by_port_device</name>
-      <anchorfile>a00110.html</anchorfile>
+      <anchorfile>a00111.html</anchorfile>
       <anchor>ga4d66a77e4fe4051d6e5b772c1b8fcec5</anchor>
       <arglist>(hwloc_topology_t topology, unsigned port, unsigned device)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_gl_get_display_osdev_by_name</name>
-      <anchorfile>a00110.html</anchorfile>
+      <anchorfile>a00111.html</anchorfile>
       <anchor>ga2d36ef441d1dfddf49cfb5c01bd58d8e</anchor>
       <arglist>(hwloc_topology_t topology, const char *name)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_gl_get_display_by_osdev</name>
-      <anchorfile>a00110.html</anchorfile>
+      <anchorfile>a00111.html</anchorfile>
       <anchor>ga936665ab5f0d29a081c4b78d11f4ad07</anchor>
       <arglist>(hwloc_topology_t topology, hwloc_obj_t osdev, unsigned *port, unsigned *device)</arglist>
     </member>
@@ -2682,18 +2738,18 @@
   <compound kind="group">
     <name>hwlocality_intel_mic</name>
     <title>Interoperability with Intel Xeon Phi (MIC)</title>
-    <filename>a00111.html</filename>
+    <filename>a00112.html</filename>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_intel_mic_get_device_cpuset</name>
-      <anchorfile>a00111.html</anchorfile>
+      <anchorfile>a00112.html</anchorfile>
       <anchor>ga91bafa51abe81527f72437e24ad5944e</anchor>
       <arglist>(hwloc_topology_t topology, int idx, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_intel_mic_get_device_osdev_by_index</name>
-      <anchorfile>a00111.html</anchorfile>
+      <anchorfile>a00112.html</anchorfile>
       <anchor>gabce0465e853de74be84cafcb96dd48ab</anchor>
       <arglist>(hwloc_topology_t topology, unsigned idx)</arglist>
     </member>
@@ -2701,25 +2757,25 @@
   <compound kind="group">
     <name>hwlocality_openfabrics</name>
     <title>Interoperability with OpenFabrics</title>
-    <filename>a00112.html</filename>
+    <filename>a00113.html</filename>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_ibv_get_device_cpuset</name>
-      <anchorfile>a00112.html</anchorfile>
+      <anchorfile>a00113.html</anchorfile>
       <anchor>ga3ea0d838c1e7f1671b35687aae2da6ae</anchor>
       <arglist>(hwloc_topology_t topology, struct ibv_device *ibdev, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_ibv_get_device_osdev_by_name</name>
-      <anchorfile>a00112.html</anchorfile>
+      <anchorfile>a00113.html</anchorfile>
       <anchor>ga31d794567f4420bbdc8baa7bf8bf6138</anchor>
       <arglist>(hwloc_topology_t topology, const char *ibname)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static hwloc_obj_t</type>
       <name>hwloc_ibv_get_device_osdev</name>
-      <anchorfile>a00112.html</anchorfile>
+      <anchorfile>a00113.html</anchorfile>
       <anchor>ga7324cdfd5db6ed2669c051ef7e1b64e1</anchor>
       <arglist>(hwloc_topology_t topology, struct ibv_device *ibdev)</arglist>
     </member>
@@ -2727,18 +2783,18 @@
   <compound kind="group">
     <name>hwlocality_myriexpress</name>
     <title>Interoperability with Myrinet Express</title>
-    <filename>a00113.html</filename>
+    <filename>a00114.html</filename>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_mx_board_get_device_cpuset</name>
-      <anchorfile>a00113.html</anchorfile>
+      <anchorfile>a00114.html</anchorfile>
       <anchor>ga868dfb8232333858e1e159c62ff9b682</anchor>
       <arglist>(hwloc_topology_t topology, unsigned id, hwloc_cpuset_t set)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int</type>
       <name>hwloc_mx_endpoint_get_device_cpuset</name>
-      <anchorfile>a00113.html</anchorfile>
+      <anchorfile>a00114.html</anchorfile>
       <anchor>ga1d01f76cdd4a408ad01f105deeef3bba</anchor>
       <arglist>(hwloc_topology_t topology, mx_endpoint_t endpoint, hwloc_cpuset_t set)</arglist>
     </member>
@@ -2812,6 +2868,20 @@
       <anchorfile>a00032.html</anchorfile>
       <anchor>a3250bd6fc9713946991d805e48091b2e</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int(*</type>
+      <name>init</name>
+      <anchorfile>a00032.html</anchorfile>
+      <anchor>a610b612f198afa7324c3e720149e416b</anchor>
+      <arglist>)(unsigned long flags)</arglist>
+    </member>
+    <member kind="variable">
+      <type>void(*</type>
+      <name>finalize</name>
+      <anchorfile>a00032.html</anchorfile>
+      <anchor>a8e6a3fbd401292460d8142210c7e5d32</anchor>
+      <arglist>)(unsigned long flags)</arglist>
     </member>
     <member kind="variable">
       <type>hwloc_component_type_t</type>

@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.9.1</span>
+   &#160;<span id="projectnumber">1.10.0</span>
    </div>
   </td>
  </tr>
@@ -102,6 +102,10 @@ Functions</h2></td></tr>
 <tr class="memitem:gab8c76173c4a8ce1a9a9366012b1388e6"><td class="memItemLeft" align="right" valign="top">const struct <br class="typebreak" />
 <a class="el" href="a00054.html">hwloc_topology_support</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#gab8c76173c4a8ce1a9a9366012b1388e6">hwloc_topology_get_support</a> (<a class="el" href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> restrict topology)</td></tr>
 <tr class="separator:gab8c76173c4a8ce1a9a9366012b1388e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2cc7b7b155cba58dda203e54f1637b9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#ga2cc7b7b155cba58dda203e54f1637b9c">hwloc_topology_set_userdata</a> (<a class="el" href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology, const void *userdata)</td></tr>
+<tr class="separator:ga2cc7b7b155cba58dda203e54f1637b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga91f992f8d6c4905b2d3c4f43e509c2a3"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#ga91f992f8d6c4905b2d3c4f43e509c2a3">hwloc_topology_get_userdata</a> (<a class="el" href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a> topology)</td></tr>
+<tr class="separator:ga91f992f8d6c4905b2d3c4f43e509c2a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Several functions can optionally be called between <a class="el" href="a00076.html#ga03fd4a16d8b9ee1ffc32b25fd2f6bdfa" title="Allocate a topology context. ">hwloc_topology_init()</a> and <a class="el" href="a00076.html#gabdf58d87ad77f6615fccdfe0535ff826" title="Build the actual topology. ">hwloc_topology_load()</a> to configure how the detection should be performed, e.g. to ignore some objects types, define a synthetic topology, etc.</p>
@@ -187,6 +191,25 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Retrieve the topology support. </p>
+
+</div>
+</div>
+<a class="anchor" id="ga91f992f8d6c4905b2d3c4f43e509c2a3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* hwloc_topology_get_userdata </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
+          <td class="paramname"><em>topology</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieve the topology-specific userdata pointer. </p>
+<p>Retrieve the application-given private data pointer that was previously set with <a class="el" href="a00077.html#ga2cc7b7b155cba58dda203e54f1637b9c" title="Set the topology-specific userdata pointer. ">hwloc_topology_set_userdata()</a>. </p>
 
 </div>
 </div>
@@ -494,6 +517,37 @@ On success, the synthetic component replaces the previously enabled component (i
 
 </div>
 </div>
+<a class="anchor" id="ga2cc7b7b155cba58dda203e54f1637b9c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hwloc_topology_set_userdata </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a>&#160;</td>
+          <td class="paramname"><em>topology</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>userdata</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the topology-specific userdata pointer. </p>
+<p>Each topology may store one application-given private data pointer. It is initialized to <code>NULL</code>. hwloc will never modify it.</p>
+<p>Use it as you wish, after <a class="el" href="a00076.html#ga03fd4a16d8b9ee1ffc32b25fd2f6bdfa" title="Allocate a topology context. ">hwloc_topology_init()</a> and until hwloc_topolog_destroy().</p>
+<p>This pointer is not exported to XML. </p>
+
+</div>
+</div>
 <a class="anchor" id="ga879439b7ee99407ee911b3ac64e9a25e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -575,7 +629,7 @@ On success, the XML component replaces the previously enabled component (if any)
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 25 2014 09:41:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 7 2014 11:56:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

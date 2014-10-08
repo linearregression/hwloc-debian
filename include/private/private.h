@@ -58,6 +58,7 @@ struct hwloc_topology {
   int is_thissystem;
   int is_loaded;
   hwloc_pid_t pid;                                      /* Process ID the topology is view from, 0 for self */
+  void *userdata;
 
   unsigned bridge_nbobjects;
   struct hwloc_obj **bridge_level;
@@ -298,6 +299,11 @@ extern int hwloc_namecoloncmp(const char *haystack, const char *needle, size_t n
 #else
 # define __hwloc_attribute_format(type, str, arg)
 #endif
+
+#define hwloc_memory_size_printf_value(_size, _verbose) \
+  ((_size) < (10ULL<<20) || _verbose ? (((_size)>>9)+1)>>1 : (_size) < (10ULL<<30) ? (((_size)>>19)+1)>>1 : (((_size)>>29)+1)>>1)
+#define hwloc_memory_size_printf_unit(_size, _verbose) \
+  ((_size) < (10ULL<<20) || _verbose ? "KB" : (_size) < (10ULL<<30) ? "MB" : "GB")
 
 /* On some systems, snprintf returns the size of written data, not the actually
  * required size.  hwloc_snprintf always report the actually required size. */

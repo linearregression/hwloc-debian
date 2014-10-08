@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.9.1</span>
+   &#160;<span id="projectnumber">1.10.0</span>
    </div>
   </td>
  </tr>
@@ -232,6 +232,8 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>-1 if a failure occured.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>See also <a class="el" href="a00084.html#ga9d6ff0f7a8dd45be9aa8575ef31978cc" title="Set the application-specific callback for exporting object userdata. ">hwloc_topology_set_userdata_export_callback()</a> for exporting application-specific object userdata.</dd>
 <dd>
+The topology-specific userdata pointer is ignored when exporting to XML.</dd>
+<dd>
 Only printable characters may be exported to XML string attributes. Any other character, especially any non-ASCII character, will be silently dropped.</dd>
 <dd>
 If <code>name</code> is "-", the XML output is sent to the standard output. </dd></dl>
@@ -274,6 +276,8 @@ If <code>name</code> is "-", the XML output is sent to the standard output. </dd
 <dl class="section return"><dt>Returns</dt><dd>-1 if a failure occured.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>See also <a class="el" href="a00084.html#ga9d6ff0f7a8dd45be9aa8575ef31978cc" title="Set the application-specific callback for exporting object userdata. ">hwloc_topology_set_userdata_export_callback()</a> for exporting application-specific object userdata.</dd>
 <dd>
+The topology-specific userdata pointer is ignored when exporting to XML.</dd>
+<dd>
 Only printable characters may be exported to XML string attributes. Any other character, especially any non-ASCII character, will be silently dropped. </dd></dl>
 
 </div>
@@ -306,7 +310,8 @@ Only printable characters may be exported to XML string attributes. Any other ch
 <p>The object userdata pointer is not exported to XML by default because hwloc does not know what it contains.</p>
 <p>This function lets applications set <code>export_cb</code> to a callback function that converts this opaque userdata into an exportable string.</p>
 <p><code>export_cb</code> is invoked during XML export for each object whose <code>userdata</code> pointer is not <code>NULL</code>. The callback should use <a class="el" href="a00084.html#gaa541bdd628416dbbe97d0df69d3de958" title="Export some object userdata to XML. ">hwloc_export_obj_userdata()</a> or <a class="el" href="a00084.html#ga1b7358137cec27bd073f58a606ecbaba" title="Encode and export some object userdata to XML. ">hwloc_export_obj_userdata_base64()</a> to actually export something to XML (possibly multiple times per object).</p>
-<p><code>export_cb</code> may be set to <code>NULL</code> if userdata should not be exported to XML. </p>
+<p><code>export_cb</code> may be set to <code>NULL</code> if userdata should not be exported to XML.</p>
+<dl class="section note"><dt>Note</dt><dd>The topology-specific userdata pointer is ignored when exporting to XML. </dd></dl>
 
 </div>
 </div>
@@ -341,14 +346,16 @@ Only printable characters may be exported to XML string attributes. Any other ch
 <p><code>import_cb</code> may be <code>NULL</code> if userdata should be ignored during import.</p>
 <dl class="section note"><dt>Note</dt><dd><code>buffer</code> contains <code>length</code> characters followed by a null byte ('\0').</dd>
 <dd>
-This function should be called before <a class="el" href="a00076.html#gabdf58d87ad77f6615fccdfe0535ff826" title="Build the actual topology. ">hwloc_topology_load()</a>. </dd></dl>
+This function should be called before <a class="el" href="a00076.html#gabdf58d87ad77f6615fccdfe0535ff826" title="Build the actual topology. ">hwloc_topology_load()</a>.</dd>
+<dd>
+The topology-specific userdata pointer is ignored when importing from XML. </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 25 2014 09:41:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 7 2014 11:56:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

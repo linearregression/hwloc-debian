@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.9.1</span>
+   &#160;<span id="projectnumber">1.10.0</span>
    </div>
   </td>
  </tr>
@@ -70,7 +70,7 @@
 <p class="enddd"></p>
 </dd>
 <dt>HWLOC_GROUPING_ACCURACY=0.05 </dt>
-<dd><p class="startdd">relaxes distance comparison during grouping. By default, objects may be grouped if their distances form a minimal distance graph. When setting this variable to 0.02, these distances do not have to be strictly equal anymore, they may just be equal with a 2% error. If set to <code>try</code> instead of a numerical value, hwloc will try to group with perfect accuracy (0, the default), then with 0.01, 0.02, 0.05 and finally 0.1.</p>
+<dd><p class="startdd">relaxes distance comparison during grouping. By default, objects may be grouped if their distances form a minimal distance graph. When setting this variable to 0.02, these distances do not have to be strictly equal anymore, they may just be equal with a 2% error. If set to <code>try</code> instead of a numerical value, hwloc will try to group with perfect accuracy (0, the default), then with 0.01, 0.02, 0.05 and finally 0.1. Numbers given in this environment variable should always use a dot as a decimal mark (for instance 0.01 instead of 0,01).</p>
 <p class="enddd"></p>
 </dd>
 <dt>HWLOC_GROUPING_VERBOSE=0 </dt>
@@ -107,7 +107,7 @@ Otherwise, the comma-separated list of distances should be given. If N objects a
 <p class="enddd"></p>
 </dd>
 <dt>HWLOC_COMPONENTS=list,of,components </dt>
-<dd><p class="startdd">forces a list of components to enable or disable. Enable or disable the given comma-separated list of components (if they do not conflict with each other). Component names prefixed with <code>-</code> are disabled. Once the end of the list is reached, hwloc falls back to enabling the remaining components (sorted by priority) that do not conflict with the already enabled ones, and unless explicitly disabled in the list. If <code>stop</code> is met, the enabling loop immediately stops, no more component is enabled. If the variable is set to an empty string, no specific component is loaded first, all components are loaded in priority order, this is strictly identical to not specifying any variable. The <code>xml</code> component name may be followed by a XML file to load (<code>xml=file.xml</code>). The synthetic component may be followed by a synthetic topology description (<code>synthetic=node:2 pu:3</code>). This variable does not take precedence over the application selecting components with functions such as <a class="el" href="a00077.html#ga879439b7ee99407ee911b3ac64e9a25e" title="Enable XML-file based topology. ">hwloc_topology_set_xml()</a>. See <a class="el" href="a00024.html">Components and plugins</a> for details. </p>
+<dd><p class="startdd">forces a list of components to enable or disable. Enable or disable the given comma-separated list of components (if they do not conflict with each other). Component names prefixed with <code>-</code> are disabled. Once the end of the list is reached, hwloc falls back to enabling the remaining components (sorted by priority) that do not conflict with the already enabled ones, and unless explicitly disabled in the list. If <code>stop</code> is met, the enabling loop immediately stops, no more component is enabled. If the variable is set to an empty string, no specific component is loaded first, all components are loaded in priority order, this is strictly identical to not specifying any variable. The <code>xml</code> component name may be followed by a XML file to load (<code>xml=file.xml</code>). The synthetic component may be followed by a basic synthetic topology description (<code>synthetic=node:2 pu:3</code>, see <a class="el" href="a00018.html">Synthetic topologies</a>). This variable does not take precedence over the application selecting components with functions such as <a class="el" href="a00077.html#ga879439b7ee99407ee911b3ac64e9a25e" title="Enable XML-file based topology. ">hwloc_topology_set_xml()</a>. See <a class="el" href="a00024.html">Components and plugins</a> for details. </p>
 <p class="enddd"></p>
 </dd>
 <dt>HWLOC_COMPONENTS_VERBOSE=1 </dt>
@@ -118,7 +118,7 @@ Otherwise, the comma-separated list of distances should be given. If N objects a
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 25 2014 09:41:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 7 2014 11:56:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

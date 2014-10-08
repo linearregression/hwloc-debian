@@ -20,6 +20,7 @@ sysfs_outputs = \
 		256ppc-8n8s4t.output \
 		256ppc-8n8s4t-nocache.output \
 		256ppc-8n8s4t-nosys.output \
+		28em64t-2s2n7c-buggycoresiblings.output \
 		32amd64-4s2n4c-cgroup.output \
 		32amd64-4s2n4c-cgroup.xml.output \
 		32ppc-4n4c2c.output \
@@ -49,6 +50,7 @@ sysfs_outputs = \
 		24em64t-2n6c2t+2mic.olddriver.output \
 		32em64t-2n8c+1mic.output \
 		40intel64-2g2n4c+pci.output \
+		40intel64-4n10c+pci-conflicts.output \
 		48amd64-4d2n6c-sparse.output \
 		64amd64-4s2n4ca2co.output \
 		64fake-4n2s2ca2c2t.output \
@@ -77,6 +79,7 @@ sysfs_tarballs = \
 		256ppc-8n8s4t.tar.bz2 \
 		256ppc-8n8s4t-nocache.source \
 		256ppc-8n8s4t-nosys.source \
+		28em64t-2s2n7c-buggycoresiblings.tar.bz2 \
 		32amd64-4s2n4c-cgroup.tar.bz2 \
 		32amd64-4s2n4c-cgroup.xml.source \
 		32ppc-4n4c2c.tar.bz2 \
@@ -106,6 +109,7 @@ sysfs_tarballs = \
 		24em64t-2n6c2t+2mic.olddriver.tar.bz2 \
 		32em64t-2n8c+1mic.tar.bz2 \
 		40intel64-2g2n4c+pci.tar.bz2 \
+		40intel64-4n10c+pci-conflicts.tar.bz2 \
 		48amd64-4d2n6c-sparse.tar.bz2 \
 		64amd64-4s2n4ca2co.tar.bz2 \
 		64fake-4n2s2ca2c2t.tar.bz2 \
@@ -150,6 +154,7 @@ sysfs_envs = \
 		32amd64-4s2n4c-cgroup.env \
 		32amd64-4s2n4c-cgroup.xml.env \
 		40intel64-2g2n4c+pci.env \
+		40intel64-4n10c+pci-conflicts.env \
 		96em64t-4n4d3ca2co-forcecpuinfo.env
 
 if HWLOC_HAVE_OPENAT

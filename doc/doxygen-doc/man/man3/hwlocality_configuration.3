@@ -1,4 +1,4 @@
-.TH "Topology Detection Configuration and Query" 3 "Mon Aug 25 2014" "Version 1.9.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Detection Configuration and Query" 3 "Tue Oct 7 2014" "Version 1.10.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -73,6 +73,12 @@ Topology Detection Configuration and Query \-
 .br
 \fBhwloc_topology_support\fP * \fBhwloc_topology_get_support\fP (\fBhwloc_topology_t\fP restrict topology)"
 .br
+.ti -1c
+.RI "void \fBhwloc_topology_set_userdata\fP (\fBhwloc_topology_t\fP topology, const void *userdata)"
+.br
+.ti -1c
+.RI "void * \fBhwloc_topology_get_userdata\fP (\fBhwloc_topology_t\fP topology)"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -129,6 +135,10 @@ the flags previously set with \fBhwloc_topology_set_flags()\fP\&.
 
 .PP
 Retrieve the topology support\&. 
+.SS "void* hwloc_topology_get_userdata (\fBhwloc_topology_t\fPtopology)"
+
+.PP
+Retrieve the topology-specific userdata pointer\&. Retrieve the application-given private data pointer that was previously set with \fBhwloc_topology_set_userdata()\fP\&. 
 .SS "int hwloc_topology_ignore_all_keep_structure (\fBhwloc_topology_t\fPtopology)"
 
 .PP
@@ -242,6 +252,14 @@ On success, the synthetic component replaces the previously enabled component (i
 .RE
 .PP
 
+.SS "void hwloc_topology_set_userdata (\fBhwloc_topology_t\fPtopology, const void *userdata)"
+
+.PP
+Set the topology-specific userdata pointer\&. Each topology may store one application-given private data pointer\&. It is initialized to \fCNULL\fP\&. hwloc will never modify it\&.
+.PP
+Use it as you wish, after \fBhwloc_topology_init()\fP and until hwloc_topolog_destroy()\&.
+.PP
+This pointer is not exported to XML\&. 
 .SS "int hwloc_topology_set_xml (\fBhwloc_topology_t\fP restricttopology, const char *restrictxmlpath)"
 
 .PP

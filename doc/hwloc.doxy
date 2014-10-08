@@ -2,7 +2,7 @@
  * Copyright © 2009 CNRS
  * Copyright © 2009-2014 Inria.  All rights reserved.
  * Copyright © 2009-2013 Université Bordeaux 1
- * Copyright © 2009-2011 Cisco Systems, Inc.  All rights reserved.
+ * Copyright © 2009-2014 Cisco Systems, Inc.  All rights reserved.
  * See COPYING in top-level directory.
  */
 
@@ -119,7 +119,7 @@ smaller!) project and code base.  It just happens to be hosted as part
 of the overall Open MPI project.
 
 Nightly development snapshots are available on the web site.
-Additionally, the code can be directly checked out of Subversion:
+Additionally, the code can be directly cloned from Git:
 
 \verbatim
 shell$ git clone https://github.com/open-mpi/hwloc.git
@@ -128,7 +128,7 @@ shell$ ./autogen.sh
 \endverbatim
 
 Note that GNU Autoconf >=2.63, Automake >=1.10 and Libtool >=2.2.6 are
-required when building from a Subversion checkout.
+required when building from a Git clone.
 
 Installation by itself is the fairly common GNU-based process:
 
@@ -155,8 +155,6 @@ discovery:
 <ol>
 <li>libpciaccess (BSD).  The relevant development package is usually
 <tt>libpciaccess-devel</tt> or <tt>libpciaccess-dev</tt>.  </li>
-<li>libpci, from the pciutils package (GPL). The relevant development
-package is usually <tt>pciutils-devel</tt> or <tt>libpci-dev</tt>.  </li>
 </ol>
 On Linux, PCI discovery may still be performed
 even if none of the above libraries can be used.
@@ -187,12 +185,9 @@ PCI and XML support may be statically built inside the main hwloc
 library, or as separate dynamically-loaded plugins (see the
 \ref plugins section).
 
-Note that because of the possibility of GPL taint (remember that hwloc
-is BSD-licensed), hwloc's <tt>configure</tt> script will prefer
-<tt>libpciaccess</tt> to the <tt>pciutils</tt> package.  Indeed, if
-<tt>libpciaccess</tt> is not found, hwloc will not use
-<tt>pciutils</tt> unless it is specifically requested via the
-<tt>--enable-libpci</tt> flag is provided.
+Note that because of the possibility of GPL taint, the
+<tt>pciutils</tt> library <tt>libpci</tt> will not be used (remember
+that hwloc is BSD-licensed).
 
 Also note that if you install supplemental libraries in non-standard
 locations, hwloc's configure script may not be able to find them
@@ -459,7 +454,7 @@ both US letter and A4 formats) in the source tarball in
 doc/doxygen-doc/.  
 
 <strong>NOTE:</strong> If you are building the documentation from a
-Subversion checkout, you will need to have Doxygen and pdflatex
+Git clone, you will need to have Doxygen and pdflatex
 installed -- the documentation will be built during the normal "make"
 process.  The documentation is installed during "make install" to
 $prefix/share/doc/hwloc/ and your systems default man page tree (under
@@ -536,8 +531,10 @@ element may exist between a core and a PU.
 The following small C example (named ``hwloc-hello.c'') prints the
 topology of the machine and bring the process to the first logical processor
 of the second core of the machine.
+More examples are available in the doc/examples/ directory of the source
+tree.
 
-\include hwloc-hello.c
+\include examples/hwloc-hello.c
 
 hwloc provides a \c pkg-config executable to obtain relevant compiler
 and linker flags.  For example, it can be used thusly to compile
@@ -1009,7 +1006,9 @@ following environment variables.
   with a 2% error.
   If set to <tt>try</tt> instead of a numerical value, hwloc will try
   to group with perfect accuracy (0, the default), then with 0.01, 0.02,
-  0.05 and finally 0.1.</dd>
+  0.05 and finally 0.1.
+  Numbers given in this environment variable should always use a dot
+  as a decimal mark (for instance 0.01 instead of 0,01).</dd>
 
 <dt>HWLOC_GROUPING_VERBOSE=0</dt>
   <dd>enables or disables some verbose messages during grouping.
@@ -1085,8 +1084,8 @@ following environment variables.
   this is strictly identical to not specifying any variable.
   The <tt>xml</tt> component name may be followed by a XML file to
   load (<tt>xml=file.xml</tt>).
-  The synthetic component may be followed by a synthetic topology
-  description (<tt>synthetic=node:2 pu:3</tt>).
+  The synthetic component may be followed by a basic synthetic topology
+  description (<tt>synthetic=node:2 pu:3</tt>, see \ref synthetic).
   This variable does not take precedence over the application
   selecting components with functions such as
   hwloc_topology_set_xml().
@@ -1186,6 +1185,7 @@ binding policy.
 
 See \ref hwlocality_cpubinding and \ref hwlocality_membinding for
 hwloc's API functions regarding CPU and memory binding, respectively.
+There are some examples under doc/examples/ in the source tree.
 
 
 
@@ -1205,14 +1205,13 @@ to hwloc_topology_set_flags() before loading the topology.
 
 Note that I/O discovery requires significant help from the operating system.
 The pciaccess library (the development package is usually <tt>libpciaccess-devel</tt>
-or <tt>libpciaccess-dev</tt>) is needed to fully detect PCI devices and bridges
-(libpci/pciutils may be used instead if a GPL dependency is acceptable),
+or <tt>libpciaccess-dev</tt>) is needed to fully detect PCI devices and bridges,
 and the actual locality of these devices is only currently detected
 on Linux. Also, some operating systems require privileges for probing PCI
 devices, see \ref faq_privileged for details.
 
 On Linux, PCI discovery may still be performed even
-if neither <tt>libpciaccess</tt> nor <tt>pciutils</tt> can be used.
+if <tt>libpciaccess</tt> cannot be used.
 But it misses PCI device names.
 
 \section iodevices_hierarchy I/O object hierarchy
@@ -1774,6 +1773,12 @@ decimal separator. Therefore any exported topology can be
 reloaded on any other machine without requiring to change the
 locale.
 
+\note XML exports contain all details about the platform. It means
+that two very similar nodes still have different XML exports
+(e.g. some serial numbers or MAC addresses are different).
+If a less precise exporting/importing is required, one may want to
+look at \ref synthetic instead.
+
 \section xml_backends libxml2 and minimalistic XML backends
 
 hwloc offers two backends for importing/exporting XML.
@@ -1848,6 +1853,11 @@ Machine (2048MB)
 Replacing <tt>-</tt> with <tt>file.xml</tt> in this command line
 will export this topology to XML as usual.
 
+\note Synthetic topologies offer a very basic way to export a
+topology and reimport it on another machine. It is a lot less
+precise than XML but may still be enough when only the hierarchy
+of resources matters.
+
 \section synthetic_string Synthetic description string
 
 Each item in the description string gives the type of the level and
@@ -1869,10 +1879,35 @@ A Machine object is used by default, and a System object replaces it
 if a Machine level is specified in the string.
 
 Cache level depths are automatically chosen by hwloc (only a L2 first,
-then a L1 under it, then L3 above, then L4 etc.).
+then a L1 under it, then L3 above, then L4 etc.) unless they are specified.
 Memory and cache sizes are also automatically chosen.
 The only way to modifying them is to export to XML and manually modify
 the file.
+
+Each item may be followed parentheses containing a list of
+space-separated attributes. For instance:
+<ul>
+<li>
+ <tt>L2iCache:2(size=32768)</tt> specifies 2 children
+ of 32kB level-2 instruction caches.
+</li>
+<li>
+ <tt>NUMANode:3(memory=16777216)</tt> specifies 3 NUMA nodes with 16MB each.
+</li>
+<li>
+ <tt>PU:2(indexes=0,2,1,3)</tt> specifies 2 PU children and the
+ full list of OS indexes among the entire set of 4 PU objects.
+</li>
+<li>
+ <tt>PU:2(indexes=numa:core)</tt> specifies 2 PU children whose
+ OS indexes are interleaved by NUMA node first and then by socket.
+</li>
+<li>
+ Attributes in parentheses at the very beginning of the description
+ apply to the root object.
+</li>
+</ul>
+
 
 \section synthetic_use Loading a synthetic topology
 
@@ -1893,10 +1928,10 @@ topology flag.
 
 \section synthetic_export Exporting a topology as a synthetic string
 
-lstopo may export a topology as a synthetic string by forcing its
-output format. 
-It offers a convenient way to quickly describe the contents of a
-machine.
+The function ::hwloc_topology_export_synthetic() may export
+a topology as a synthetic string.
+It offers a convenient way to quickly describe the contents of a machine.
+The lstopo tool may also perform such an export by forcing the output format.
 
 \verbatim
 $ lstopo --of synthetic --no-io
@@ -1905,17 +1940,17 @@ Socket:1 Cache:1 Cache:2 Cache:1 Cache:1 Core:1 PU:2
 
 The exported string may be passed back to hwloc for recreating
 another similar topology.
-The entire tree will be similar, but cache types and memory sizes
-may be different from the originals.
+The entire tree will be similar, but some special attributes such
+processort types may be missing.
 
 Such an export is only possible if the topology is totally symmetric,
 which means the <tt>symmetric_subtree</tt> field of the root object
 is set.
 This usually implies that I/O objects are disabled since attaching I/O
-busses often cause the topology to become assymetric.
+busses often cause the topology to become asymmetric.
 Passing <tt>--no-io</tt> to lstopo is therefore often useful to make
 synthetic export work (as well as not passing any I/O topology flag
-when using ::hwloc_topology_set_synthetic() manually).
+before exporting with ::hwloc_topology_export_synthetic()).
 
 
 
@@ -2205,7 +2240,7 @@ or <tt>hwloc_topology_set_synthetic()</tt>.
 
 Components may optionally be built as plugins so that the hwloc core
 library does not directly depend on their dependencies (for instance
-the <tt>libpci</tt> library).
+the <tt>libpciaccess</tt> library).
 Plugin support may be enabled with the <tt>--enable-plugins</tt>
 configure option.
 All components buildable as plugins will then be built as plugins.
@@ -2313,8 +2348,7 @@ environment variable (see \ref envvar).
 </dd>
 <dt>pci</dt>
 <dd>
- PCI object discovery uses the external pciaccess library (aka libpciaccess),
- or optionally the pciutils library (libpci),
+ PCI object discovery uses the external pciaccess library (aka libpciaccess);
  see \ref iodevices.
  <b>It may be built as a plugin</b>.
 </dd>
@@ -2592,6 +2626,21 @@ interface, and the import/export may also be directed to memory buffer
 See also \ref xml.
 
 
+\section faq_multitopo How many topologies may I use in my program?
+
+hwloc lets you manipulate multiple topologies at the same time.
+However these topologies consume memory and system resources
+(for instance file descriptors) until they are destroyed.
+It is therefore discouraged to open the same topology multiple
+times.
+
+Sharing a single topology between threads is easy (see \ref threadsafety)
+since the vast majority of accesses are read-only.
+
+If multiple topologies of different (but similar) nodes are needed
+in your program, have a look at \ref faq_diff.
+
+
 \section faq_diff How to avoid memory waste when manipulating multiple similar topologies?
 
 hwloc does not share information between topologies.
@@ -2634,6 +2683,45 @@ and at runtime with the environment variable
 
 If loading topologies is slow because the machine contains tons of
 processors, one should also consider using XML (see \ref faq_xml).
+
+
+\section faq_os_error What should I do when hwloc reports "operating system" warnings?
+
+When the operating system reports invalid locality information (because
+of either software or hardware bugs), hwloc may fail to insert some objects
+in the topology because they cannot fit in the already built tree of resources.
+If so, hwloc will report a warning like the following.
+The object causing this error is ignored, the discovery continues but the
+resulting topology will miss some object and may be asymmetric
+(see also \ref faq_asymmetric).
+
+\verbatim
+****************************************************************************
+* hwloc has encountered what looks like an error from the operating system.
+*
+* L3 (cpuset 0x000003f0) intersects with NUMANode (P#0 cpuset 0x0000003f) without inclusion!
+* Error occurred in topology.c line 940
+*
+* Please report this error message to the hwloc user's mailing list,
+* along with the output from the hwloc-gather-topology script.
+****************************************************************************
+\endverbatim
+
+As explained in the message, reporting this issue to the hwloc developers
+(by sending the tarball that is generated by the hwloc-gather-topology script
+ on this platform) is a good way to make sure that this is a software
+(operating system) or hardware bug (BIOS, etc).
+
+These errors are common on large AMD platforms because several BIOS releases
+fail to properly report L3 caches. In the above example, the hardware reports
+a L3 cache that is shared by 2 cores in the first NUMA node and 4 cores
+in the second NUMA node. That's wrong, it should actually be shared by all 6
+cores in a single NUMA node.
+The resulting topology will miss some L3 caches.
+If your application not care about cache sharing, or if you do not plan to
+request cache-aware binding in your process launcher, you may likely ignore
+this error.
+The warning may be hidden by setting HWLOC_HIDE_ERRORS=1 in your environment.
 
 
 \section faq_privileged Does hwloc require privileged access?
@@ -2797,6 +2885,11 @@ However only character strings may be used as key names and values.
 It is also possible to insert Misc objects with custom names anywhere
 in the topology (<tt>hwloc_topology_insert_misc_object_by_cpuset()</tt>)
 or as a leaf of the topology (<tt>hwloc_topology_insert_misc_object_by_parent()</tt>).
+
+There is also a topology-specific userdata pointer that can be used
+to recognize different topologies by storing a custom pointer.
+It may be manipulated with <tt>hwloc_topology_set_userdata()</tt>
+and <tt>hwloc_topology_get_userdata()</tt>.
 
 
 \section faq_valgrind Why does Valgrind complain about hwloc memory leaks?

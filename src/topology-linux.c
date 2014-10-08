@@ -223,7 +223,7 @@ hwloc_opendirat(const char *path, int fsroot_fd)
    it, but still preserve compiler parameter checking */
 static __hwloc_inline int
 hwloc_open(const char *p, int d __hwloc_attribute_unused)
-{ 
+{
 #ifdef HAVE_OPENAT
     return hwloc_openat(p, d);
 #else
@@ -233,7 +233,7 @@ hwloc_open(const char *p, int d __hwloc_attribute_unused)
 
 static __hwloc_inline FILE *
 hwloc_fopen(const char *p, const char *m, int d __hwloc_attribute_unused)
-{ 
+{
 #ifdef HAVE_OPENAT
     return hwloc_fopenat(p, m, d);
 #else
@@ -243,9 +243,9 @@ hwloc_fopen(const char *p, const char *m, int d __hwloc_attribute_unused)
 
 /* Static inline version of access so that we can use openat if we have
    it, but still preserve compiler parameter checking */
-static __hwloc_inline int 
+static __hwloc_inline int
 hwloc_access(const char *p, int m, int d __hwloc_attribute_unused)
-{ 
+{
 #ifdef HAVE_OPENAT
     return hwloc_accessat(p, m, d);
 #else
@@ -277,7 +277,7 @@ hwloc_lstat(const char *p, struct stat *st, int d __hwloc_attribute_unused)
    it, but still preserve compiler parameter checking */
 static __hwloc_inline DIR *
 hwloc_opendir(const char *p, int d __hwloc_attribute_unused)
-{ 
+{
 #ifdef HAVE_OPENAT
     return hwloc_opendirat(p, d);
 #else
@@ -2288,7 +2288,7 @@ hwloc__get_dmi_info(struct hwloc_linux_backend_data_s *data, hwloc_obj_t obj)
 
 /* Reads the entire file and returns bytes read if bytes_read != NULL
  * Returned pointer can be freed by using free().  */
-static void * 
+static void *
 hwloc_read_raw(const char *p, const char *p1, size_t *bytes_read, int root_fd)
 {
   char *fname = NULL;
@@ -2348,7 +2348,7 @@ hwloc_read_str(const char *p, const char *p1, int root_fd)
 }
 
 /* Reads first 32bit bigendian value */
-static ssize_t 
+static ssize_t
 hwloc_read_unit32be(const char *p, const char *p1, uint32_t *buf, int root_fd)
 {
   size_t cb = 0;
@@ -2554,7 +2554,7 @@ look_powerpc_device_tree(struct hwloc_topology *topology,
         hwloc_read_unit32be(cpu, "linux,phandle", &phandle, root_fd);
 
     if (0 == strcmp(device_type, "cache")) {
-      add_device_tree_cpus_node(&cpus, NULL, l2_cache, phandle, dirent->d_name); 
+      add_device_tree_cpus_node(&cpus, NULL, l2_cache, phandle, dirent->d_name);
     }
     else if (0 == strcmp(device_type, "cpu")) {
       /* Found CPU */
@@ -2816,7 +2816,8 @@ look_sysfscpu(struct hwloc_topology *topology,
   DIR *dir;
   int i,j;
   FILE *fd;
-  unsigned caches_added;
+  unsigned caches_added, merge_buggy_core_siblings;
+  hwloc_obj_t socks = NULL; /* temporary list of sockets before actual insert in the tree */
 
   /* fill the cpuset of interesting cpus */
   dir = hwloc_opendir(path, data->root_fd);
@@ -2871,6 +2872,8 @@ look_sysfscpu(struct hwloc_topology *topology,
   hwloc_debug_1arg_bitmap("found %d cpu topologies, cpuset %s\n",
 	     hwloc_bitmap_weight(cpuset), cpuset);
 
+  merge_buggy_core_siblings = (!strcmp(data->utsname.machine, "x86_64"))
+			   || (data->utsname.machine[0] == 'i' && !strcmp(data->utsname.machine+2, "86"));
   caches_added = 0;
   hwloc_bitmap_foreach_begin(i, cpuset)
     {
@@ -2887,10 +2890,50 @@ look_sysfscpu(struct hwloc_topology *topology,
       socketset = hwloc_parse_cpumap(str, data->root_fd);
       if (socketset && hwloc_bitmap_first(socketset) == i) {
         /* first cpu in this socket, add the socket */
-        struct hwloc_obj *sock = hwloc_alloc_setup_object(HWLOC_OBJ_SOCKET, mysocketid);
-        sock->cpuset = socketset;
-        hwloc_debug_1arg_bitmap("os socket %u has cpuset %s\n",
-                     mysocketid, socketset);
+	struct hwloc_obj *sock;
+
+	if (merge_buggy_core_siblings) {
+	  /* check for another socket with same physical_package_id */
+	  hwloc_obj_t cursock = socks;
+	  while (cursock) {
+	    if (cursock->os_index == mysocketid) {
+	      /* found another socket with same physical_package_id but different core_siblings.
+	       * looks like a buggy kernel on Intel Xeon E5 v3 processor with two rings.
+	       * merge these core_siblings to extend the existing first socket object.
+	       */
+	      static int reported = 0;
+	      if (!reported && !hwloc_hide_errors()) {
+		char *a, *b;
+		hwloc_bitmap_asprintf(&a, cursock->cpuset);
+		hwloc_bitmap_asprintf(&b, socketset);
+		fprintf(stderr, "****************************************************************************\n");
+		fprintf(stderr, "* hwloc has detected buggy sysfs socket information: Two sockets have\n");
+		fprintf(stderr, "* the same physical package id %u but different core_siblings %s and %s\n",
+			mysocketid, a, b);
+		fprintf(stderr, "* hwloc is merging these sockets into a single one assuming your Linux kernel\n");
+		fprintf(stderr, "* does not support this processor correctly.\n");
+		fprintf(stderr, "* You may hide this warning by setting HWLOC_HIDE_ERRORS=1 in the environment.\n");
+	        fprintf(stderr, "*\n");
+		fprintf(stderr, "* If hwloc does not report the right number of sockets,\n");
+		fprintf(stderr, "* please report this error message to the hwloc user's mailing list,\n");
+		fprintf(stderr, "* along with the output+tarball generated by the hwloc-gather-topology script.\n");
+		fprintf(stderr, "****************************************************************************\n");
+		reported = 1;
+		free(a);
+		free(b);
+	      }
+	      hwloc_bitmap_or(cursock->cpuset, cursock->cpuset, socketset);
+	      goto socket_done;
+	    }
+	    cursock = cursock->next_cousin;
+	  }
+	}
+
+	/* no socket with same physical_package_id, create a new one */
+	sock = hwloc_alloc_setup_object(HWLOC_OBJ_SOCKET, mysocketid);
+	sock->cpuset = socketset;
+	hwloc_debug_1arg_bitmap("os socket %u has cpuset %s\n",
+				mysocketid, socketset);
 	/* add cpuinfo */
 	if (cpuinfo_Lprocs) {
 	  for(j=0; j<(int) cpuinfo_numprocs; j++)
@@ -2899,9 +2942,15 @@ look_sysfscpu(struct hwloc_topology *topology,
 				&cpuinfo_Lprocs[j].infos, &cpuinfo_Lprocs[j].infos_count);
 	    }
 	}
-        hwloc_insert_object_by_cpuset(topology, sock);
-        socketset = NULL; /* don't free it */
+	/* insert in a temporary list in case we have to modify the cpuset by merging other core_siblings later.
+	 * we'll actually insert the tree at the end of the entire sysfs cpu loop.
+	 */
+	sock->next_cousin = socks;
+	socks = sock;
+
+	socketset = NULL; /* don't free it */
       }
+socket_done:
       hwloc_bitmap_free(socketset);
 
       /* look at the core */
@@ -3093,6 +3142,14 @@ look_sysfscpu(struct hwloc_topology *topology,
       hwloc_bitmap_free(coreset);
     }
   hwloc_bitmap_foreach_end();
+
+  /* actually insert in the tree now that socket cpusets have been fixed-up */
+  while (socks) {
+    hwloc_obj_t next = socks->next_cousin;
+    socks->next_cousin = NULL;
+    hwloc_insert_object_by_cpuset(topology, socks);
+    socks = next;
+  }
 
   if (0 == caches_added)
     look_powerpc_device_tree(topology, data);
@@ -4644,6 +4701,7 @@ static struct hwloc_disc_component hwloc_linux_disc_component = {
 
 const struct hwloc_component hwloc_linux_component = {
   HWLOC_COMPONENT_ABI,
+  NULL, NULL,
   HWLOC_COMPONENT_TYPE_DISC,
   0,
   &hwloc_linux_disc_component
@@ -4844,6 +4902,7 @@ static struct hwloc_disc_component hwloc_linuxpci_disc_component = {
 
 const struct hwloc_component hwloc_linuxpci_component = {
   HWLOC_COMPONENT_ABI,
+  NULL, NULL,
   HWLOC_COMPONENT_TYPE_DISC,
   0,
   &hwloc_linuxpci_disc_component

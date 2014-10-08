@@ -1,4 +1,4 @@
-.TH "Exporting Topologies to XML" 3 "Mon Aug 25 2014" "Version 1.9.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Exporting Topologies to XML" 3 "Tue Oct 7 2014" "Version 1.10.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -71,6 +71,8 @@ Export the topology into an XML file\&. This file may be loaded later through \f
 .RS 4
 See also \fBhwloc_topology_set_userdata_export_callback()\fP for exporting application-specific object userdata\&.
 .PP
+The topology-specific userdata pointer is ignored when exporting to XML\&.
+.PP
 Only printable characters may be exported to XML string attributes\&. Any other character, especially any non-ASCII character, will be silently dropped\&.
 .PP
 If \fCname\fP is '-', the XML output is sent to the standard output\&. 
@@ -93,6 +95,8 @@ This memory buffer may be loaded later through \fBhwloc_topology_set_xmlbuffer()
 .RS 4
 See also \fBhwloc_topology_set_userdata_export_callback()\fP for exporting application-specific object userdata\&.
 .PP
+The topology-specific userdata pointer is ignored when exporting to XML\&.
+.PP
 Only printable characters may be exported to XML string attributes\&. Any other character, especially any non-ASCII character, will be silently dropped\&. 
 .RE
 .PP
@@ -106,7 +110,14 @@ This function lets applications set \fCexport_cb\fP to a callback function that 
 .PP
 \fCexport_cb\fP is invoked during XML export for each object whose \fCuserdata\fP pointer is not \fCNULL\fP\&. The callback should use \fBhwloc_export_obj_userdata()\fP or \fBhwloc_export_obj_userdata_base64()\fP to actually export something to XML (possibly multiple times per object)\&.
 .PP
-\fCexport_cb\fP may be set to \fCNULL\fP if userdata should not be exported to XML\&. 
+\fCexport_cb\fP may be set to \fCNULL\fP if userdata should not be exported to XML\&.
+.PP
+\fBNote:\fP
+.RS 4
+The topology-specific userdata pointer is ignored when exporting to XML\&. 
+.RE
+.PP
+
 .SS "void hwloc_topology_set_userdata_import_callback (\fBhwloc_topology_t\fPtopology, void(*)(\fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fP obj, const char *name, const void *buffer, size_t length)import_cb)"
 
 .PP
@@ -122,7 +133,9 @@ This function lets applications set \fCimport_cb\fP to a callback function that 
 .RS 4
 \fCbuffer\fP contains \fClength\fP characters followed by a null byte ('\\0')\&.
 .PP
-This function should be called before \fBhwloc_topology_load()\fP\&. 
+This function should be called before \fBhwloc_topology_load()\fP\&.
+.PP
+The topology-specific userdata pointer is ignored when importing from XML\&. 
 .RE
 .PP
 

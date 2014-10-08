@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.9.1</span>
+   &#160;<span id="projectnumber">1.10.0</span>
    </div>
   </td>
  </tr>
@@ -74,17 +74,20 @@ Functions</h2></td></tr>
 <tr class="separator:ga910a05c2d47f68a3155bf176b50fa555"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>It is often useful to call <a class="el" href="a00095.html#ga36d802130aa5d96bc1b5a90d2f0f3765" title="Keep a single index among those set in bitmap bitmap. ">hwloc_bitmap_singlify()</a> first so that a single CPU remains in the set. This way, the process will not even migrate between different CPUs. Some operating systems also only support that kind of binding.</p>
-<dl class="section note"><dt>Note</dt><dd>Some operating systems do not provide all hwloc-supported mechanisms to bind processes, threads, etc. and the corresponding binding functions may fail. -1 is returned and errno is set to ENOSYS when it is not possible to bind the requested kind of object processes/threads. errno is set to EXDEV when the requested cpuset can not be enforced (e.g. some systems only allow one CPU, and some other systems only allow one NUMA node).</dd></dl>
-<p>The most portable version that should be preferred over the others, whenever possible, is</p>
+<p>It is often useful to call <a class="el" href="a00096.html#ga36d802130aa5d96bc1b5a90d2f0f3765" title="Keep a single index among those set in bitmap bitmap. ">hwloc_bitmap_singlify()</a> first so that a single CPU remains in the set. This way, the process will not even migrate between different CPUs inside the given set. Some operating systems also only support that kind of binding.</p>
+<p>Some operating systems do not provide all hwloc-supported mechanisms to bind processes, threads, etc. <a class="el" href="a00077.html#gab8c76173c4a8ce1a9a9366012b1388e6" title="Retrieve the topology support. ">hwloc_topology_get_support()</a> may be used to query about the actual CPU binding support in the currently used operating system.</p>
+<p>When the requested binding operation is not available and the <a class="el" href="a00080.html#gga217dc8d373f8958cc93c154ebce1c71ca679a7e0f0c7ee06b123565f90d98e7fa" title="Request for strict binding from the OS. ">HWLOC_CPUBIND_STRICT</a> flag was passed, the function returns -1. <code>errno</code> is set to <code>ENOSYS</code> when it is not possible to bind the requested kind of object processes/threads. errno is set to <code>EXDEV</code> when the requested cpuset can not be enforced (e.g. some systems only allow one CPU, and some other systems only allow one NUMA node).</p>
+<p>If <a class="el" href="a00080.html#gga217dc8d373f8958cc93c154ebce1c71ca679a7e0f0c7ee06b123565f90d98e7fa" title="Request for strict binding from the OS. ">HWLOC_CPUBIND_STRICT</a> was not passed, the function may fail as well, or the operating system may use a slightly different operation (with side-effects, smaller binding set, etc.) when the requested operation is not exactly supported.</p>
+<p>The most portable version that should be preferred over the others, whenever possible, is the following one which just binds the current program, assuming it is single-threaded:</p>
 <div class="fragment"><div class="line"><a class="code" href="a00080.html#ga80bc07473a8edf840cae17bd7ec21d48">hwloc_set_cpubind</a>(topology, set, 0),</div>
-</div><!-- fragment --><p>as it just binds the current program, assuming it is single-threaded, or</p>
+</div><!-- fragment --><p>If the program may be multithreaded, the following one should be preferred to only bind the current thread:</p>
 <div class="fragment"><div class="line"><a class="code" href="a00080.html#ga80bc07473a8edf840cae17bd7ec21d48">hwloc_set_cpubind</a>(topology, set, <a class="code" href="a00080.html#gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421">HWLOC_CPUBIND_THREAD</a>),</div>
-</div><!-- fragment --><p>which binds the current thread of the current program (which may be multithreaded).</p>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>Some example codes are available under doc/examples/ in the source tree.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>To unbind, just call the binding function with either a full cpuset or a cpuset equal to the system cpuset.</dd>
 <dd>
-On some operating systems, CPU binding may have effects on memory binding, see <a class="el" href="a00080.html#gga217dc8d373f8958cc93c154ebce1c71ca41ce440443cc3087caed95ab60edcad6" title="Avoid any effect on memory binding. ">HWLOC_CPUBIND_NOMEMBIND</a></dd></dl>
-<p>Running lstopo &ndash;top can be a very convenient tool to check how binding actually happened. </p>
+On some operating systems, CPU binding may have effects on memory binding, see <a class="el" href="a00080.html#gga217dc8d373f8958cc93c154ebce1c71ca41ce440443cc3087caed95ab60edcad6" title="Avoid any effect on memory binding. ">HWLOC_CPUBIND_NOMEMBIND</a></dd>
+<dd>
+Running lstopo &ndash;top or hwloc-ps can be a very convenient tool to check how binding actually happened. </dd></dl>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a class="anchor" id="ga217dc8d373f8958cc93c154ebce1c71c"></a>
 <div class="memitem">
@@ -457,7 +460,7 @@ HWLOC_CPUBIND_PROCESS can not be used in <code>flags</code>. </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 25 2014 09:41:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 7 2014 11:56:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -177,7 +177,7 @@ static void look_proc(struct procinfo *infos, unsigned highest_cpuid, unsigned h
     hwloc_debug("core ID size: %u\n", coreidsize);
     if (!coreidsize) {
       infos->max_nbcores = (ecx & 0xff) + 1;
-    } else 
+    } else
       infos->max_nbcores = 1 << coreidsize;
     hwloc_debug("Thus max # of cores: %u\n", infos->max_nbcores);
     /* Still no multithreaded AMD */
@@ -989,6 +989,7 @@ static struct hwloc_disc_component hwloc_x86_disc_component = {
 
 const struct hwloc_component hwloc_x86_component = {
   HWLOC_COMPONENT_ABI,
+  NULL, NULL,
   HWLOC_COMPONENT_TYPE_DISC,
   0,
   &hwloc_x86_disc_component

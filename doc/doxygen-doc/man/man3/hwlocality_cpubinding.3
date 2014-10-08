@@ -1,4 +1,4 @@
-.TH "CPU binding" 3 "Mon Aug 25 2014" "Version 1.9.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "CPU binding" 3 "Tue Oct 7 2014" "Version 1.10.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -40,14 +40,15 @@ CPU binding \-
 .in -1c
 .SH "Detailed Description"
 .PP 
-It is often useful to call \fBhwloc_bitmap_singlify()\fP first so that a single CPU remains in the set\&. This way, the process will not even migrate between different CPUs\&. Some operating systems also only support that kind of binding\&.
+It is often useful to call \fBhwloc_bitmap_singlify()\fP first so that a single CPU remains in the set\&. This way, the process will not even migrate between different CPUs inside the given set\&. Some operating systems also only support that kind of binding\&.
 .PP
-\fBNote:\fP
-.RS 4
-Some operating systems do not provide all hwloc-supported mechanisms to bind processes, threads, etc\&. and the corresponding binding functions may fail\&. -1 is returned and errno is set to ENOSYS when it is not possible to bind the requested kind of object processes/threads\&. errno is set to EXDEV when the requested cpuset can not be enforced (e\&.g\&. some systems only allow one CPU, and some other systems only allow one NUMA node)\&.
-.RE
+Some operating systems do not provide all hwloc-supported mechanisms to bind processes, threads, etc\&. \fBhwloc_topology_get_support()\fP may be used to query about the actual CPU binding support in the currently used operating system\&.
 .PP
-The most portable version that should be preferred over the others, whenever possible, is
+When the requested binding operation is not available and the \fBHWLOC_CPUBIND_STRICT\fP flag was passed, the function returns -1\&. \fCerrno\fP is set to \fCENOSYS\fP when it is not possible to bind the requested kind of object processes/threads\&. errno is set to \fCEXDEV\fP when the requested cpuset can not be enforced (e\&.g\&. some systems only allow one CPU, and some other systems only allow one NUMA node)\&.
+.PP
+If \fBHWLOC_CPUBIND_STRICT\fP was not passed, the function may fail as well, or the operating system may use a slightly different operation (with side-effects, smaller binding set, etc\&.) when the requested operation is not exactly supported\&.
+.PP
+The most portable version that should be preferred over the others, whenever possible, is the following one which just binds the current program, assuming it is single-threaded:
 .PP
 .PP
 .nf
@@ -55,7 +56,7 @@ hwloc_set_cpubind(topology, set, 0),
 .fi
 .PP
 .PP
-as it just binds the current program, assuming it is single-threaded, or
+If the program may be multithreaded, the following one should be preferred to only bind the current thread:
 .PP
 .PP
 .nf
@@ -63,16 +64,21 @@ hwloc_set_cpubind(topology, set, HWLOC_CPUBIND_THREAD),
 .fi
 .PP
 .PP
-which binds the current thread of the current program (which may be multithreaded)\&.
+\fBSee also:\fP
+.RS 4
+Some example codes are available under doc/examples/ in the source tree\&.
+.RE
 .PP
 \fBNote:\fP
 .RS 4
 To unbind, just call the binding function with either a full cpuset or a cpuset equal to the system cpuset\&.
 .PP
 On some operating systems, CPU binding may have effects on memory binding, see \fBHWLOC_CPUBIND_NOMEMBIND\fP
+.PP
+Running lstopo --top or hwloc-ps can be a very convenient tool to check how binding actually happened\&. 
 .RE
 .PP
-Running lstopo --top can be a very convenient tool to check how binding actually happened\&. 
+
 .SH "Enumeration Type Documentation"
 .PP 
 .SS "enum \fBhwloc_cpubind_flags_t\fP"

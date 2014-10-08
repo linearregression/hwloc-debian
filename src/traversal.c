@@ -439,11 +439,6 @@ hwloc_pci_class_string(unsigned short class_id)
   return "PCI";
 }
 
-#define hwloc_memory_size_printf_value(_size, _verbose) \
-  ((_size) < (10ULL<<20) || _verbose ? (((_size)>>9)+1)>>1 : (_size) < (10ULL<<30) ? (((_size)>>19)+1)>>1 : (((_size)>>29)+1)>>1)
-#define hwloc_memory_size_printf_unit(_size, _verbose) \
-  ((_size) < (10ULL<<20) || _verbose ? "KB" : (_size) < (10ULL<<30) ? "MB" : "GB")
-
 static const char* hwloc_obj_cache_type_letter(hwloc_obj_cache_type_t type)
 {
   switch (type) {
@@ -537,11 +532,11 @@ hwloc_obj_attr_snprintf(char * __hwloc_restrict string, size_t size, hwloc_obj_t
 			   (unsigned long) hwloc_memory_size_printf_value(obj->memory.total_memory, verbose),
 			   hwloc_memory_size_printf_unit(obj->memory.total_memory, verbose));
   } else {
-    if (obj->memory.total_memory)
+    if (obj->memory.local_memory)
       res = hwloc_snprintf(tmp, tmplen, "%s%lu%s",
 			   prefix,
-			   (unsigned long) hwloc_memory_size_printf_value(obj->memory.total_memory, verbose),
-			   hwloc_memory_size_printf_unit(obj->memory.total_memory, verbose));
+			   (unsigned long) hwloc_memory_size_printf_value(obj->memory.local_memory, verbose),
+			   hwloc_memory_size_printf_unit(obj->memory.local_memory, verbose));
   }
   if (res < 0)
     return -1;

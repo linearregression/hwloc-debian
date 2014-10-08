@@ -173,7 +173,7 @@ static void hwloc_distances__set_from_string(struct hwloc_topology *topology,
     indexes = calloc(nbobjs, sizeof(unsigned));
     distances = calloc(nbobjs*nbobjs, sizeof(float));
     tmp = string;
-    
+
     /* parse indexes */
     for(i=0; i<nbobjs; i++) {
       indexes[i] = strtoul(tmp, &next, 0);
@@ -930,6 +930,7 @@ hwloc_group_by_distances(struct hwloc_topology *topology)
   hwloc_obj_t group_obj;
   int verbose = 0;
   unsigned i;
+  hwloc_localeswitch_declare;
 #ifdef HWLOC_DEBUG
   unsigned j;
 #endif
@@ -941,6 +942,7 @@ hwloc_group_by_distances(struct hwloc_topology *topology)
   if (getenv("HWLOC_IGNORE_DISTANCES"))
     return;
 
+  hwloc_localeswitch_init();
   env = getenv("HWLOC_GROUPING_ACCURACY");
   if (!env) {
     /* only use 0.0 */
@@ -950,6 +952,7 @@ hwloc_group_by_distances(struct hwloc_topology *topology)
     nbaccuracies = 1;
     accuracies[0] = (float) atof(env);
   } /* otherwise try all values */
+  hwloc_localeswitch_fini();
 
 #ifdef HWLOC_DEBUG
   verbose = 1;

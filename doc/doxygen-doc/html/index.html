@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.9.1</span>
+   &#160;<span id="projectnumber">1.10.0</span>
    </div>
   </td>
  </tr>
@@ -99,11 +99,11 @@ Remote machine simulation through the gathering of Linux sysfs topology files </
 <h1><a class="anchor" id="installation"></a>
 Installation</h1>
 <p>hwloc (<a href="http://www.open-mpi.org/projects/hwloc/">http://www.open-mpi.org/projects/hwloc/</a>) is available under the BSD license. It is hosted as a sub-project of the overall Open MPI project (<a href="http://www.open-mpi.org/">http://www.open-mpi.org/</a>). Note that hwloc does not require any functionality from Open MPI &ndash; it is a wholly separate (and much smaller!) project and code base. It just happens to be hosted as part of the overall Open MPI project.</p>
-<p>Nightly development snapshots are available on the web site. Additionally, the code can be directly checked out of Subversion:</p>
+<p>Nightly development snapshots are available on the web site. Additionally, the code can be directly cloned from Git:</p>
 <pre class="fragment">shell$ git clone https://github.com/open-mpi/hwloc.git
 shell$ cd hwloc
 shell$ ./autogen.sh
-</pre><p>Note that GNU Autoconf &gt;=2.63, Automake &gt;=1.10 and Libtool &gt;=2.2.6 are required when building from a Subversion checkout.</p>
+</pre><p>Note that GNU Autoconf &gt;=2.63, Automake &gt;=1.10 and Libtool &gt;=2.2.6 are required when building from a Git clone.</p>
 <p>Installation by itself is the fairly common GNU-based process:</p>
 <pre class="fragment">shell$ ./configure --prefix=...
 shell$ make
@@ -116,8 +116,6 @@ libnuma for memory binding and migration support on Linux (<code>numactl-devel</
 <p class="startli">hwloc can use one of two different libraries for full I/O device discovery: </p><ol>
 <li>
 libpciaccess (BSD). The relevant development package is usually <code>libpciaccess-devel</code> or <code>libpciaccess-dev</code>.  </li>
-<li>
-libpci, from the pciutils package (GPL). The relevant development package is usually <code>pciutils-devel</code> or <code>libpci-dev</code>.  </li>
 </ol>
 <p>On Linux, PCI discovery may still be performed even if none of the above libraries can be used. </p>
 <p class="endli"></p>
@@ -136,7 +134,7 @@ libxml2 for full XML import/export support (otherwise, the internal minimalistic
 libtool's ltdl library for dynamic plugin loading. The relevant development package is usually <code>libtool-ltdl-devel</code> or <code>libltdl-dev</code>.  </li>
 </ul>
 <p>PCI and XML support may be statically built inside the main hwloc library, or as separate dynamically-loaded plugins (see the <a class="el" href="a00024.html">Components and plugins</a> section).</p>
-<p>Note that because of the possibility of GPL taint (remember that hwloc is BSD-licensed), hwloc's <code>configure</code> script will prefer <code>libpciaccess</code> to the <code>pciutils</code> package. Indeed, if <code>libpciaccess</code> is not found, hwloc will not use <code>pciutils</code> unless it is specifically requested via the <code>&ndash;enable-libpci</code> flag is provided.</p>
+<p>Note that because of the possibility of GPL taint, the <code>pciutils</code> library <code>libpci</code> will not be used (remember that hwloc is BSD-licensed).</p>
 <p>Also note that if you install supplemental libraries in non-standard locations, hwloc's configure script may not be able to find them without some help. You may need to specify additional CPPFLAGS, LDFLAGS, or PKG_CONFIG_PATH values on the configure command line.</p>
 <p>For example, if libpciaccess was installed into /opt/pciaccess, hwloc's configure script may not find it be default. Try adding PKG_CONFIG_PATH to the ./configure command line, like this:</p>
 <pre class="fragment">./configure PKG_CONFIG_PATH=/opt/pciaccess/lib/pkgconfig ...
@@ -336,7 +334,7 @@ Programming Interface</h1>
 <p>Each hwloc object contains a cpuset describing the list of processing units that it contains. These bitmaps may be used for <a class="el" href="a00080.html">CPU binding</a> and <a class="el" href="a00081.html">Memory binding</a>. hwloc offers an extensive bitmap manipulation interface in <a class="el" href="a00055_source.html" title="The bitmap API, for use in hwloc itself. ">hwloc/bitmap.h</a>.</p>
 <p>Moreover, hwloc also comes with additional helpers for interoperability with several commonly used environments. See the <a class="el" href="a00020.html">Interoperability With Other Software</a> section for details.</p>
 <p>The complete API documentation is available in a full set of HTML pages, man pages, and self-contained PDF files (formatted for both both US letter and A4 formats) in the source tarball in doc/doxygen-doc/.</p>
-<p><b>NOTE:</b> If you are building the documentation from a Subversion checkout, you will need to have Doxygen and pdflatex installed &ndash; the documentation will be built during the normal "make" process. The documentation is installed during "make install" to $prefix/share/doc/hwloc/ and your systems default man page tree (under $prefix, of course).</p>
+<p><b>NOTE:</b> If you are building the documentation from a Git clone, you will need to have Doxygen and pdflatex installed &ndash; the documentation will be built during the normal "make" process. The documentation is installed during "make install" to $prefix/share/doc/hwloc/ and your systems default man page tree (under $prefix, of course).</p>
 <h2><a class="anchor" id="portability"></a>
 Portability</h2>
 <p>As shown in <a class="el" href="index.html#cli_examples">CLI Examples</a>, hwloc can obtain information on a wide variety of hardware topologies. However, some platforms and/or operating system versions will only report a subset of this information. For example, on an PPC64-based system with 32 cores (each with 2 hardware threads) running a default 2.6.18-based kernel from RHEL 5.4, hwloc is only able to glean information about NUMA nodes and processor units (PUs). No information about caches, sockets, or cores is available.</p>
@@ -359,10 +357,13 @@ Portability</h2>
 <p>Additionally, future hardware may insert new topology elements that are not available in this version of hwloc. Long-lived applications that are meant to span multiple different hardware platforms should also be careful about making structure assumptions. For example, there may someday be an element "lower" than a PU, or perhaps a new element may exist between a core and a PU.</p>
 <h2><a class="anchor" id="interface_example"></a>
 API Example</h2>
-<p>The following small C example (named ``hwloc-hello.c'') prints the topology of the machine and bring the process to the first logical processor of the second core of the machine.</p>
+<p>The following small C example (named ``hwloc-hello.c'') prints the topology of the machine and bring the process to the first logical processor of the second core of the machine. More examples are available in the doc/examples/ directory of the source tree.</p>
 <div class="fragment"><div class="line"><span class="comment">/* Example hwloc API program.</span></div>
 <div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * Copyright © 2009-2010 inria.  All rights reserved.</span></div>
+<div class="line"><span class="comment"> * See other examples under doc/examples/ in the source tree</span></div>
+<div class="line"><span class="comment"> * for more details.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * Copyright © 2009-2014 Inria.  All rights reserved.</span></div>
 <div class="line"><span class="comment"> * Copyright © 2009-2011 Université Bordeaux 1</span></div>
 <div class="line"><span class="comment"> * Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.</span></div>
 <div class="line"><span class="comment"> * See COPYING in top-level directory.</span></div>
@@ -483,23 +484,23 @@ API Example</h2>
 <div class="line">                   <a class="code" href="a00078.html#gab17065e3d53455973844568d9f21c72c">hwloc_get_nbobjs_by_depth</a>(topology, depth) - 1);</div>
 <div class="line">    <span class="keywordflow">if</span> (obj) {</div>
 <div class="line">        <span class="comment">/* Get a copy of its cpuset that we may modify. */</span></div>
-<div class="line">        cpuset = <a class="code" href="a00095.html#gae679434c1a5f41d3560a8a7e2c1b0dee">hwloc_bitmap_dup</a>(obj-&gt;<a class="code" href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">cpuset</a>);</div>
+<div class="line">        cpuset = <a class="code" href="a00096.html#gae679434c1a5f41d3560a8a7e2c1b0dee">hwloc_bitmap_dup</a>(obj-&gt;<a class="code" href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">cpuset</a>);</div>
 <div class="line"></div>
 <div class="line">        <span class="comment">/* Get only one logical processor (in case the core is</span></div>
 <div class="line"><span class="comment">           SMT/hyperthreaded). */</span></div>
-<div class="line">        <a class="code" href="a00095.html#ga36d802130aa5d96bc1b5a90d2f0f3765">hwloc_bitmap_singlify</a>(cpuset);</div>
+<div class="line">        <a class="code" href="a00096.html#ga36d802130aa5d96bc1b5a90d2f0f3765">hwloc_bitmap_singlify</a>(cpuset);</div>
 <div class="line"></div>
 <div class="line">        <span class="comment">/* And try to bind ourself there. */</span></div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="a00080.html#ga80bc07473a8edf840cae17bd7ec21d48">hwloc_set_cpubind</a>(topology, cpuset, 0)) {</div>
 <div class="line">            <span class="keywordtype">char</span> *str;</div>
 <div class="line">            <span class="keywordtype">int</span> error = errno;</div>
-<div class="line">            <a class="code" href="a00095.html#ga0fece972134fdecf2da9bc7a11dd827e">hwloc_bitmap_asprintf</a>(&amp;str, obj-&gt;<a class="code" href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">cpuset</a>);</div>
+<div class="line">            <a class="code" href="a00096.html#ga0fece972134fdecf2da9bc7a11dd827e">hwloc_bitmap_asprintf</a>(&amp;str, obj-&gt;<a class="code" href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">cpuset</a>);</div>
 <div class="line">            printf(<span class="stringliteral">&quot;Couldn&#39;t bind to cpuset %s: %s\n&quot;</span>, str, strerror(error));</div>
 <div class="line">            free(str);</div>
 <div class="line">        }</div>
 <div class="line"></div>
 <div class="line">        <span class="comment">/* Free our cpuset copy */</span></div>
-<div class="line">        <a class="code" href="a00095.html#ga156130d85b3a0674d6e0e6770fe68fbe">hwloc_bitmap_free</a>(cpuset);</div>
+<div class="line">        <a class="code" href="a00096.html#ga156130d85b3a0674d6e0e6770fe68fbe">hwloc_bitmap_free</a>(cpuset);</div>
 <div class="line">    }</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">/*****************************************************************</span></div>
@@ -622,7 +623,7 @@ Further Reading</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 25 2014 09:41:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 7 2014 11:56:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

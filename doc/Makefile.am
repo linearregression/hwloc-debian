@@ -335,7 +335,8 @@ man3_configuration_DATA = \
         $(DOX_MAN_DIR)/man3/hwloc_topology_cpubind_support.3 \
         $(DOX_MAN_DIR)/man3/hwloc_topology_membind_support.3 \
         $(DOX_MAN_DIR)/man3/hwloc_topology_support.3 \
-        $(DOX_MAN_DIR)/man3/hwloc_topology_get_support.3
+        $(DOX_MAN_DIR)/man3/hwloc_topology_set_userdata.3 \
+        $(DOX_MAN_DIR)/man3/hwloc_topology_get_userdata.3
 
 man3_levelsdir = $(man3dir)
 man3_levels_DATA = \
@@ -451,6 +452,11 @@ man3_xmlexport_DATA = \
         $(DOX_MAN_DIR)/man3/hwloc_export_obj_userdata.3 \
         $(DOX_MAN_DIR)/man3/hwloc_export_obj_userdata_base64.3 \
         $(DOX_MAN_DIR)/man3/hwloc_topology_set_userdata_import_callback.3
+
+man3_syntheticexportdir = $(man3dir)
+man3_syntheticexport_DATA = \
+        $(DOX_MAN_DIR)/man3/hwlocality_syntheticexport.3 \
+        $(DOX_MAN_DIR)/man3/hwloc_topology_export_synthetic.3
 
 man3_bitmapdir = $(man3dir)
 man3_bitmap_DATA = \
@@ -715,6 +721,7 @@ $(man3_membinding_DATA): $(DOX_TAG)
 $(man3_tinker_DATA): $(DOX_TAG)
 $(man3_custom_DATA): $(DOX_TAG)
 $(man3_xmlexport_DATA): $(DOX_TAG)
+$(man3_syntheticexport_DATA): $(DOX_TAG)
 $(man3_bitmap_DATA): $(DOX_TAG)
 $(man3_helper_find_inside_DATA): $(DOX_TAG)
 $(man3_helper_find_covering_DATA): $(DOX_TAG)
@@ -747,30 +754,6 @@ $(DOX_A4PDF): $(DOX_TAG) $(DOX_LETTERPDF)
 endif HWLOC_BUILD_DOXYGEN
 
 
-
-#
-# Make sure that the documentation example works
-#
-
-TESTS = hwloc-hello
-if HWLOC_HAVE_CXX
-TESTS += hwloc-hello-cpp
-endif HWLOC_HAVE_CXX
-
-check_PROGRAMS = $(TESTS)
-
-hwloc-hello-cpp.cpp: $(srcdir)/hwloc-hello.c
-	cp -f $(srcdir)/hwloc-hello.c $@
-
-clean-local:
-	rm -f hwloc-hello-cpp.cpp
-
-hwloc_hello_LDADD = $(HWLOC_top_builddir)/src/libhwloc.la
-hwloc_hello_DEPENDENCIES = $(hwloc_hello_LDADD)
-
-hwloc_hello_cpp_SOURCES = hwloc-hello-cpp.cpp
-hwloc_hello_cpp_LDADD = $(HWLOC_top_builddir)/src/libhwloc.la
-hwloc_hello_cpp_DEPENDENCIES = $(hwloc_hello_LDADD)
 
 #
 # Only remove the actual generated documentation files for maintainers
@@ -813,3 +796,5 @@ readme: doc
 endif
 
 all-local: doc readme
+
+SUBDIRS = examples

@@ -1,4 +1,4 @@
-.TH "Finding objects, miscellaneous helpers" 3 "Mon Aug 25 2014" "Version 1.9.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Finding objects, miscellaneous helpers" 3 "Tue Oct 7 2014" "Version 1.10.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -8,6 +8,9 @@ Finding objects, miscellaneous helpers \-
 .in +1c
 .ti -1c
 .RI "static \fBhwloc_obj_t\fP \fBhwloc_get_pu_obj_by_os_index\fP (\fBhwloc_topology_t\fP topology, unsigned os_index)"
+.br
+.ti -1c
+.RI "static \fBhwloc_obj_t\fP \fBhwloc_get_numanode_obj_by_os_index\fP (\fBhwloc_topology_t\fP topology, unsigned os_index)"
 .br
 .ti -1c
 .RI "unsigned \fBhwloc_get_closest_objs\fP (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_t\fP src, \fBhwloc_obj_t\fP *restrict objs, unsigned max)"
@@ -42,6 +45,10 @@ This function requires the \fCsrc\fP object to have a CPU set\&.
 .RE
 .PP
 
+.SS "static \fBhwloc_obj_t\fP hwloc_get_numanode_obj_by_os_index (\fBhwloc_topology_t\fPtopology, unsignedos_index)\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Returns the object of type \fBHWLOC_OBJ_NODE\fP with \fCos_index\fP\&. This function is useful for converting a nodeset into the NUMA node objects it contains\&. When retrieving the current binding (e\&.g\&. with \fBhwloc_get_membind_nodeset()\fP), one may iterate over the bits of the resulting nodeset with \fBhwloc_bitmap_foreach_begin()\fP, and find the corresponding NUMA nodes with this function\&. 
 .SS "static \fBhwloc_obj_t\fP hwloc_get_obj_below_array_by_type (\fBhwloc_topology_t\fPtopology, intnr, \fBhwloc_obj_type_t\fP *typev, unsigned *idxv)\fC [inline]\fP, \fC [static]\fP"
 
 .PP
@@ -75,14 +82,7 @@ This function requires these objects to have a CPU set\&.
 .SS "static \fBhwloc_obj_t\fP hwloc_get_pu_obj_by_os_index (\fBhwloc_topology_t\fPtopology, unsignedos_index)\fC [inline]\fP, \fC [static]\fP"
 
 .PP
-Returns the object of type \fBHWLOC_OBJ_PU\fP with \fCos_index\fP\&. 
-.PP
-\fBNote:\fP
-.RS 4
-The \fCos_index\fP field of object should most of the times only be used for pretty-printing purpose\&. Type \fBHWLOC_OBJ_PU\fP is the only case where \fCos_index\fP could actually be useful, when manually binding to processors\&. However, using CPU sets to hide this complexity should often be preferred\&. 
-.RE
-.PP
-
+Returns the object of type \fBHWLOC_OBJ_PU\fP with \fCos_index\fP\&. This function is useful for converting a CPU set into the PU objects it contains\&. When retrieving the current binding (e\&.g\&. with \fBhwloc_get_cpubind()\fP), one may iterate over the bits of the resulting CPU set with \fBhwloc_bitmap_foreach_begin()\fP, and find the corresponding PUs with this function\&. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Hardware Locality (hwloc) from the source code\&.

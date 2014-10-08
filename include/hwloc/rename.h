@@ -134,6 +134,9 @@ extern "C" {
 #define hwloc_topology_membind_support HWLOC_NAME(topology_membind_support)
 #define hwloc_topology_support HWLOC_NAME(topology_support)
 #define hwloc_topology_get_support HWLOC_NAME(topology_get_support)
+#define hwloc_topology_set_userdata HWLOC_NAME(topology_set_userdata)
+#define hwloc_topology_get_userdata HWLOC_NAME(topology_get_userdata)
+
 #define hwloc_topology_export_xml HWLOC_NAME(topology_export_xml)
 #define hwloc_topology_export_xmlbuffer HWLOC_NAME(topology_export_xmlbuffer)
 #define hwloc_free_xmlbuffer HWLOC_NAME(free_xmlbuffer)
@@ -141,6 +144,11 @@ extern "C" {
 #define hwloc_export_obj_userdata HWLOC_NAME(export_obj_userdata)
 #define hwloc_export_obj_userdata_base64 HWLOC_NAME(export_obj_userdata_base64)
 #define hwloc_topology_set_userdata_import_callback HWLOC_NAME(topology_set_userdata_import_callback)
+
+#define hwloc_topology_export_synthetic_flags_e HWLOC_NAME(topology_export_synthetic_flags_e)
+#define HWLOC_TOPOLOGY_EXPORT_SYNTHETIC_FLAG_NO_EXTENDED_TYPES HWLOC_NAME_CAPS(TOPOLOGY_EXPORT_SYNTHETIC_FLAG_NO_EXTENDED_TYPES)
+#define HWLOC_TOPOLOGY_EXPORT_SYNTHETIC_FLAG_NO_ATTRS HWLOC_NAME_CAPS(TOPOLOGY_EXPORT_SYNTHETIC_FLAG_NO_ATTRS)
+#define hwloc_topology_export_synthetic HWLOC_NAME(topology_export_synthetic)
 
 #define hwloc_topology_insert_misc_object_by_cpuset HWLOC_NAME(topology_insert_misc_object_by_cpuset)
 #define hwloc_topology_insert_misc_object_by_parent HWLOC_NAME(topology_insert_misc_object_by_parent)
@@ -307,6 +315,7 @@ extern "C" {
 #define hwloc_get_next_obj_by_depth HWLOC_NAME(get_next_obj_by_depth)
 #define hwloc_get_next_obj_by_type HWLOC_NAME(get_next_obj_by_type)
 #define hwloc_get_pu_obj_by_os_index HWLOC_NAME(get_pu_obj_by_os_index)
+#define hwloc_get_numanode_obj_by_os_index HWLOC_NAME(get_numanode_obj_by_os_index)
 #define hwloc_get_next_child HWLOC_NAME(get_next_child)
 #define hwloc_get_common_ancestor_obj HWLOC_NAME(get_common_ancestor_obj)
 #define hwloc_obj_is_in_subtree HWLOC_NAME(obj_is_in_subtree)

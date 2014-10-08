@@ -1,4 +1,4 @@
-.TH "Object Sets (hwloc_cpuset_t and hwloc_nodeset_t)" 3 "Mon Aug 25 2014" "Version 1.9.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Object Sets (hwloc_cpuset_t and hwloc_nodeset_t)" 3 "Tue Oct 7 2014" "Version 1.10.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -37,11 +37,13 @@ A non-modifiable \fBhwloc_nodeset_t\fP\&.
 .SS "typedef \fBhwloc_bitmap_t\fP \fBhwloc_cpuset_t\fP"
 
 .PP
-A CPU set is a bitmap whose bits are set according to CPU physical OS indexes\&. It may be consulted and modified with the bitmap API as any \fBhwloc_bitmap_t\fP (see \fBhwloc/bitmap\&.h\fP)\&. 
+A CPU set is a bitmap whose bits are set according to CPU physical OS indexes\&. It may be consulted and modified with the bitmap API as any \fBhwloc_bitmap_t\fP (see \fBhwloc/bitmap\&.h\fP)\&.
+.PP
+Each bit may be converted into a PU object using \fBhwloc_get_pu_obj_by_os_index()\fP\&. 
 .SS "typedef \fBhwloc_bitmap_t\fP \fBhwloc_nodeset_t\fP"
 
 .PP
-A node set is a bitmap whose bits are set according to NUMA memory node physical OS indexes\&. It may be consulted and modified with the bitmap API as any \fBhwloc_bitmap_t\fP (see \fBhwloc/bitmap\&.h\fP)\&.
+A node set is a bitmap whose bits are set according to NUMA memory node physical OS indexes\&. It may be consulted and modified with the bitmap API as any \fBhwloc_bitmap_t\fP (see \fBhwloc/bitmap\&.h\fP)\&. Each bit may be converted into a NUMA node object using \fBhwloc_get_numanode_obj_by_os_index()\fP\&.
 .PP
 When binding memory on a system without any NUMA node (when the whole memory is considered as a single memory bank), the nodeset may be either empty (no memory selected) or full (whole system memory selected)\&.
 .PP

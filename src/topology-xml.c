@@ -51,7 +51,7 @@ hwloc_xml_callbacks_reset(void)
 {
   hwloc_nolibxml_callbacks = NULL;
   hwloc_libxml_callbacks = NULL;
-}			       
+}
 
 /************************************************
  ********* XML import (common routines) *********
@@ -1405,7 +1405,7 @@ hwloc_export_obj_userdata_base64(void *reserved,
   hwloc__xml_export_state_t state = reserved;
   size_t encoded_length;
   char *encoded_buffer;
-  int ret;
+  int ret __hwloc_attribute_unused;
 
   if (name && hwloc__xml_export_check_buffer(name, strlen(name)) < 0) {
     errno = EINVAL;
@@ -1523,6 +1523,7 @@ static struct hwloc_disc_component hwloc_xml_disc_component = {
 
 const struct hwloc_component hwloc_xml_component = {
   HWLOC_COMPONENT_ABI,
+  NULL, NULL,
   HWLOC_COMPONENT_TYPE_DISC,
   0,
   &hwloc_xml_disc_component

@@ -68,7 +68,7 @@ Package: libhwloc-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends}, libhwloc5 (= ${binary:Version}), libxml2-dev, libpci-dev
+Depends: ${misc:Depends}, libhwloc5 (= ${binary:Version}), libnuma-dev, libltdl-dev
 Description: Hierarchical view of the machine - static libs and headers
  Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It
@@ -91,6 +91,7 @@ Multi-Arch: same
 Pre-Depends: multiarch-support
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: libhwloc-plugins
+Breaks: libhwloc-plugins (<< 1.10~), libhwloc-contrib-plugins (<< 1.10~)
 Suggests: libhwloc-contrib-plugins
 Provides: libhwloc0, libhwloc1, libhwloc2, libhwloc3, libhwloc4
 Replaces: libhwloc0, libhwloc1, libhwloc2, libhwloc3, libhwloc4

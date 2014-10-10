@@ -38,8 +38,8 @@ Description: Hierarchical view of the machine - utilities
  hwloc supports old kernels not having sysfs topology information,
  with knowledge of cpusets, offline cpus, and Kerrighed support
  .
- This package contains utilities to show the topology of the machine, manipulate
- cpu masks, and bind processes.
+ This package contains utilities to show the topology of the machine (lstopo and
+ hwloc-ls), manipulate cpu masks (hwloc-calc), and bind processes (hwloc-bind).
 
 Package: hwloc-nox
 Section: admin
@@ -61,8 +61,9 @@ Description: Hierarchical view of the machine - non-X version of utilities
  hwloc supports old kernels not having sysfs topology information,
  with knowledge of cpusets, offline cpus, and Kerrighed support
  .
- This package contains utilities to show the topology of the machine (without X
- support), manipulate cpu masks, and bind processes.
+ This package contains utilities to show the topology of the machine (lstopo
+ and hwloc-ls, without X support), manipulate cpu masks (hwloc-calc), and bind
+ processes (hwloc-bind).
 
 Package: libhwloc-dev
 Section: libdevel

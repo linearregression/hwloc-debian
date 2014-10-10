@@ -1,6 +1,8 @@
 hwloc (1.10.0-2) UNRELEASED; urgency=medium
 
-  * control: Add common tools names in the description of hwloc.
+  * control:
+    - Add common tools names in the description of hwloc.
+    - Make libhwloc-dev depend on libnuma-dev only where it is used.
 
  -- Samuel Thibault <sthibault@debian.org>  Fri, 10 Oct 2014 16:10:13 +0200
 

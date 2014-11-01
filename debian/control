@@ -23,7 +23,7 @@ Package: hwloc
 Section: admin
 Architecture: any
 Multi-Arch: foreign
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, libhwloc5 (>= ${binary:Version})
 Description: Hierarchical view of the machine - utilities
  Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It
@@ -45,7 +45,7 @@ Package: hwloc-nox
 Section: admin
 Architecture: any
 Multi-Arch: foreign
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, libhwloc5 (>= ${binary:Version})
 Conflicts: hwloc
 Description: Hierarchical view of the machine - non-X version of utilities
  Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
@@ -115,7 +115,7 @@ Description: Hierarchical view of the machine - shared libs
 
 Package: libhwloc-plugins
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libhwloc5
+Depends: ${shlibs:Depends}, ${misc:Depends}, libhwloc5 (>= ${binary:Version})
 Description: Hierarchical view of the machine - plugins
  libhwloc provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It

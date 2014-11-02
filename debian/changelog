@@ -1,9 +1,9 @@
-hwloc (1.10.0-3) UNRELEASED; urgency=medium
+hwloc (1.10.0-3) unstable; urgency=medium
 
   * Make packages depend on at least the same version of libhwloc5.
     Closes: #767687.
 
- -- Samuel Thibault <sthibault@debian.org>  Sat, 01 Nov 2014 22:00:53 +0100
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 02 Nov 2014 15:25:24 +0100
 
 hwloc (1.10.0-2) unstable; urgency=medium
 

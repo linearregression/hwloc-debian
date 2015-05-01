@@ -1,4 +1,4 @@
-.TH "Components and Plugins: Core functions to be used by components" 3 "Tue Oct 7 2014" "Version 1.10.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Components and Plugins: Core functions to be used by components" 3 "Mon Jan 26 2015" "Version 1.10.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -83,6 +83,8 @@ Returns the object on success\&. Returns NULL and frees obj on error\&. Returns 
 
 .PP
 Insert an object somewhere in the topology\&. It is added as the last child of the given parent\&. The cpuset is completely ignored, so strange objects such as I/O devices should preferably be inserted with this\&.
+.PP
+When used for 'normal' children with cpusets (when importing from XML when duplicating a topology), the caller should make sure children are inserted in order\&.
 .PP
 The given object may have children\&.
 .PP

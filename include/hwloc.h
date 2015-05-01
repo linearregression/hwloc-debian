@@ -339,7 +339,10 @@ struct hwloc_obj_memory_s {
 struct hwloc_obj {
   /* physical information */
   hwloc_obj_type_t type;		/**< \brief Type of object */
-  unsigned os_index;			/**< \brief OS-provided physical index number */
+  unsigned os_index;			/**< \brief OS-provided physical index number.
+					 * It is not guaranteed unique across the entire machine,
+					 * except for PUs and NUMA nodes.
+					 */
   char *name;				/**< \brief Object description if any */
 
   struct hwloc_obj_memory_s memory;	/**< \brief Memory attributes */
@@ -354,7 +357,9 @@ struct hwloc_obj {
 					 * of parent/child links from the root object to here.
 					 */
   unsigned logical_index;		/**< \brief Horizontal index in the whole list of similar objects,
-					 * could be a "cousin_rank" since it's the rank within the "cousin" list below */
+					 * hence guaranteed unique across the entire machine.
+					 * Could be a "cousin_rank" since it's the rank within the "cousin" list below
+					 */
   signed os_level;			/**< \brief OS-provided physical level, -1 if unknown or meaningless */
 
   /* cousins are all objects of the same type (and depth) across the entire topology */
@@ -537,8 +542,7 @@ union hwloc_obj_attr_u {
  * distances are available for all objects in the machine.
  *
  * If the \p latency pointer is not \c NULL, the pointed array contains
- * memory latencies (non-zero values), as defined by the ACPI SLIT
- * specification.
+ * memory latencies (non-zero values), see below.
  *
  * In the future, some other types of distances may be considered.
  * In these cases, \p latency may be \c NULL.
@@ -549,10 +553,17 @@ struct hwloc_distances_s {
   unsigned nbobjs;		/**< \brief Number of objects considered in the matrix.
 				 * It is the number of descendant objects at \p relative_depth
 				 * below the containing object.
-				 * It corresponds to the result of hwloc_get_nbobjs_inside_cpuset_by_depth. */
+				 * It corresponds to the result of hwloc_get_nbobjs_inside_cpuset_by_depth(). */
 
   float *latency;		/**< \brief Matrix of latencies between objects, stored as a one-dimension array.
 				 * May be \c NULL if the distances considered here are not latencies.
+				 *
+				 * Unless defined by the user, this currently contains latencies
+				 * between NUMA nodes (as reported in the System Locality Distance Information Table
+				 * (SLIT) in the ACPI specification), which may or may not be accurate.
+				 * It corresponds to the latency for accessing the memory of one node
+				 * from a core in another node.
+				 *
 				 * Values are normalized to get 1.0 as the minimal value in the matrix.
 				 * Latency from i-th to j-th object is stored in slot i*nbobjs+j.
 				 */
@@ -694,7 +705,7 @@ enum hwloc_topology_flags_e {
  /** \brief Detect the whole system, ignore reservations and offline settings.
    *
    * Gather all resources, even if some were disabled by the administrator.
-   * For instance, ignore Linux Cpusets and gather all processors and memory nodes,
+   * For instance, ignore Linux Cgroup/Cpusets and gather all processors and memory nodes,
    * and ignore the fact that some resources may be offline.
    * \hideinitializer
    */

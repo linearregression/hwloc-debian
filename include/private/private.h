@@ -137,6 +137,8 @@ extern unsigned hwloc_fallback_nbprocessors(struct hwloc_topology *topology);
 extern void hwloc_connect_children(hwloc_obj_t obj);
 extern int hwloc_connect_levels(hwloc_topology_t topology);
 
+extern int hwloc__object_cpusets_compare_first(hwloc_obj_t obj1, hwloc_obj_t obj2);
+
 extern void hwloc_topology_setup_defaults(struct hwloc_topology *topology);
 extern void hwloc_topology_clear(struct hwloc_topology *topology);
 
@@ -301,9 +303,9 @@ extern int hwloc_namecoloncmp(const char *haystack, const char *needle, size_t n
 #endif
 
 #define hwloc_memory_size_printf_value(_size, _verbose) \
-  ((_size) < (10ULL<<20) || _verbose ? (((_size)>>9)+1)>>1 : (_size) < (10ULL<<30) ? (((_size)>>19)+1)>>1 : (((_size)>>29)+1)>>1)
+  ((_size) < (10ULL<<20) || _verbose ? (((_size)>>9)+1)>>1 : (_size) < (10ULL<<30) ? (((_size)>>19)+1)>>1 : (_size) < (10ULL<<40) ? (((_size)>>29)+1)>>1 : (((_size)>>39)+1)>>1)
 #define hwloc_memory_size_printf_unit(_size, _verbose) \
-  ((_size) < (10ULL<<20) || _verbose ? "KB" : (_size) < (10ULL<<30) ? "MB" : "GB")
+  ((_size) < (10ULL<<20) || _verbose ? "KB" : (_size) < (10ULL<<30) ? "MB" : (_size) < (10ULL<<40) ? "GB" : "TB")
 
 /* On some systems, snprintf returns the size of written data, not the actually
  * required size.  hwloc_snprintf always report the actually required size. */

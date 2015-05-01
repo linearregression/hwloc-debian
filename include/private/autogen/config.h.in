@@ -557,6 +557,10 @@
 /* Define to 1 if ncurses works, preferred over curses */
 #undef HWLOC_USE_NCURSES
 
+/* The library version, always available, even in embedded mode, contrary to
+   VERSION */
+#undef HWLOC_VERSION
+
 /* Define to 1 on WINDOWS */
 #undef HWLOC_WIN_SYS
 

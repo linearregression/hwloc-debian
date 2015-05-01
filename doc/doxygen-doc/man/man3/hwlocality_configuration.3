@@ -1,4 +1,4 @@
-.TH "Topology Detection Configuration and Query" 3 "Tue Oct 7 2014" "Version 1.10.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "Topology Detection Configuration and Query" 3 "Mon Jan 26 2015" "Version 1.10.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -98,7 +98,7 @@ Flags to be set onto a topology context before load\&. Flags should be given to 
 .in +1c
 .TP
 \fB\fIHWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM \fP\fP
-Detect the whole system, ignore reservations and offline settings\&. Gather all resources, even if some were disabled by the administrator\&. For instance, ignore Linux Cpusets and gather all processors and memory nodes, and ignore the fact that some resources may be offline\&. 
+Detect the whole system, ignore reservations and offline settings\&. Gather all resources, even if some were disabled by the administrator\&. For instance, ignore Linux Cgroup/Cpusets and gather all processors and memory nodes, and ignore the fact that some resources may be offline\&. 
 .TP
 \fB\fIHWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM \fP\fP
 Assume that the selected backend provides the topology for the system on which we are running\&. This forces hwloc_topology_is_thissystem to return 1, i\&.e\&. makes hwloc assume that the selected backend provides the topology for the system on which we are running, even if it is not the OS-specific backend but the XML backend for instance\&. This means making the binding functions actually call the OS-specific system calls and really do binding, while the XML backend would otherwise provide empty hooks just returning success\&.

@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.10.0</span>
+   &#160;<span id="projectnumber">1.10.1</span>
    </div>
   </td>
  </tr>
@@ -132,19 +132,19 @@
 <div class="ttc" id="a00077_html_ga68ffdcfd9175cdf40709801092f18017"><div class="ttname"><a href="a00077.html#ga68ffdcfd9175cdf40709801092f18017">hwloc_topology_is_thissystem</a></div><div class="ttdeci">int hwloc_topology_is_thissystem(hwloc_topology_t restrict topology)</div><div class="ttdoc">Does the topology context come from this system? </div></div>
 <div class="ttc" id="a00092_html_ga69fbad44c685e46d80ecf51a714ba9ce"><div class="ttname"><a href="a00092.html#ga69fbad44c685e46d80ecf51a714ba9ce">hwloc_topology_get_complete_cpuset</a></div><div class="ttdeci">static hwloc_const_cpuset_t hwloc_topology_get_complete_cpuset(hwloc_topology_t topology)</div><div class="ttdoc">Get complete CPU set. </div><div class="ttdef"><b>Definition:</b> helper.h:782</div></div>
 <div class="ttc" id="a00078_html_ga759e88eaf5a230ad283e9d4c42486735"><div class="ttname"><a href="a00078.html#ga759e88eaf5a230ad283e9d4c42486735">hwloc_get_next_obj_by_type</a></div><div class="ttdeci">static hwloc_obj_t hwloc_get_next_obj_by_type(hwloc_topology_t topology, hwloc_obj_type_t type, hwloc_obj_t prev)</div><div class="ttdoc">Returns the next object of type type. </div></div>
-<div class="ttc" id="a00036_html_a67925e0f2c47f50408fbdb9bddd0790f"><div class="ttname"><a href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">hwloc_obj::cpuset</a></div><div class="ttdeci">hwloc_cpuset_t cpuset</div><div class="ttdoc">CPUs covered by this object. </div><div class="ttdef"><b>Definition:</b> hwloc.h:383</div></div>
+<div class="ttc" id="a00036_html_a67925e0f2c47f50408fbdb9bddd0790f"><div class="ttname"><a href="a00036.html#a67925e0f2c47f50408fbdb9bddd0790f">hwloc_obj::cpuset</a></div><div class="ttdeci">hwloc_cpuset_t cpuset</div><div class="ttdoc">CPUs covered by this object. </div><div class="ttdef"><b>Definition:</b> hwloc.h:388</div></div>
 <div class="ttc" id="a00074_html_ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd"><div class="ttname"><a href="a00074.html#ggacd37bb612667dc437d66bfb175a8dc55aaf0964881117bdedf1a5e9332cd120dd">HWLOC_OBJ_NODE</a></div><div class="ttdoc">NUMA node. A set of processors around memory which the processors can directly access. </div><div class="ttdef"><b>Definition:</b> hwloc.h:180</div></div>
 <div class="ttc" id="a00096_html_ga036068a22d1aa5cb9ff1df348b525ff3"><div class="ttname"><a href="a00096.html#ga036068a22d1aa5cb9ff1df348b525ff3">hwloc_bitmap_copy</a></div><div class="ttdeci">void hwloc_bitmap_copy(hwloc_bitmap_t dst, hwloc_const_bitmap_t src)</div><div class="ttdoc">Copy the contents of bitmap src into the already allocated bitmap dst. </div></div>
 <div class="ttc" id="a00114_html_ga1d01f76cdd4a408ad01f105deeef3bba"><div class="ttname"><a href="a00114.html#ga1d01f76cdd4a408ad01f105deeef3bba">hwloc_mx_endpoint_get_device_cpuset</a></div><div class="ttdeci">static int hwloc_mx_endpoint_get_device_cpuset(hwloc_topology_t topology, mx_endpoint_t endpoint, hwloc_cpuset_t set)</div><div class="ttdoc">Get the CPU set of logical processors that are physically close the MX endpoint endpoint. </div><div class="ttdef"><b>Definition:</b> myriexpress.h:94</div></div>
 <div class="ttc" id="a00114_html_ga868dfb8232333858e1e159c62ff9b682"><div class="ttname"><a href="a00114.html#ga868dfb8232333858e1e159c62ff9b682">hwloc_mx_board_get_device_cpuset</a></div><div class="ttdeci">static int hwloc_mx_board_get_device_cpuset(hwloc_topology_t topology, unsigned id, hwloc_cpuset_t set)</div><div class="ttdoc">Get the CPU set of logical processors that are physically close the MX board id. </div><div class="ttdef"><b>Definition:</b> myriexpress.h:50</div></div>
-<div class="ttc" id="a00036_html_a61a7a80a68eaccbaaa28269e678c81a9"><div class="ttname"><a href="a00036.html#a61a7a80a68eaccbaaa28269e678c81a9">hwloc_obj::os_index</a></div><div class="ttdeci">unsigned os_index</div><div class="ttdoc">OS-provided physical index number. </div><div class="ttdef"><b>Definition:</b> hwloc.h:342</div></div>
+<div class="ttc" id="a00036_html_a61a7a80a68eaccbaaa28269e678c81a9"><div class="ttname"><a href="a00036.html#a61a7a80a68eaccbaaa28269e678c81a9">hwloc_obj::os_index</a></div><div class="ttdeci">unsigned os_index</div><div class="ttdoc">OS-provided physical index number. It is not guaranteed unique across the entire machine, except for PUs and NUMA nodes. </div><div class="ttdef"><b>Definition:</b> hwloc.h:342</div></div>
 <div class="ttc" id="a00073_html_ga4bbf39b68b6f568fb92739e7c0ea7801"><div class="ttname"><a href="a00073.html#ga4bbf39b68b6f568fb92739e7c0ea7801">hwloc_cpuset_t</a></div><div class="ttdeci">hwloc_bitmap_t hwloc_cpuset_t</div><div class="ttdoc">A CPU set is a bitmap whose bits are set according to CPU physical OS indexes. </div><div class="ttdef"><b>Definition:</b> hwloc.h:122</div></div>
-<div class="ttc" id="a00076_html_ga9d1e76ee15a7dee158b786c30b6a6e38"><div class="ttname"><a href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a></div><div class="ttdeci">struct hwloc_topology * hwloc_topology_t</div><div class="ttdoc">Topology context. </div><div class="ttdef"><b>Definition:</b> hwloc.h:585</div></div>
+<div class="ttc" id="a00076_html_ga9d1e76ee15a7dee158b786c30b6a6e38"><div class="ttname"><a href="a00076.html#ga9d1e76ee15a7dee158b786c30b6a6e38">hwloc_topology_t</a></div><div class="ttdeci">struct hwloc_topology * hwloc_topology_t</div><div class="ttdoc">Topology context. </div><div class="ttdef"><b>Definition:</b> hwloc.h:596</div></div>
 <div class="ttc" id="a00036_html"><div class="ttname"><a href="a00036.html">hwloc_obj</a></div><div class="ttdoc">Structure of a topology object. </div><div class="ttdef"><b>Definition:</b> hwloc.h:339</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 7 2014 11:56:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 26 2015 10:38:04 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

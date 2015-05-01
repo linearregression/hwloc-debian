@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.10.0</span>
+   &#160;<span id="projectnumber">1.10.1</span>
    </div>
   </td>
  </tr>
@@ -68,7 +68,7 @@ Data Fields</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Distances between objects. </p>
 <p>One object may contain a distance structure describing distances between all its descendants at a given relative depth. If the containing object is the root object of the topology, then the distances are available for all objects in the machine.</p>
-<p>If the <code>latency</code> pointer is not <code>NULL</code>, the pointed array contains memory latencies (non-zero values), as defined by the ACPI SLIT specification.</p>
+<p>If the <code>latency</code> pointer is not <code>NULL</code>, the pointed array contains memory latencies (non-zero values), see below.</p>
 <p>In the future, some other types of distances may be considered. In these cases, <code>latency</code> may be <code>NULL</code>. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a class="anchor" id="a0f70f48d1bfb18e5e2008825da2967c9"></a>
@@ -81,7 +81,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Matrix of latencies between objects, stored as a one-dimension array. May be <code>NULL</code> if the distances considered here are not latencies. Values are normalized to get 1.0 as the minimal value in the matrix. Latency from i-th to j-th object is stored in slot i*nbobjs+j. </p>
+<p>Matrix of latencies between objects, stored as a one-dimension array. May be <code>NULL</code> if the distances considered here are not latencies. </p>
+<p>Unless defined by the user, this currently contains latencies between NUMA nodes (as reported in the System Locality Distance Information Table (SLIT) in the ACPI specification), which may or may not be accurate. It corresponds to the latency for accessing the memory of one node from a core in another node.</p>
+<p>Values are normalized to get 1.0 as the minimal value in the matrix. Latency from i-th to j-th object is stored in slot i*nbobjs+j. </p>
 
 </div>
 </div>
@@ -123,7 +125,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of objects considered in the matrix. It is the number of descendant objects at <code>relative_depth</code> below the containing object. It corresponds to the result of hwloc_get_nbobjs_inside_cpuset_by_depth. </p>
+<p>Number of objects considered in the matrix. It is the number of descendant objects at <code>relative_depth</code> below the containing object. It corresponds to the result of <a class="el" href="a00086.html#ga8874c24e73ba2b04c76ec8b9e54f49f8" title="Return the number of objects at depth depth included in CPU set set. ">hwloc_get_nbobjs_inside_cpuset_by_depth()</a>. </p>
 
 </div>
 </div>
@@ -147,7 +149,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 7 2014 11:56:52 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 26 2015 10:38:04 for Hardware Locality (hwloc) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

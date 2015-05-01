@@ -5,7 +5,7 @@
 .\" See COPYING in top-level directory.
 .TH LSTOPO "1" "#HWLOC_DATE#" "#PACKAGE_VERSION#" "#PACKAGE_NAME#"
 .SH NAME
-lstopo, lstopo-no-graphics \- Show the topology of the system
+lstopo, lstopo-no-graphics, hwloc-ls \- Show the topology of the system
 .
 .\" **************************
 .\"    Synopsis Section
@@ -17,6 +17,10 @@ lstopo, lstopo-no-graphics \- Show the topology of the system
 .
 .PP
 .B lstopo-no-graphics
+[ \fIoptions \fR]... [ \fIfilename \fR]
+.
+.PP
+.B hwloc-ls
 [ \fIoptions \fR]... [ \fIfilename \fR]
 .
 .PP
@@ -104,6 +108,7 @@ hwloc supports ignoring any type except PUs and I/O devices.
 However lstopo still offers PU ignoring by hiding PU objects
 in the graphical and textual outputs.
 Note that PU may not be ignored in the XML output.
+Note also that the top-level object type cannot be ignored (usually Machine or System).
 .TP
 \fB\-\-no\-caches\fR
 Do not show caches.
@@ -203,6 +208,7 @@ lstopo and lstopo-no-graphics are capable of displaying a topological map of
 the system in a variety of different output formats.  The only difference
 between lstopo and lstopo-no-graphics is that graphical outputs are only
 supported by lstopo, to reduce dependencies on external libraries.
+hwloc-ls is identical to lstopo-no-graphics.
 .
 .PP
 The filename specified directly implies the output format that will be

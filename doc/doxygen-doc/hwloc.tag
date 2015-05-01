@@ -118,7 +118,7 @@
     <docanchor file="a00028" title="What happens if my topology is asymmetric?">faq_asymmetric</docanchor>
     <docanchor file="a00028" title="How do I annotate the topology with private notes?">faq_annotate</docanchor>
     <docanchor file="a00028" title="Why does Valgrind complain about hwloc memory leaks?">faq_valgrind</docanchor>
-    <docanchor file="a00028" title="How do I handle API upgrades?">faq_upgrade</docanchor>
+    <docanchor file="a00028" title="How do I handle ABI breaks and API upgrades?">faq_upgrade</docanchor>
     <docanchor file="a00028" title="How do I build hwloc for BlueGene/Q?">faq_bgq</docanchor>
     <docanchor file="a00028" title="How to get useful topology information on NetBSD?">faq_netbsd_bind</docanchor>
   </compound>

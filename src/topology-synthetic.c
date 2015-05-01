@@ -172,6 +172,11 @@ hwloc_synthetic_process_level_indexes(struct hwloc_synthetic_backend_data_s *dat
 	    fprintf(stderr, "Failed to read synthetic index interleaving loop type '%s'\n", tmp);
 	  goto out_with_loops;
 	}
+	if (type == HWLOC_OBJ_MISC) {
+	  if (verbose)
+	    fprintf(stderr, "Misc object type disallowed in synthetic index interleaving loop type '%s'\n", tmp);
+	  goto out_with_loops;
+	}
 	for(i=0; i<curleveldepth; i++) {
 	  if (type != data->level[i].type)
 	    continue;
@@ -276,6 +281,29 @@ hwloc_synthetic_process_level_indexes(struct hwloc_synthetic_backend_data_s *dat
   return;
 }
 
+static hwloc_uint64_t
+hwloc_synthetic_parse_memory_attr(const char *attr, const char **endp)
+{
+  const char *endptr;
+  hwloc_uint64_t size;
+  size = strtoull(attr, (char **) &endptr, 0);
+  if (!hwloc_strncasecmp(endptr, "TB", 2)) {
+    size <<= 40;
+    endptr += 2;
+  } else if (!hwloc_strncasecmp(endptr, "GB", 2)) {
+    size <<= 30;
+    endptr += 2;
+  } else if (!hwloc_strncasecmp(endptr, "MB", 2)) {
+    size <<= 20;
+    endptr += 2;
+  } else if (!hwloc_strncasecmp(endptr, "kB", 2)) {
+    size <<= 10;
+    endptr += 2;
+  }
+  *endp = endptr;
+  return size;
+}
+
 static int
 hwloc_synthetic_parse_level_attrs(const char *attrs, const char **next_posp,
 				  struct hwloc_synthetic_level_data_s *curlevel,
@@ -297,10 +325,10 @@ hwloc_synthetic_parse_level_attrs(const char *attrs, const char **next_posp,
 
   while (')' != *attrs) {
     if (HWLOC_OBJ_CACHE == type && !strncmp("size=", attrs, 5)) {
-      memorysize = strtoull(attrs+5, (char**) &attrs, 0);
+      memorysize = hwloc_synthetic_parse_memory_attr(attrs+5, &attrs);
 
     } else if (HWLOC_OBJ_CACHE != type && !strncmp("memory=", attrs, 7)) {
-      memorysize = strtoull(attrs+7, (char**) &attrs, 0);
+      memorysize = hwloc_synthetic_parse_memory_attr(attrs+7, &attrs);
 
     } else if (!strncmp("indexes=", attrs, 8)) {
       index_string = attrs+8;
@@ -387,6 +415,12 @@ hwloc_backend_synthetic_init(struct hwloc_synthetic_backend_data_s *data,
 	errno = EINVAL;
 	goto error;
       }
+      if (type == HWLOC_OBJ_MISC) {
+	if (verbose)
+	  fprintf(stderr, "Synthetic string with disallow object type at '%s'\n", pos);
+	errno = EINVAL;
+	goto error;
+      }
 
       next_pos = strchr(pos, ':');
       if (!next_pos) {
@@ -460,9 +494,8 @@ hwloc_backend_synthetic_init(struct hwloc_synthetic_backend_data_s *data,
 	case HWLOC_OBJ_CACHE: type = HWLOC_OBJ_SOCKET; break;
 	case HWLOC_OBJ_SOCKET: type = HWLOC_OBJ_NODE; break;
 	case HWLOC_OBJ_NODE:
-	case HWLOC_OBJ_GROUP: type = HWLOC_OBJ_GROUP; break;
 	case HWLOC_OBJ_MACHINE:
-	case HWLOC_OBJ_MISC: type = HWLOC_OBJ_MISC; break;
+	case HWLOC_OBJ_GROUP: type = HWLOC_OBJ_GROUP; break;
 	default:
 	  assert(0);
 	}
@@ -575,8 +608,6 @@ hwloc_synthetic__post_look_hooks(struct hwloc_synthetic_level_data_s *curlevel,
 				 hwloc_obj_t obj)
 {
   switch (obj->type) {
-  case HWLOC_OBJ_MISC:
-    break;
   case HWLOC_OBJ_GROUP:
     obj->attr->group.depth = curlevel->depth;
     break;
@@ -603,6 +634,7 @@ hwloc_synthetic__post_look_hooks(struct hwloc_synthetic_level_data_s *curlevel,
     break;
   case HWLOC_OBJ_PU:
     break;
+  case HWLOC_OBJ_MISC:
   case HWLOC_OBJ_TYPE_MAX:
     /* Should never happen */
     assert(0);
@@ -640,8 +672,6 @@ hwloc__look_synthetic(struct hwloc_topology *topology,
 
   /* pre-hooks */
   switch (type) {
-    case HWLOC_OBJ_MISC:
-      break;
     case HWLOC_OBJ_GROUP:
       break;
     case HWLOC_OBJ_SYSTEM:
@@ -663,6 +693,7 @@ hwloc__look_synthetic(struct hwloc_topology *topology,
       break;
     case HWLOC_OBJ_PU:
       break;
+    case HWLOC_OBJ_MISC:
     case HWLOC_OBJ_TYPE_MAX:
       /* Should never happen */
       assert(0);

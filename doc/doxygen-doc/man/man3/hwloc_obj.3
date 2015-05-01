@@ -1,4 +1,4 @@
-.TH "hwloc_obj" 3 "Tue Oct 7 2014" "Version 1.10.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_obj" 3 "Mon Jan 26 2015" "Version 1.10.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -214,7 +214,7 @@ Last child\&.
 .SS "unsigned hwloc_obj::logical_index"
 
 .PP
-Horizontal index in the whole list of similar objects, could be a 'cousin_rank' since it's the rank within the 'cousin' list below\&. 
+Horizontal index in the whole list of similar objects, hence guaranteed unique across the entire machine\&. Could be a 'cousin_rank' since it's the rank within the 'cousin' list below\&. 
 .SS "struct \fBhwloc_obj_memory_s\fP hwloc_obj::memory"
 
 .PP
@@ -262,7 +262,7 @@ Its value must not be changed, hwloc_bitmap_dup must be used instead\&.
 .SS "unsigned hwloc_obj::os_index"
 
 .PP
-OS-provided physical index number\&. 
+OS-provided physical index number\&. It is not guaranteed unique across the entire machine, except for PUs and NUMA nodes\&. 
 .SS "signed hwloc_obj::os_level"
 
 .PP

@@ -1,3 +1,9 @@
+hwloc (1.10.1-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 01 May 2015 20:08:01 +0200
+
 hwloc (1.10.0-3) unstable; urgency=medium
 
   * Make packages depend on at least the same version of libhwloc5.

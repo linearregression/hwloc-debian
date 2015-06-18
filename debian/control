@@ -156,7 +156,7 @@ Description: Hierarchical view of the machine - common files
 Package: libhwloc-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, libjs-jquery
 Description: Hierarchical view of the machine - documentation
  Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It

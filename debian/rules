@@ -11,6 +11,8 @@ else
 CROSS= --build $(DEB_BUILD_GNU_TYPE)
 endif
 
+JQUERY_DEST=/usr/share/doc/libhwloc-doc/html/jquery.js
+
 export DEB_BUILD_HARDENING=1
 
 ifneq (,$(DEB_PARALLEL_JOBS))
@@ -70,6 +72,7 @@ binary-indep: install
 	dh_testroot
 	dh_install
 	dh_installdocs
+	rm -f $(JQUERY_DEST)
 	dh_installchangelogs 
 	dh_installexamples
 	dh_installman

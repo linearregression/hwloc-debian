@@ -1,4 +1,4 @@
-.TH "hwloc_component" 3 "Mon Jan 26 2015" "Version 1.10.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_component" 3 "Thu Jun 18 2015" "Version 1.11.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -45,7 +45,7 @@ Component ABI version, set to HWLOC_COMPONENT_ABI\&.
 
 .PP
 Component data, pointing to a struct \fBhwloc_disc_component\fP or struct hwloc_xml_component\&. 
-.SS "void(* hwloc_component::finalize)(unsigned long \fBflags\fP)"
+.SS "void(* hwloc_component::finalize) (unsigned long \fBflags\fP)"
 
 .PP
 Process-wide component termination callback\&. This optional callback is called after unregistering the component from the hwloc core (before unloading the plugin)\&.
@@ -62,7 +62,7 @@ If the component uses ltdl for loading its own plugins, it should load/unload th
 
 .PP
 Component flags, unused for now\&. 
-.SS "int(* hwloc_component::init)(unsigned long \fBflags\fP)"
+.SS "int(* hwloc_component::init) (unsigned long \fBflags\fP)"
 
 .PP
 Process-wide component initialization callback\&. This optional callback is called when the component is registered to the hwloc core (after loading the plugin)\&.
@@ -76,7 +76,12 @@ When the component is built as a plugin, this callback should call hwloc_check_p
 0 on success, or a negative code on error\&.
 .RE
 .PP
+\fBNote:\fP
+.RS 4
 If the component uses ltdl for loading its own plugins, it should load/unload them only in \fBinit()\fP and \fBfinalize()\fP, to avoid race conditions with hwloc's use of ltdl\&. 
+.RE
+.PP
+
 .SS "\fBhwloc_component_type_t\fP hwloc_component::type"
 
 .PP

@@ -1,7 +1,7 @@
 /*
  * Copyright © 2009 CNRS
  * Copyright © 2009-2014 Inria.  All rights reserved.
- * Copyright © 2009-2010, 2013 Université Bordeaux 1
+ * Copyright © 2009-2010, 2013 Université Bordeaux
  * Copyright © 2011 Cisco Systems, Inc.  All rights reserved.
  * See COPYING in top-level directory.
  */
@@ -47,7 +47,7 @@ hwloc_hpux_find_ldom(hwloc_topology_t topology, hwloc_const_bitmap_t hwloc_set)
     /* Does not correspond to exactly one node */
     return -1;
   /* obj is the highest possibly matching object, but some (single) child (with same cpuset) could match too */
-  while (obj->type != HWLOC_OBJ_NODE) {
+  while (obj->type != HWLOC_OBJ_NUMANODE) {
     /* try the first child, in case it has the same cpuset */
     if (!obj->first_child
 	|| !obj->first_child->cpuset
@@ -198,7 +198,7 @@ hwloc_look_hpux(struct hwloc_backend *backend)
       MPC_GETFIRSTLDOM_SYS : MPC_GETFIRSTLDOM, 0, 0);
     while (currentnode != -1 && i < nbnodes) {
       hwloc_debug("node %d is %d\n", i, currentnode);
-      nodes[i] = obj = hwloc_alloc_setup_object(HWLOC_OBJ_NODE, currentnode);
+      nodes[i] = obj = hwloc_alloc_setup_object(HWLOC_OBJ_NUMANODE, currentnode);
       obj->cpuset = hwloc_bitmap_alloc();
       obj->nodeset = hwloc_bitmap_alloc();
       hwloc_bitmap_set(obj->nodeset, currentnode);

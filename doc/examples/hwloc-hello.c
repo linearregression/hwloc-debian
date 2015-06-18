@@ -3,8 +3,8 @@
  * See other examples under doc/examples/ in the source tree
  * for more details.
  *
- * Copyright © 2009-2014 Inria.  All rights reserved.
- * Copyright © 2009-2011 Université Bordeaux 1
+ * Copyright © 2009-2015 Inria.  All rights reserved.
+ * Copyright © 2009-2011 Université Bordeaux
  * Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.
  * See COPYING in top-level directory.
  *
@@ -19,11 +19,17 @@
 static void print_children(hwloc_topology_t topology, hwloc_obj_t obj, 
                            int depth)
 {
-    char string[128];
+    char type[32], attr[1024];
     unsigned i;
 
-    hwloc_obj_snprintf(string, sizeof(string), topology, obj, "#", 0);
-    printf("%*s%s\n", 2*depth, "", string);
+    hwloc_obj_type_snprintf(type, sizeof(type), obj, 0);
+    printf("%*s%s", 2*depth, "", type);
+    if (obj->os_index != (unsigned) -1)
+      printf("#%u", obj->os_index);
+    hwloc_obj_attr_snprintf(attr, sizeof(attr), obj, " ", 0);
+    if (*attr)
+      printf("(%s)", attr);
+    printf("\n");
     for (i = 0; i < obj->arity; i++) {
         print_children(topology, obj->children[i], depth + 1);
     }
@@ -67,9 +73,8 @@ int main(void)
         printf("*** Objects at level %d\n", depth);
         for (i = 0; i < hwloc_get_nbobjs_by_depth(topology, depth); 
              i++) {
-            hwloc_obj_snprintf(string, sizeof(string), topology,
-                       hwloc_get_obj_by_depth(topology, depth, i),
-                       "#", 0);
+            hwloc_obj_type_snprintf(string, sizeof(string),
+				    hwloc_get_obj_by_depth(topology, depth, i), 0);
             printf("Index %u: %s\n", i, string);
         }
     }
@@ -83,13 +88,13 @@ int main(void)
 
     /*****************************************************************
      * Third example:
-     * Print the number of sockets.
+     * Print the number of packages.
      *****************************************************************/
-    depth = hwloc_get_type_depth(topology, HWLOC_OBJ_SOCKET);
+    depth = hwloc_get_type_depth(topology, HWLOC_OBJ_PACKAGE);
     if (depth == HWLOC_TYPE_DEPTH_UNKNOWN) {
-        printf("*** The number of sockets is unknown\n");
+        printf("*** The number of packages is unknown\n");
     } else {
-        printf("*** %u socket(s)\n", 
+        printf("*** %u package(s)\n",
                hwloc_get_nbobjs_by_depth(topology, depth));
     }
 
@@ -127,7 +132,7 @@ int main(void)
         cpuset = hwloc_bitmap_dup(obj->cpuset);
 
         /* Get only one logical processor (in case the core is
-           SMT/hyperthreaded). */
+           SMT/hyper-threaded). */
         hwloc_bitmap_singlify(cpuset);
 
         /* And try to bind ourself there. */
@@ -149,19 +154,19 @@ int main(void)
      * memory to the last NUMA node.
      *****************************************************************/
     /* Get last node. */
-    n = hwloc_get_nbobjs_by_type(topology, HWLOC_OBJ_NODE);
+    n = hwloc_get_nbobjs_by_type(topology, HWLOC_OBJ_NUMANODE);
     if (n) {
         void *m;
         size = 1024*1024;
 
-        obj = hwloc_get_obj_by_type(topology, HWLOC_OBJ_NODE, n - 1);
+        obj = hwloc_get_obj_by_type(topology, HWLOC_OBJ_NUMANODE, n - 1);
         m = hwloc_alloc_membind_nodeset(topology, size, obj->nodeset,
-                HWLOC_MEMBIND_DEFAULT, 0);
+                HWLOC_MEMBIND_BIND, 0);
         hwloc_free(topology, m, size);
 
         m = malloc(size);
         hwloc_set_area_membind_nodeset(topology, m, size, obj->nodeset,
-                HWLOC_MEMBIND_DEFAULT, 0);
+                HWLOC_MEMBIND_BIND, 0);
         free(m);
     }
 

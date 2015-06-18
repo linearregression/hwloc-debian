@@ -1,5 +1,5 @@
 /*
- * Copyright © 2009-2014 Inria.  All rights reserved.
+ * Copyright © 2009-2015 Inria.  All rights reserved.
  * Copyright © 2012 Université Bordeau 1
  * See COPYING in top-level directory.
  */
@@ -189,9 +189,9 @@ hwloc_plugins_exit(void)
 static int
 hwloc_plugins_init(void)
 {
-  char *verboseenv;
+  const char *verboseenv;
   char *path = HWLOC_PLUGINS_PATH;
-  char *env;
+  const char *env;
   int err;
 
   verboseenv = getenv("HWLOC_PLUGINS_VERBOSE");
@@ -312,7 +312,7 @@ hwloc_components_init(struct hwloc_topology *topology __hwloc_attribute_unused)
 #ifdef HWLOC_HAVE_PLUGINS
   struct hwloc__plugin_desc *desc;
 #endif
-  char *verboseenv;
+  const char *verboseenv;
   unsigned i;
 
   HWLOC_COMPONENTS_LOCK();
@@ -495,9 +495,11 @@ hwloc_disc_components_enable_others(struct hwloc_topology *topology)
   struct hwloc_backend *backend;
   unsigned excludes = 0;
   int tryall = 1;
-  char *env;
+  const char *_env;
+  char *env; /* we'll to modify the env value, so duplicate it */
 
-  env = getenv("HWLOC_COMPONENTS");
+  _env = getenv("HWLOC_COMPONENTS");
+  env = _env ? strdup(_env) : NULL;
 
   /* compute current excludes */
   backend = topology->backends;
@@ -515,7 +517,7 @@ hwloc_disc_components_enable_others(struct hwloc_topology *topology)
       s = strcspn(curenv, HWLOC_COMPONENT_SEPS);
       if (s) {
 	char *arg;
-	char c;
+	char c, d;
 
 	/* replace libpci with pci for backward compatibility with v1.6 */
 	if (!strncmp(curenv, "libpci", s)) {
@@ -545,19 +547,21 @@ hwloc_disc_components_enable_others(struct hwloc_topology *topology)
 
 	arg = strchr(curenv, '=');
 	if (arg) {
+	  d = *arg;
 	  *arg = '\0';
-	  arg++;
 	}
 
 	comp = hwloc_disc_component_find(-1, curenv);
 	if (comp) {
-	  hwloc_disc_component_try_enable(topology, comp, arg, &excludes, 1 /* envvar forced */, 1 /* envvar forced need warnings */);
+	  hwloc_disc_component_try_enable(topology, comp, arg ? arg+1 : NULL, &excludes, 1 /* envvar forced */, 1 /* envvar forced need warnings */);
 	} else {
 	  fprintf(stderr, "Cannot find discovery component `%s'\n", curenv);
 	}
 
-	/* restore last char (the second loop below needs env to be unmodified) */
+	/* restore chars (the second loop below needs env to be unmodified) */
 	curenv[s] = c;
+	if (arg)
+	  *arg = d;
       }
 
 nextname:
@@ -609,6 +613,9 @@ nextcomp:
     }
     fprintf(stderr, "\n");
   }
+
+  if (env)
+    free(env);
 }
 
 void
@@ -716,7 +723,7 @@ void
 hwloc_backends_is_thissystem(struct hwloc_topology *topology)
 {
   struct hwloc_backend *backend;
-  char *local_env;
+  const char *local_env;
 
   /* Apply is_thissystem topology flag before we enforce envvar backends.
    * If the application changed the backend with set_foo(),

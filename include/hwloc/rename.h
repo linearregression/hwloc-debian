@@ -49,8 +49,8 @@ extern "C" {
 
 #define HWLOC_OBJ_SYSTEM HWLOC_NAME_CAPS(OBJ_SYSTEM)
 #define HWLOC_OBJ_MACHINE HWLOC_NAME_CAPS(OBJ_MACHINE)
-#define HWLOC_OBJ_NODE HWLOC_NAME_CAPS(OBJ_NODE)
-#define HWLOC_OBJ_SOCKET HWLOC_NAME_CAPS(OBJ_SOCKET)
+#define HWLOC_OBJ_NUMANODE HWLOC_NAME_CAPS(OBJ_NUMANODE)
+#define HWLOC_OBJ_PACKAGE HWLOC_NAME_CAPS(OBJ_PACKAGE)
 #define HWLOC_OBJ_CACHE HWLOC_NAME_CAPS(OBJ_CACHE)
 #define HWLOC_OBJ_CORE HWLOC_NAME_CAPS(OBJ_CORE)
 #define HWLOC_OBJ_PU HWLOC_NAME_CAPS(OBJ_PU)
@@ -106,6 +106,7 @@ extern "C" {
 #define hwloc_topology_init HWLOC_NAME(topology_init)
 #define hwloc_topology_load HWLOC_NAME(topology_load)
 #define hwloc_topology_destroy HWLOC_NAME(topology_destroy)
+#define hwloc_topology_dup HWLOC_NAME(topology_dup)
 #define hwloc_topology_check HWLOC_NAME(topology_check)
 #define hwloc_topology_ignore_type HWLOC_NAME(topology_ignore_type)
 #define hwloc_topology_ignore_type_keep_structure HWLOC_NAME(topology_ignore_type_keep_structure)
@@ -161,7 +162,6 @@ extern "C" {
 #define HWLOC_RESTRICT_FLAG_ADAPT_MISC HWLOC_NAME_CAPS(RESTRICT_FLAG_ADAPT_MISC)
 #define HWLOC_RESTRICT_FLAG_ADAPT_IO HWLOC_NAME_CAPS(RESTRICT_FLAG_ADAPT_IO)
 #define hwloc_topology_restrict HWLOC_NAME(topology_restrict)
-#define hwloc_topology_dup HWLOC_NAME(topology_dup)
 
 #define hwloc_topology_get_depth HWLOC_NAME(topology_get_depth)
 #define hwloc_get_type_depth HWLOC_NAME(get_type_depth)
@@ -630,6 +630,10 @@ extern "C" {
 #define hwloc_decode_from_base64 HWLOC_NAME(decode_from_base64)
 
 #define hwloc_obj_add_info_nodup HWLOC_NAME(obj_add_info_nodup)
+
+#define hwloc_progname HWLOC_NAME(progname)
+
+#define hwloc_bitmap_compare_inclusion HWLOC_NAME(bitmap_compare_inclusion)
 
 /* private/solaris-chiptype.h */
 

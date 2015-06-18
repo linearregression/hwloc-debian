@@ -1,5 +1,5 @@
-# Copyright © 2009-2014 Inria.  All rights reserved.
-# Copyright © 2009-2011 Université Bordeaux 1
+# Copyright © 2009-2015 Inria.  All rights reserved.
+# Copyright © 2009-2011 Université Bordeaux
 # Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.
 # See COPYING in top-level directory.
 
@@ -38,6 +38,7 @@ sysfs_outputs = \
 		16amd64-8n2c-cpusets.xml.output \
 		16amd64-8n2c-cpusets_noadmin.output \
 		16em64t-4s2ca2c-cpusetreorder.output \
+		16em64t-4s2ca2c-cpusetreorder-merge.output \
 		16em64t-4s2c2t.output \
 		16em64t-4s2c2t-offlines.output \
 		16em64t-4s2c2t-offlines.xml.output \
@@ -97,6 +98,7 @@ sysfs_tarballs = \
 		16amd64-8n2c-cpusets.xml.source \
 		16amd64-8n2c-cpusets_noadmin.source \
 		16em64t-4s2ca2c-cpusetreorder.tar.bz2 \
+		16em64t-4s2ca2c-cpusetreorder-merge.source \
 		16em64t-4s2c2t.tar.bz2 \
 		16em64t-4s2c2t-offlines.tar.bz2 \
 		16em64t-4s2c2t-offlines.xml.source \
@@ -137,6 +139,7 @@ sysfs_options = \
 		16amd64-4n4c-cgroup-distance-merge.options \
 		16amd64-8n2c-cpusets.xml.options \
 		16amd64-8n2c-cpusets_noadmin.options \
+		16em64t-4s2ca2c-cpusetreorder-merge.options \
 		16em64t-4s2c2t-offlines.xml.options \
 		16em64t-4s2c2t-offlines_noadmin.options \
 		16em64t-4s2c2t_ncaches.options \
@@ -151,6 +154,7 @@ sysfs_options = \
 # modifying the environment of lstopo
 sysfs_envs = \
 		2i386-2t-hugepagesizecount.xml.env \
+		16amd64-8n2c-cpusets.xml.env \
 		32amd64-4s2n4c-cgroup.env \
 		32amd64-4s2n4c-cgroup.xml.env \
 		40intel64-2g2n4c+pci.env \
@@ -167,11 +171,4 @@ EXTRA_DIST = $(sysfs_outputs) $(sysfs_tarballs) $(sysfs_excludes) $(sysfs_option
 
 LOG_COMPILER = $(builddir)/test-topology.sh
 
-
-bin_SCRIPTS = hwloc-gather-topology
-
-install-exec-hook:
-	$(SED) -e 's/HWLOC_top_builddir\/utils/bindir/' -e '/HWLOC_top_builddir/d' $(DESTDIR)$(bindir)/hwloc-gather-topology > $(DESTDIR)$(bindir)/hwloc-gather-topology.tmp && mv -f $(DESTDIR)$(bindir)/hwloc-gather-topology.tmp $(DESTDIR)$(bindir)/hwloc-gather-topology
-	chmod +x $(DESTDIR)$(bindir)/hwloc-gather-topology
-
-SUBDIRS = gather
+SUBDIRS = . gather

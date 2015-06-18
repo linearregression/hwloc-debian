@@ -1,7 +1,7 @@
 /*
  * Copyright © 2009 CNRS
- * Copyright © 2009-2014 Inria.  All rights reserved.
- * Copyright © 2009-2010 Université Bordeaux 1
+ * Copyright © 2009-2015 Inria.  All rights reserved.
+ * Copyright © 2009-2010 Université Bordeaux
  * Copyright © 2009-2011 Cisco Systems, Inc.  All rights reserved.
  * See COPYING in top-level directory.
  */
@@ -137,11 +137,21 @@ hwloc_synthetic_process_level_indexes(struct hwloc_synthetic_backend_data_s *dat
 	    fprintf(stderr, "Failed to read synthetic index interleaving loop '%s' without number before '*'\n", tmp);
 	  goto out_with_loops;
 	}
+	if (!step) {
+	  if (verbose)
+	    fprintf(stderr, "Invalid interleaving loop with step 0 at '%s'\n", tmp);
+	  goto out_with_loops;
+	}
 	tmp2++;
 	nb = (unsigned) strtol(tmp2, &tmp3, 0);
 	if (tmp3 == tmp2 || (*tmp3 && *tmp3 != ':' && *tmp3 != ')' && *tmp3 != ' ')) {
 	  if (verbose)
 	    fprintf(stderr, "Failed to read synthetic index interleaving loop '%s' without number between '*' and ':'\n", tmp);
+	  goto out_with_loops;
+	}
+	if (!nb) {
+	  if (verbose)
+	    fprintf(stderr, "Invalid interleaving loop with number 0 at '%s'\n", tmp2);
 	  goto out_with_loops;
 	}
 	loops[cur_loop].step = step;
@@ -172,7 +182,7 @@ hwloc_synthetic_process_level_indexes(struct hwloc_synthetic_backend_data_s *dat
 	    fprintf(stderr, "Failed to read synthetic index interleaving loop type '%s'\n", tmp);
 	  goto out_with_loops;
 	}
-	if (type == HWLOC_OBJ_MISC) {
+	if (type == HWLOC_OBJ_MISC || type == HWLOC_OBJ_BRIDGE || type == HWLOC_OBJ_PCI_DEVICE || type == HWLOC_OBJ_OS_DEVICE) {
 	  if (verbose)
 	    fprintf(stderr, "Misc object type disallowed in synthetic index interleaving loop type '%s'\n", tmp);
 	  goto out_with_loops;
@@ -224,11 +234,14 @@ hwloc_synthetic_process_level_indexes(struct hwloc_synthetic_backend_data_s *dat
 
 	loops[cur_loop].step = step;
 	loops[cur_loop].nb = nb;
+	assert(nb);
+	assert(step);
 	if (step < minstep)
 	  minstep = step;
 	nbs *= nb;
       }
     }
+    assert(nbs);
 
     if (nbs != total) {
       /* one loop of total/nbs steps is missing, add it if it's just the smallest one */
@@ -374,7 +387,7 @@ hwloc_backend_synthetic_init(struct hwloc_synthetic_backend_data_s *data,
   int nb_machine_levels = 0, nb_node_levels = 0;
   int nb_pu_levels = 0;
   int verbose = 0;
-  char *env = getenv("HWLOC_SYNTHETIC_VERBOSE");
+  const char *env = getenv("HWLOC_SYNTHETIC_VERBOSE");
   int err;
   unsigned long totalarity = 1;
 
@@ -415,9 +428,9 @@ hwloc_backend_synthetic_init(struct hwloc_synthetic_backend_data_s *data,
 	errno = EINVAL;
 	goto error;
       }
-      if (type == HWLOC_OBJ_MISC) {
+      if (type == HWLOC_OBJ_MISC || type == HWLOC_OBJ_BRIDGE || type == HWLOC_OBJ_PCI_DEVICE || type == HWLOC_OBJ_OS_DEVICE) {
 	if (verbose)
-	  fprintf(stderr, "Synthetic string with disallow object type at '%s'\n", pos);
+	  fprintf(stderr, "Synthetic string with disallowed object type at '%s'\n", pos);
 	errno = EINVAL;
 	goto error;
       }
@@ -491,9 +504,9 @@ hwloc_backend_synthetic_init(struct hwloc_synthetic_backend_data_s *data,
 	switch (data->level[i+1].type) {
 	case HWLOC_OBJ_PU: type = HWLOC_OBJ_CORE; break;
 	case HWLOC_OBJ_CORE: type = HWLOC_OBJ_CACHE; break;
-	case HWLOC_OBJ_CACHE: type = HWLOC_OBJ_SOCKET; break;
-	case HWLOC_OBJ_SOCKET: type = HWLOC_OBJ_NODE; break;
-	case HWLOC_OBJ_NODE:
+	case HWLOC_OBJ_CACHE: type = HWLOC_OBJ_PACKAGE; break;
+	case HWLOC_OBJ_PACKAGE: type = HWLOC_OBJ_NUMANODE; break;
+	case HWLOC_OBJ_NUMANODE:
 	case HWLOC_OBJ_MACHINE:
 	case HWLOC_OBJ_GROUP: type = HWLOC_OBJ_GROUP; break;
 	default:
@@ -512,7 +525,7 @@ hwloc_backend_synthetic_init(struct hwloc_synthetic_backend_data_s *data,
       case HWLOC_OBJ_GROUP:
 	group_depth++;
 	break;
-      case HWLOC_OBJ_NODE:
+      case HWLOC_OBJ_NUMANODE:
 	nb_node_levels++;
 	break;
       case HWLOC_OBJ_MACHINE:
@@ -581,7 +594,7 @@ hwloc_backend_synthetic_init(struct hwloc_synthetic_backend_data_s *data,
 	  curlevel->memorysize = 256*1024 << (2*curlevel->depth);
       }
 
-    } else if (type == HWLOC_OBJ_NODE && !curlevel->memorysize) {
+    } else if (type == HWLOC_OBJ_NUMANODE && !curlevel->memorysize) {
       /* 1GB in memory nodes. */
       curlevel->memorysize = 1024*1024*1024;
     }
@@ -611,18 +624,13 @@ hwloc_synthetic__post_look_hooks(struct hwloc_synthetic_level_data_s *curlevel,
   case HWLOC_OBJ_GROUP:
     obj->attr->group.depth = curlevel->depth;
     break;
-  case HWLOC_OBJ_BRIDGE:
-  case HWLOC_OBJ_PCI_DEVICE:
-  case HWLOC_OBJ_OS_DEVICE:
-    abort();
-    break;
   case HWLOC_OBJ_SYSTEM:
     break;
   case HWLOC_OBJ_MACHINE:
     break;
-  case HWLOC_OBJ_NODE:
+  case HWLOC_OBJ_NUMANODE:
     break;
-  case HWLOC_OBJ_SOCKET:
+  case HWLOC_OBJ_PACKAGE:
     break;
   case HWLOC_OBJ_CACHE:
     obj->attr->cache.depth = curlevel->depth;
@@ -634,6 +642,9 @@ hwloc_synthetic__post_look_hooks(struct hwloc_synthetic_level_data_s *curlevel,
     break;
   case HWLOC_OBJ_PU:
     break;
+  case HWLOC_OBJ_BRIDGE:
+  case HWLOC_OBJ_PCI_DEVICE:
+  case HWLOC_OBJ_OS_DEVICE:
   case HWLOC_OBJ_MISC:
   case HWLOC_OBJ_TYPE_MAX:
     /* Should never happen */
@@ -674,18 +685,11 @@ hwloc__look_synthetic(struct hwloc_topology *topology,
   switch (type) {
     case HWLOC_OBJ_GROUP:
       break;
-    case HWLOC_OBJ_SYSTEM:
-    case HWLOC_OBJ_BRIDGE:
-    case HWLOC_OBJ_PCI_DEVICE:
-    case HWLOC_OBJ_OS_DEVICE:
-      /* Shouldn't happen.  */
-      abort();
-      break;
     case HWLOC_OBJ_MACHINE:
       break;
-    case HWLOC_OBJ_NODE:
+    case HWLOC_OBJ_NUMANODE:
       break;
-    case HWLOC_OBJ_SOCKET:
+    case HWLOC_OBJ_PACKAGE:
       break;
     case HWLOC_OBJ_CACHE:
       break;
@@ -693,6 +697,10 @@ hwloc__look_synthetic(struct hwloc_topology *topology,
       break;
     case HWLOC_OBJ_PU:
       break;
+    case HWLOC_OBJ_SYSTEM:
+    case HWLOC_OBJ_BRIDGE:
+    case HWLOC_OBJ_PCI_DEVICE:
+    case HWLOC_OBJ_OS_DEVICE:
     case HWLOC_OBJ_MISC:
     case HWLOC_OBJ_TYPE_MAX:
       /* Should never happen */
@@ -713,7 +721,7 @@ hwloc__look_synthetic(struct hwloc_topology *topology,
       hwloc__look_synthetic(topology, data, level + 1, obj->cpuset);
   }
 
-  if (type == HWLOC_OBJ_NODE) {
+  if (type == HWLOC_OBJ_NUMANODE) {
     obj->nodeset = hwloc_bitmap_alloc();
     hwloc_bitmap_set(obj->nodeset, os_index);
   }
@@ -951,7 +959,7 @@ static int hwloc_topology_export_synthetic_obj_attr(struct hwloc_topology * topo
 	     prefix, (unsigned long long) obj->memory.local_memory);
     prefix = separator;
   }
-  if (obj->type == HWLOC_OBJ_PU || obj->type == HWLOC_OBJ_NODE) {
+  if (obj->type == HWLOC_OBJ_PU || obj->type == HWLOC_OBJ_NUMANODE) {
     hwloc_obj_t cur = obj;
     while (cur) {
       if (cur->os_index != cur->logical_index) {

@@ -1,7 +1,7 @@
 /*
  * Copyright © 2009 CNRS
  * Copyright © 2009-2014 Inria.  All rights reserved.
- * Copyright © 2009-2011 Université Bordeaux 1
+ * Copyright © 2009-2011 Université Bordeaux
  * Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.
  * See COPYING in top-level directory.
  */
@@ -331,7 +331,7 @@ int main(int argc, char *argv[])
       }
       if (!strcmp(argv[0], "--nodelist")) {
 	/* backward compat with 1.0 */
-	intersecttype = HWLOC_OBJ_NODE;
+	intersecttype = HWLOC_OBJ_NUMANODE;
         goto next;
       }
       if (!strcmp(argv[0], "--largest")  || !strcmp(argv[0], "--objects") /* backward compat with 1.0 */) {

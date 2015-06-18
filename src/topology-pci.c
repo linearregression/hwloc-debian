@@ -1,7 +1,7 @@
 /*
  * Copyright © 2009 CNRS
- * Copyright © 2009-2015 Inria.  All rights reserved.
- * Copyright © 2009-2011, 2013 Université Bordeaux 1
+ * Copyright © 2009-2014 Inria.  All rights reserved.
+ * Copyright © 2009-2011, 2013 Université Bordeaux
  * Copyright © 2014 Cisco Systems, Inc.  All rights reserved.
  * See COPYING in top-level directory.
  */
@@ -21,6 +21,9 @@
 #include <assert.h>
 #include <stdarg.h>
 #include <setjmp.h>
+#ifdef HWLOC_LINUX_SYS
+#include <dirent.h>
+#endif
 
 #include <pciaccess.h>
 
@@ -78,6 +81,9 @@ hwloc_look_pci(struct hwloc_backend *backend)
   int ret;
   struct pci_device_iterator *iter;
   struct pci_device *pcidev;
+#ifdef HWLOC_LINUX_SYS
+  DIR *dir;
+#endif
 
   if (!(hwloc_topology_get_flags(topology) & (HWLOC_TOPOLOGY_FLAG_IO_DEVICES|HWLOC_TOPOLOGY_FLAG_WHOLE_IO)))
     return 0;
@@ -117,9 +123,6 @@ hwloc_look_pci(struct hwloc_backend *backend)
     unsigned short tmp16;
     char name[128];
     unsigned offset;
-#ifdef HWLOC_HAVE_PCI_FIND_CAP
-    struct pci_cap *cap;
-#endif
 
     /* initialize the config space in case we fail to read it (missing permissions, etc). */
     memset(config_space_cache, 0xff, CONFIG_SPACE_CACHESIZE);
@@ -198,12 +201,7 @@ hwloc_look_pci(struct hwloc_backend *backend)
     obj->attr->pcidev.revision = config_space_cache[PCI_REVISION_ID];
 
     obj->attr->pcidev.linkspeed = 0; /* unknown */
-#ifdef HWLOC_HAVE_PCI_FIND_CAP
-    cap = pci_find_cap(pcidev, PCI_CAP_ID_EXP, PCI_CAP_NORMAL);
-    offset = cap ? cap->addr : 0;
-#else
     offset = hwloc_pci_find_cap(config_space_cache, PCI_CAP_ID_EXP);
-#endif /* HWLOC_HAVE_PCI_FIND_CAP */
 
     if (offset > 0 && offset + 20 /* size of PCI express block up to link status */ <= CONFIG_SPACE_CACHESIZE)
       hwloc_pci_find_linkspeed(config_space_cache, offset, &obj->attr->pcidev.linkspeed);
@@ -256,6 +254,39 @@ hwloc_look_pci(struct hwloc_backend *backend)
   /* finalize device scanning */
   pci_iterator_destroy(iter);
   pci_system_cleanup();
+
+#ifdef HWLOC_LINUX_SYS
+  dir = opendir("/sys/bus/pci/slots/");
+  if (dir) {
+    struct dirent *dirent;
+    while ((dirent = readdir(dir)) != NULL) {
+      char path[64];
+      FILE *file;
+      if (dirent->d_name[0] == '.')
+	continue;
+      snprintf(path, sizeof(path), "/sys/bus/pci/slots/%s/address", dirent->d_name);
+      file = fopen(path, "r");
+      if (file) {
+	unsigned domain, bus, dev;
+	if (fscanf(file, "%x:%x:%x", &domain, &bus, &dev) == 3) {
+	  hwloc_obj_t obj = first_obj;
+	  while (obj) {
+	    if (obj->attr->pcidev.domain == domain
+		&& obj->attr->pcidev.bus == bus
+		&& obj->attr->pcidev.dev == dev
+		&& obj->attr->pcidev.func == 0) {
+	      hwloc_obj_add_info(obj, "PCISlot", dirent->d_name);
+	      break;
+	    }
+	    obj = obj->next_sibling;
+	  }
+	}
+	fclose(file);
+      }
+    }
+    closedir(dir);
+  }
+#endif
 
   return hwloc_insert_pci_device_list(backend, first_obj);
 }

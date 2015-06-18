@@ -1,6 +1,6 @@
 /*
  * Copyright © 2010-2015 Inria.  All rights reserved.
- * Copyright © 2011-2012 Université Bordeaux 1
+ * Copyright © 2011-2012 Université Bordeaux
  * Copyright © 2011 Cisco Systems, Inc.  All rights reserved.
  * See COPYING in top-level directory.
  */
@@ -119,12 +119,12 @@ static int hwloc_distances__check_matrix(hwloc_topology_t __hwloc_restrict topol
 }
 
 static void hwloc_distances__set_from_string(struct hwloc_topology *topology,
-					     hwloc_obj_type_t type, char *string)
+					     hwloc_obj_type_t type, const char *string)
 {
   /* the string format is: "index[0],...,index[N-1]:distance[0],...,distance[N*N-1]"
    * or "index[0],...,index[N-1]:X*Y" or "index[0],...,index[N-1]:X*Y*Z"
    */
-  char *tmp = string, *next;
+  const char *tmp = string, *next;
   unsigned *indexes;
   float *distances;
   unsigned nbobjs = 0, i, j, x, y, z;
@@ -176,7 +176,7 @@ static void hwloc_distances__set_from_string(struct hwloc_topology *topology,
 
     /* parse indexes */
     for(i=0; i<nbobjs; i++) {
-      indexes[i] = strtoul(tmp, &next, 0);
+      indexes[i] = strtoul(tmp, (char **) &next, 0);
       tmp = next+1;
     }
   }
@@ -238,7 +238,8 @@ void hwloc_distances_set_from_env(struct hwloc_topology *topology)
 {
   hwloc_obj_type_t type;
   for(type = HWLOC_OBJ_SYSTEM; type < HWLOC_OBJ_TYPE_MAX; type++) {
-    char *env, envname[64];
+    const char *env;
+    char envname[64];
     snprintf(envname, sizeof(envname), "HWLOC_%s_DISTANCES", hwloc_obj_type_string(type));
     env = getenv(envname);
     if (env) {
@@ -449,34 +450,6 @@ void hwloc_distances_finalize_os(struct hwloc_topology *topology)
  * into exported logical distances attached to objects
  */
 
-static hwloc_obj_t
-hwloc_get_obj_covering_cpuset_nodeset(struct hwloc_topology *topology,
-				      hwloc_const_cpuset_t cpuset,
-				      hwloc_const_nodeset_t nodeset)
-{
-  hwloc_obj_t parent = hwloc_get_root_obj(topology), child;
-
-  assert(cpuset);
-  assert(nodeset);
-  assert(hwloc_bitmap_isincluded(cpuset, parent->cpuset));
-  assert(!nodeset || hwloc_bitmap_isincluded(nodeset, parent->nodeset));
-
- trychildren:
-  child = parent->first_child;
-  while (child) {
-    /* look for a child with a cpuset containing ours.
-     * if it has a nodeset, it must also contain ours.
-     */
-    if (child->cpuset && hwloc_bitmap_isincluded(cpuset, child->cpuset)
-	&& (!child->nodeset || hwloc_bitmap_isincluded(nodeset, child->nodeset))) {
-      parent = child;
-      goto trychildren;
-    }
-    child = child->next_sibling;
-  }
-  return parent;
-}
-
 static void
 hwloc_distances__finalize_logical(struct hwloc_topology *topology,
 				  unsigned nbobjs,
@@ -486,21 +459,33 @@ hwloc_distances__finalize_logical(struct hwloc_topology *topology,
   float min = FLT_MAX, max = FLT_MIN;
   hwloc_obj_t root;
   float *matrix;
-  hwloc_cpuset_t cpuset;
-  hwloc_nodeset_t nodeset;
+  hwloc_cpuset_t cpuset, complete_cpuset;
+  hwloc_nodeset_t nodeset, complete_nodeset;
   unsigned relative_depth;
   int idx;
 
   /* find the root */
   cpuset = hwloc_bitmap_alloc();
+  complete_cpuset = hwloc_bitmap_alloc();
   nodeset = hwloc_bitmap_alloc();
+  complete_nodeset = hwloc_bitmap_alloc();
   for(i=0; i<nbobjs; i++) {
     hwloc_bitmap_or(cpuset, cpuset, objs[i]->cpuset);
+    if (objs[i]->complete_cpuset)
+      hwloc_bitmap_or(complete_cpuset, complete_cpuset, objs[i]->complete_cpuset);
     if (objs[i]->nodeset)
       hwloc_bitmap_or(nodeset, nodeset, objs[i]->nodeset);
+    if (objs[i]->complete_nodeset)
+      hwloc_bitmap_or(complete_nodeset, complete_nodeset, objs[i]->complete_nodeset);
   }
-  /* find the object covering cpuset AND nodeset (can't use hwloc_get_obj_covering_cpuset()) */
-  root = hwloc_get_obj_covering_cpuset_nodeset(topology, cpuset, nodeset);
+  /* find the object covering cpuset, we'll take care of the nodeset later */
+  root = hwloc_get_obj_covering_cpuset(topology, cpuset);
+  /* walk up to find a parent that also covers the nodeset */
+  while (root &&
+	 (!hwloc_bitmap_isincluded(nodeset, root->nodeset)
+	  || !hwloc_bitmap_isincluded(complete_nodeset, root->complete_nodeset)
+	  || !hwloc_bitmap_isincluded(complete_cpuset, root->complete_cpuset)))
+    root = root->parent;
   if (!root) {
     /* should not happen, ignore the distance matrix and report an error. */
     if (!hwloc_hide_errors()) {
@@ -524,7 +509,9 @@ hwloc_distances__finalize_logical(struct hwloc_topology *topology,
       free(b);
     }
     hwloc_bitmap_free(cpuset);
+    hwloc_bitmap_free(complete_cpuset);
     hwloc_bitmap_free(nodeset);
+    hwloc_bitmap_free(complete_nodeset);
     return;
   }
   /* don't attach to Misc objects */
@@ -533,9 +520,13 @@ hwloc_distances__finalize_logical(struct hwloc_topology *topology,
   /* ideally, root has the exact cpuset and nodeset.
    * but ignoring or other things that remove objects may cause the object array to reduce */
   assert(hwloc_bitmap_isincluded(cpuset, root->cpuset));
+  assert(hwloc_bitmap_isincluded(complete_cpuset, root->complete_cpuset));
   assert(hwloc_bitmap_isincluded(nodeset, root->nodeset));
+  assert(hwloc_bitmap_isincluded(complete_nodeset, root->complete_nodeset));
   hwloc_bitmap_free(cpuset);
+  hwloc_bitmap_free(complete_cpuset);
   hwloc_bitmap_free(nodeset);
+  hwloc_bitmap_free(complete_nodeset);
   if (root->depth >= objs[0]->depth) {
     /* strange topology led us to find invalid relative depth, ignore */
     return;
@@ -942,7 +933,7 @@ hwloc_group_by_distances(struct hwloc_topology *topology)
 {
   unsigned nbobjs;
   struct hwloc_os_distances_s * osdist;
-  char *env;
+  const char *env;
   float accuracies[5] = { 0.0f, 0.01f, 0.02f, 0.05f, 0.1f };
   unsigned nbaccuracies = 5;
   hwloc_obj_t group_obj;

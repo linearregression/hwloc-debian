@@ -11,6 +11,8 @@ else
 CROSS= --build $(DEB_BUILD_GNU_TYPE)
 endif
 
+JQUERY_DEST=/usr/share/doc/libhwloc-doc/html/jquery.js
+
 export DEB_BUILD_HARDENING=1
 
 ifneq (,$(DEB_PARALLEL_JOBS))

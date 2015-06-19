@@ -404,7 +404,7 @@ hwloc_aix_get_sth_membind(hwloc_topology_t topology, rstype_t what, rsid_t who, 
   int res = -1;
   int depth, n, i;
 
-  depth = hwloc_get_type_depth(topology, HWLOC_OBJ_NODE);
+  depth = hwloc_get_type_depth(topology, HWLOC_OBJ_NUMANODE);
   if (depth < 0) {
     errno = EXDEV;
     return -1;
@@ -610,7 +610,7 @@ look_rset(int sdl, hwloc_obj_type_t type, struct hwloc_topology *topology, int l
 
   for (i = 0; i < nbnodes; i++) {
     hwloc_bitmap_t cpuset;
-    unsigned os_index = (unsigned) -1; /* no os_index except for PU and NODE below */
+    unsigned os_index = (unsigned) -1; /* no os_index except for PU and NUMANODE below */
 
     if (rs_getrad(rset, rad, sdl, i, 0)) {
       fprintf(stderr,"rs_getrad(%d) failed: %s\n", i, strerror(errno));
@@ -630,7 +630,7 @@ look_rset(int sdl, hwloc_obj_type_t type, struct hwloc_topology *topology, int l
       os_index = hwloc_bitmap_first(cpuset);
       hwloc_debug("Found PU #%u inside node %d for sdl %d\n", os_index, i, sdl);
       assert(hwloc_bitmap_weight(cpuset) == 1);
-    } else if (type == HWLOC_OBJ_NODE) {
+    } else if (type == HWLOC_OBJ_NUMANODE) {
       /* NUMA node os_index isn't used for binding, just use the rad number to get unique values.
        * Note that we'll use that fact in hwloc_aix_prepare_membind(). */
       os_index = i;
@@ -642,7 +642,7 @@ look_rset(int sdl, hwloc_obj_type_t type, struct hwloc_topology *topology, int l
     obj->os_level = sdl;
 
     switch(type) {
-      case HWLOC_OBJ_NODE:
+      case HWLOC_OBJ_NUMANODE:
 	obj->nodeset = hwloc_bitmap_alloc();
 	hwloc_bitmap_set(obj->nodeset, i);
 	obj->memory.local_memory = 0; /* TODO: odd, rs_getinfo(rad, R_MEMSIZE, 0) << 10 returns the total memory ... */
@@ -752,7 +752,7 @@ hwloc_look_aix(struct hwloc_backend *backend)
       if (i == rs_getinfo(NULL, R_MCMSDL, 0))
 	{
 	  hwloc_debug("looking AIX node sdl %d\n", i);
-	  look_rset(i, HWLOC_OBJ_NODE, topology, i);
+	  look_rset(i, HWLOC_OBJ_NUMANODE, topology, i);
 	  known = 1;
 	}
 #      ifdef R_L2CSDL

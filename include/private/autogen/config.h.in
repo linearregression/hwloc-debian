@@ -2,7 +2,7 @@
 
 /* -*- c -*-
  *
- * Copyright © 2009, 2011, 2012 CNRS, inria., Université Bordeaux 1  All rights reserved.
+ * Copyright © 2009, 2011, 2012 CNRS, inria., Université Bordeaux  All rights reserved.
  * Copyright © 2009 Cisco Systems, Inc.  All rights reserved.
  * $COPYRIGHT$
  *
@@ -62,6 +62,18 @@
 /* Define to 1 if you have the declaration of `fabsf', and to 0 if you don't.
    */
 #undef HAVE_DECL_FABSF
+
+/* Define to 1 if you have the declaration of `getexecname', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETEXECNAME
+
+/* Define to 1 if you have the declaration of `GetModuleFileName', and to 0 if
+   you don't. */
+#undef HAVE_DECL_GETMODULEFILENAME
+
+/* Define to 1 if you have the declaration of `getprogname', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETPROGNAME
 
 /* Define to 1 if you have the declaration of `HW_NCPU', and to 0 if you
    don't. */
@@ -168,6 +180,9 @@
 /* Define to 1 if we have -llgrp */
 #undef HAVE_LIBLGRP
 
+/* Define to 1 if you have the <libudev.h> header file. */
+#undef HAVE_LIBUDEV_H
+
 /* Define to 1 if you have the <locale.h> header file. */
 #undef HAVE_LOCALE_H
 
@@ -227,6 +242,9 @@
 
 /* Define to 1 if the system has the type `PROCESSOR_RELATIONSHIP'. */
 #undef HAVE_PROCESSOR_RELATIONSHIP
+
+/* Define to '1' if program_invocation_name is present and usable */
+#undef HAVE_PROGRAM_INVOCATION_NAME
 
 /* Define to 1 if the system has the type `PSAPI_WORKING_SET_EX_BLOCK'. */
 #undef HAVE_PSAPI_WORKING_SET_EX_BLOCK
@@ -329,6 +347,9 @@
 
 /* Define to 1 if you have the <xlocale.h> header file. */
 #undef HAVE_XLOCALE_H
+
+/* Define to '1' if __progname is present and usable */
+#undef HAVE___PROGNAME
 
 /* Define to 1 on AIX */
 #undef HWLOC_AIX_SYS
@@ -570,8 +591,7 @@
 /* Define to 1 on x86_64 */
 #undef HWLOC_X86_64_ARCH
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #undef LT_OBJDIR
 
 /* Name of package */

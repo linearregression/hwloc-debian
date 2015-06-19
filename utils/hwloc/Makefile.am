@@ -1,5 +1,5 @@
-# Copyright © 2009-2014 Inria.  All rights reserved.
-# Copyright © 2009-2012, 2014 Université Bordeaux 1
+# Copyright © 2009-2015 Inria.  All rights reserved.
+# Copyright © 2009-2012, 2014 Université Bordeaux
 # Copyright © 2009-2014 Cisco Systems, Inc.  All rights reserved.
 #
 # See COPYING in top-level directory.
@@ -41,6 +41,9 @@ hwloc_calc_SOURCES = \
         hwloc-calc.c
 
 bin_SCRIPTS = hwloc-assembler-remote hwloc-compress-dir
+if HWLOC_HAVE_LINUX
+bin_SCRIPTS += hwloc-gather-topology
+endif HWLOC_HAVE_LINUX
 
 if !HWLOC_HAVE_MINGW32
 TESTS = \
@@ -108,10 +111,14 @@ endif HWLOC_HAVE_LINUX
 	  -e 's/#HWLOC_DATE#/@HWLOC_RELEASE_DATE@/g' \
 	  > $@ < $<
 
-install-exec-hook: install-man
+install-exec-hook:
 	$(SED) -e 's/HWLOC_top_builddir\/utils\/hwloc/bindir/' -e 's/HWLOC_top_builddir\/utils\/lstopo/bindir/' -e '/HWLOC_top_builddir/d' $(DESTDIR)$(bindir)/hwloc-assembler-remote > $(DESTDIR)$(bindir)/hwloc-assembler-remote.tmp && mv -f $(DESTDIR)$(bindir)/hwloc-assembler-remote.tmp $(DESTDIR)$(bindir)/hwloc-assembler-remote
 	$(SED) -e 's/HWLOC_top_builddir\/utils\/hwloc/bindir/' -e 's/HWLOC_top_builddir\/utils\/lstopo/bindir/' -e '/HWLOC_top_builddir/d' $(DESTDIR)$(bindir)/hwloc-compress-dir > $(DESTDIR)$(bindir)/hwloc-compress-dir.tmp && mv -f $(DESTDIR)$(bindir)/hwloc-compress-dir.tmp $(DESTDIR)$(bindir)/hwloc-compress-dir
 	chmod +x $(DESTDIR)$(bindir)/hwloc-assembler-remote $(DESTDIR)$(bindir)/hwloc-compress-dir
+if HWLOC_HAVE_LINUX
+	$(SED) -e 's/HWLOC_top_builddir\/utils\/lstopo/bindir/' -e '/HWLOC_top_builddir/d' $(DESTDIR)$(bindir)/hwloc-gather-topology > $(DESTDIR)$(bindir)/hwloc-gather-topology.tmp && mv -f $(DESTDIR)$(bindir)/hwloc-gather-topology.tmp $(DESTDIR)$(bindir)/hwloc-gather-topology
+	chmod +x $(DESTDIR)$(bindir)/hwloc-gather-topology
+endif HWLOC_HAVE_LINUX
 
 distclean-local:
 	rm -f $(nodist_man_MANS)

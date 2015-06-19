@@ -1,7 +1,7 @@
 /*
  * Copyright © 2009 CNRS
- * Copyright © 2009-2014 Inria.  All rights reserved.
- * Copyright © 2009-2012 Université Bordeaux 1
+ * Copyright © 2009-2015 Inria.  All rights reserved.
+ * Copyright © 2009-2012 Université Bordeaux
  * Copyright © 2009-2011 Cisco Systems, Inc.  All rights reserved.
  * See COPYING in top-level directory.
  */
@@ -78,7 +78,7 @@ extern "C" {
  */
 
 /** \brief Indicate at build time which hwloc API version is being used. */
-#define HWLOC_API_VERSION 0x00010a00
+#define HWLOC_API_VERSION 0x00010b00
 
 /** \brief Indicate at runtime which hwloc API version was used at build time. */
 HWLOC_DECLSPEC unsigned hwloc_get_api_version(void);
@@ -177,11 +177,11 @@ typedef enum {
 			  * A set of processors and memory with cache
 			  * coherency.
 			  */
-  HWLOC_OBJ_NODE,	/**< \brief NUMA node.
+  HWLOC_OBJ_NUMANODE,	/**< \brief NUMA node.
 			  * A set of processors around memory which the
 			  * processors can directly access.
 			  */
-  HWLOC_OBJ_SOCKET,	/**< \brief Socket, physical package, or chip.
+  HWLOC_OBJ_PACKAGE,	/**< \brief Physical package, what goes into a socket.
 			  * In the physical meaning, i.e. that you can add
 			  * or remove physically.
 			  */
@@ -215,7 +215,8 @@ typedef enum {
 
   HWLOC_OBJ_MISC,	/**< \brief Miscellaneous objects.
 			  * Objects without particular meaning, that can e.g. be
-			  * added by the application for its own use.
+			  * added by the application for its own use, or by hwloc
+			  * for miscellaneous objects such as MemoryDevice.
 			  */
 
   HWLOC_OBJ_BRIDGE,	/**< \brief Bridge.
@@ -290,12 +291,12 @@ typedef enum hwloc_obj_osdev_type_e {
  * can not be compared (because neither is usually contained in the other),
  * HWLOC_TYPE_UNORDERED is returned.  Object types containing CPUs can always
  * be compared (usually, a system contains machines which contain nodes which
- * contain sockets which contain caches, which contain cores, which contain
+ * contain packages which contain caches, which contain cores, which contain
  * processors).
  *
  * \note HWLOC_OBJ_PU will always be the deepest.
  * \note This does not mean that the actual topology will respect that order:
- * e.g. as of today cores may also contain caches, and sockets may also contain
+ * e.g. as of today cores may also contain caches, and packages may also contain
  * nodes. This is thus just to be seen as a fallback comparison method.
  */
 HWLOC_DECLSPEC int hwloc_compare_types (hwloc_obj_type_t type1, hwloc_obj_type_t type2) __hwloc_attribute_const;
@@ -628,6 +629,15 @@ HWLOC_DECLSPEC int hwloc_topology_load(hwloc_topology_t topology);
  */
 HWLOC_DECLSPEC void hwloc_topology_destroy (hwloc_topology_t topology);
 
+/** \brief Duplicate a topology.
+ *
+ * The entire topology structure as well as its objects
+ * are duplicated into a new one.
+ *
+ * This is useful for keeping a backup while modifying a topology.
+ */
+HWLOC_DECLSPEC int hwloc_topology_dup(hwloc_topology_t *newtopology, hwloc_topology_t oldtopology);
+
 /** \brief Run internal checks on a topology structure
  *
  * The program aborts if an inconsistency is detected in the given topology.
@@ -672,6 +682,8 @@ HWLOC_DECLSPEC void hwloc_topology_check(hwloc_topology_t topology);
  * The bottom-level type HWLOC_OBJ_PU may not be ignored.
  * The top-level object of the hierarchy will never be ignored, even if this function
  * succeeds.
+ * Group objects are always ignored if they do not bring any structure
+ * since they are designed to add structure to the topology.
  * I/O objects may not be ignored, topology flags should be used to configure
  * their discovery instead.
  */
@@ -737,6 +749,7 @@ enum hwloc_topology_flags_e {
    * detection using the pci backend. Only the common PCI devices (GPUs,
    * NICs, block devices, ...) and host bridges (objects that connect the host
    * objects to an I/O subsystem) will be added to the topology.
+   * Additionally it also enables MemoryDevice misc objects.
    * Uncommon devices and other bridges (such as PCI-to-PCI bridges) will be
    * ignored.
    * \hideinitializer
@@ -757,6 +770,7 @@ enum hwloc_topology_flags_e {
    * This flag enables detection of all I/O devices (even the uncommon ones)
    * and bridges (even those that have no device behind them) using the pci
    * backend.
+   * This implies HWLOC_TOPOLOGY_FLAG_IO_DEVICES.
    * \hideinitializer
    */
   HWLOC_TOPOLOGY_FLAG_WHOLE_IO = (1UL<<4),
@@ -1080,7 +1094,7 @@ HWLOC_DECLSPEC void * hwloc_topology_get_userdata(hwloc_topology_t topology);
  * Be sure to see the figure in \ref termsanddefs that shows a
  * complete topology tree, including depths, child/sibling/cousin
  * relationships, and an example of an asymmetric topology where one
- * socket has fewer caches than its peers.
+ * package has fewer caches than its peers.
  */
 
 /** \brief Get the depth of the hierarchical tree of objects.
@@ -1213,7 +1227,7 @@ HWLOC_DECLSPEC const char * hwloc_obj_type_string (hwloc_obj_type_t type) __hwlo
 
 /** \brief Return an object type and attributes from a type string.
  *
- * Convert strings such as "socket" or "cache" into the corresponding types.
+ * Convert strings such as "Package" or "Cache" into the corresponding types.
  * Matching is case-insensitive, and only the first letters are actually
  * required to match.
  *
@@ -1565,7 +1579,7 @@ HWLOC_DECLSPEC int hwloc_get_proc_last_cpu_location(hwloc_topology_t topology, h
  *
  * \code
  * hwloc_alloc_membind_policy(topology, size, set,
- *                            HWLOC_MEMBIND_DEFAULT, 0);
+ *                            HWLOC_MEMBIND_BIND, 0);
  * \endcode
  *
  * Each hwloc memory binding function is available in two forms: one
@@ -1596,6 +1610,9 @@ HWLOC_DECLSPEC int hwloc_get_proc_last_cpu_location(hwloc_topology_t topology, h
  */
 typedef enum {
   /** \brief Reset the memory allocation policy to the system default.
+   * Depending on the operating system, this may correspond to
+   * HWLOC_MEMBIND_FIRSTTOUCH (Linux),
+   * or HWLOC_MEMBIND_BIND (AIX, HP-UX, OSF, Solaris, Windows).
    * \hideinitializer */
   HWLOC_MEMBIND_DEFAULT =	0,
 
@@ -2127,15 +2144,6 @@ enum hwloc_restrict_flags_e {
  * destroyed with hwloc_topology_destroy() or configured and loaded again.
  */
 HWLOC_DECLSPEC int hwloc_topology_restrict(hwloc_topology_t __hwloc_restrict topology, hwloc_const_cpuset_t cpuset, unsigned long flags);
-
-/** \brief Duplicate a topology.
- *
- * The entire topology structure as well as its objects
- * are duplicated into a new one.
- *
- * This is useful for keeping a backup while modifying a topology.
- */
-HWLOC_DECLSPEC int hwloc_topology_dup(hwloc_topology_t *newtopology, hwloc_topology_t oldtopology);
 
 /** @} */
 

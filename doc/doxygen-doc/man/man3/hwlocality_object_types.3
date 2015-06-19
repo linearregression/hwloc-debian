@@ -1,8 +1,8 @@
-.TH "Object Types" 3 "Mon Jan 26 2015" "Version 1.10.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwlocality_object_types" 3 "Thu Jun 18 2015" "Version 1.11.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Object Types \- 
+hwlocality_object_types \- Object Types
 .SS "Typedefs"
 
 .in +1c
@@ -10,9 +10,7 @@ Object Types \-
 .RI "typedef enum \fBhwloc_obj_cache_type_e\fP \fBhwloc_obj_cache_type_t\fP"
 .br
 .ti -1c
-.RI "typedef enum 
-.br
-\fBhwloc_obj_bridge_type_e\fP \fBhwloc_obj_bridge_type_t\fP"
+.RI "typedef enum \fBhwloc_obj_bridge_type_e\fP \fBhwloc_obj_bridge_type_t\fP"
 .br
 .ti -1c
 .RI "typedef enum \fBhwloc_obj_osdev_type_e\fP \fBhwloc_obj_osdev_type_t\fP"
@@ -22,7 +20,7 @@ Object Types \-
 
 .in +1c
 .ti -1c
-.RI "enum \fBhwloc_obj_type_t\fP { \fBHWLOC_OBJ_SYSTEM\fP, \fBHWLOC_OBJ_MACHINE\fP, \fBHWLOC_OBJ_NODE\fP, \fBHWLOC_OBJ_SOCKET\fP, \fBHWLOC_OBJ_CACHE\fP, \fBHWLOC_OBJ_CORE\fP, \fBHWLOC_OBJ_PU\fP, \fBHWLOC_OBJ_GROUP\fP, \fBHWLOC_OBJ_MISC\fP, \fBHWLOC_OBJ_BRIDGE\fP, \fBHWLOC_OBJ_PCI_DEVICE\fP, \fBHWLOC_OBJ_OS_DEVICE\fP, \fBHWLOC_OBJ_TYPE_MAX\fP }"
+.RI "enum \fBhwloc_obj_type_t\fP { \fBHWLOC_OBJ_SYSTEM\fP, \fBHWLOC_OBJ_MACHINE\fP, \fBHWLOC_OBJ_NUMANODE\fP, \fBHWLOC_OBJ_PACKAGE\fP, \fBHWLOC_OBJ_CACHE\fP, \fBHWLOC_OBJ_CORE\fP, \fBHWLOC_OBJ_PU\fP, \fBHWLOC_OBJ_GROUP\fP, \fBHWLOC_OBJ_MISC\fP, \fBHWLOC_OBJ_BRIDGE\fP, \fBHWLOC_OBJ_PCI_DEVICE\fP, \fBHWLOC_OBJ_OS_DEVICE\fP, \fBHWLOC_OBJ_TYPE_MAX\fP }"
 .br
 .ti -1c
 .RI "enum \fBhwloc_obj_cache_type_e\fP { \fBHWLOC_OBJ_CACHE_UNIFIED\fP, \fBHWLOC_OBJ_CACHE_DATA\fP, \fBHWLOC_OBJ_CACHE_INSTRUCTION\fP }"
@@ -146,11 +144,11 @@ Whole system (may be a cluster of machines)\&. The whole system that is accessib
 \fB\fIHWLOC_OBJ_MACHINE \fP\fP
 Machine\&. The typical root object type\&. A set of processors and memory with cache coherency\&. 
 .TP
-\fB\fIHWLOC_OBJ_NODE \fP\fP
+\fB\fIHWLOC_OBJ_NUMANODE \fP\fP
 NUMA node\&. A set of processors around memory which the processors can directly access\&. 
 .TP
-\fB\fIHWLOC_OBJ_SOCKET \fP\fP
-Socket, physical package, or chip\&. In the physical meaning, i\&.e\&. that you can add or remove physically\&. 
+\fB\fIHWLOC_OBJ_PACKAGE \fP\fP
+Physical package, what goes into a socket\&. In the physical meaning, i\&.e\&. that you can add or remove physically\&. 
 .TP
 \fB\fIHWLOC_OBJ_CACHE \fP\fP
 Cache\&. Can be L1i, L1d, L2, L3, \&.\&.\&. 
@@ -165,7 +163,7 @@ Processing Unit, or (Logical) Processor\&. An execution unit (may share a core w
 Group objects\&. Objects which do not fit in the above but are detected by hwloc and are useful to take into account for affinity\&. For instance, some operating systems expose their arbitrary processors aggregation this way\&. And hwloc may insert such objects to group NUMA nodes according to their distances\&. These objects are ignored when they do not bring any structure\&. 
 .TP
 \fB\fIHWLOC_OBJ_MISC \fP\fP
-Miscellaneous objects\&. Objects without particular meaning, that can e\&.g\&. be added by the application for its own use\&. 
+Miscellaneous objects\&. Objects without particular meaning, that can e\&.g\&. be added by the application for its own use, or by hwloc for miscellaneous objects such as MemoryDevice\&. 
 .TP
 \fB\fIHWLOC_OBJ_BRIDGE \fP\fP
 Bridge\&. Any bridge that connects the host or an I/O bus, to another I/O bus\&. Bridge objects have neither CPU sets nor node sets\&. They are not added to the topology unless I/O discovery is enabled with \fBhwloc_topology_set_flags()\fP\&. 
@@ -180,16 +178,16 @@ Operating system device\&. These objects have neither CPU sets nor node sets\&. 
 Sentinel value 
 .SH "Function Documentation"
 .PP 
-.SS "int hwloc_compare_types (\fBhwloc_obj_type_t\fPtype1, \fBhwloc_obj_type_t\fPtype2)"
+.SS "int hwloc_compare_types (\fBhwloc_obj_type_t\fP type1, \fBhwloc_obj_type_t\fP type2)"
 
 .PP
-Compare the depth of two object types\&. Types shouldn't be compared as they are, since newer ones may be added in the future\&. This function returns less than, equal to, or greater than zero respectively if \fCtype1\fP objects usually include \fCtype2\fP objects, are the same as \fCtype2\fP objects, or are included in \fCtype2\fP objects\&. If the types can not be compared (because neither is usually contained in the other), HWLOC_TYPE_UNORDERED is returned\&. Object types containing CPUs can always be compared (usually, a system contains machines which contain nodes which contain sockets which contain caches, which contain cores, which contain processors)\&.
+Compare the depth of two object types\&. Types shouldn't be compared as they are, since newer ones may be added in the future\&. This function returns less than, equal to, or greater than zero respectively if \fCtype1\fP objects usually include \fCtype2\fP objects, are the same as \fCtype2\fP objects, or are included in \fCtype2\fP objects\&. If the types can not be compared (because neither is usually contained in the other), HWLOC_TYPE_UNORDERED is returned\&. Object types containing CPUs can always be compared (usually, a system contains machines which contain nodes which contain packages which contain caches, which contain cores, which contain processors)\&.
 .PP
 \fBNote:\fP
 .RS 4
 HWLOC_OBJ_PU will always be the deepest\&. 
 .PP
-This does not mean that the actual topology will respect that order: e\&.g\&. as of today cores may also contain caches, and sockets may also contain nodes\&. This is thus just to be seen as a fallback comparison method\&. 
+This does not mean that the actual topology will respect that order: e\&.g\&. as of today cores may also contain caches, and packages may also contain nodes\&. This is thus just to be seen as a fallback comparison method\&. 
 .RE
 .PP
 

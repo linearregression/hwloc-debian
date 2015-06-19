@@ -1,5 +1,5 @@
 # Copyright © 2009-2014 Inria.  All rights reserved.
-# Copyright © 2009-2013 Université Bordeaux 1
+# Copyright © 2009-2013 Université Bordeaux
 # Copyright © 2009-2010 Cisco Systems, Inc.  All rights reserved.
 # See COPYING in top-level directory.
 
@@ -254,11 +254,11 @@ man3_object_types_DATA = \
         $(DOX_MAN_DIR)/man3/HWLOC_OBJ_GROUP.3 \
         $(DOX_MAN_DIR)/man3/HWLOC_OBJ_MACHINE.3 \
         $(DOX_MAN_DIR)/man3/HWLOC_OBJ_MISC.3 \
-        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_NODE.3 \
+        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_NUMANODE.3 \
         $(DOX_MAN_DIR)/man3/HWLOC_OBJ_OS_DEVICE.3 \
         $(DOX_MAN_DIR)/man3/HWLOC_OBJ_PU.3 \
         $(DOX_MAN_DIR)/man3/HWLOC_OBJ_PCI_DEVICE.3 \
-        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_SOCKET.3 \
+        $(DOX_MAN_DIR)/man3/HWLOC_OBJ_PACKAGE.3 \
         $(DOX_MAN_DIR)/man3/HWLOC_OBJ_SYSTEM.3 \
         $(DOX_MAN_DIR)/man3/HWLOC_OBJ_TYPE_MAX.3 \
         $(DOX_MAN_DIR)/man3/hwloc_obj_type_t.3 \
@@ -306,6 +306,7 @@ man3_creation_DATA = \
         $(DOX_MAN_DIR)/man3/hwloc_topology_init.3 \
         $(DOX_MAN_DIR)/man3/hwloc_topology_load.3 \
         $(DOX_MAN_DIR)/man3/hwloc_topology_destroy.3 \
+        $(DOX_MAN_DIR)/man3/hwloc_topology_dup.3 \
         $(DOX_MAN_DIR)/man3/hwloc_topology_check.3
 
 man3_configurationdir = $(man3dir)
@@ -433,8 +434,7 @@ man3_tinker_DATA = \
         $(DOX_MAN_DIR)/man3/HWLOC_RESTRICT_FLAG_ADAPT_IO.3 \
         $(DOX_MAN_DIR)/man3/HWLOC_RESTRICT_FLAG_ADAPT_MISC.3 \
         $(DOX_MAN_DIR)/man3/hwloc_restrict_flags_e.3 \
-        $(DOX_MAN_DIR)/man3/hwloc_topology_restrict.3 \
-        $(DOX_MAN_DIR)/man3/hwloc_topology_dup.3
+        $(DOX_MAN_DIR)/man3/hwloc_topology_restrict.3
 
 man3_customdir = $(man3dir)
 man3_custom_DATA = \

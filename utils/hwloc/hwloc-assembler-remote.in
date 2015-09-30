@@ -85,7 +85,7 @@ while test $# -gt 0 ; do
 				echo "failed!"
 				rm "$file"
 				failedhosts="$failedhosts $1"
-				test $force -eq 0 && exit 2;
+				test $force -eq 0 && exit -1;
 			fi
 		fi
 		;;

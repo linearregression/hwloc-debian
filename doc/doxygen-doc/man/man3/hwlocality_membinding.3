@@ -1,4 +1,4 @@
-.TH "hwlocality_membinding" 3 "Thu Jun 18 2015" "Version 1.11.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwlocality_membinding" 3 "Thu Oct 15 2015" "Version 1.11.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -150,7 +150,7 @@ Not all systems support all kinds of binding\&. \fBhwloc_topology_get_support()\
 .in +1c
 .TP
 \fB\fIHWLOC_MEMBIND_DEFAULT \fP\fP
-Reset the memory allocation policy to the system default\&. Depending on the operating system, this may correspond to HWLOC_MEMBIND_FIRSTTOUCH (Linux), or HWLOC_MEMBIND_BIND (AIX, HP-UX, OSF, Solaris, Windows)\&. 
+Reset the memory allocation policy to the system default\&. Depending on the operating system, this may correspond to \fBHWLOC_MEMBIND_FIRSTTOUCH\fP (Linux), or \fBHWLOC_MEMBIND_BIND\fP (AIX, HP-UX, OSF, Solaris, Windows)\&. 
 .TP
 \fB\fIHWLOC_MEMBIND_FIRSTTOUCH \fP\fP
 Allocate memory but do not immediately bind it to a specific locality\&. Instead, each page in the allocation is bound only when it is first touched\&. Pages are individually bound to the local NUMA node of the first thread that touches it\&. If there is not enough memory on the node, allocation may be done in the specified cpuset before allocating on other nodes\&. 
@@ -225,11 +225,11 @@ The allocated memory should be freed with \fBhwloc_free()\fP\&.
 .SS "static void* hwloc_alloc_membind_policy (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_cpuset_t\fP set, \fBhwloc_membind_policy_t\fP policy, int flags)\fC [inline]\fP, \fC [static]\fP"
 
 .PP
-Allocate some memory on the memory nodes near given cpuset \fCcpuset\fP\&. This is similar to hwloc_alloc_membind_policy_nodeset, but for a given cpuset\&. 
+Allocate some memory on the memory nodes near given cpuset \fCcpuset\fP\&. This is similar to \fBhwloc_alloc_membind_policy_nodeset()\fP, but for a given cpuset\&. 
 .SS "static void* hwloc_alloc_membind_policy_nodeset (\fBhwloc_topology_t\fP topology, size_t len, \fBhwloc_const_nodeset_t\fP nodeset, \fBhwloc_membind_policy_t\fP policy, int flags)\fC [inline]\fP, \fC [static]\fP"
 
 .PP
-Allocate some memory on the given nodeset \fCnodeset\fP\&. This is similar to hwloc_alloc_membind except that it is allowed to change the current memory binding policy, thus providing more binding support, at the expense of changing the current state\&. 
+Allocate some memory on the given nodeset \fCnodeset\fP\&. This is similar to \fBhwloc_alloc_membind()\fP except that it is allowed to change the current memory binding policy, thus providing more binding support, at the expense of changing the current state\&. 
 .SS "int hwloc_free (\fBhwloc_topology_t\fP topology, void * addr, size_t len)"
 
 .PP

@@ -1,4 +1,4 @@
-.TH "hwlocality_bitmap" 3 "Thu Jun 18 2015" "Version 1.11.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwlocality_bitmap" 3 "Thu Oct 15 2015" "Version 1.11.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -177,7 +177,7 @@ A bitmap may be of infinite size\&.
 .PP
 \fBNote:\fP
 .RS 4
-Several examples of using the bitmap API are available under the doc/examples/ directory in the source tree\&. Regression tests such as tests/hwloc_bitmap*\&.c also make intensive use of this API\&. 
+Several examples of using the bitmap API are available under the doc/examples/ directory in the source tree\&. Regression tests such as tests/hwloc/hwloc_bitmap*\&.c also make intensive use of this API\&. 
 .RE
 .PP
 
@@ -186,16 +186,22 @@ Several examples of using the bitmap API are available under the doc/examples/ d
 .SS "#define hwloc_bitmap_foreach_begin(id, bitmap)"
 
 .PP
-Loop macro iterating on bitmap \fCbitmap\fP\&. \fCindex\fP is the loop variable; it should be an unsigned int\&. The first iteration will set \fCindex\fP to the lowest index in the bitmap\&. Successive iterations will iterate through, in order, all remaining indexes that in the bitmap\&. To be specific: each iteration will return a value for \fCindex\fP such that hwloc_bitmap_isset(bitmap, index) is true\&.
+Loop macro iterating on bitmap \fCbitmap\fP\&. The loop must start with \fBhwloc_bitmap_foreach_begin()\fP and end with \fBhwloc_bitmap_foreach_end()\fP followed by a terminating ';'\&.
+.PP
+\fCindex\fP is the loop variable; it should be an unsigned int\&. The first iteration will set \fCindex\fP to the lowest index in the bitmap\&. Successive iterations will iterate through, in order, all remaining indexes set in the bitmap\&. To be specific: each iteration will return a value for \fCindex\fP such that hwloc_bitmap_isset(bitmap, index) is true\&.
 .PP
 The assert prevents the loop from being infinite if the bitmap is infinite\&. 
 .SS "#define hwloc_bitmap_foreach_end()"
-\fBValue:\fP
+
 .PP
-.nf
-} \
-} while (0)
-.fi
+End of loop macro iterating on a bitmap\&. Needs a terminating ';'\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBhwloc_bitmap_foreach_begin()\fP 
+.RE
+.PP
+
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef struct hwloc_bitmap_s* \fBhwloc_bitmap_t\fP"

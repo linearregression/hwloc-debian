@@ -1,4 +1,4 @@
-.TH "hwlocality_components_pci_funcs" 3 "Thu Jun 18 2015" "Version 1.11.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwlocality_components_pci_funcs" 3 "Thu Oct 15 2015" "Version 1.11.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -39,7 +39,9 @@ Fill linkspeed by reading the PCI config space where PCI_CAP_ID_EXP is at positi
 .SS "int hwloc_pci_prepare_bridge (\fBhwloc_obj_t\fP obj, const unsigned char * config)"
 
 .PP
-Modify the PCI device object into a bridge and fill its attribute if a bridge is found in the PCI config space\&. This function requires 64 bytes of common configuration header at the beginning of config\&. 
+Modify the PCI device object into a bridge and fill its attribute if a bridge is found in the PCI config space\&. This function requires 64 bytes of common configuration header at the beginning of config\&.
+.PP
+Returns -1 and destroys /p obj if bridge fields are invalid\&. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Hardware Locality (hwloc) from the source code\&.

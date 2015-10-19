@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -176,7 +176,7 @@ Functions</h2></td></tr>
 <p>Not all systems support all kinds of binding. <a class="el" href="a00079.html#gab8c76173c4a8ce1a9a9366012b1388e6" title="Retrieve the topology support. ">hwloc_topology_get_support()</a> may be used to query about the actual memory binding policy support in the currently used operating system. See the "Detailed Description" section of <a class="el" href="a00083.html">Memory binding</a> for a description of errors that can occur. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ggac9764f79505775d06407b40f5e4661e8a18675bb80ebc1bce5b652e9de8f3998c"></a>HWLOC_MEMBIND_DEFAULT&#160;</td><td class="fielddoc">
-<p>Reset the memory allocation policy to the system default. Depending on the operating system, this may correspond to HWLOC_MEMBIND_FIRSTTOUCH (Linux), or HWLOC_MEMBIND_BIND (AIX, HP-UX, OSF, Solaris, Windows). </p>
+<p>Reset the memory allocation policy to the system default. Depending on the operating system, this may correspond to <a class="el" href="a00083.html#ggac9764f79505775d06407b40f5e4661e8a979c7aa78dd32780858f30f47a72cca0" title="Allocate memory but do not immediately bind it to a specific locality. Instead, each page in the allo...">HWLOC_MEMBIND_FIRSTTOUCH</a> (Linux), or <a class="el" href="a00083.html#ggac9764f79505775d06407b40f5e4661e8ad811fa4b2a6002c4d63695a408ffde2c" title="Allocate memory on the specified nodes. ">HWLOC_MEMBIND_BIND</a> (AIX, HP-UX, OSF, Solaris, Windows). </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ggac9764f79505775d06407b40f5e4661e8a979c7aa78dd32780858f30f47a72cca0"></a>HWLOC_MEMBIND_FIRSTTOUCH&#160;</td><td class="fielddoc">
 <p>Allocate memory but do not immediately bind it to a specific locality. Instead, each page in the allocation is bound only when it is first touched. Pages are individually bound to the local NUMA node of the first thread that touches it. If there is not enough memory on the node, allocation may be done in the specified cpuset before allocating on other nodes. </p>
@@ -387,7 +387,7 @@ NULL with errno set to ENOMEM if the memory allocation failed even before trying
 </div><div class="memdoc">
 
 <p>Allocate some memory on the memory nodes near given cpuset <code>cpuset</code>. </p>
-<p>This is similar to hwloc_alloc_membind_policy_nodeset, but for a given cpuset. </p>
+<p>This is similar to <a class="el" href="a00083.html#ga7d473e80f11d774421688e36e9926136" title="Allocate some memory on the given nodeset nodeset. ">hwloc_alloc_membind_policy_nodeset()</a>, but for a given cpuset. </p>
 
 </div>
 </div>
@@ -442,7 +442,7 @@ NULL with errno set to ENOMEM if the memory allocation failed even before trying
 </div><div class="memdoc">
 
 <p>Allocate some memory on the given nodeset <code>nodeset</code>. </p>
-<p>This is similar to hwloc_alloc_membind except that it is allowed to change the current memory binding policy, thus providing more binding support, at the expense of changing the current state. </p>
+<p>This is similar to <a class="el" href="a00083.html#ga1058b0b9216bc6fd9c3734ea9dca1e54" title="Allocate some memory on memory nodes near the given physical cpuset cpuset. ">hwloc_alloc_membind()</a> except that it is allowed to change the current memory binding policy, thus providing more binding support, at the expense of changing the current state. </p>
 
 </div>
 </div>

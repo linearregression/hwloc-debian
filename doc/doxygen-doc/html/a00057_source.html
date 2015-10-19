@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -163,53 +163,53 @@
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#ga0200466842c0e1f5da75e84dde460b10">hwloc_bitmap_weight</a>(hwloc_const_bitmap_t bitmap) __hwloc_attribute_pure;</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00270"></a><span class="lineno"><a class="line" href="a00098.html#ga3f6861045a8029ade373510ffa727d2a">  270</a></span>&#160;<span class="preprocessor">#define hwloc_bitmap_foreach_begin(id, bitmap) \</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor">do { \</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">        assert(hwloc_bitmap_weight(bitmap) != -1); \</span></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor">        for (id = hwloc_bitmap_first(bitmap); \</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="preprocessor">             (unsigned) id != (unsigned) -1; \</span></div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="preprocessor">             id = hwloc_bitmap_next(bitmap, id)) { \</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="a00098.html#gafcf3246db406218d4e155735b3fa6528">  280</a></span>&#160;<span class="preprocessor">#define hwloc_bitmap_foreach_end() \</span></div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="preprocessor">        } \</span></div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="preprocessor">} while (0)</span></div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment"> * Combining bitmaps.</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">void</span> <a class="code" href="a00098.html#ga1281994d6cc3b5079224190ca820ad93">hwloc_bitmap_or</a> (hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2);</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">void</span> <a class="code" href="a00098.html#ga4a3e12ab9e20cfec66a3dc2db16806be">hwloc_bitmap_and</a> (hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">void</span> <a class="code" href="a00098.html#ga091e9039ce7b6fe927260cd1b08d25c4">hwloc_bitmap_andnot</a> (hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2);</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">void</span> <a class="code" href="a00098.html#gaf462ead487d1891e37f4443a397d3c42">hwloc_bitmap_xor</a> (hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2);</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">void</span> <a class="code" href="a00098.html#ga8cd2c26d71510138b22a12db41419742">hwloc_bitmap_not</a> (hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="comment"> * Comparing bitmaps.</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#gaefa070f9232857ba5a57297ea9a08ea2">hwloc_bitmap_intersects</a> (hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure;</div>
+<div class="line"><a name="l00274"></a><span class="lineno"><a class="line" href="a00098.html#ga3f6861045a8029ade373510ffa727d2a">  274</a></span>&#160;<span class="preprocessor">#define hwloc_bitmap_foreach_begin(id, bitmap) \</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="preprocessor">do { \</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">        assert(hwloc_bitmap_weight(bitmap) != -1); \</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="preprocessor">        for (id = hwloc_bitmap_first(bitmap); \</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="preprocessor">             (unsigned) id != (unsigned) -1; \</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="preprocessor">             id = hwloc_bitmap_next(bitmap, id)) {</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
+<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="a00098.html#gafcf3246db406218d4e155735b3fa6528">  288</a></span>&#160;<span class="preprocessor">#define hwloc_bitmap_foreach_end()              \</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">        } \</span></div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="preprocessor">} while (0)</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment"> * Combining bitmaps.</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">void</span> <a class="code" href="a00098.html#ga1281994d6cc3b5079224190ca820ad93">hwloc_bitmap_or</a> (hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">void</span> <a class="code" href="a00098.html#ga4a3e12ab9e20cfec66a3dc2db16806be">hwloc_bitmap_and</a> (hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">void</span> <a class="code" href="a00098.html#ga091e9039ce7b6fe927260cd1b08d25c4">hwloc_bitmap_andnot</a> (hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">void</span> <a class="code" href="a00098.html#gaf462ead487d1891e37f4443a397d3c42">hwloc_bitmap_xor</a> (hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">void</span> <a class="code" href="a00098.html#ga8cd2c26d71510138b22a12db41419742">hwloc_bitmap_not</a> (hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap);</div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#ga0526e03db81956fb02acc8260b66d6a4">hwloc_bitmap_isincluded</a> (hwloc_const_bitmap_t sub_bitmap, hwloc_const_bitmap_t super_bitmap) __hwloc_attribute_pure;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#ga32376b1405e57472b73c3aa53bb39663">hwloc_bitmap_isequal</a> (hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#gaa39cda1510ab721b5c012c76ead72365">hwloc_bitmap_compare_first</a>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#ga14cdbc0ef0a705e84999bd48a2e649f3">hwloc_bitmap_compare</a>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;} <span class="comment">/* extern &quot;C&quot; */</span></div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="comment"> * Comparing bitmaps.</span></div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#gaefa070f9232857ba5a57297ea9a08ea2">hwloc_bitmap_intersects</a> (hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#ga0526e03db81956fb02acc8260b66d6a4">hwloc_bitmap_isincluded</a> (hwloc_const_bitmap_t sub_bitmap, hwloc_const_bitmap_t super_bitmap) __hwloc_attribute_pure;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#ga32376b1405e57472b73c3aa53bb39663">hwloc_bitmap_isequal</a> (hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#gaa39cda1510ab721b5c012c76ead72365">hwloc_bitmap_compare_first</a>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;HWLOC_DECLSPEC <span class="keywordtype">int</span> <a class="code" href="a00098.html#ga14cdbc0ef0a705e84999bd48a2e649f3">hwloc_bitmap_compare</a>(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2) __hwloc_attribute_pure;</div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HWLOC_BITMAP_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;} <span class="comment">/* extern &quot;C&quot; */</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HWLOC_BITMAP_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a00098_html_ga5fdcb8c19c336511c37076d649e74af4"><div class="ttname"><a href="a00098.html#ga5fdcb8c19c336511c37076d649e74af4">hwloc_bitmap_isfull</a></div><div class="ttdeci">int hwloc_bitmap_isfull(hwloc_const_bitmap_t bitmap)</div><div class="ttdoc">Test whether bitmap bitmap is completely full. </div></div>
 <div class="ttc" id="a00098_html_gaefa070f9232857ba5a57297ea9a08ea2"><div class="ttname"><a href="a00098.html#gaefa070f9232857ba5a57297ea9a08ea2">hwloc_bitmap_intersects</a></div><div class="ttdeci">int hwloc_bitmap_intersects(hwloc_const_bitmap_t bitmap1, hwloc_const_bitmap_t bitmap2)</div><div class="ttdoc">Test whether bitmaps bitmap1 and bitmap2 intersects. </div></div>
 <div class="ttc" id="a00098_html_ga8cd2c26d71510138b22a12db41419742"><div class="ttname"><a href="a00098.html#ga8cd2c26d71510138b22a12db41419742">hwloc_bitmap_not</a></div><div class="ttdeci">void hwloc_bitmap_not(hwloc_bitmap_t res, hwloc_const_bitmap_t bitmap)</div><div class="ttdoc">Negate bitmap bitmap and store the result in bitmap res. </div></div>

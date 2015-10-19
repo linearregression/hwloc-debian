@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -47,10 +47,10 @@
 Misc objects added by hwloc</h1>
 <p>hwloc only uses Misc objects when other object types are not sufficient. This currently includes: </p><ul>
 <li>
-Memory devices (DIMMs), on Linux when privileged, and when I/O discovery is enabled. These objects have a <code>Type</code> info attribute of value <code>MemoryDevice</code>. They are currently always attached to the root object. Their attributes describe the DIMM vendor, model, etc. <code>lstopo -v</code> displays them as: <div class="fragment"><div class="line">Misc(MemoryModule) (P#1 Type=MemoryModule DeviceLocation=<span class="stringliteral">&quot;Bottom-Slot 2(right)&quot;</span> BankLocation=<span class="stringliteral">&quot;BANK 2&quot;</span> Vendor=Elpida SerialNumber=21733667 AssetTag=9876543210 PartNumber=<span class="stringliteral">&quot;EBJ81UG8EFU0-GN-F &quot;</span>)</div>
+Memory modules (DIMMs), on Linux when privileged and when <code>dmi-sysfs</code> is supported by the kernel, and when I/O discovery is enabled. These objects have a <code>Type</code> info attribute of value <code>MemoryModule</code>. They are currently always attached to the root object. Their attributes describe the DIMM vendor, model, etc. <code>lstopo -v</code> displays them as: <div class="fragment"><div class="line">Misc(MemoryModule) (P#1 Type=MemoryModule DeviceLocation=<span class="stringliteral">&quot;Bottom-Slot 2(right)&quot;</span> BankLocation=<span class="stringliteral">&quot;BANK 2&quot;</span> Vendor=Elpida SerialNumber=21733667 AssetTag=9876543210 PartNumber=<span class="stringliteral">&quot;EBJ81UG8EFU0-GN-F &quot;</span>)</div>
 </div><!-- fragment -->  </li>
 <li>
-Displaying process binding in <code>lstopo &ndash;top</code>. These objects have a <code>Type</code> info attribute of value <code>Process</code> and a name attribute made of their PID and program name. They are attached below the object they are bound to. The textual <code>lstopo</code> displays them as: <div class="fragment"><div class="line">PU L#0 (P#0)</div>
+Displaying process binding in <code>lstopo --top</code>. These objects have a <code>Type</code> info attribute of value <code>Process</code> and a name attribute made of their PID and program name. They are attached below the object they are bound to. The textual <code>lstopo</code> displays them as: <div class="fragment"><div class="line">PU L#0 (P#0)</div>
 <div class="line">  Misc(Process) 4445 myprogram</div>
 </div><!-- fragment -->  </li>
 </ul>

@@ -130,7 +130,7 @@ images/diagram.eps: $(srcdir)/images/diagram.fig
 $(DOX_TAG): $(BUILT_SOURCES) $(dox_inputs) $(PREBUILT_IMAGES)
 	rm -fr $(DOX_DIR)
 	$(DOXYGEN) $(DOX_CONFIG)
-	-$(SED_I) -e 's@\\hyperlink{a[0-9]\{5\}_source}{@\\textbf{@g' $(DOX_DIR)/latex/*.tex
+	sed -i -e 's@\\hyperlink{a[[:digit:]][[:digit:]]*_source}{@\\textbf{@g' $(DOX_DIR)/latex/*.tex
 	@echo "Work-around spurious leading _ in doxygen filenames..."
 	-(cd $(DOX_DIR)/man/man3 ; \
 	for i in _hwloc* ; do \

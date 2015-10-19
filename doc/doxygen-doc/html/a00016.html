@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -74,7 +74,7 @@ Custom string infos</h1>
 <dt>PCISlot </dt>
 <dd>The name/number of the physical slot where the PCI device is plugged.  </dd>
 <dt>Vendor, Model, Revision, SerialNumber </dt>
-<dd>The vendor and model names, and revision and serial numbers of a Block OS device.  </dd>
+<dd>The vendor and model names, revision, and serial number of a Block OS device.  </dd>
 <dt>LinuxDeviceID </dt>
 <dd>The major/minor device number such as 8:0 on Linux for a Block OS device.  </dd>
 <dt>CoProcType (Co-Processor OS devices) </dt>
@@ -105,8 +105,8 @@ Custom string infos</h1>
 <dd>The node GUID and GUID mask, the state of a port #1 (value is 4 when active), the LID and LID mask count of port #2, and GID #1 of port #3.  </dd>
 <dt>Type </dt>
 <dd>A better type name than the usual one. This may be used to specify where Groups come from. For instance Linux s390 <em>books</em> appear as Groups of type <em>Book</em>. Block OS devices may have a Type of "Disk", "Tape", "Removable Media Device" or "Other". The Type attribute value is displayed instead of the default object type name in lstopo.  </dd>
-<dt>Vendor, AssetTag, PartNumber, DeviceLocation, BankLocation (MemoryDevice Misc objects) </dt>
-<dd>Information about memory devices (DIMMs) extracted from SMBIOS.  </dd>
+<dt>Vendor, AssetTag, PartNumber, DeviceLocation, BankLocation (MemoryModule Misc objects) </dt>
+<dd>Information about memory modules (DIMMs) extracted from SMBIOS.  </dd>
 <dt>hwlocVersion </dt>
 <dd>The version number of the hwloc library that was used to generate the topology. If the topology was loaded from XML, this is not the hwloc version that loaded it, but rather the first hwloc instance that exported the topology to XML earlier.  </dd>
 <dt>ProcessName </dt>

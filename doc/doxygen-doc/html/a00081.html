@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -321,7 +321,7 @@ If <code>value</code> contains some non-printable characters, they will be dropp
 <p>Convert strings such as "Package" or "Cache" into the corresponding types. Matching is case-insensitive, and only the first letters are actually required to match.</p>
 <p>Types that have specific attributes, for instance caches and groups, may be returned in <code>depthattrp</code> and <code>typeattrp</code>. They are ignored when these pointers are <code>NULL</code>.</p>
 <p>For instance "L2i" or "L2iCache" would return type HWLOC_OBJ_CACHE in <code>typep</code>, 2 in <code>depthattrp</code>, and HWLOC_OBJ_CACHE_TYPE_INSTRUCTION in <code>typeattrp</code> (this last pointer should point to a hwloc_obj_cache_type_t). "Group3" would return type HWLOC_OBJ_GROUP type and 3 in <code>depthattrp</code>. Attributes that are not specified in the string (for instance "Group" without a depth, or "L2Cache" without a cache type) are set to -1.</p>
-<p><code>typeattrd</code> is only filled if the size specified in <code>typeattrsize</code> is large enough. It is currently only used for caches, and the required size is at least the size of hwloc_obj_cache_type_t.</p>
+<p><code>typeattrp</code> is only filled if the size specified in <code>typeattrsize</code> is large enough. It is currently only used for caches, and the required size is at least the size of hwloc_obj_cache_type_t.</p>
 <dl class="section return"><dt>Returns</dt><dd>0 if a type was correctly identified, otherwise -1.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This is an extended version of the now deprecated hwloc_obj_type_of_string() </dd></dl>
 

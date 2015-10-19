@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -61,7 +61,7 @@ Selecting which components to use</h1>
 <p>Certain component names (<code>xml</code> and <code>synthetic</code>) accept an argument (e.g. <code>xml=file.xml</code>). These arguments behave exactly as if the corresponding string had been passed to <code><a class="el" href="a00079.html#ga879439b7ee99407ee911b3ac64e9a25e" title="Enable XML-file based topology. ">hwloc_topology_set_xml()</a></code> or <code><a class="el" href="a00079.html#ga4fab186bb6181a00bcf585825fddd38d" title="Enable synthetic topology. ">hwloc_topology_set_synthetic()</a></code>.</p>
 <h1><a class="anchor" id="plugins_load"></a>
 Loading components from plugins</h1>
-<p>Components may optionally be built as plugins so that the hwloc core library does not directly depend on their dependencies (for instance the <code>libpciaccess</code> library). Plugin support may be enabled with the <code>&ndash;enable-plugins</code> configure option. All components buildable as plugins will then be built as plugins. The configure option may be given a comma-separated list of component names to specify the exact list of components to build as plugins.</p>
+<p>Components may optionally be built as plugins so that the hwloc core library does not directly depend on their dependencies (for instance the <code>libpciaccess</code> library). Plugin support may be enabled with the <code>--enable-plugins</code> configure option. All components buildable as plugins will then be built as plugins. The configure option may be given a comma-separated list of component names to specify the exact list of components to build as plugins.</p>
 <p>Plugins are built as independent dynamic libraries that are installed in <code>$libdir/hwloc</code>. All plugins found in this directory are loaded during <code>topology_init()</code>. A specific list of directories (colon-separated) to scan may be specified in the <code>HWLOC_PLUGINS_PATH</code> environment variable.</p>
 <p>Note that loading a plugin just means that the corresponding component is registered to the hwloc core. Components are then only enabled if the topology configuration requests it, as explained in the previous sections.</p>
 <p>Also note that plugins should carefully be enabled and used when embedding hwloc in another project, see <a class="el" href="a00028.html">Embedding hwloc in Other Software</a> for details.</p>
@@ -88,7 +88,7 @@ Existing components and plugins</h1>
 <dt>x86 </dt>
 <dd>The x86 architecture (either 32 or 64 bits) has its own component that may complete or replace the previously-found CPU information. It is statically built when supported.  </dd>
 <dt>bgq </dt>
-<dd>This component is specific to IBM BlueGene/Q compute node (running CNK). It is built and enabled by default when <code>&ndash;host=powerpc64-bgq-linux</code> is passed to configure (see <a class="el" href="a00030.html#faq_bgq">How do I build hwloc for BlueGene/Q?</a>).  </dd>
+<dd>This component is specific to IBM BlueGene/Q compute node (running CNK). It is built and enabled by default when <code>--host=powerpc64-bgq-linux</code> is passed to configure (see <a class="el" href="a00030.html#faq_bgq">How do I build hwloc for BlueGene/Q?</a>).  </dd>
 <dt>no_os </dt>
 <dd>A basic component that just tries to detect the number of processing units in the system. It mostly serves on operating systems that are not natively supported. It is always statically built.  </dd>
 <dt>pci </dt>

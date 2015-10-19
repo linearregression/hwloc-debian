@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -90,7 +90,7 @@ Functions</h2></td></tr>
 
 <p>Get the current binding of thread <code>tid</code>. </p>
 <p>The behavior is exactly the same as the Linux sched_getaffinity system call, but uses a hwloc cpuset.</p>
-<dl class="section note"><dt>Note</dt><dd>This is equivalent to calling <a class="el" href="a00082.html#gac82de91f788fa82dacf99c6e0d4b7158" title="Get the current physical binding of process pid. ">hwloc_get_proc_cpubind()</a> with HWLOC_CPUBIND_THREAD as flags. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This is equivalent to calling <a class="el" href="a00082.html#gac82de91f788fa82dacf99c6e0d4b7158" title="Get the current physical binding of process pid. ">hwloc_get_proc_cpubind()</a> with <a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421" title="Bind current thread of current process. ">HWLOC_CPUBIND_THREAD</a> as flags. </dd></dl>
 
 </div>
 </div>
@@ -125,7 +125,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the last physical CPU where thread <code>tid</code> ran. </p>
-<dl class="section note"><dt>Note</dt><dd>This is equivalent to calling <a class="el" href="a00082.html#ga910a05c2d47f68a3155bf176b50fa555" title="Get the last physical CPU where a process ran. ">hwloc_get_proc_last_cpu_location()</a> with HWLOC_CPUBIND_THREAD as flags. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This is equivalent to calling <a class="el" href="a00082.html#ga910a05c2d47f68a3155bf176b50fa555" title="Get the last physical CPU where a process ran. ">hwloc_get_proc_last_cpu_location()</a> with <a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421" title="Bind current thread of current process. ">HWLOC_CPUBIND_THREAD</a> as flags. </dd></dl>
 
 </div>
 </div>

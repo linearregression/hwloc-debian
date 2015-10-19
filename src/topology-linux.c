@@ -1,7 +1,7 @@
 /*
  * Copyright © 2009 CNRS
  * Copyright © 2009-2015 Inria.  All rights reserved.
- * Copyright © 2009-2013 Université Bordeaux
+ * Copyright © 2009-2013, 2015 Université Bordeaux
  * Copyright © 2009-2014 Cisco Systems, Inc.  All rights reserved.
  * Copyright © 2015 Intel, Inc.  All rights reserved.
  * Copyright © 2010 IBM
@@ -61,8 +61,8 @@ struct hwloc_linux_backend_data_s {
  * Misc Abstraction layers *
  ***************************/
 
-#if !(defined HWLOC_HAVE_SCHED_SETAFFINITY) && (defined HWLOC_HAVE__SYSCALL3)
-/* libc doesn't have support for sched_setaffinity, build system call
+#if !(defined HWLOC_HAVE_SCHED_SETAFFINITY) && (defined HWLOC_HAVE_SYSCALL)
+/* libc doesn't have support for sched_setaffinity, make system call
  * ourselves: */
 #    include <linux/unistd.h>
 #    ifndef __NR_sched_setaffinity
@@ -96,7 +96,7 @@ struct hwloc_linux_backend_data_s {
 #       endif
 #    endif
 #    ifndef sched_setaffinity
-       _syscall3(int, sched_setaffinity, pid_t, pid, unsigned int, lg, const void *, mask)
+#      define sched_setaffinity(pid, lg, mask) syscall(__NR_sched_setaffinity, pid, lg, mask)
 #    endif
 #    ifndef __NR_sched_getaffinity
 #       ifdef __i386__
@@ -129,7 +129,7 @@ struct hwloc_linux_backend_data_s {
 #       endif
 #    endif
 #    ifndef sched_getaffinity
-       _syscall3(int, sched_getaffinity, pid_t, pid, unsigned int, lg, void *, mask)
+#      define sched_getaffinity(pid, lg, mask) (syscall(__NR_sched_getaffinity, pid, lg, mask) < 0 ? -1 : 0)
 #    endif
 #endif
 
@@ -347,7 +347,7 @@ hwloc_linux_set_tid_cpubind(hwloc_topology_t topology __hwloc_attribute_unused, 
 #else /* HWLOC_HAVE_OLD_SCHED_SETAFFINITY */
   return sched_setaffinity(tid, sizeof(linux_set), &linux_set);
 #endif /* HWLOC_HAVE_OLD_SCHED_SETAFFINITY */
-#elif defined(HWLOC_HAVE__SYSCALL3)
+#elif defined(HWLOC_HAVE_SYSCALL)
   unsigned long mask = hwloc_bitmap_to_ulong(hwloc_set);
 
 #ifdef HWLOC_HAVE_OLD_SCHED_SETAFFINITY
@@ -355,10 +355,10 @@ hwloc_linux_set_tid_cpubind(hwloc_topology_t topology __hwloc_attribute_unused, 
 #else /* HWLOC_HAVE_OLD_SCHED_SETAFFINITY */
   return sched_setaffinity(tid, sizeof(mask), (void*) &mask);
 #endif /* HWLOC_HAVE_OLD_SCHED_SETAFFINITY */
-#else /* !_SYSCALL3 */
+#else /* !SYSCALL */
   errno = ENOSYS;
   return -1;
-#endif /* !_SYSCALL3 */
+#endif /* !SYSCALL */
 }
 
 #if defined(HWLOC_HAVE_CPU_SET_S) && !defined(HWLOC_HAVE_OLD_SCHED_SETAFFINITY)
@@ -427,7 +427,7 @@ hwloc_linux_find_kernel_nr_cpus(hwloc_topology_t topology)
     /* start from scratch, the topology isn't ready yet (complete_cpuset is missing (-1) or empty (0))*/
     nr_cpus = 1;
 
-  possible = fopen("/sys/devices/system/cpu/possible", "r");
+  possible = fopen("/sys/devices/system/cpu/possible", "r"); /* binding only supported in real fsroot, no need for data->root_fd */
   if (possible) {
     hwloc_bitmap_t possible_bitmap = hwloc_bitmap_alloc();
     if (hwloc_linux_parse_cpuset_file(possible, possible_bitmap) == 0) {
@@ -510,7 +510,7 @@ hwloc_linux_get_tid_cpubind(hwloc_topology_t topology __hwloc_attribute_unused, 
   for(cpu=0; cpu<CPU_SETSIZE; cpu++)
     if (CPU_ISSET(cpu, &linux_set))
       hwloc_bitmap_set(hwloc_set, cpu);
-#elif defined(HWLOC_HAVE__SYSCALL3)
+#elif defined(HWLOC_HAVE_SYSCALL)
   unsigned long mask;
 
 #ifdef HWLOC_HAVE_OLD_SCHED_SETAFFINITY
@@ -522,10 +522,10 @@ hwloc_linux_get_tid_cpubind(hwloc_topology_t topology __hwloc_attribute_unused, 
     return -1;
 
   hwloc_bitmap_from_ulong(hwloc_set, mask);
-#else /* !_SYSCALL3 */
+#else /* !SYSCALL */
   errno = ENOSYS;
   return -1;
-#endif /* !_SYSCALL3 */
+#endif /* !SYSCALL */
 
   return 0;
 }
@@ -3134,11 +3134,11 @@ package_done:
 	  hwloc_bitmap_set(core->cpuset, i);
 	} else {
 	  core->cpuset = coreset;
+	  coreset = NULL; /* don't free it */
 	}
         hwloc_debug_1arg_bitmap("os core %u has cpuset %s\n",
-                     mycoreid, coreset);
+                     mycoreid, core->cpuset);
         hwloc_insert_object_by_cpuset(topology, core);
-        coreset = NULL; /* don't free it */
       }
 
       /* look at the books */
@@ -3898,6 +3898,52 @@ hwloc_gather_system_info(struct hwloc_topology *topology,
   }
 }
 
+/* returns 0 on success, -1 on non-match or error during hardwired load */
+static int
+hwloc_linux_try_hardwired_cpuinfo(struct hwloc_backend *backend)
+{
+  struct hwloc_topology *topology = backend->topology;
+  struct hwloc_linux_backend_data_s *data = backend->private_data;
+  FILE *fd;
+  char line[128];
+
+  if (getenv("HWLOC_NO_HARDWIRED_TOPOLOGY"))
+    return -1;
+
+  if (!strcmp(data->utsname.machine, "s64fx")) {
+    /* Fujistu K-computer, FX10, and FX100 use specific processors
+     * whose Linux topology support is broken until 4.1 (acc455cffa75070d55e74fc7802b49edbc080e92and)
+     * and existing machines will likely never be fixed by kernel upgrade.
+     */
+
+    /* /proc/cpuinfo starts with one of these lines:
+     * "cpu             : Fujitsu SPARC64 VIIIfx"
+     * "cpu             : Fujitsu SPARC64 XIfx"
+     * "cpu             : Fujitsu SPARC64 IXfx"
+     */
+    fd = hwloc_fopen("/proc/cpuinfo", "r", data->root_fd);
+    if (!fd)
+      return -1;
+
+    if (!fgets(line, sizeof(line), fd)) {
+      fclose(fd);
+      return -1;
+    }
+    fclose(fd);
+
+    if (strncmp(line, "cpu	", 4))
+      return -1;
+
+    if (strstr(line, "Fujitsu SPARC64 VIIIfx"))
+      return hwloc_look_hardwired_fujitsu_k(topology);
+    else if (strstr(line, "Fujitsu SPARC64 IXfx"))
+      return hwloc_look_hardwired_fujitsu_fx10(topology);
+    else if (strstr(line, "FUJITSU SPARC64 XIfx"))
+      return hwloc_look_hardwired_fujitsu_fx100(topology);
+  }
+  return -1;
+}
+
 static int
 hwloc_look_linuxfs(struct hwloc_backend *backend)
 {
@@ -3989,6 +4035,10 @@ hwloc_look_linuxfs(struct hwloc_backend *backend)
     }
 
     /* Gather the list of cpus now */
+    err = hwloc_linux_try_hardwired_cpuinfo(backend);
+    if (!err)
+      goto done;
+
     if (getenv("HWLOC_LINUX_USE_CPUINFO")
 	|| (hwloc_access("/sys/devices/system/cpu/cpu0/topology/core_siblings", R_OK, data->root_fd) < 0
 	    && hwloc_access("/sys/devices/system/cpu/cpu0/topology/thread_siblings", R_OK, data->root_fd) < 0
@@ -4016,6 +4066,7 @@ hwloc_look_linuxfs(struct hwloc_backend *backend)
       hwloc_linux_free_cpuinfo(Lprocs, numprocs, global_infos, global_infos_count);
     }
 
+ done:
     /* Gather DMI info */
     hwloc__get_dmi_id_info(data, topology->levels[0][0]);
     if (hwloc_topology_get_flags(topology) & (HWLOC_TOPOLOGY_FLAG_IO_DEVICES|HWLOC_TOPOLOGY_FLAG_WHOLE_IO))
@@ -4443,15 +4494,20 @@ hwloc_linux_block_class_fillinfos(struct hwloc_backend *backend,
     if (tmp)
       *tmp = '\0';
     if (!strncmp(line, "E:ID_VENDOR=", strlen("E:ID_VENDOR="))) {
-      strcpy(vendor, line+strlen("E:ID_VENDOR="));
+      strncpy(vendor, line+strlen("E:ID_VENDOR="), sizeof(vendor));
+      vendor[sizeof(vendor)-1] = '\0';
     } else if (!strncmp(line, "E:ID_MODEL=", strlen("E:ID_MODEL="))) {
-      strcpy(model, line+strlen("E:ID_MODEL="));
+      strncpy(model, line+strlen("E:ID_MODEL="), sizeof(model));
+      model[sizeof(model)-1] = '\0';
     } else if (!strncmp(line, "E:ID_REVISION=", strlen("E:ID_REVISION="))) {
-      strcpy(revision, line+strlen("E:ID_REVISION="));
+      strncpy(revision, line+strlen("E:ID_REVISION="), sizeof(revision));
+      revision[sizeof(revision)-1] = '\0';
     } else if (!strncmp(line, "E:ID_SERIAL_SHORT=", strlen("E:ID_SERIAL_SHORT="))) {
-      strcpy(serial, line+strlen("E:ID_SERIAL_SHORT="));
+      strncpy(serial, line+strlen("E:ID_SERIAL_SHORT="), sizeof(serial));
+      serial[sizeof(serial)-1] = '\0';
     } else if (!strncmp(line, "E:ID_TYPE=", strlen("E:ID_TYPE="))) {
-      strcpy(blocktype, line+strlen("E:ID_TYPE="));
+      strncpy(blocktype, line+strlen("E:ID_TYPE="), sizeof(blocktype));
+      blocktype[sizeof(blocktype)-1] = '\0';
     }
   }
   fclose(fd);
@@ -4591,6 +4647,14 @@ hwloc_linux_lookup_block_class(struct hwloc_backend *backend,
 
   strcpy(path, pcidevpath);
   pathlen = strlen(path);
+
+  /* look for a direct block device here (such as NVMe, something without controller subdirs in the middle) */
+  res += hwloc_linux_class_readdir(backend, pcidev, path,
+				   HWLOC_OBJ_OSDEV_BLOCK, "block",
+				   hwloc_linux_block_class_fillinfos);
+  if (res)
+    return res;
+  /* otherwise try to find controller subdirectories */
 
   devicedir = hwloc_opendir(pcidevpath, root_fd);
   if (!devicedir)
@@ -4772,7 +4836,7 @@ hwloc_linux_directlookup_mic_class(struct hwloc_backend *backend,
     /* read the entire class and find the max id of mic%u dirents */
     dir = hwloc_opendir("/sys/devices/virtual/mic", root_fd);
     if (!dir) {
-      dir = opendir("/sys/class/mic");
+      dir = hwloc_opendir("/sys/class/mic", root_fd);
       if (!dir)
 	return 0;
     }
@@ -5134,7 +5198,8 @@ hwloc_look_linuxfs_pci(struct hwloc_backend *backend)
       fclose(file);
 
       /* is this a bridge? */
-      hwloc_pci_prepare_bridge(obj, config_space_cache);
+      if (hwloc_pci_prepare_bridge(obj, config_space_cache) < 0)
+	continue;
 
       /* get the revision */
       attr->revision = config_space_cache[HWLOC_PCI_REVISION_ID];
@@ -5170,10 +5235,8 @@ hwloc_look_linuxfs_pci(struct hwloc_backend *backend)
 	  while (obj) {
 	    if (obj->attr->pcidev.domain == domain
 		&& obj->attr->pcidev.bus == bus
-		&& obj->attr->pcidev.dev == dev
-		&& obj->attr->pcidev.func == 0) {
+		&& obj->attr->pcidev.dev == dev) {
 	      hwloc_obj_add_info(obj, "PCISlot", dirent->d_name);
-	      break;
 	    }
 	    obj = obj->next_sibling;
 	  }

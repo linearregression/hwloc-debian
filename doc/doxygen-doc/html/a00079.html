@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -126,25 +126,26 @@ Functions</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ggada025d3ec20b4b420f8038d23d6e7bdea129b4fea1300be22bbaf0bb0958994c8"></a>HWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM&#160;</td><td class="fielddoc">
 <p>Detect the whole system, ignore reservations and offline settings. </p>
-<p>Gather all resources, even if some were disabled by the administrator. For instance, ignore Linux Cgroup/Cpusets and gather all processors and memory nodes, and ignore the fact that some resources may be offline. </p>
+<p>Gather all resources, even if some were disabled by the administrator. For instance, ignore Linux Cgroup/Cpusets and gather all processors and memory nodes, and ignore the fact that some resources may be offline.</p>
+<p>When this flag is not set, PUs that are disallowed are not added to the topology. Parent objects (package, core, cache, etc.) are added only if some of their children are allowed. NUMA nodes are always added but their available memory is set to 0 when disallowed. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ggada025d3ec20b4b420f8038d23d6e7bdea6ecb6abc6a0bb75e81564f8bca85783b"></a>HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM&#160;</td><td class="fielddoc">
 <p>Assume that the selected backend provides the topology for the system on which we are running. </p>
-<p>This forces hwloc_topology_is_thissystem to return 1, i.e. makes hwloc assume that the selected backend provides the topology for the system on which we are running, even if it is not the OS-specific backend but the XML backend for instance. This means making the binding functions actually call the OS-specific system calls and really do binding, while the XML backend would otherwise provide empty hooks just returning success.</p>
+<p>This forces <a class="el" href="a00079.html#ga68ffdcfd9175cdf40709801092f18017" title="Does the topology context come from this system? ">hwloc_topology_is_thissystem()</a> to return 1, i.e. makes hwloc assume that the selected backend provides the topology for the system on which we are running, even if it is not the OS-specific backend but the XML backend for instance. This means making the binding functions actually call the OS-specific system calls and really do binding, while the XML backend would otherwise provide empty hooks just returning success.</p>
 <p>Setting the environment variable HWLOC_THISSYSTEM may also result in the same behavior.</p>
 <p>This can be used for efficiency reasons to first detect the topology once, save it to an XML file, and quickly reload it later through the XML backend, but still having binding functions actually do bind. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ggada025d3ec20b4b420f8038d23d6e7bdea46ae25e8896278840b1800ae9ce4de41"></a>HWLOC_TOPOLOGY_FLAG_IO_DEVICES&#160;</td><td class="fielddoc">
 <p>Detect PCI devices. </p>
-<p>By default, I/O devices are ignored. This flag enables I/O device detection using the pci backend. Only the common PCI devices (GPUs, NICs, block devices, ...) and host bridges (objects that connect the host objects to an I/O subsystem) will be added to the topology. Additionally it also enables MemoryDevice misc objects. Uncommon devices and other bridges (such as PCI-to-PCI bridges) will be ignored. </p>
+<p>By default, I/O devices are ignored. This flag enables I/O device detection using the pci backend. Only the common PCI devices (GPUs, NICs, block devices, ...) and host bridges (objects that connect the host objects to an I/O subsystem) will be added to the topology. Additionally it also enables MemoryModule misc objects. Uncommon devices and other bridges (such as PCI-to-PCI bridges) will be ignored. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ggada025d3ec20b4b420f8038d23d6e7bdea426b18c349f15d7046bb391d96fa947c"></a>HWLOC_TOPOLOGY_FLAG_IO_BRIDGES&#160;</td><td class="fielddoc">
 <p>Detect PCI bridges. </p>
-<p>This flag should be combined with HWLOC_TOPOLOGY_FLAG_IO_DEVICES to enable the detection of both common devices and of all useful bridges (bridges that have at least one device behind them). </p>
+<p>This flag should be combined with <a class="el" href="a00079.html#ggada025d3ec20b4b420f8038d23d6e7bdea46ae25e8896278840b1800ae9ce4de41" title="Detect PCI devices. ">HWLOC_TOPOLOGY_FLAG_IO_DEVICES</a> to enable the detection of both common devices and of all useful bridges (bridges that have at least one device behind them). </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ggada025d3ec20b4b420f8038d23d6e7bdea4a41dc181649ef81c2dcd44a54e271b9"></a>HWLOC_TOPOLOGY_FLAG_WHOLE_IO&#160;</td><td class="fielddoc">
 <p>Detect the whole PCI hierarchy. </p>
-<p>This flag enables detection of all I/O devices (even the uncommon ones) and bridges (even those that have no device behind them) using the pci backend. This implies HWLOC_TOPOLOGY_FLAG_IO_DEVICES. </p>
+<p>This flag enables detection of all I/O devices (even the uncommon ones such as DMA channels) and bridges (even those that have no device behind them) using the pci backend. This implies <a class="el" href="a00079.html#ggada025d3ec20b4b420f8038d23d6e7bdea46ae25e8896278840b1800ae9ce4de41" title="Detect PCI devices. ">HWLOC_TOPOLOGY_FLAG_IO_DEVICES</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ggada025d3ec20b4b420f8038d23d6e7bdeaae509a0bed4a7067e0116c75c661178d"></a>HWLOC_TOPOLOGY_FLAG_ICACHES&#160;</td><td class="fielddoc">
 <p>Detect instruction caches. </p>
@@ -227,7 +228,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Ignore all objects that do not bring any structure. </p>
-<p>Ignore all objects that do not bring any structure: Each ignored object should have a single children or be the only child of its parent. I/O objects may not be ignored, topology flags should be used to configure their discovery instead. </p>
+<p>Ignore all objects that do not bring any structure: This is equivalent to calling <a class="el" href="a00079.html#ga1f987bca941d6949faf7b1554dd7bc12" title="Ignore an object type if it does not bring any structure. ">hwloc_topology_ignore_type_keep_structure()</a> for all object types. </p>
 
 </div>
 </div>
@@ -256,7 +257,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Ignore an object type. </p>
-<p>Ignore all objects from the given type. The bottom-level type HWLOC_OBJ_PU may not be ignored. The top-level object of the hierarchy will never be ignored, even if this function succeeds. Group objects are always ignored if they do not bring any structure since they are designed to add structure to the topology. I/O objects may not be ignored, topology flags should be used to configure their discovery instead. </p>
+<p>Ignore all objects from the given type. The bottom-level type <a class="el" href="a00076.html#ggacd37bb612667dc437d66bfb175a8dc55abca6887e80cb291353b0a0c1da83f661" title="Processing Unit, or (Logical) Processor. An execution unit (may share a core with some other logical ...">HWLOC_OBJ_PU</a> may not be ignored. The top-level object of the hierarchy will never be ignored, even if this function succeeds. Group objects are always ignored if they do not bring any structure since they are designed to add structure to the topology. I/O objects may not be ignored, topology flags should be used to configure their discovery instead. </p>
 
 </div>
 </div>
@@ -285,7 +286,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Ignore an object type if it does not bring any structure. </p>
-<p>Ignore all objects from the given type as long as they do not bring any structure: Each ignored object should have a single children or be the only child of its parent. The bottom-level type HWLOC_OBJ_PU may not be ignored. I/O objects may not be ignored, topology flags should be used to configure their discovery instead. </p>
+<p>Ignore all objects from the given type as long as they do not bring any structure: Each ignored object should have a single children or be the only child of its parent. The bottom-level type <a class="el" href="a00076.html#ggacd37bb612667dc437d66bfb175a8dc55abca6887e80cb291353b0a0c1da83f661" title="Processing Unit, or (Logical) Processor. An execution unit (may share a core with some other logical ...">HWLOC_OBJ_PU</a> may not be ignored. I/O objects may not be ignored, topology flags should be used to configure their discovery instead. </p>
 
 </div>
 </div>
@@ -444,7 +445,7 @@ On success, the custom component replaces the previously enabled component (if a
 <dl class="section return"><dt>Returns</dt><dd>-1 with errno set to ENOSYS on non-Linux and on Linux systems that do not support it. </dd>
 <dd>
 -1 with the appropriate errno if <code>fsroot_path</code> cannot be used.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>For convenience, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system.</dd>
+<dl class="section note"><dt>Note</dt><dd>For convenience, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the <a class="el" href="a00079.html#ggada025d3ec20b4b420f8038d23d6e7bdea6ecb6abc6a0bb75e81564f8bca85783b" title="Assume that the selected backend provides the topology for the system on which we are running...">HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM</a> has to be set to assert that the loaded file is really the underlying system.</dd>
 <dd>
 On success, the Linux component replaces the previously enabled component (if any), but the topology is not actually modified until <a class="el" href="a00078.html#gabdf58d87ad77f6615fccdfe0535ff826" title="Build the actual topology. ">hwloc_topology_load()</a>. </dd></dl>
 
@@ -474,8 +475,8 @@ On success, the Linux component replaces the previously enabled component (if an
       </table>
 </div><div class="memdoc">
 
-<p>Change which pid the topology is viewed from. </p>
-<p>On some systems, processes may have different views of the machine, for instance the set of allowed CPUs. By default, hwloc exposes the view from the current process. Calling <a class="el" href="a00079.html#ga341fc17b5867a4715570baab131f68cd" title="Change which pid the topology is viewed from. ">hwloc_topology_set_pid()</a> permits to make it expose the topology of the machine from the point of view of another process.</p>
+<p>Change which process the topology is viewed from. </p>
+<p>On some systems, processes may have different views of the machine, for instance the set of allowed CPUs. By default, hwloc exposes the view from the current process. Calling <a class="el" href="a00079.html#ga341fc17b5867a4715570baab131f68cd" title="Change which process the topology is viewed from. ">hwloc_topology_set_pid()</a> permits to make it expose the topology of the machine from the point of view of another process.</p>
 <dl class="section note"><dt>Note</dt><dd><code>hwloc_pid_t</code> is <code>pid_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms.</dd>
 <dd>
 -1 is returned and errno is set to ENOSYS on platforms that do not support this feature. </dd></dl>
@@ -577,7 +578,7 @@ On success, the synthetic component replaces the previously enabled component (i
 <dl class="section return"><dt>Returns</dt><dd>-1 with errno set to EINVAL on failure to read the XML file.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>See also <a class="el" href="a00086.html#ga5ac6917ea7289955fb1ffda4353af9b0" title="Set the application-specific callback for importing userdata. ">hwloc_topology_set_userdata_import_callback()</a> for importing application-specific object userdata.</dd>
 <dd>
-For convenience, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system.</dd>
+For convenience, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the <a class="el" href="a00079.html#ggada025d3ec20b4b420f8038d23d6e7bdea6ecb6abc6a0bb75e81564f8bca85783b" title="Assume that the selected backend provides the topology for the system on which we are running...">HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM</a> has to be set to assert that the loaded file is really the underlying system.</dd>
 <dd>
 On success, the XML component replaces the previously enabled component (if any), but the topology is not actually modified until <a class="el" href="a00078.html#gabdf58d87ad77f6615fccdfe0535ff826" title="Build the actual topology. ">hwloc_topology_load()</a>. </dd></dl>
 
@@ -619,7 +620,7 @@ On success, the XML component replaces the previously enabled component (if any)
 <dl class="section return"><dt>Returns</dt><dd>-1 with errno set to EINVAL on failure to read the XML buffer.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>See also <a class="el" href="a00086.html#ga5ac6917ea7289955fb1ffda4353af9b0" title="Set the application-specific callback for importing userdata. ">hwloc_topology_set_userdata_import_callback()</a> for importing application-specific object userdata.</dd>
 <dd>
-For convenience, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM has to be set to assert that the loaded file is really the underlying system.</dd>
+For convenience, this backend provides empty binding hooks which just return success. To have hwloc still actually call OS-specific hooks, the <a class="el" href="a00079.html#ggada025d3ec20b4b420f8038d23d6e7bdea6ecb6abc6a0bb75e81564f8bca85783b" title="Assume that the selected backend provides the topology for the system on which we are running...">HWLOC_TOPOLOGY_FLAG_IS_THISSYSTEM</a> has to be set to assert that the loaded file is really the underlying system.</dd>
 <dd>
 On success, the XML component replaces the previously enabled component (if any), but the topology is not actually modified until <a class="el" href="a00078.html#gabdf58d87ad77f6615fccdfe0535ff826" title="Build the actual topology. ">hwloc_topology_load()</a>. </dd></dl>
 

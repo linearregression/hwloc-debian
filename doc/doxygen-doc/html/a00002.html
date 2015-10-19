@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -92,7 +92,7 @@
 <p class="enddd"></p>
 </dd>
 <dt>Depth </dt>
-<dd><p class="startdd">Nesting level in the object tree, starting from the root object. If the topology is symmetric, the depth of a child is equal to the parent depth plus one, and an object depth is also equal to the number of parent/child links between the root object and the given object. If the topology is asymmetric, the difference between some parent and child depths may be larger than one when some intermediate levels (for instance caches) are missing in only some parts of the machine. </p>
+<dd><p class="startdd">Nesting level in the object tree, starting from the root object. If the topology is symmetric, the depth of a child is equal to the parent depth plus one, and an object depth is also equal to the number of parent/child links between the root object and the given object. If the topology is asymmetric, the difference between some parent and child depths may be larger than one when some intermediate levels (for instance groups) are missing in only some parts of the machine. </p>
 <p class="enddd"></p>
 </dd>
 <dt>OS or physical index </dt>
@@ -114,12 +114,11 @@
 <p class="enddd"></p>
 </dd>
 </dl>
-<p>The following diagram can help to understand the vocabulary of the relationships by showing the example of a machine with two dual core packages (with no hardware threads); thus, a topology with 4 levels. Each box with rounded corner corresponds to one hwloc_obj_t, containing the values of the different integer fields (depth, logical_index, etc.), and arrows show to which other hwloc_obj_t pointers point to (first_child, parent, etc.). The L2 cache of the last core is intentionally missing to show how asymmetric topologies are handled.</p>
+<p>The following diagram can help to understand the vocabulary of the relationships by showing the example of a machine with two dual core packages (with no hardware threads); thus, a topology with 5 levels. Each box with rounded corner corresponds to one hwloc_obj_t, containing the values of the different integer fields (depth, logical_index, etc.), and arrows show to which other hwloc_obj_t pointers point to (first_child, parent, etc.). The L2 cache of the last core is intentionally missing to show how asymmetric topologies are handled. See <a class="el" href="a00030.html#faq_asymmetric">What happens if my topology is asymmetric?</a> for more information about such strange topologies.</p>
 <div class="image">
 <img src="diagram.png" alt="diagram.png"/>
 </div>
- <p>It should be noted that for PU objects, the logical index &ndash; as computed linearly by hwloc &ndash; is not the same as the OS index.</p>
-<p>See also <a class="el" href="a00030.html#faq_asymmetric">What happens if my topology is asymmetric?</a> for more details. </p>
+ <p>It should be noted that for PU objects, the logical index &ndash; as computed linearly by hwloc &ndash; is not the same as the OS index. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

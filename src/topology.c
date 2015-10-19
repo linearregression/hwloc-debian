@@ -132,6 +132,7 @@ int hwloc_get_sysctl(int name[], unsigned namelen, int *ret)
    reading sysfs on Linux, this method is not virtualizable; thus it's only
    used as a fall-back method, allowing `hwloc_set_fsroot ()' to
    have the desired effect.  */
+#ifndef HWLOC_WIN_SYS /* The windows implementation is in topology-windows.c */
 unsigned
 hwloc_fallback_nbprocessors(struct hwloc_topology *topology) {
   int n;
@@ -157,10 +158,6 @@ hwloc_fallback_nbprocessors(struct hwloc_topology *topology) {
   static int name[2] = {CTL_HW, HW_NPCU};
   if (hwloc_get_sysctl(name, sizeof(name)/sizeof(*name)), &n)
     n = -1;
-#elif defined(HWLOC_WIN_SYS)
-  SYSTEM_INFO sysinfo;
-  GetSystemInfo(&sysinfo);
-  n = sysinfo.dwNumberOfProcessors;
 #else
 #ifdef __GNUC__
 #warning No known way to discover number of available processors on this system
@@ -174,6 +171,7 @@ hwloc_fallback_nbprocessors(struct hwloc_topology *topology) {
     n = 1;
   return n;
 }
+#endif /* !HWLOC_WIN_SYS */
 
 /*
  * Use the given number of processors and the optional online cpuset if given
@@ -920,8 +918,8 @@ hwloc___insert_object_by_cpuset(struct hwloc_topology *topology, hwloc_obj_t cur
 
     if (res == HWLOC_OBJ_EQUAL) {
       if (obj->type == HWLOC_OBJ_GROUP) {
-	/* Group are ignored keep_structure. ignored always are handled earlier. Non-ignored Groups isn't possible. */
-	assert(topology->ignored_types[HWLOC_OBJ_GROUP] == HWLOC_IGNORE_TYPE_KEEP_STRUCTURE);
+	/* Groups are ignored keep_structure or always. Non-ignored Groups isn't possible. */
+	assert(topology->ignored_types[HWLOC_OBJ_GROUP] != HWLOC_IGNORE_TYPE_NEVER);
         /* Remove the Group now. The normal ignore code path wouldn't tell us whether the Group was removed or not.
 	 *
 	 * Keep EQUAL so that the Group gets merged.

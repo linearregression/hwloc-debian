@@ -1,4 +1,4 @@
-.TH "hwloc_backend" 3 "Thu Jun 18 2015" "Version 1.11.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwloc_backend" 3 "Thu Oct 15 2015" "Version 1.11.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -52,11 +52,11 @@ Callback for freeing the private_data\&. May be NULL\&.
 .SS "int(* hwloc_backend::discover) (struct \fBhwloc_backend\fP *backend)"
 
 .PP
-Main discovery callback\&. returns > 0 if it modified the topology tree, -1 on error, 0 otherwise\&. May be NULL if type is HWLOC_DISC_COMPONENT_TYPE_MISC\&. 
+Main discovery callback\&. returns > 0 if it modified the topology tree, -1 on error, 0 otherwise\&. May be NULL if type is \fBHWLOC_DISC_COMPONENT_TYPE_MISC\fP\&. 
 .SS "unsigned long hwloc_backend::flags"
 
 .PP
-Backend flags, as an OR'ed set of HWLOC_BACKEND_FLAG_*\&. 
+Backend flags, as an OR'ed set of \fBhwloc_backend_flag_e\fP\&. 
 .SS "int(* hwloc_backend::get_obj_cpuset) (struct \fBhwloc_backend\fP *backend, struct \fBhwloc_backend\fP *caller, struct \fBhwloc_obj\fP *obj, \fBhwloc_bitmap_t\fP cpuset)"
 
 .PP

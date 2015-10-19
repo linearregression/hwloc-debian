@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -194,7 +194,7 @@ Running lstopo &ndash;top or hwloc-ps can be a very convenient tool to check how
 
 <p>Get the last physical CPU where the current process or thread ran. </p>
 <p>The operating system may move some tasks from one processor to another at any time according to their binding, so this function may return something that is already outdated.</p>
-<p><code>flags</code> can include either HWLOC_CPUBIND_PROCESS or HWLOC_CPUBIND_THREAD to specify whether the query should be for the whole process (union of all CPUs on which all threads are running), or only the current thread. If the process is single-threaded, flags can be set to zero to let hwloc use whichever method is available on the underlying OS. </p>
+<p><code>flags</code> can include either <a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71ca2e0dd0128dac6b03408c7dd170477fdc" title="Bind all threads of the current (possibly) multithreaded process. ">HWLOC_CPUBIND_PROCESS</a> or <a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421" title="Bind current thread of current process. ">HWLOC_CPUBIND_THREAD</a> to specify whether the query should be for the whole process (union of all CPUs on which all threads are running), or only the current thread. If the process is single-threaded, flags can be set to zero to let hwloc use whichever method is available on the underlying OS. </p>
 
 </div>
 </div>
@@ -237,9 +237,9 @@ Running lstopo &ndash;top or hwloc-ps can be a very convenient tool to check how
 <p>Get the current physical binding of process <code>pid</code>. </p>
 <dl class="section note"><dt>Note</dt><dd><code>hwloc_pid_t</code> is <code>pid_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms.</dd>
 <dd>
-As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID) and HWLOC_CPUBIND_THREAD is passed in flags, the binding for that specific thread is returned.</dd>
+As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID) and <a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421" title="Bind current thread of current process. ">HWLOC_CPUBIND_THREAD</a> is passed in flags, the binding for that specific thread is returned.</dd>
 <dd>
-On non-Linux systems, HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>. </dd></dl>
+On non-Linux systems, <a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421" title="Bind current thread of current process. ">HWLOC_CPUBIND_THREAD</a> can not be used in <code>flags</code>. </dd></dl>
 
 </div>
 </div>
@@ -283,9 +283,9 @@ On non-Linux systems, HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>
 <p>The operating system may move some tasks from one processor to another at any time according to their binding, so this function may return something that is already outdated.</p>
 <dl class="section note"><dt>Note</dt><dd><code>hwloc_pid_t</code> is <code>pid_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms.</dd>
 <dd>
-As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID) and HWLOC_CPUBIND_THREAD is passed in flags, the last CPU location of that specific thread is returned.</dd>
+As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID) and <a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421" title="Bind current thread of current process. ">HWLOC_CPUBIND_THREAD</a> is passed in flags, the last CPU location of that specific thread is returned.</dd>
 <dd>
-On non-Linux systems, HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>. </dd></dl>
+On non-Linux systems, <a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421" title="Bind current thread of current process. ">HWLOC_CPUBIND_THREAD</a> can not be used in <code>flags</code>. </dd></dl>
 
 </div>
 </div>
@@ -328,7 +328,7 @@ On non-Linux systems, HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>
 <p>Get the current physical binding of thread <code>tid</code>. </p>
 <dl class="section note"><dt>Note</dt><dd><code>hwloc_thread_t</code> is <code>pthread_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms.</dd>
 <dd>
-HWLOC_CPUBIND_PROCESS can not be used in <code>flags</code>. </dd></dl>
+<a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71ca2e0dd0128dac6b03408c7dd170477fdc" title="Bind all threads of the current (possibly) multithreaded process. ">HWLOC_CPUBIND_PROCESS</a> can not be used in <code>flags</code>. </dd></dl>
 
 </div>
 </div>
@@ -408,9 +408,9 @@ HWLOC_CPUBIND_PROCESS can not be used in <code>flags</code>. </dd></dl>
 <p>Bind a process <code>pid</code> on cpus given in physical bitmap <code>set</code>. </p>
 <dl class="section note"><dt>Note</dt><dd><code>hwloc_pid_t</code> is <code>pid_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms.</dd>
 <dd>
-As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID) and HWLOC_CPUBIND_THREAD is passed in flags, the binding is applied to that specific thread.</dd>
+As a special case on Linux, if a tid (thread ID) is supplied instead of a pid (process ID) and <a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421" title="Bind current thread of current process. ">HWLOC_CPUBIND_THREAD</a> is passed in flags, the binding is applied to that specific thread.</dd>
 <dd>
-On non-Linux systems, HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>. </dd></dl>
+On non-Linux systems, <a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71caf1b6bbad00d7b1017b918e3719f4d421" title="Bind current thread of current process. ">HWLOC_CPUBIND_THREAD</a> can not be used in <code>flags</code>. </dd></dl>
 
 </div>
 </div>
@@ -453,7 +453,7 @@ On non-Linux systems, HWLOC_CPUBIND_THREAD can not be used in <code>flags</code>
 <p>Bind a thread <code>thread</code> on cpus given in physical bitmap <code>set</code>. </p>
 <dl class="section note"><dt>Note</dt><dd><code>hwloc_thread_t</code> is <code>pthread_t</code> on Unix platforms, and <code>HANDLE</code> on native Windows platforms.</dd>
 <dd>
-HWLOC_CPUBIND_PROCESS can not be used in <code>flags</code>. </dd></dl>
+<a class="el" href="a00082.html#gga217dc8d373f8958cc93c154ebce1c71ca2e0dd0128dac6b03408c7dd170477fdc" title="Bind all threads of the current (possibly) multithreaded process. ">HWLOC_CPUBIND_PROCESS</a> can not be used in <code>flags</code>. </dd></dl>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2013-2014 Inria.  All rights reserved.
+ * Copyright © 2013-2015 Inria.  All rights reserved.
  * See COPYING in top-level directory.
  */
 
@@ -48,7 +48,7 @@ static int hwloc_diff_read(hwloc_topology_t topo, const char *inputdiff,
 		readlen = buflen/2;
 	}
 
-	err = hwloc_topology_diff_load_xmlbuffer(topo, buffer, offset+1, firstdiffp, refnamep);
+	err = hwloc_topology_diff_load_xmlbuffer(topo, buffer, (int)(offset+1), firstdiffp, refnamep);
 	free(buffer);
 	return err;
 
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 {
 	hwloc_topology_t topo;
 	hwloc_topology_diff_t firstdiff = NULL;
-	unsigned long flags = HWLOC_TOPOLOGY_FLAG_WHOLE_IO | HWLOC_TOPOLOGY_FLAG_ICACHES;
+	unsigned long flags = HWLOC_TOPOLOGY_FLAG_WHOLE_SYSTEM | HWLOC_TOPOLOGY_FLAG_WHOLE_IO | HWLOC_TOPOLOGY_FLAG_ICACHES;
 	unsigned long patchflags = 0;
 	char *callname, *input, *inputdiff, *output = NULL, *refname = NULL;
 	int err;

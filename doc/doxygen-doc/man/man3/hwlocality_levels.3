@@ -1,4 +1,4 @@
-.TH "hwlocality_levels" 3 "Thu Jun 18 2015" "Version 1.11.0" "Hardware Locality (hwloc)" \" -*- nroff -*-
+.TH "hwlocality_levels" 3 "Thu Oct 15 2015" "Version 1.11.1" "Hardware Locality (hwloc)" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -80,7 +80,7 @@ Virtual depth for software device object level\&.
 .SS "\fBhwloc_obj_type_t\fP hwloc_get_depth_type (\fBhwloc_topology_t\fP topology, unsigned depth)"
 
 .PP
-Returns the type of objects at depth \fCdepth\fP\&. 
+Returns the type of objects at depth \fCdepth\fP\&. \fCdepth\fP should between 0 and \fBhwloc_topology_get_depth()\fP-1\&.
 .PP
 \fBReturns:\fP
 .RS 4
@@ -119,11 +119,11 @@ Returns the top-object of the topology-tree\&. Its type is typically \fBHWLOC_OB
 .SS "int hwloc_get_type_depth (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_type_t\fP type)"
 
 .PP
-Returns the depth of objects of type \fCtype\fP\&. If no object of this type is present on the underlying architecture, or if the OS doesn't provide this kind of information, the function returns HWLOC_TYPE_DEPTH_UNKNOWN\&.
+Returns the depth of objects of type \fCtype\fP\&. If no object of this type is present on the underlying architecture, or if the OS doesn't provide this kind of information, the function returns \fBHWLOC_TYPE_DEPTH_UNKNOWN\fP\&.
 .PP
 If type is absent but a similar type is acceptable, see also \fBhwloc_get_type_or_below_depth()\fP and \fBhwloc_get_type_or_above_depth()\fP\&.
 .PP
-If some objects of the given type exist in different levels, for instance L1 and L2 caches, or L1i and L1d caches, the function returns HWLOC_TYPE_DEPTH_MULTIPLE\&. See \fBhwloc_get_cache_type_depth()\fP in \fBhwloc/helper\&.h\fP to better handle this case\&.
+If some objects of the given type exist in different levels, for instance L1 and L2 caches, or L1i and L1d caches, the function returns \fBHWLOC_TYPE_DEPTH_MULTIPLE\fP\&. See \fBhwloc_get_cache_type_depth()\fP in \fBhwloc/helper\&.h\fP to better handle this case\&.
 .PP
 If an I/O object type is given, the function returns a virtual value because I/O objects are stored in special levels that are not CPU-related\&. This virtual depth may be passed to other hwloc functions such as \fBhwloc_get_obj_by_depth()\fP but it should not be considered as an actual depth by the application\&. In particular, it should not be compared with any other object depth or with the entire topology depth\&. 
 .SS "static int hwloc_get_type_or_above_depth (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_type_t\fP type)\fC [inline]\fP, \fC [static]\fP"
@@ -131,17 +131,17 @@ If an I/O object type is given, the function returns a virtual value because I/O
 .PP
 Returns the depth of objects of type \fCtype\fP or above\&. If no object of this type is present on the underlying architecture, the function returns the depth of the first 'present' object typically containing \fCtype\fP\&.
 .PP
-If some objects of the given type exist in different levels, for instance L1 and L2 caches, the function returns HWLOC_TYPE_DEPTH_MULTIPLE\&. 
+If some objects of the given type exist in different levels, for instance L1 and L2 caches, the function returns \fBHWLOC_TYPE_DEPTH_MULTIPLE\fP\&. 
 .SS "static int hwloc_get_type_or_below_depth (\fBhwloc_topology_t\fP topology, \fBhwloc_obj_type_t\fP type)\fC [inline]\fP, \fC [static]\fP"
 
 .PP
 Returns the depth of objects of type \fCtype\fP or below\&. If no object of this type is present on the underlying architecture, the function returns the depth of the first 'present' object typically found inside \fCtype\fP\&.
 .PP
-If some objects of the given type exist in different levels, for instance L1 and L2 caches, the function returns HWLOC_TYPE_DEPTH_MULTIPLE\&. 
+If some objects of the given type exist in different levels, for instance L1 and L2 caches, the function returns \fBHWLOC_TYPE_DEPTH_MULTIPLE\fP\&. 
 .SS "unsigned hwloc_topology_get_depth (\fBhwloc_topology_t\fP restrict topology)"
 
 .PP
-Get the depth of the hierarchical tree of objects\&. This is the depth of HWLOC_OBJ_PU objects plus one\&. 
+Get the depth of the hierarchical tree of objects\&. This is the depth of \fBHWLOC_OBJ_PU\fP objects plus one\&. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Hardware Locality (hwloc) from the source code\&.

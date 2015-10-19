@@ -112,7 +112,7 @@ target_triplet = @target@
 @HWLOC_GL_BUILD_STATIC_FALSE@@HWLOC_HAVE_GL_TRUE@am__append_12 = hwloc_gl.la
 @HWLOC_HAVE_SOLARIS_TRUE@am__append_13 = topology-solaris.c \
 @HWLOC_HAVE_SOLARIS_TRUE@	topology-solaris-chiptype.c
-@HWLOC_HAVE_LINUX_TRUE@am__append_14 = topology-linux.c
+@HWLOC_HAVE_LINUX_TRUE@am__append_14 = topology-linux.c topology-hardwired.c
 @HWLOC_HAVE_BGQ_TRUE@am__append_15 = topology-bgq.c
 @HWLOC_HAVE_AIX_TRUE@am__append_16 = topology-aix.c
 @HWLOC_HAVE_AIX_TRUE@am__append_17 = -lpthread
@@ -264,9 +264,10 @@ am__libhwloc_la_SOURCES_DIST = topology.c traversal.c distances.c \
 	topology-xml-libxml.c topology-pci.c topology-opencl.c \
 	topology-cuda.c topology-nvml.c topology-gl.c \
 	topology-solaris.c topology-solaris-chiptype.c \
-	topology-linux.c topology-bgq.c topology-aix.c topology-osf.c \
-	topology-hpux.c topology-windows.c topology-darwin.c \
-	topology-freebsd.c topology-netbsd.c topology-x86.c
+	topology-linux.c topology-hardwired.c topology-bgq.c \
+	topology-aix.c topology-osf.c topology-hpux.c \
+	topology-windows.c topology-darwin.c topology-freebsd.c \
+	topology-netbsd.c topology-x86.c
 @HWLOC_HAVE_LIBXML2_TRUE@@HWLOC_XML_LIBXML_BUILD_STATIC_TRUE@am__objects_1 = topology-xml-libxml.lo
 @HWLOC_HAVE_PCI_TRUE@@HWLOC_PCI_BUILD_STATIC_TRUE@am__objects_2 = topology-pci.lo
 @HWLOC_HAVE_OPENCL_TRUE@@HWLOC_OPENCL_BUILD_STATIC_TRUE@am__objects_3 = topology-opencl.lo
@@ -275,7 +276,8 @@ am__libhwloc_la_SOURCES_DIST = topology.c traversal.c distances.c \
 @HWLOC_GL_BUILD_STATIC_TRUE@@HWLOC_HAVE_GL_TRUE@am__objects_6 = topology-gl.lo
 @HWLOC_HAVE_SOLARIS_TRUE@am__objects_7 = topology-solaris.lo \
 @HWLOC_HAVE_SOLARIS_TRUE@	topology-solaris-chiptype.lo
-@HWLOC_HAVE_LINUX_TRUE@am__objects_8 = topology-linux.lo
+@HWLOC_HAVE_LINUX_TRUE@am__objects_8 = topology-linux.lo \
+@HWLOC_HAVE_LINUX_TRUE@	topology-hardwired.lo
 @HWLOC_HAVE_BGQ_TRUE@am__objects_9 = topology-bgq.lo
 @HWLOC_HAVE_AIX_TRUE@am__objects_10 = topology-aix.lo
 @HWLOC_HAVE_OSF_TRUE@am__objects_11 = topology-osf.lo
@@ -309,9 +311,10 @@ am__libhwloc_embedded_la_SOURCES_DIST = topology.c traversal.c \
 	topology-xml-libxml.c topology-pci.c topology-opencl.c \
 	topology-cuda.c topology-nvml.c topology-gl.c \
 	topology-solaris.c topology-solaris-chiptype.c \
-	topology-linux.c topology-bgq.c topology-aix.c topology-osf.c \
-	topology-hpux.c topology-windows.c topology-darwin.c \
-	topology-freebsd.c topology-netbsd.c topology-x86.c
+	topology-linux.c topology-hardwired.c topology-bgq.c \
+	topology-aix.c topology-osf.c topology-hpux.c \
+	topology-windows.c topology-darwin.c topology-freebsd.c \
+	topology-netbsd.c topology-x86.c
 am_libhwloc_embedded_la_OBJECTS = $(am__objects_18)
 libhwloc_embedded_la_OBJECTS = $(am_libhwloc_embedded_la_OBJECTS)
 @HWLOC_BUILD_STANDALONE_FALSE@am_libhwloc_embedded_la_rpath =
@@ -473,6 +476,7 @@ HWLOC_REQUIRES = @HWLOC_REQUIRES@
 HWLOC_TERMCAP_LIBS = @HWLOC_TERMCAP_LIBS@
 HWLOC_VERSION = @HWLOC_VERSION@
 HWLOC_W3_GENERATOR = @HWLOC_W3_GENERATOR@
+HWLOC_X11_CPPFLAGS = @HWLOC_X11_CPPFLAGS@
 HWLOC_X11_LIBS = @HWLOC_X11_LIBS@
 HWLOC_XML_LOCALIZED = @HWLOC_XML_LOCALIZED@
 HWLOC_top_builddir = @HWLOC_top_builddir@
@@ -835,6 +839,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/topology-fake.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/topology-freebsd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/topology-gl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/topology-hardwired.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/topology-hpux.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/topology-linux.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/topology-netbsd.Plo@am__quote@
@@ -1070,9 +1075,9 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-@HWLOC_HAVE_WINDOWS_FALSE@uninstall-local:
 @HWLOC_HAVE_MS_LIB_FALSE@clean-local:
 @HWLOC_HAVE_WINDOWS_FALSE@clean-local:
+@HWLOC_HAVE_WINDOWS_FALSE@uninstall-local:
 @HWLOC_HAVE_WINDOWS_FALSE@install-exec-hook:
 clean: clean-am
 

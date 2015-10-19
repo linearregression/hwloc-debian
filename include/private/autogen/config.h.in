@@ -240,6 +240,9 @@
 /* Define to 1 if the system has the type `PROCESSOR_GROUP_INFO'. */
 #undef HAVE_PROCESSOR_GROUP_INFO
 
+/* Define to 1 if the system has the type `PROCESSOR_NUMBER'. */
+#undef HAVE_PROCESSOR_NUMBER
+
 /* Define to 1 if the system has the type `PROCESSOR_RELATIONSHIP'. */
 #undef HAVE_PROCESSOR_RELATIONSHIP
 
@@ -527,6 +530,9 @@
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HWLOC_HAVE_STDINT_H
 
+/* Define to 1 if function `syscall' is available */
+#undef HWLOC_HAVE_SYSCALL
+
 /* Define to 1 if you have the `windows.h' header. */
 #undef HWLOC_HAVE_WINDOWS_H
 
@@ -535,9 +541,6 @@
 
 /* Define to 1 if you have x86 cpuid */
 #undef HWLOC_HAVE_X86_CPUID
-
-/* Define to 1 if the _syscall3 macro works */
-#undef HWLOC_HAVE__SYSCALL3
 
 /* Define to 1 on HP-UX */
 #undef HWLOC_HPUX_SYS

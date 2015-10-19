@@ -5462,8 +5462,9 @@
     <title>I/O Devices</title>
     <filename>a00010</filename>
     <docanchor file="a00010" title="Enabling and requirements">iodevices_enabling</docanchor>
-    <docanchor file="a00010" title="I/O object hierarchy">iodevices_hierarchy</docanchor>
-    <docanchor file="a00010" title="Software devices">iodevices_osdev</docanchor>
+    <docanchor file="a00010" title="I/O objects">iodevices_objects</docanchor>
+    <docanchor file="a00010" title="OS devices">iodevices_osdev</docanchor>
+    <docanchor file="a00010" title="PCI devices and bridges">iodevices_pci</docanchor>
     <docanchor file="a00010" title="Consulting I/O devices and binding">iodevices_consult</docanchor>
     <docanchor file="a00010" title="Examples">iodevices_examples</docanchor>
   </compound>

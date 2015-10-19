@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -162,7 +162,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="gga46323568968005137c32f6a1cd405b74a2f8297ea36eba46e7596e810a67298fb"></a>HWLOC_TYPE_UNORDERED&#160;</td><td class="fielddoc">
-<p>Value returned by hwloc_compare_types when types can not be compared. </p>
+<p>Value returned by <a class="el" href="a00076.html#ga1820ea0dfd8e9dca28f9ea7624df5ae2" title="Compare the depth of two object types. ">hwloc_compare_types()</a> when types can not be compared. </p>
 </td></tr>
 </table>
 
@@ -209,7 +209,7 @@ Functions</h2></td></tr>
 <p>Data cache. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="gga791c9875c8fe20f3e1e5871e0657e59ba6f98b0d422b38ba90c5f5c79a11b0658"></a>HWLOC_OBJ_CACHE_INSTRUCTION&#160;</td><td class="fielddoc">
-<p>Instruction cache. Only used when the HWLOC_TOPOLOGY_FLAG_ICACHES topology flag is set. </p>
+<p>Instruction cache. Only used when the <a class="el" href="a00079.html#ggada025d3ec20b4b420f8038d23d6e7bdeaae509a0bed4a7067e0116c75c661178d" title="Detect instruction caches. ">HWLOC_TOPOLOGY_FLAG_ICACHES</a> topology flag is set. </p>
 </td></tr>
 </table>
 
@@ -289,7 +289,7 @@ Functions</h2></td></tr>
 <p>These objects are ignored when they do not bring any structure. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ggacd37bb612667dc437d66bfb175a8dc55a19f8a6953fa91efc76bcbcdf2d22de4d"></a>HWLOC_OBJ_MISC&#160;</td><td class="fielddoc">
-<p>Miscellaneous objects. Objects without particular meaning, that can e.g. be added by the application for its own use, or by hwloc for miscellaneous objects such as MemoryDevice. </p>
+<p>Miscellaneous objects. Objects without particular meaning, that can e.g. be added by the application for its own use, or by hwloc for miscellaneous objects such as MemoryModule (DIMMs). </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ggacd37bb612667dc437d66bfb175a8dc55a6825f10895fea60aca7a6ba9fe273db0"></a>HWLOC_OBJ_BRIDGE&#160;</td><td class="fielddoc">
 <p>Bridge. Any bridge that connects the host or an I/O bus, to another I/O bus. Bridge objects have neither CPU sets nor node sets. They are not added to the topology unless I/O discovery is enabled with <a class="el" href="a00079.html#gaaeed4df656979e5f16befea9d29b814b" title="Set OR&#39;ed flags to non-yet-loaded topology. ">hwloc_topology_set_flags()</a>. </p>
@@ -333,8 +333,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compare the depth of two object types. </p>
-<p>Types shouldn't be compared as they are, since newer ones may be added in the future. This function returns less than, equal to, or greater than zero respectively if <code>type1</code> objects usually include <code>type2</code> objects, are the same as <code>type2</code> objects, or are included in <code>type2</code> objects. If the types can not be compared (because neither is usually contained in the other), HWLOC_TYPE_UNORDERED is returned. Object types containing CPUs can always be compared (usually, a system contains machines which contain nodes which contain packages which contain caches, which contain cores, which contain processors).</p>
-<dl class="section note"><dt>Note</dt><dd>HWLOC_OBJ_PU will always be the deepest. </dd>
+<p>Types shouldn't be compared as they are, since newer ones may be added in the future. This function returns less than, equal to, or greater than zero respectively if <code>type1</code> objects usually include <code>type2</code> objects, are the same as <code>type2</code> objects, or are included in <code>type2</code> objects. If the types can not be compared (because neither is usually contained in the other), <a class="el" href="a00076.html#gga46323568968005137c32f6a1cd405b74a2f8297ea36eba46e7596e810a67298fb" title="Value returned by hwloc_compare_types() when types can not be compared. ">HWLOC_TYPE_UNORDERED</a> is returned. Object types containing CPUs can always be compared (usually, a system contains machines which contain nodes which contain packages which contain caches, which contain cores, which contain processors).</p>
+<dl class="section note"><dt>Note</dt><dd><a class="el" href="a00076.html#ggacd37bb612667dc437d66bfb175a8dc55abca6887e80cb291353b0a0c1da83f661" title="Processing Unit, or (Logical) Processor. An execution unit (may share a core with some other logical ...">HWLOC_OBJ_PU</a> will always be the deepest. </dd>
 <dd>
 This does not mean that the actual topology will respect that order: e.g. as of today cores may also contain caches, and packages may also contain nodes. This is thus just to be seen as a fallback comparison method. </dd></dl>
 

@@ -348,6 +348,7 @@ HWLOC_REQUIRES = @HWLOC_REQUIRES@
 HWLOC_TERMCAP_LIBS = @HWLOC_TERMCAP_LIBS@
 HWLOC_VERSION = @HWLOC_VERSION@
 HWLOC_W3_GENERATOR = @HWLOC_W3_GENERATOR@
+HWLOC_X11_CPPFLAGS = @HWLOC_X11_CPPFLAGS@
 HWLOC_X11_LIBS = @HWLOC_X11_LIBS@
 HWLOC_XML_LOCALIZED = @HWLOC_XML_LOCALIZED@
 HWLOC_top_builddir = @HWLOC_top_builddir@
@@ -2204,7 +2205,7 @@ uninstall-man: uninstall-man3
 @HWLOC_BUILD_DOXYGEN_TRUE@$(DOX_TAG): $(BUILT_SOURCES) $(dox_inputs) $(PREBUILT_IMAGES)
 @HWLOC_BUILD_DOXYGEN_TRUE@	rm -fr $(DOX_DIR)
 @HWLOC_BUILD_DOXYGEN_TRUE@	$(DOXYGEN) $(DOX_CONFIG)
-@HWLOC_BUILD_DOXYGEN_TRUE@	-$(SED_I) -e 's@\\hyperlink{a[0-9]\{5\}_source}{@\\textbf{@g' $(DOX_DIR)/latex/*.tex
+@HWLOC_BUILD_DOXYGEN_TRUE@	sed -i -e 's@\\hyperlink{a[[:digit:]][[:digit:]]*_source}{@\\textbf{@g' $(DOX_DIR)/latex/*.tex
 @HWLOC_BUILD_DOXYGEN_TRUE@	@echo "Work-around spurious leading _ in doxygen filenames..."
 @HWLOC_BUILD_DOXYGEN_TRUE@	-(cd $(DOX_DIR)/man/man3 ; \
 @HWLOC_BUILD_DOXYGEN_TRUE@	for i in _hwloc* ; do \

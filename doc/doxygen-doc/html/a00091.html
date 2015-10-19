@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -132,11 +132,11 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Find the depth of cache objects matching cache depth and type. </p>
-<p>Return the depth of the topology level that contains cache objects whose attributes match <code>cachedepth</code> and <code>cachetype</code>. This function intends to disambiguate the case where <a class="el" href="a00080.html#ga8bec782e21be313750da70cf7428b374" title="Returns the depth of objects of type type. ">hwloc_get_type_depth()</a> returns <code>HWLOC_TYPE_DEPTH_MULTIPLE</code>.</p>
-<p>If no cache level matches, <code>HWLOC_TYPE_DEPTH_UNKNOWN</code> is returned.</p>
-<p>If <code>cachetype</code> is <code>HWLOC_OBJ_CACHE_UNIFIED</code>, the depth of the unique matching unified cache level is returned.</p>
-<p>If <code>cachetype</code> is <code>HWLOC_OBJ_CACHE_DATA</code> or <code>HWLOC_OBJ_CACHE_INSTRUCTION</code>, either a matching cache, or a unified cache is returned.</p>
-<p>If <code>cachetype</code> is <code>-1</code>, it is ignored and multiple levels may match. The function returns either the depth of a uniquely matching level or <code>HWLOC_TYPE_DEPTH_MULTIPLE</code>. </p>
+<p>Return the depth of the topology level that contains cache objects whose attributes match <code>cachedepth</code> and <code>cachetype</code>. This function intends to disambiguate the case where <a class="el" href="a00080.html#ga8bec782e21be313750da70cf7428b374" title="Returns the depth of objects of type type. ">hwloc_get_type_depth()</a> returns <a class="el" href="a00080.html#ggaf4e663cf42bbe20756b849c6293ef575ae99465995cacde6c210d5fc2e409798c" title="Objects of given type exist at different depth in the topology. ">HWLOC_TYPE_DEPTH_MULTIPLE</a>.</p>
+<p>If no cache level matches, <a class="el" href="a00080.html#ggaf4e663cf42bbe20756b849c6293ef575a0565ab92ab72cb0cec91e23003294aad" title="No object of given type exists in the topology. ">HWLOC_TYPE_DEPTH_UNKNOWN</a> is returned.</p>
+<p>If <code>cachetype</code> is <a class="el" href="a00076.html#gga791c9875c8fe20f3e1e5871e0657e59ba3900b3b2db54941aac249e5a638a2d7a" title="Unified cache. ">HWLOC_OBJ_CACHE_UNIFIED</a>, the depth of the unique matching unified cache level is returned.</p>
+<p>If <code>cachetype</code> is <a class="el" href="a00076.html#gga791c9875c8fe20f3e1e5871e0657e59bacac60ecad4206f85aeb79bef1604b488" title="Data cache. ">HWLOC_OBJ_CACHE_DATA</a> or <a class="el" href="a00076.html#gga791c9875c8fe20f3e1e5871e0657e59ba6f98b0d422b38ba90c5f5c79a11b0658" title="Instruction cache. Only used when the HWLOC_TOPOLOGY_FLAG_ICACHES topology flag is set...">HWLOC_OBJ_CACHE_INSTRUCTION</a>, either a matching cache, or a unified cache is returned.</p>
+<p>If <code>cachetype</code> is <code>-1</code>, it is ignored and multiple levels may match. The function returns either the depth of a uniquely matching level or <a class="el" href="a00080.html#ggaf4e663cf42bbe20756b849c6293ef575ae99465995cacde6c210d5fc2e409798c" title="Objects of given type exist at different depth in the topology. ">HWLOC_TYPE_DEPTH_MULTIPLE</a>. </p>
 
 </div>
 </div>

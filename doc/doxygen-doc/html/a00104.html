@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Hardware Locality (hwloc)
-   &#160;<span id="projectnumber">1.11.0</span>
+   &#160;<span id="projectnumber">1.11.1</span>
    </div>
   </td>
  </tr>
@@ -175,7 +175,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Modify the PCI device object into a bridge and fill its attribute if a bridge is found in the PCI config space. </p>
-<p>This function requires 64 bytes of common configuration header at the beginning of config. </p>
+<p>This function requires 64 bytes of common configuration header at the beginning of config.</p>
+<p>Returns -1 and destroys /p obj if bridge fields are invalid. </p>
 
 </div>
 </div>

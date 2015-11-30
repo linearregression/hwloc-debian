@@ -3,7 +3,7 @@ Priority: extra
 Maintainer: Samuel Thibault <sthibault@debian.org>
 Build-Depends: debhelper (>= 7), cdbs, libltdl-dev,
   libcairo2-dev, libx11-dev, libxml2-dev, libxml2-utils, libncurses5-dev,
-  libnuma-dev [amd64 arm64 i386 ia64 mips mipsel powerpc ppc64el sparc],
+  libnuma-dev [amd64 arm64 i386 ia64 mips mips64 mipsel mips64el powerpc ppc64el sparc],
   libpciaccess-dev, pkg-config,
   libibverbs-dev [linux-any],
   ocl-icd-opencl-dev [!hurd-i386] | opencl-dev, opencl-headers,
@@ -69,7 +69,7 @@ Package: libhwloc-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends}, libhwloc5 (= ${binary:Version}), libnuma-dev [amd64 arm64 i386 ia64 mips mipsel powerpc ppc64el sparc], libltdl-dev
+Depends: ${misc:Depends}, libhwloc5 (= ${binary:Version}), libnuma-dev [amd64 arm64 i386 ia64 mips mips64 mipsel mips64el powerpc ppc64el sparc], libltdl-dev
 Description: Hierarchical view of the machine - static libs and headers
  Hardware Locality (hwloc) provides a portable abstraction (across OS, versions,
  architectures, ...) of the hierarchical topology of modern architectures. It

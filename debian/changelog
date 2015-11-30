@@ -1,6 +1,8 @@
 hwloc (1.11.1-2) UNRELEASED; urgency=medium
 
-  * control: Drop multiarch-support pre-depend.
+  * control:
+    - Drop multiarch-support pre-depend.
+    - Enable numa on mips64*. Closes: #806700.
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 24 Oct 2015 14:48:36 +0200
 

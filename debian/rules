@@ -1,108 +1,30 @@
 #!/usr/bin/make -f
 
-include /usr/share/cdbs/1/class/langcore.mk
+%:
+	dh $@ --with autoreconf
 
-DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_HOST_MULTIARCH  ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
-DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
-ifneq ($(DEB_HOST_GNU_TYPE),$(DEB_BUILD_GNU_TYPE))
-CROSS= --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
-else
-CROSS= --build $(DEB_BUILD_GNU_TYPE)
-endif
 
-JQUERY_DEST=/usr/share/doc/libhwloc-doc/html/jquery.js
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-static --enable-plugins --enable-doxygen
 
-export DEB_BUILD_HARDENING=1
+override_dh_auto_test:
+	-dh_auto_test
 
-ifneq (,$(DEB_PARALLEL_JOBS))
-MAKEFLAGS += -j$(DEB_PARALLEL_JOBS)
-endif
-
-confflags=--prefix=/usr --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --enable-static CFLAGS="$(CFLAGS)" --enable-plugins --enable-doxygen
-
-configure: configure.ac config/hwloc.m4
-	dh_autoreconf
-
-config.status: configure
-	dh_testdir
-
-	./configure $(CROSS) $(confflags)
-
-
-build: build-stamp debian/libhwloc5.links
-build-stamp: config.status
-	dh_testdir
-
-	$(MAKE)
-	-$(MAKE) check
-
-	touch $@
-
-debian/libhwloc5.links: debian/libhwloc5.links.in
-	sed -e 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' < $< > $@
-
-clean: 
-	dh_testdir
-	dh_testroot
-	dh_autoreconf_clean
-	rm -f build-stamp
-	rm -f debian/libhwloc5.links
-
-	[ ! -f Makefile ] || $(MAKE) distclean
-	rm -f config.sub config.guess
-	rm -f configure
-
-	dh_clean 
-
-install: build
-	dh_testdir
-	dh_testroot
-	dh_prep  
-	dh_installdirs
-
-	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
+override_dh_auto_install:
+	dh_auto_install
 
 	mkdir -p $(CURDIR)/debian/tmp/usr/include/$(DEB_HOST_MULTIARCH)/hwloc/autogen
 	mv $(CURDIR)/debian/tmp/usr/include/hwloc/autogen/config.h $(CURDIR)/debian/tmp/usr/include/$(DEB_HOST_MULTIARCH)/hwloc/autogen/
 
-binary-indep: export DH_OPTIONS=-i
-binary-indep: install
-	dh_testdir
-	dh_testroot
-	dh_install
-	dh_installdocs
-	rm -f $(JQUERY_DEST)
-	dh_installchangelogs 
-	dh_installexamples
-	dh_installman
+debian/libhwloc5.links: debian/libhwloc5.links.in
+	sed -e 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' < $< > $@
+override_dh_link: debian/libhwloc5.links
 	dh_link
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
 
-binary-arch: export DH_OPTIONS=-s
-binary-arch: install
-	dh_testdir
-	dh_testroot
-	dh_install
-	dh_installdocs
-	dh_installchangelogs 
-	dh_installman
-	dh_installmenu
-	dh_link
-	dh_strip
-	dh_compress
-	dh_fixperms
+override_dh_clean:
+	dh_clean
+	rm -f debian/libhwloc5.links
+
+override_dh_makeshlibs:
 	dh_makeshlibs -V
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install 

@@ -1,15 +1,14 @@
 Source: hwloc-contrib
 Priority: extra
 Maintainer: Samuel Thibault <sthibault@debian.org>
-Build-Depends: debhelper (>= 7), cdbs, libltdl-dev,
+Build-Depends: debhelper (>= 9), libltdl-dev,
   libx11-dev, libxext-dev, nvidia-cuda-dev, libxnvctrl-dev,
   libpciaccess-dev, pkg-config,
   libibverbs-dev [linux-any],
   ocl-icd-opencl-dev [!hurd-i386] | opencl-dev, opencl-headers,
   autoconf (>= 2.63),
   dh-autoreconf,
-  dpkg-dev (>= 1.16),
-  hardening-wrapper
+  dpkg-dev (>= 1.16)
 Build-Conflicts: autoconf2.13
 Standards-Version: 3.9.6
 Section: contrib/admin

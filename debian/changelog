@@ -1,9 +1,24 @@
-hwloc-contrib (1.11.1-1) unstable; urgency=medium
+hwloc-contrib (1.11.2-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+    - hwloc.install: Add /usr/sbin for hwloc-dump-hwdata.
+  * control:
+    - Drop multiarch-support pre-depend.
+    - Enable numa on mips64*. Closes: #806700.
+  * compat: Bump to 9.
+  * rules: Clear.
+  * hwloc.menu: Remove, replaced by desktop file.
+  * patches/bashism: Make hwloc-assembler-remote use bash since it uses
+    bashisms. Closes: #772231.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 29 Dec 2015 18:31:50 +0100
+
+hwloc (1.11.1-1) unstable; urgency=medium
 
   * New upstream release.
   * Add opencl-dev build-dep alternative to ocl-icd-opencl-dev.
 
- -- Samuel Thibault <sthibault@debian.org>  Mon, 19 Oct 2015 18:36:32 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 19 Oct 2015 18:35:48 +0200
 
 hwloc (1.11.0-1) unstable; urgency=medium
 

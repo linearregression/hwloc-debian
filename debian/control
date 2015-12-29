@@ -1,7 +1,7 @@
 Source: hwloc
 Priority: extra
 Maintainer: Samuel Thibault <sthibault@debian.org>
-Build-Depends: debhelper (>= 9), cdbs, libltdl-dev,
+Build-Depends: debhelper (>= 9), libltdl-dev,
   libcairo2-dev, libx11-dev, libxml2-dev, libxml2-utils, libncurses5-dev,
   libnuma-dev [amd64 arm64 i386 ia64 mips mips64 mipsel mips64el powerpc ppc64el sparc],
   libpciaccess-dev, pkg-config,

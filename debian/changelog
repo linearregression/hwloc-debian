@@ -1,3 +1,9 @@
+hwloc (1.11.2-3) UNRELEASED; urgency=medium
+
+  * Also install hwloc-dump-hwdata on linux x32.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 29 Dec 2015 20:24:04 +0100
+
 hwloc (1.11.2-2) unstable; urgency=medium
 
   * Only install hwloc-dump-hwdata on linux x86.

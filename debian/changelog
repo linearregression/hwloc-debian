@@ -1,5 +1,7 @@
-hwloc (1.11.1-2) UNRELEASED; urgency=medium
+hwloc (1.11.2-1) UNRELEASED; urgency=medium
 
+  * New upstream release
+    - hwloc.install: Add /usr/sbin for hwloc-dump-hwdata.
   * control:
     - Drop multiarch-support pre-depend.
     - Enable numa on mips64*. Closes: #806700.
